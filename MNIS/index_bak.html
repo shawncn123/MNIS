@@ -1,0 +1,171 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=gb2312" />
+<title>达品客,发现惊喜！总有一样东西,会让我们怦然心动！</title>
+<meta name="Description" content="达品客（dapinke.com）-是一家特殊商品推荐网站。我们精选各种有创意，体现个性，高端定制，原创设计等商品信息，类别包括服装、饰品、箱包、家居、手机数码，日用百货等，合理的价格，服务免费，购物流程在淘宝天猫完成，支付宝担保交易，网购安全有保障。" />
+<meta name="Keywords" content="创意,新奇,个性,品味,原创设计,民族风,高端定制,礼物" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+
+
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ias.min.js"></script>
+<script type="text/javascript" src="js/dapinke_m.js"></script>
+</head>
+
+<body>
+
+<div class="new-header">
+	<a href="index_bak.html" class="dapinke_logo"><span>达品客</span></a>
+	<h2></h2>
+	<!-- <a href="javascript:void(0)" id="btnJdkey" class="new-a-jd"><span>更多</span></a> -->
+	<a href="@{sys:path}search.html" id="btnJdkey" class="new-a-jd-1"><span>更多</span></a>
+	<a href="@{sys:path}acount.html" class="dpk-a-hy"><span>会员</span></a>
+</div>
+
+<!-- <chtml file="htm/popmenu.html"/> 
+<chtml file="htm/popmenu_1.html"/>-->
+<!-- <div class="dapinke-welcome" style="padding: 5px 0 0 0;"><span>总有一样东西</span></div><div  class="dapinke-welcome" style="padding: 5px 0 10px 0;margin: 0 0 5px 0;"><span>能填补我们内心深处心灵的需求</span></div> -->
+<div class="dapinke-welcome" style="padding: 5px 0 0 0;"><span>总有一样东西</span></div><div  class="dapinke-welcome" style="padding: 5px 0 10px 0;margin: 0 0 5px 0;"><span>会让我们怦然心动</span></div>
+<!--<div class="dapinke-welcome" style="padding: 5px 0 0 0;"><span>总有一样东西</span><span style="letter-spacing:0">dapinke.com</span></div><div  class="dapinke-welcome" style="padding: 5px 0 10px 0;margin: 0 0 5px 0;"><span>会让我们怦然心动！</span></div>-->
+<chtml>
+
+<div class="module_container" id="posts">
+<!--
+	<div class="shop_list">
+		<div class="pic">
+		   <a href="list.html?m=0&ag3=1">
+			  <img src="@{sys:path}/images/ad_home.jpg" >
+		   </a>
+		</div>
+	</div>
+
+	<div class="shop_tit clearfix">
+		<h1>最新推荐 每日上新</h1>
+	</div>
+	-->
+	<!-- 每页的长度 -->
+	<Bag id=pPage><we name=length>10</we></Bag><!-- 取总数等 -->
+	<!-- 总页数和最后一页的条数 -->
+	<esql module=base id=count>
+		SELECT count(xiangm_id) as all_ID from xiangmuxianshi_t where xianshi_fenlei_hao=33
+	</esql>
+	<bag id=pPage><we name=pages>@{int:@{count:all_ID}/@{pPage:length}}</we><we name=odd>@{int:@{count:all_ID}%@{pPage:length}}</we></bag>
+	<if x="@{pPage:odd}" else=1>
+		<bag id=pPage x=0><we name=odd>@{pPage:length}</we></bag>
+		<bag id=pPage><we name=pages>@{int:@{pPage:pages}+1}</we></bag>
+	</if>
+	<!-- 开始页 -->
+	<if x="@{pPage:start}"><Bag id=pPage><we name=start>0</we></Bag></if>
+	<if x="@{logic:@{pPage:start}&gt;@{count:all_ID}}"><Bag id=pPage x=true><we name=start>@{int:@{count:all_ID}-@{pPage:odd}}</we></Bag></if>
+	<Bag id=pPage><we name=start>@{int:@{pPage:start}-0}</we></Bag>
+	<if x="@{logic:@{pPage:start}&lt;0}"><Bag id=pPage x=true><we name=start>0</we></Bag></if>	
+	<!-- 取首页专场 -->
+	<esql module="base" id="sy_fl_sp">
+		SELECT t1.xiangm_id,xm_tupian,xm_name,xm_shichangj,xm_leixing,xmzhuangt_id,xm_chuxj,jiaoyi_jiaz,mingcheng_sp,sp_xiaol,dpk_tjzs,fabu_ren,user_nicheng,xm_xihuans,xm_pinluns from xiangmu_t t1,xiangmuxianshi_t t2,yonghuxingxi_t t3 where t1.xiangm_id = t2.xiangm_id  and xianshi_fenlei_hao=33 and user_id=fabu_ren order by xianshi_fenlei_hao,xianshi_shunxu_hao limit @{pPage:start},@{pPage:length}
+	</esql>
+
+	<div class="pro_list" id="posts">
+		<div class="post">
+			<ul class="clearfix">
+				<for objects=sy_fl_sp end="@{sy_fl_sp:getLength}">
+					<li tail>
+						<div class="pic">
+						   <a href="content.html?p=@{sy_fl_sp:xiangm_id}" target="_blank">
+							  <img src="@{sy_fl_sp:xm_tupian}" />
+						   </a>
+						</div>
+						<div class="pro_info clearfix">
+							<a href="content.html?p=@{sy_fl_sp:xiangm_id}" target="_blank">
+							  <p><span class="title" style="width:302px;text-overflow:ellipsis;overflow:hidden; white-space:nowrap;">@{sy_fl_sp:xm_name}</span></p>
+							  <p><span class="zkjg_12">￥</span> <span class="zkjg"  style="width: 25%;">@{sy_fl_sp:xm_chuxj}</span>
+							  <img alt="喜欢" src="@{sys:path}images/heart_24x21.png" style="width: 17px;height: 15px;line-height: 30px;float: left;margin: 8px 5px 0 20px;" /><span class="zkjg_12" style="width: 20%;">@{sy_fl_sp:xm_xihuans}</span>
+							  <img alt="评论" src="@{sys:path}images/pinlun_small.png" style="width: 17px;height: 15px;line-height: 30px;float: left;margin: 8px 5px 0 10px;" /><span class="zkjg_12" style="width: 20%;">@{sy_fl_sp:xm_pinluns}</span></p>
+							  <p><span class="title" style="width: 42px;display: block;">达人：</span><a href="daren_home.html?c=@{sy_fl_sp:fabu_ren}" style="float: left;" target="_blank"><span style="font-weight:700;color:#588cc7;float: left;line-height: 30px;font-size: 14px;">@{sy_fl_sp:user_nicheng}</span></a></p> 
+							</a>
+						</div>
+					</li>
+				</for>
+			</ul>
+		</div>
+		<!-- <a href="list.html?m=0&ag3=1"><span class="btn" >查看更多商品</span></a>
+		<p style="margin-top:30px;"><a href="list.html?m=0&ag3=2"><span class="btn" style="background-color:#FF6666;color:#fff;">热卖达品推荐</span></a></p> -->
+	</div>
+	<!--
+	<div class="shop_tit clearfix" style="margin-top:20px;">
+		<h1>最热推荐 备受关注</h1>
+	</div>
+	<esql module="base" id="xiansf_sp">
+		SELECT t1.xiangm_id,xm_tupian,xm_name,xm_shichangj,xm_leixing,xmzhuangt_id,xm_chuxj,jiaoyi_jiaz,mingcheng_sp,sp_xiaol,dpk_tjzs from xiangmu_t t1,xiangmuxianshi_t t2 where t1.xiangm_id = t2.xiangm_id and xianshi_fenlei_hao=10 order by xianshi_shunxu_hao limit 10
+	</esql>
+	<div class="pro_list" id="posts">
+		<div class="post">
+			<ul class="clearfix">
+				<for objects=xiansf_sp end="@{xiansf_sp:getLength}">
+					<li tail>
+						<div class="pic">
+						   <a href="content.html?p=@{xiansf_sp:xiangm_id}" target="_blank">
+							  <img src="@{xiansf_sp:xm_tupian}" />
+						   </a>
+						</div>
+						<div class="pro_info clearfix">
+						  <p><span class="title" style="width:302px;text-overflow:ellipsis;overflow:hidden; white-space:nowrap;">@{xiansf_sp:xm_name}</span></p>
+						  <p><span class="zkjg_12">￥</span> <span class="zkjg">@{xiansf_sp:xm_chuxj}</span>
+						  <span class="xiaol">月销量：<span style="font-weight:700;">@{xiansf_sp:sp_xiaol}</span></span></p>
+						</div>
+					</li>
+				</for>
+			</ul>
+		</div>
+		<a href="list.html?m=0&ag3=2"><span class="btn" >更多热门商品</span></a>
+	</div>
+	-->
+</div>
+<div id="cart1" class="cart-btns-fixed">
+	<div class="sp_btn clearfix">
+		<a href="list.html?m=0&ag3=2" target="_blank"><span class="btn" style="background-color: #9B8181;font-size: 15px;letter-spacing: 1px;">发现热点达品</span></a>
+	</div>
+</div>
+</chtml>
+<div class="right3" id="fenye_lan_id" style="width:100%;">
+	<!-- 引入分页文件 -->
+	<chinaHtml id=pagination file="htm/m_pagination_list.htm" onlycall/>
+	<ChinaHTML>
+		<if x=@{logic:@{count:all_ID}&gt;@{pPage:length}}>
+			<we x=true>
+				<bag id=head>
+					<we name=url1>/+@{head:uri}</we>
+				</bag>
+				<call>pagination</call>
+			</we>
+		</if>
+	</ChinaHTML>
+</div>
+
+
+<chtml file="htm/foot.html"/>
+<!--返回顶部-->
+<ul id="jump">
+	<li style="display:none;"><a id="top" href="#top"></a></li>	
+</ul>
+<script>
+var ias = jQuery.ias({
+  container:  '#posts',
+  item:       '.post',
+  pagination: '#pagination',
+  next:       '.next',
+  loader:	'images/loading.gif'
+});
+ias.extension(new IASSpinnerExtension());
+</script>
+
+
+
+</body>
+</html>
