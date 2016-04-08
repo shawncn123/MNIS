@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<bean id="vwBqbrZyDao" class="com.his.mnis.dao.VwBqbrZyDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vwBqbrZyService" class="com.his.mnis.serviceImpl.VwBqbrZyServiceImp">
+		<property name="vwBqbrZyDao" ref="vwBqbrZyDao"></property>
+	</bean>
+	<bean id="vwBqbrZyAction" class="com.his.mnis.actions.VwBqbrZyAction"  scope="prototype">
+		<property name="vwBqbrZyService" ref="vwBqbrZyService"></property>
+	</bean>
+	<bean id="vwRybqDao" class="com.his.mnis.dao.VwRybqDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="ryBqDefaultDao" class="com.his.mnis.dao.RyBqDefaultDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vwRybqService" class="com.his.mnis.serviceImpl.VwRybqServiceImp">
+		<property name="vwRybqDao" ref="vwRybqDao"></property>
+		<property name="ryBqDefaultDao" ref="ryBqDefaultDao"></property>
+		<property name="vwBqbrZyDao" ref="vwBqbrZyDao"></property>
+	</bean>
+	<bean id="vwRybqAction" class="com.his.mnis.actions.VwRybqAction"  scope="prototype">
+		<property name="vwRybqService" ref="vwRybqService"></property>
+	</bean>
+	<!-- <bean id="vmBmryDao" class="com.his.mnis.dao.VmBmryDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vmBmryService" class="com.his.mnis.services.VmBmryService">
+		<property name="vmBmryDao" ref="vmBmryDao"></property>
+	</bean>
+	<bean id="vmBmryAction" class="com.his.mnis.actions.VmBmryAction"  scope="prototype">
+		<property name="vmBmryService" ref="vmBmryService"></property>
+	</bean> -->
+	<!-- <bean id="vmBqbrDao" class="com.his.mnis.dao.VmBqbrDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vmBqbrService" class="com.his.mnis.services.VmBqbrService">
+		<property name="vmBqbrDao" ref="vmBqbrDao"></property>
+	</bean>
+	<bean id="vmBqbrAction" class="com.his.mnis.actions.VmBqbrAction"  scope="prototype">
+		<property name="vmBqbrService" ref="vmBqbrService"></property>
+	</bean> -->
+</beans>

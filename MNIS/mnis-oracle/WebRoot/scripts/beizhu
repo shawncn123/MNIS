@@ -1,0 +1,9 @@
+//操作员
+session.put("caozuoyuan", vwRybq);
+//当前病区id name
+session.put("dangqianbingqu", bqid);
+session.put("dangqianbingqu_name", vwRybqs.get(i).getBqmc());
+//
+request.put("bqry", vwRybqService.listBingrByBingQuId(bqid));
+//
+request.put("caozuoyuan_bingqu", vwRybqService.listBingQuByCaozyId(vwRybq.getId()));
