@@ -3,14 +3,40 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
+	<bean id="vwJc101Dao" class="com.his.mnis.dao.VwJc101Dao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vwJc101Service" class="com.his.mnis.serviceImpl.VwJc101ServiceImpl">
+		<property name="vwJc101Dao" ref="vwJc101Dao"></property>
+	</bean>
+	<bean id="vwJc101Action" class="com.his.mnis.actions.VwJc101Action"  scope="prototype">
+		<property name="vwJc101Service" ref="vwJc101Service"></property>
+	</bean>
+	<bean id="vwHy101Dao" class="com.his.mnis.dao.VwHy101Dao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vwHy101Service" class="com.his.mnis.serviceImpl.VwHy101ServiceImpl">
+		<property name="vwHy101Dao" ref="vwHy101Dao"></property>
+	</bean>
+	<bean id="vwHy101Action" class="com.his.mnis.actions.VwHy101Action"  scope="prototype">
+		<property name="vwHy101Service" ref="vwHy101Service"></property>
+	</bean>
 	<bean id="vwBqbrZyDao" class="com.his.mnis.dao.VwBqbrZyDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<bean id="vwBqbrZyService" class="com.his.mnis.serviceImpl.VwBqbrZyServiceImp">
+	<bean id="vwBqbrZyService" class="com.his.mnis.serviceImpl.VwBqbrZyServiceImpl">
 		<property name="vwBqbrZyDao" ref="vwBqbrZyDao"></property>
+	</bean>
+	<bean id="vwJbxxDao" class="com.his.mnis.dao.VwJbxxDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vwJbxxService" class="com.his.mnis.serviceImpl.VwJbxxServiceImpl">
+		<property name="vwJbxxDao" ref="vwJbxxDao"></property>
 	</bean>
 	<bean id="vwBqbrZyAction" class="com.his.mnis.actions.VwBqbrZyAction"  scope="prototype">
 		<property name="vwBqbrZyService" ref="vwBqbrZyService"></property>
+		<property name="vwJbxxService" ref="vwJbxxService"></property>
+		<property name="vwRybqService" ref="vwRybqService"></property>
 	</bean>
 	<bean id="vwRybqDao" class="com.his.mnis.dao.VwRybqDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -18,13 +44,35 @@
 	<bean id="ryBqDefaultDao" class="com.his.mnis.dao.RyBqDefaultDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<bean id="vwRybqService" class="com.his.mnis.serviceImpl.VwRybqServiceImp">
+	<bean id="vwRybqService" class="com.his.mnis.serviceImpl.VwRybqServiceImpl">
 		<property name="vwRybqDao" ref="vwRybqDao"></property>
 		<property name="ryBqDefaultDao" ref="ryBqDefaultDao"></property>
 		<property name="vwBqbrZyDao" ref="vwBqbrZyDao"></property>
 	</bean>
 	<bean id="vwRybqAction" class="com.his.mnis.actions.VwRybqAction"  scope="prototype">
 		<property name="vwRybqService" ref="vwRybqService"></property>
+	</bean>
+	<bean id="vwBryzDao" class="com.his.mnis.dao.VwBryzDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vwBryzService" class="com.his.mnis.serviceImpl.VwBryzServiceImpl">
+		<property name="vwBryzDao" ref="vwBryzDao"></property>
+	</bean>
+	<bean id="vwBryzAction" class="com.his.mnis.actions.VwBryzAction"  scope="prototype">
+		<property name="vwBryzService" ref="vwBryzService"></property>
+	</bean>
+	
+	<bean id="twTzzdDao" class="com.his.mnis.dao.TwTzzdDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="twTzzdService" class="com.his.mnis.serviceImpl.TwTzzdServiceImpl">
+		<property name="twTzzdDao" ref="twTzzdDao"></property>
+	</bean>
+	
+	<bean id="twTzzdAction" class="com.his.mnis.actions.TwTzzdAction"  scope="prototype">
+		<property name="twTzzdService" ref="twTzzdService"></property>
+		<property name="vwBqbrZyService" ref="vwBqbrZyService"></property>
 	</bean>
 	<!-- <bean id="vmBmryDao" class="com.his.mnis.dao.VmBmryDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>

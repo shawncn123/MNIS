@@ -12,7 +12,10 @@
 		
 		<action name="login" class="vwRybqAction" method="getRenYuanIdByRenYuanDaiMa">
 			<result name="false">/views/login.jsp</result>
-			<result name="success">/views/bingrenlb_jianka.jsp</result>
+			<result name="success">/views/bingrenlb.jsp</result>
+		</action>
+		<action name="bingreng_yewumokuai" class="vwBqbrZyAction" method="getBingRenXingXiByKey">
+			<result name="success">/views/yewumokuai.jsp</result>
 		</action>
 		<action name="bingqbr_bybingqid" class="vwBqbrZyAction" method="listBingqBingrByBingqId">
 			<!-- <result type="stream" name="success">
@@ -20,12 +23,38 @@
 				<param name="inputName">inputStream</param>
 			</result> -->
 		</action>
+		<action name="bingqbr_bysessionbingqid" class="vwBqbrZyAction" method="getListBingqBingrBySessionBingqId">
+			<result name="success">/views/bingrenlb.jsp</result>
+			<result name="error">/views/login.jsp</result>
+		</action>
 		<action name="bingqbr_jianka" class="vwBqbrZyAction" method="listBingqBingr_jianka">
 			<result name="success">/views/bingrenlb_jianka.jsp</result>
+		</action>
+		<action name="bingrGeTi_YiZhuBen" class="vwBryzAction" method="getListBrYzByKey">
+			<result name="success">/views/yizhu_ben_fuyao.jsp</result>
+			<result name="error">/views/yewumokuai.jsp</result>
 		</action>
 		<action name="bingqbr_xika" class="vwBqbrZyAction" method="listBingqBingr">
 			<result name="success">/views/bingrenlb_xika.jsp</result>
 		</action>
+		<action name="bingrengeti_*" class="vwBqbrZyAction" method="getBingRenXingXiByKey">
+			<result name="success">/views/bingrengeti_{1}.jsp</result>
+		</action>
+		<action name="bingrengeti_jbxx" class="vwJbxxAction" method="getBingRenJiBenXxByKey">
+			<result name="success">/views/bingrengeti_jibenxingxi.jsp</result>
+		</action>
+		<action name="bingrGeTi_JianYan" class="vwHy101Action" method="getListBingRenHuaYanByKey">
+			<result name="success">/views/jianyanbaogao.jsp</result>
+		</action>
+		<action name="bingrGeTi_JianCha" class="vwJc101Action" method="getListBingrJiancByKey">
+			<result name="success">/views/jianchabaogao.jsp</result>
+		</action>
+		<action name="tizhengluru" class="twTzzdAction" method="getBingRenTiZhengLuRuByBingQuId">
+			<result name="success">/views/bingrengeti_tizhengluru.jsp</result>
+		</action>
+		
+		
+		
 		<action name="mnis-*" class="vmCzryAction" method="{1}">
 			<result name="false">/views/login.jsp</result>
 			<result name="success">/views/czy_bmlb.jsp</result>

@@ -10,7 +10,7 @@ import com.his.mnis.entities.VwBqbrZy;
 import com.his.mnis.entities.VwRybq;
 import com.his.mnis.services.VwRybqService;
 
-public class VwRybqServiceImp implements VwRybqService {
+public class VwRybqServiceImpl implements VwRybqService {
 
 	/*Auther：ShenXufeng
 	 * 功能：
