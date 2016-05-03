@@ -1,0 +1,95 @@
+/*!
+*RongHuiGuoKang MNIS Base CSS
+*
+*/
+
+/*==========@@其它样式定义 开始@@==========*/
+
+.form-control[readonly] { background-color: #fff;}
+
+.jianpan { width: 100%; position: fixed; left: 0; bottom: 0; right: 0; z-index: 99997;}
+.jianpan button { width: 23.5%;  margin-top: 1%;}
+#jianpan-left button { width: 47.1%;  margin-top: 2.5%;}
+#jianpan-right button { width: 22.9%;  margin-top: 1%;}
+
+/*==========@@其它样式定义 结束@@==========*/
+
+/*公共样式 可在具体频道模型被重载*/
+#footer{ width: 98%;  margin: 0px auto; border:0px solid green;}
+/*快捷菜单按钮 开始*/
+
+.plug-div {position:fixed;bottom:0;left:0px;z-index:900;}
+
+.phone {width:100%; height:480px; border: #000 solid 1px; position:relative; }
+
+.plug-menu {
+
+	width:36px;
+
+	height:36px;
+
+	border-radius:36px;
+
+	position: absolute;
+
+	bottom:16px;
+
+	left: 16px;
+
+	z-index:999;
+
+	-moz-box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);
+
+	-webkit-box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);
+
+	box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);
+
+	background-color: #B70000;
+
+	background-image:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #FF0000), color-stop(100%, #B70000));
+
+	background-image:-webkit-linear-gradient(top, #FF0000, #B70000);
+
+	background-image:-moz-linear-gradient(top, #FF0000, #B70000);
+
+	background-image:-o-linear-gradient(top, #FF0000, #B70000);
+
+	background-image:linear-gradient(top, #FF0000, #B70000);
+
+}
+
+.plug-menu span {
+
+	display: block;
+
+	width:28px;
+
+	height:28px;
+
+	background: url(../ky_img/plugmenu.png) no-repeat;
+
+	background-size: 28px 28px;
+
+	text-indent: -999px;
+
+	position:absolute;
+
+	top:50%;
+
+	left:50%;
+
+	margin-top:-14px;
+
+	margin-left: -14px;
+
+	overflow: hidden;
+
+}
+
+.plug-phone .plug-useless {background:#e2e2e2;}
+
+/**/
+
+ .themeStyle{background:#DE270B} /*必须放在最后，覆盖前面定义的样式*/
+
+/*快捷菜单按钮 结束*/

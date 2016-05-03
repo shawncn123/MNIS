@@ -10,7 +10,7 @@
 <html>
 <head>
 <base href="<%=basePath%>">
-<title>业务模块</title>
+<title>病人相关业务</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="author" content="沈旭峰" />
@@ -23,13 +23,14 @@
 <script src="js/common.js" type="text/javascript"></script>
 </head>
 <body>
-	<%
+	<%-- <%
 		String key1 =  request.getParameter("bingren_key1");
 		String key2 =  request.getParameter("bingren_key2");
 		String xingm =  request.getParameter("bingren_name");
 		String chuangw =  request.getParameter("bingren_cw");
 		String niann =  request.getParameter("bingren_nl");
-	%>
+		String bingqid =  request.getParameter("bingren_bq");
+	%> --%>
 	<div id="header">
 		<div class="row"
 			style="border-bottom:1px solid #269abc;padding-top: 3px;">
@@ -39,10 +40,8 @@
 				</a>
 			</div>
 			<div class="col-xs-4">
-				<span><strong><% out.print(xingm); %>&nbsp;<% out.print(chuangw); %>&nbsp;床</strong></span>
-				<p class="text-left" style="margin-bottom: 5px;"><% out.print(niann); %></p>
-				<!-- <span><strong>范冰冰&nbsp;5&nbsp;床</strong></span>
-				<p class="text-left" style="margin-bottom: 5px;">30&nbsp;岁</p> -->
+				<span><strong>${bingrgetixingxi.xm }&nbsp;${bingrgetixingxi.chw }&nbsp;床</strong></span>
+				<p class="text-left" style="margin-bottom: 5px;">${bingrgetixingxi.nl }</p>
 			</div>
 			<div class="col-xs-6 bg-info">
 				<div class="table table-responsive"
@@ -58,11 +57,11 @@
 									src="images/brxxxx_header_2.png" class="img-responsive"
 									alt="刷新">
 							</a></td>
-							<td><a href="views/bingrenlb.jsp" class="text-center"> <img
+							<td><a href="bingqbr_bysessionbingqid" class="text-center"> <img
 									src="images/brxxxx_header_3.png" class="img-responsive"
-									alt="功能">
+									alt="病人列表">
 							</a></td>
-							<td><a href="#" class="text-center"> <img
+							<td><a href="" class="text-center"> <img
 									src="images/brxxxx_header_4.png" class="img-responsive"
 									alt="消息数">
 							</a></td>
@@ -75,23 +74,41 @@
 	<div id="content">
 		<!--导航开始-->
 		<ul class="channellist">
-			<li><a href="views/bingren_jibenxx.jsp">
+			<li><a href="bingrengeti_jibenxingxi?v_key1=${bingrgetixingxi.key1}&v_key2=${bingrgetixingxi.key2}">
 					<div class="ChannelIcon">
 						<img src="images/about.jpg" />
 					</div>
 					<div class="ChannelName">病人信息</div>
 			</a></li>
-			<li><a href="views/bingan_shouye.jsp">
+			<li><a href="bingrengeti_bingan_shouye?v_key1=${bingrgetixingxi.key1}&v_key2=${bingrgetixingxi.key2}">
 					<div class="ChannelIcon">
 						<img src="images/news.jpg" />
 					</div>
 					<div class="ChannelName">病案首页</div>
 			</a></li>
-			<li><a href="views/yizhu_ben_shuye.jsp">
+			<li><a href="bingrGeTi_YiZhuBen?v_key1=${bingrgetixingxi.key1}&v_key2=${bingrgetixingxi.key2}&v_yebh=0">
 					<div class="ChannelIcon">
 						<img src="images/Product.jpg" />
 					</div>
 					<div class="ChannelName">医嘱本</div>
+			</a></li>
+			<li><a href="tizhengluru?v_key1=${bingrgetixingxi.key1}&v_key2=${bingrgetixingxi.key2}">
+					<div class="ChannelIcon">
+						<img src="images/mokuai_2.jpg" />
+					</div>
+					<div class="ChannelName">体征录入</div>
+			</a></li>
+			<li><a href="bingrGeTi_JianYan?v_key1=${bingrgetixingxi.key1}&v_key2=${bingrgetixingxi.key2}&v_yebh=0">
+					<div class="ChannelIcon">
+						<img src="images/1408672469.jpg" />
+					</div>
+					<div class="ChannelName">检验报告</div>
+			</a></li>
+			<li><a href="views/jianchabaogao.jsp">
+					<div class="ChannelIcon">
+						<img src="images/1408672443.jpg" />
+					</div>
+					<div class="ChannelName">检查报告</div>
 			</a></li>
 			<li><a href="views/linchuanglujing.jsp">
 					<div class="ChannelIcon">
@@ -105,24 +122,14 @@
 					</div>
 					<div class="ChannelName">护理病历</div>
 			</a></li>
-			<li><a href="views/jianchabaogao.jsp">
-					<div class="ChannelIcon">
-						<img src="images/1408672443.jpg" />
-					</div>
-					<div class="ChannelName">检查报告</div>
-			</a></li>
+			
 			<li><a href="views/bingliwenjian.jsp">
 					<div class="ChannelIcon">
 						<img src="images/1408672456.jpg" />
 					</div>
 					<div class="ChannelName">病历文件</div>
 			</a></li>
-			<li><a href="views/jianyanbaogao.jsp">
-					<div class="ChannelIcon">
-						<img src="images/1408672469.jpg" />
-					</div>
-					<div class="ChannelName">检验报告</div>
-			</a></li>
+			
 			<li><a href="Merchants.html">
 					<div class="ChannelIcon">
 						<img src="images/1408672427.jpg" />
@@ -135,12 +142,8 @@
 					</div>
 					<div class="ChannelName">医嘱执行</div>
 			</a></li>
-			<li><a href="Message.html">
-					<div class="ChannelIcon">
-						<img src="images/mokuai_2.jpg" />
-					</div>
-					<div class="ChannelName">体征录入</div>
-			</a></li>
+<%-- 			<li><a href="tizhengluru?v_key1=${bingrgetixingxi.key1}&v_key2=${bingrgetixingxi.key2}&v_bqid=<% out.print(bingqid); %>"> --%>
+			
 			<li><a href="Contact.html">
 					<div class="ChannelIcon">
 						<img src="images/mokuai_4.jpg" />

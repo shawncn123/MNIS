@@ -25,7 +25,7 @@ li{ list-style: none outside none;}
 a{ text-decoration:none; color:#000; background: transparent;  outline:none}
 a:visited {}
 a:focus { outline:none; }
-a:hover, a:active{ color:#ff539f; outline:none; text-decoration: none;    /*新加  去掉下划线*/}
+a:hover, a:active{ color:#ff539f; outline:none;}
 
 /*标题*/
 h1 { font-size: 1.3em;margin:  0;}
@@ -655,10 +655,11 @@ a.btn{
 	box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);-moz-box-shadow:0px 1px 2px 0 rgba(0, 0, 0, 0.15);-webkit-box-shadow:0px 1px 2px 0 rgba(0, 0, 0, 0.15);-o-box-shadow:0px 1px 2px 0 rgba(0, 0, 0, 0.15);
 	text-shadow: 0.5px 0.5px 1px rgb(255, 255, 255);
 	text-align: center;
-	vertical-align:middle; 
+	vertical-align:middle;
 	border-radius: 3px;-moz-border-radius: 3px;-webkit-border-radius: 3px;-o-border-radius:3px;
 	cursor: pointer;
-}
+}
+
 /*箭头*/
 .arrow{ 
 background:url(../ky_img/arrow1.png) center center no-repeat; 
@@ -669,6 +670,6 @@ vertical-align:middle;
 /*==========@@重用组件 结束@@==========*/
 
 
-/*==========@@其它样式定义 开始@@==========*/.form-control[readonly] { background-color: #fff;}.jianpan { width: 100%; position: fixed; left: 0; bottom: 0; right: 0; z-index: 99997;}.jianpan button { width: 23.5%;  margin-top: 1%;}#jianpan-left button { width: 47.1%;  margin-top: 2.5%;}
-#jianpan-right button { width: 22.9%;  margin-top: 1%;}
-/*==========@@其它样式定义 结束@@==========*/
+/*==========@@其它样式定义 开始@@==========*/
+
+/*==========@@其它样式定义 结束@@==========*/

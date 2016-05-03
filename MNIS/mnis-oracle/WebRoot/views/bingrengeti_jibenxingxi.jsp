@@ -18,52 +18,22 @@
 <meta name="description" content="病人基本信息,高大上的移动护理系统。" />
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="scripts/jquery-1.12.1.min.js"></script>
-<script src="js/common.js" type="text/javascript"></script>
+<script type="text/javascript" src="scripts/viewjs.js"></script>
+<script type="text/javascript">
+	$(function() {
+		// 绑定
+		$("#head_banner_1").smartFloat();
+	});
+</script>
 </head>
 <body>
-	<div id="header">
-		<div class="row"
-			style="border-bottom:1px solid #269abc;padding-top: 3px;">
-			<div class="col-xs-2">
-				<a href="#"> <img src="images/icon-m-man-active.png"
-					class="img-responsive" alt="范冰冰">
-				</a>
-			</div>
-			<div class="col-xs-4">
-				<span><strong>范冰冰&nbsp;5&nbsp;床</strong></span>
-				<p class="text-left" style="margin-bottom: 5px;">30&nbsp;岁</p>
-			</div>
-			<div class="col-xs-6 bg-info">
-				<div class="table table-responsive"
-					style="margin-bottom: 0;border: none;">
-					<table class="table table-condensed"
-						style="background-color: #d9edf7">
-						<tr>
-							<td><a href="#" class="text-center"> <img
-									src="images/brxxxx_header_1.png" class="img-responsive"
-									alt="消息数">
-							</a></td>
-							<td><a href="#" class="text-center"> <img
-									src="images/brxxxx_header_2.png" class="img-responsive"
-									alt="刷新">
-							</a></td>
-							<td><a href="views/bingrenlb.jsp" class="text-center"> <img
-									src="images/brxxxx_header_3.png" class="img-responsive"
-									alt="功能">
-							</a></td>
-							<td><a href="#" class="text-center"> <img
-									src="images/brxxxx_header_4.png" class="img-responsive"
-									alt="消息数">
-							</a></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
+	<!-- <div id="head_banner_1" style="z-index:99998;" class="bg-info navbar-fixed-top"> -->
+	<div id="head_banner_1" style="z-index:1000;" class="bg-info">
+		<%@ include file="header.jsp"%>
 	</div>
-	<div id="content" class="container">
+	<div class="container">
 		<div class="row">
 			<div class="col-xs-12"
 				style="margin: 5px 0 5px 0;padding-bottom: 5px;border-bottom: #666666 1px solid;">
@@ -75,7 +45,7 @@
 				<span>住院号:</span>
 			</div>
 			<div class="col-xs-8">
-				<span>20160000086</span>
+				<span>${bingren_jbxx.bah }</span>
 			</div>
 		</div>
 		<div class="row">
@@ -83,7 +53,7 @@
 				<span>入院日期:</span>
 			</div>
 			<div class="col-xs-8">
-				<span>2016-02-23 15:28:56</span>
+				<span> <s:property value="#request.bingren_jbxx.ryrq.substring(0,10)"/></span>
 			</div>
 		</div>
 		<div class="row">
@@ -91,7 +61,7 @@
 				<span>病人类型:</span>
 			</div>
 			<div class="col-xs-8">
-				<span>普通病人</span>
+				<span>无数据</span>
 			</div>
 		</div>
 		<div class="row">
@@ -99,7 +69,7 @@
 				<span>付款方式:</span>
 			</div>
 			<div class="col-xs-8">
-				<span>社会基本医疗保险</span>
+				<span>${bingren_jbxx.fylb }</span>
 			</div>
 		</div>
 		<div class="row">
@@ -113,21 +83,21 @@
 				<span>诊断:</span>
 			</div>
 			<div class="col-xs-8">
-				<span style="color: #B70000">(000.101)输卵管妊娠....</span>
+				<span style="color: #B70000">${bingrgetixingxi.ryzd }</span>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-4">
 				<span>医生</span>
 			</div>
-			<div class="col-xs-8"></div>
+			<div class="col-xs-8">${bingren_jbxx.ysxm }</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-4">
 				<span>护士</span>
 			</div>
 			<div class="col-xs-8">
-				<span style="color: #c7254e">王菲</span>
+				<span style="color: #c7254e">${bingren_jbxx.hsxm }</span>
 			</div>
 		</div>
 		<div class="row">
@@ -135,10 +105,10 @@
 				<span>过敏史</span>
 			</div>
 			<div class="col-xs-8">
-				<span style="color: #d19c36">注射用苄星青霉素</span>
+				<span style="color: #d19c36">${bingrgetixingxi.gmls }</span>
 			</div>
 		</div>
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-xs-4"></div>
 			<div class="col-xs-8">
 				<span style="color: #d19c36">注射用头孢硫脒</span>
@@ -149,11 +119,11 @@
 			<div class="col-xs-8">
 				<span style="color: #d19c36">注射用头孢西丁纳</span>
 			</div>
-		</div>
+		</div> -->
 		<div class="row">
 			<div class="col-xs-12"
 				style="margin: 5px 0 5px 0;padding-bottom: 5px;border-bottom: #666666 1px solid;">
-				<h3>费用一览</h3>
+				<h3>费用一览 无数据</h3>
 			</div>
 		</div>
 		<div class="row">
@@ -188,41 +158,10 @@
 				<span>-3322.69</span>
 			</div>
 		</div>
+		
 		<!--导航结束-->
 		<div class="clear"></div>
-
 	</div>
-	<!--页脚开始-->
-	<div id="footer">
-		<div class="plug-div">
-			<div class="plug-phone">
-				<div class="plug-menu themeStyle">
-					<!--<a class="ui-btn-back" href="javascript:history.go(-1)"></a>-->
-					<a
-						style="top: 0px;left: 0px;background: url(ky_img/back.png) no-repeat center center;
-                    background-size: 24px auto;display: block;position: absolute;width: 50px;
-                    height: 44px;text-indent: -9999px;margin: -5px;padding: 0;"
-						href="javascript:history.go(-1)"></a>
-					<!--<div class="themeStyle plug-btn plug-btn1 open">-->
-					<!--<a href="/"><span style="background-image: url(ky_img/home.png);"></span></a>-->
-					<!--</div>-->
-
-				</div>
-				<div
-					style="bottom: 80px;left: 16px;width: 36px;height: 36px;border-radius: 36px;position: absolute;
-            z-index: 999;background: #DE270B;">
-					<a href="views/yewumokuai.jsp"> <span
-						style="background-image: url(ky_img/home.png);
-                display: block;width: 28px;height: 28px;background-size: 28px 28px;text-indent: -999px;
-                position: absolute;top: 50%;left: 50%;margin-top: -14px;margin-left: -14px;overflow: hidden;"></span>
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="copyright">
-			这里是底部信息<br>声明：目前是测试版本,图标含义与业务功能模块可能不匹配。
-		</div>
-	</div>
-	<!--页脚结束-->
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

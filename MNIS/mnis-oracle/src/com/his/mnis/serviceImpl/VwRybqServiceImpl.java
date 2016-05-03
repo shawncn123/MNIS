@@ -16,6 +16,7 @@ public class VwRybqServiceImpl implements VwRybqService {
 	 * 功能：
 	 * listBingQuByCaozyId： 根据 caozyid-人员id 查询操作员病区
 	 * listBingrByCaozyId： 根据caozyid-人员id 获取相应病区Id 查到相应病区id－1.上次登录的病区ID，2.缺省病区ID，3、排第一位的病区id，然后获取对应的病人信息
+	 * getBingQuMingCheng(String bqid) 根据病区id获取病区名称
 	 */
 	
 	private RyBqDefaultDao ryBqDefaultDao;
@@ -88,6 +89,18 @@ public class VwRybqServiceImpl implements VwRybqService {
 		}
 		System.out.println(bqId.toString());
 		return bqId;
+	}
+
+
+/*
+ * (non-Javadoc)
+ * @see com.his.mnis.services.VwRybqService#getBingQuMingCheng(java.lang.String)
+ */
+	@Override
+	public String getBingQuMingCheng(String bqid) {
+		
+		return vwRybqDao.getBingQuMingCheng(bqid);
+		
 	}
 
 }

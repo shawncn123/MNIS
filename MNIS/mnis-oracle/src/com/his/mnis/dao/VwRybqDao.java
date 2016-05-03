@@ -37,4 +37,15 @@ public class VwRybqDao extends BaseDao {
 		query.setMaxResults(1);
 		return (VwRybq) query.uniqueResult();
 	}
+	/*
+	 * 根据病区id获取病区名称
+	 */
+	public String getBingQuMingCheng(String bqid){
+		String hql = "from VwRybq where bq=:bqid";
+		Query query = getSession().createQuery(hql);
+		query.setString("bqid", bqid);
+		query.setMaxResults(1);
+		VwRybq vwRybq = (VwRybq) query.uniqueResult();
+		return vwRybq.getBqmc();
+	}
 }

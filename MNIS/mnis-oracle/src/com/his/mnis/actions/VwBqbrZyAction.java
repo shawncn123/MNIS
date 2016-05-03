@@ -93,15 +93,15 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 		return vwRybqService;
 	}
 
-	private String result;
-
-	public void setResult(String result) {
-		this.result = result;
-	}
-
-	public String getResult() {
-		return result;
-	}
+//	private String result;
+//
+//	public void setResult(String result) {
+//		this.result = result;
+//	}
+//
+//	public String getResult() {
+//		return result;
+//	}
 
 	/*
 	 * 通过病区id查询相应的病区病人列表
@@ -109,7 +109,9 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 	public String listBingqBingrByBingqId() throws IOException {
 		List<VwBqbrZy> vwBqbrZys = vwBqbrZyService
 				.listBingqBingrByBingqId(bqid);
-//		session.put("dangqianbingqu_id", bqid);
+		session.put("dangqianbingqu_id", bqid);
+		String bqmc = vwRybqService.getBingQuMingCheng(bqid);
+		session.put("dangqianbingqu_name", bqmc);
 		JSONArray jsonArray = JSONArray.fromObject(vwBqbrZys);
 		// JSONObject json = JSONObject.fromObject(vwBqbrZys);
 		System.out.println(jsonArray);
@@ -125,12 +127,12 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 	public String getListBingqBingrBySessionBingqId() throws IOException {
 		VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
 		System.out.println(vwRybq.getId());
-		String qangqianbqid = "";
-		qangqianbqid = session.get("dangqianbingqu_id").toString();
-		if( qangqianbqid != ""){
+		String dangqianbqid = "";
+		dangqianbqid = session.get("dangqianbingqu_id").toString();
+		if( dangqianbqid != ""){
 			List<VwRybq> vwRybqs = vwRybqService.listBingQuByCaozyId(vwRybq.getId());
 			request.put("caozuoyuan_bingqu", vwRybqs);
-			List<VwBqbrZy> vwBqbrZys = vwBqbrZyService.listBingqBingrByBingqId(qangqianbqid);
+			List<VwBqbrZy> vwBqbrZys = vwBqbrZyService.listBingqBingrByBingqId(dangqianbqid);
 			request.put("bqry", vwBqbrZys);
 			return SUCCESS;
 		}else{
@@ -143,6 +145,7 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 	 * 通过key1 key2 查询病人个体信息
 	 */
 	public String getBingRenXingXiByKey(){
+		System.out.println("action  execute getBingRenXingXiByKey ");
 		session.put("bingrgetixingxi", vwBqbrZyService.getBingRenXingXiByKey(v_key1, v_key2));
 		request.put("bingren_jbxx", vwJbxxService.getBingRenJiBenXxByKey(v_key1, v_key2));
 		return SUCCESS;
@@ -165,9 +168,9 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 
 	}
 	
-	public Map<String, Object> getSession() {
-		return session;
-	}
+//	public Map<String, Object> getSession() {
+//		return session;
+//	}
 
 	// public String listBingqBingr_jianka(){
 	// request.put("bqry", vwBqbrZyService.listBingqBingr(bqid));

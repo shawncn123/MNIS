@@ -75,7 +75,6 @@ public class TwTzzdAction extends ActionSupport implements RequestAware{
 		
 		request.put("bingr_tizheng_luruxiang", twTzzds);
 		
-		
 		return SUCCESS;
 	
 	}

@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -18,51 +19,19 @@
 <meta name="description" content="医嘱本,高大上的移动护理系统。" />
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="scripts/jquery-1.12.1.min.js"></script>
-<script src="scripts/common.js" type="text/javascript"></script>
-
+<script type="text/javascript" src="scripts/viewjs.js"></script>
+<script type="text/javascript">
+	$(function() {
+		// 绑定
+		$("#head_banner_1").smartFloat();
+	});
+</script>
 </head>
 <body>
-	<div id="header">
-		<div class="row"
-			style="border-bottom:1px solid #269abc;padding-top: 3px;">
-			<div class="col-xs-2">
-				<a href="#"> <img src="images/icon-m-man-active.png"
-					class="img-responsive" alt="范冰冰">
-				</a>
-			</div>
-			<div class="col-xs-4">
-				<span><strong>范冰冰&nbsp;5&nbsp;床</strong></span>
-				<p class="text-left" style="margin-bottom: 5px;">30&nbsp;岁</p>
-			</div>
-			<div class="col-xs-6 bg-info">
-				<div class="table table-responsive"
-					style="margin-bottom: 0;border: none;">
-					<table class="table table-condensed"
-						style="background-color: #d9edf7">
-						<tr>
-							<td><a href="#" class="text-center"> <img
-									src="images/brxxxx_header_1.png" class="img-responsive"
-									alt="消息数">
-							</a></td>
-							<td><a href="#" class="text-center"> <img
-									src="images/brxxxx_header_2.png" class="img-responsive"
-									alt="刷新">
-							</a></td>
-							<td><a href="views/bingrenlb.jsp" class="text-center"> <img
-									src="images/brxxxx_header_3.png" class="img-responsive"
-									alt="功能">
-							</a></td>
-							<td><a href="#" class="text-center"> <img
-									src="images/brxxxx_header_4.png" class="img-responsive"
-									alt="消息数">
-							</a></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
+	<div id="head_banner_1" style="z-index:1000;" class="bg-info">
+		<%@ include file="header.jsp"%>
 	</div>
 	<div id="content" class="container">
 		<div class="row">
@@ -86,242 +55,109 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-xs-5">
-				<span>阿昔洛韦片</span>
-			</div>
-			<div class="col-xs-5">
-				<span>0.1g*24/盒</span>
-			</div>
-			<div class="col-xs-2">
-				<span>1&nbsp;g</span>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 text-right"
-				style="margin: 10px 0 10px 0;padding-bottom: 5px;border-top: #666666 1px dashed;">
-				<span style="color: #6daced">TID</span>
-			</div>
-		</div>
-		<div class="row"
-			style="border-bottom: 2px solid #333333;padding-bottom: 10px;margin-bottom: 10px;">
-			<div class="col-xs-2 text-center">
-				<span
-					style="font-size: 18px;border-radius: 20px;border: 2px solid #388AF1;padding: 5px;
-            color: #388AF1;">普</span>
-			</div>
-			<div class="col-xs-10">
-				<div class="row">
-					<div class="col-xs-12">
-						<span>口服</span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-4">
-						<span>开嘱时间:</span>
-					</div>
+		<s:iterator value="#request.bingrGeTi_YiZhu">
+			<div class="row">
+				<s:iterator value="vwBryzRemodelSubs">
 					<div class="col-xs-8">
-						<span>2016-03-01 09:30:00</span>
+						<span>${resulttext}&nbsp;${yzmc }</span>
 					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-5">
-				<span>a-抗干扰素注射液</span>
-			</div>
-			<div class="col-xs-5">
-				<span>100万U*1支</span>
-			</div>
-			<div class="col-xs-2" style="padding: 0 5px;">
-				<span>12&nbsp;万u</span>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 text-right"
-				style="margin: 10px 0 10px 0;padding-bottom: 5px;border-top: #666666 1px dashed;">
-				<span style="color: #6daced">TID</span>
-			</div>
-		</div>
-		<div class="row"
-			style="border-bottom: 2px solid #333333;padding-bottom: 10px;margin-bottom: 10px;">
-			<div class="col-xs-2 text-center">
-				<span
-					style="font-size: 18px;border-radius: 20px;border: 2px solid #388AF1;padding: 5px;
-            color: #388AF1;">普</span>
-			</div>
-			<div class="col-xs-10">
-				<div class="row">
-					<div class="col-xs-12">
-						<span>口服</span>
-					</div>
-				</div>
-				<div class="row">
 					<div class="col-xs-4">
-						<span>开嘱时间:</span>
+						<span>${dcyl}</span>
 					</div>
-					<div class="col-xs-8">
-						<span>2016-03-02 10:20:00</span>
-					</div>
+				</s:iterator>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 text-right"
+					style="margin: 10px 0 10px 0;padding-bottom: 5px;border-top: #666666 1px dashed;">
+					<%-- <span style="color: #6daced">TID</span> --%>
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-5">
-				<span>0.9%氯化钠注射液</span>
-			</div>
-			<div class="col-xs-5">
-				<span>500ml/每瓶(外用)</span>
-			</div>
-			<div class="col-xs-2">
-				<span>5.5&nbsp;ml</span>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 text-right"
-				style="margin: 10px 0 10px 0;padding-bottom: 5px;border-top: #666666 1px dashed;">
-				<span style="color: #6daced">TID</span>
-			</div>
-		</div>
-		<div class="row"
-			style="border-bottom: 2px solid #333333;padding-bottom: 10px;margin-bottom: 10px;">
-			<div class="col-xs-2 text-center">
-				<span
-					style="font-size: 18px;border-radius: 20px;border: 2px solid #388AF1;padding: 5px;
-            color: #388AF1;">普</span>
-			</div>
-			<div class="col-xs-10">
-				<div class="row">
-					<div class="col-xs-12">
-						<span>口服</span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-4">
-						<span>开嘱时间:</span>
-					</div>
-					<div class="col-xs-8">
-						<span>2016-03-02 21:50:00</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-5">
-				<span>0.9%氯化钠注射液</span>
-			</div>
-			<div class="col-xs-5">
-				<span>10ml*5支/盒</span>
-			</div>
-			<div class="col-xs-2">
-				<span>50&nbsp;ml</span>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 text-right"
-				style="margin: 10px 0 10px 0;padding-bottom: 5px;border-top: #666666 1px dashed;">
-				<span style="color: #6daced">TID</span>
-			</div>
-		</div>
-		<div class="row"
-			style="border-bottom: 2px solid #333333;padding-bottom: 10px;margin-bottom: 10px;">
-			<div class="col-xs-2 text-center">
-				<span
-					style="font-size: 18px;border-radius: 20px;border: 2px solid #388AF1;padding: 5px;
-            color: #388AF1;">普</span>
-			</div>
-			<div class="col-xs-10">
-				<div class="row">
-					<div class="col-xs-12">
-						<span>口服</span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-4">
-						<span>开嘱时间:</span>
-					</div>
-					<div class="col-xs-8">
-						<span>2016-03-03 09:00:00</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-5">
-				<span>阿昔洛韦片</span>
-			</div>
-			<div class="col-xs-5">
-				<span>0.1g*24/盒</span>
-			</div>
-			<div class="col-xs-2">
-				<span>1&nbsp;g</span>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 text-right"
-				style="margin: 10px 0 10px 0;padding-bottom: 5px;border-top: #666666 1px dashed;">
-				<span style="color: #6daced">TID</span>
-			</div>
-		</div>
-		<div class="row"
-			style="border-bottom: 2px solid #333333;padding-bottom: 10px;margin-bottom: 10px;">
-			<div class="col-xs-2 text-center">
-				<span
-					style="font-size: 18px;border-radius: 20px;border: 2px solid #388AF1;padding: 5px;
-            color: #388AF1;">普</span>
-			</div>
-			<div class="col-xs-10">
-				<div class="row">
-					<div class="col-xs-12">
-						<span>口服</span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-4">
-						<span>开嘱时间:</span>
-					</div>
-					<div class="col-xs-8">
-						<span>2016-03-01 09:30:00</span>
-					</div>
-				</div>
-			</div>
-		</div>
+			<div class="row"
+				style="border-bottom: 2px solid #333333;padding-bottom: 10px;margin-bottom: 10px;">
+				<div class="col-xs-2 text-center">
+					<div class="row">
+						<div class="col-xs-12">
+							<s:if test="lsflag==0">
+								<span
+									style="font-size: 18px;border-radius: 20px;border: 2px solid #0316F7;padding: 5px;
+		            color: #0316F7;">长</span>
+							</s:if>
+							<s:else>
+								<span
+									style="font-size: 18px;border-radius: 20px;border: 2px solid #03BFF7;padding: 5px;
+		            color: #03BFF7;">临</span>
+							</s:else>
 
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<s:if test="yzzt=='停止'">
+								<span
+									style="font-size: 18px;border-radius: 20px;border: 2px solid #F71903;padding: 5px;
+			            color: #F71903;">停</span>
+							</s:if>
+
+							<s:if test="yzzt=='作废'">
+								<span
+									style="font-size: 18px;border-radius: 20px;border: 2px solid #131211;padding: 5px;
+			            color: #131211;">废</span>
+							</s:if>
+							<s:if test="yzzt=='校对'">
+								<span
+									style="font-size: 18px;border-radius: 20px;border: 2px solid #F18111;padding: 5px;
+			            color: #F18111;">校</span>
+							</s:if>
+						</div>
+					</div>
+
+
+				</div>
+				<div class="col-xs-10">
+					<div class="row">
+						<div class="col-xs-8">
+							<span>${yf1mc }</span>
+						</div>
+						<div class="col-xs-4">
+							<span>${yf2mc }</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-4">
+							<span>开嘱时间:</span>
+						</div>
+						<div class="col-xs-8">
+							<%-- <span>${kstime}</span> --%>
+							<span><s:date name="kstime" format="yyyy-MM-dd HH:mm:ss" /></span>
+						</div>
+					</div>
+					<s:if test="tztime!=null">
+						<div class="row">
+							<div class="col-xs-4">
+								<span>停嘱时间:</span>
+							</div>
+							<div class="col-xs-8">
+								<span><s:date name="tztime" format="yyyy-MM-dd HH:mm:ss" /></span>
+								<%-- <span>${tztime }</span> --%>
+							</div>
+						</div>
+					</s:if>
+					<s:if test="yszt!=null">
+						<div class="row">
+							<div class="col-xs-4">
+								<span>医生嘱托:</span>
+							</div>
+							<div class="col-xs-8">
+								<span>${yszt}</span>
+							</div>
+						</div>
+					</s:if>
+				</div>
+			</div>
+		</s:iterator>
 		<div class="clear"></div>
-
 	</div>
-	<!--页脚开始-->
-	<div id="footer">
-		<div class="plug-div">
-			<div class="plug-phone">
-				<div class="plug-menu themeStyle">
-					<!--<a class="ui-btn-back" href="javascript:history.go(-1)"></a>-->
-					<a
-						style="top: 0;left: 0;background: url(ky_img/back.png) no-repeat center center;
-                    background-size: 24px auto;display: block;position: absolute;width: 50px;
-                    height: 44px;text-indent: -9999px;margin: -5px;padding: 0;"
-						href="javascript:history.go(-1)"></a>
-					<!--<div class="themeStyle plug-btn plug-btn1 open">-->
-					<!--<a href="/"><span style="background-image: url(ky_img/home.png);"></span></a>-->
-					<!--</div>-->
-
-				</div>
-				<div
-					style="bottom: 60px;left: 16px;width: 36px;height: 36px;border-radius: 36px;position: absolute;
-            z-index: 999;background: #DE270B;">
-					<a href="views/yewumokuai.jsp"> <span
-						style="background-image: url(ky_img/home.png);
-                display: block;width: 28px;height: 28px;background-size: 28px 28px;text-indent: -999px;
-                position: absolute;top: 50%;left: 50%;margin-top: -14px;margin-left: -14px;overflow: hidden;"></span>
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="copyright">
-			这里是底部信息<br>声明：目前是测试版本,图标含义与业务功能模块可能不匹配。
-		</div>
-	</div>
-	<!--页脚结束-->
+	<%@ include file="footer.jsp"%>
 	<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
 </body>
 </html>

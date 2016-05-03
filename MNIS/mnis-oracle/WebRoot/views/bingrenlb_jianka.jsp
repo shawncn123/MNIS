@@ -23,6 +23,7 @@
 	});
 </script>
 <script type="text/javascript">
+	//选择病区查询病人
 		var d = '';
 		var a = '';
 	$(function() {$(document).ready(function() {
@@ -35,7 +36,9 @@
 			a = '';
 			d = eval("("+ data+ ")");
 			for (var i = 0; i < d.length; i++) {
-				a = a + '<a href="views/yewumokuai.jsp"><div class="col-xs-6" style="padding: 0 5px 0 5px;"><div class="panel panel-default" style="margin: 5px 0 5px 0;"><div class="table-responsive"><table class="table table-condensed"><tr><td class="text-center"><span style="color:' 
+				a = a + '<a href="views/yewumokuai.jsp?bingren_key1=' 
+				+ d[i].key1 + '&bingren_key2=' + d[i].key2 + '&bingren_name=' + d[i].xm + '&bingren_cw=' + d[i].chw
+				+ '&bingren_nl=' + d[i].nl + '&bingren_bq=' + d[i].bq + '"><div class="col-xs-6" style="padding: 0 5px 0 5px;"><div class="panel panel-default" style="margin: 5px 0 5px 0;"><div class="table-responsive"><table class="table table-condensed"><tr><td class="text-center"><span style="color:' 
 					  + d[i].fylbBoxcolor + ";background-color: "+ d[i].fylbBoxcolor +'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;'
 					  + d[i].yems + '</td><td class="text-center">' + d[i].hldj + '</td></tr><tr><td class="text-center"><h4>'
 					  + d[i].chw + '床</h4></td><td class="text-left"><h4>' + d[i].xm 
@@ -50,7 +53,7 @@
 		});
 		
 		$("#leix_check").click(function() {
-			alert(d.length);
+			/* alert(d.length); */
 			a = "";
 			if(d == ""){
 				var val = $("#dangq_bingq_id").val();
@@ -59,7 +62,9 @@
 				$.post(url,args,function(data) {
 					d = eval("("+ data+ ")");
 					for (var i = 0; i < d.length; i++) {
-						a = a + '<a href="views/yewumokuai.jsp"><div class="col-xs-6" style="padding: 0 5px 0 5px;"><div class="panel panel-default" style="margin: 5px 0 5px 0;"><div class="table-responsive"><table class="table table-condensed" style="table-layout:fixed;"><tr><td style="padding-right:0px;"><span style="color:' 
+						a = a + '<a href="views/yewumokuai.jsp?bingren_key1=' 
+						+ d[i].key1 + '&bingren_key2=' + d[i].key2 + '&bingren_name=' + d[i].xm + '&bingren_cw=' + d[i].chw
+						+ '&bingren_nl=' +d[i].nl + '&bingren_bq=' + d[i].bq + '"><div class="col-xs-6" style="padding: 0 5px 0 5px;"><div class="panel panel-default" style="margin: 5px 0 5px 0;"><div class="table-responsive"><table class="table table-condensed" style="table-layout:fixed;"><tr><td style="padding-right:0px;"><span style="color:' 
 						+ d[i].fylbBoxcolor +';background-color: '+ d[i].fylbBoxcolor 
 						+'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td colspan="2" style="padding-right:0px;">' 
 						+ d[i].yems +'&nbsp;&nbsp;' + d[i].hldj + '</td></tr><tr><td style="padding-right:0px;"><h4>' 
@@ -83,7 +88,9 @@
 			}
 			if(d != ""){
 			for (var i = 0; i < d.length; i++) {
-				a = a + '<a href="views/yewumokuai.jsp"><div class="col-xs-6" style="padding: 0 5px 0 5px;"><div class="panel panel-default" style="margin: 5px 0 5px 0;"><div class="table-responsive"><table class="table table-condensed" style="table-layout:fixed;"><tr><td style="padding-right:0px;"><span style="color:' 
+				a = a + '<a href="views/yewumokuai.jsp?bingren_key1=' 
+				+ d[i].key1 + '&bingren_key2=' + d[i].key2 + '&bingren_name=' + d[i].xm + '&bingren_cw=' + d[i].chw
+				+ '&bingren_nl=' +d[i].nl + '&bingren_bq=' + d[i].bq + '"><div class="col-xs-6" style="padding: 0 5px 0 5px;"><div class="panel panel-default" style="margin: 5px 0 5px 0;"><div class="table-responsive"><table class="table table-condensed" style="table-layout:fixed;"><tr><td style="padding-right:0px;"><span style="color:' 
 				+ d[i].fylbBoxcolor +';background-color: '+ d[i].fylbBoxcolor 
 				+'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td colspan="2" style="padding-right:0px;">' 
 				+ d[i].yems +'&nbsp;&nbsp;' + d[i].hldj + '</td></tr><tr><td style="padding-right:0px;"><h4>' 
