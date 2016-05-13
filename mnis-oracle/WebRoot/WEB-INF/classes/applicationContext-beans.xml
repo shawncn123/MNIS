@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<bean id="seqDispGenerator" class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">
+          <property name="dataSource" ref="dataSource"></property>
+          <property name="incrementerName" ><value>wseq_id</value></property>
+     </bean>
+	
+	<bean id="twTwdMessDao" class="com.his.mnis.dao.TwTwdMessDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="twTwdMessService" class="com.his.mnis.serviceImpl.TwTwdMessServiceImpl">
+		<property name="twTwdMessDao" ref="twTwdMessDao"></property>
+	</bean>
+	
+	<bean id="twTwdMessAction" class="com.his.mnis.actions.TwTwdMessAction"  scope="prototype">
+		<property name="twTwdMessService" ref="twTwdMessService"></property>
+	</bean>
+	
+	<bean id="tiWenDanService" class="com.his.mnis.serviceImpl.TiWenDanServiceImpl">
+		<property name="twTzdataTwDao" ref="twTzdataTwDao"></property>
+	</bean>
+	
+	<bean id="tiWenDanAction" class="com.his.mnis.actions.TiWenDanAction"  scope="prototype">
+		<property name="tiWenDanService" ref="tiWenDanService"></property>
+	</bean>
+	
+	<bean id="twTzdataTwDao" class="com.his.mnis.dao.TwTzdataTwDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="twTzdataTwService" class="com.his.mnis.serviceImpl.TwTzdataTwServiceImpl">
+		<property name="twTzdataTwDao" ref="twTzdataTwDao"></property>
+	</bean>
+	
+	<bean id="twTzdataTwAction" class="com.his.mnis.actions.TwTzdataTwAction"  scope="prototype">
+		<property name="twTzdataTwService" ref="twTzdataTwService"></property>
+		<property name="seqGenerator" ref="seqDispGenerator"></property>
+	</bean>
+	
+	<bean id="twTzdataDao" class="com.his.mnis.dao.TwTzdataDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="twTzdataService" class="com.his.mnis.serviceImpl.TwTzdataServiceImpl">
+		<property name="twTzdataDao" ref="twTzdataDao"></property>
+	</bean>
+	<bean id="twTzdataAction" class="com.his.mnis.actions.TwTzdataAction"  scope="prototype">
+		<property name="twTzdataService" ref="twTzdataService"></property>
+		<property name="seqGenerator" ref="seqDispGenerator"></property>
+	</bean>
+	<bean id="vwJc101Dao" class="com.his.mnis.dao.VwJc101Dao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vwJc101Service" class="com.his.mnis.serviceImpl.VwJc101ServiceImpl">
+		<property name="vwJc101Dao" ref="vwJc101Dao"></property>
+	</bean>
+	<bean id="vwJc101Action" class="com.his.mnis.actions.VwJc101Action"  scope="prototype">
+		<property name="vwJc101Service" ref="vwJc101Service"></property>
+	</bean>
+	<bean id="vwHy101Dao" class="com.his.mnis.dao.VwHy101Dao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vwHy101Service" class="com.his.mnis.serviceImpl.VwHy101ServiceImpl">
+		<property name="vwHy101Dao" ref="vwHy101Dao"></property>
+	</bean>
+	<bean id="vwHy101Action" class="com.his.mnis.actions.VwHy101Action"  scope="prototype">
+		<property name="vwHy101Service" ref="vwHy101Service"></property>
+	</bean>
+	<bean id="vwBqbrZyDao" class="com.his.mnis.dao.VwBqbrZyDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vwBqbrZyService" class="com.his.mnis.serviceImpl.VwBqbrZyServiceImpl">
+		<property name="vwBqbrZyDao" ref="vwBqbrZyDao"></property>
+	</bean>
+	<bean id="vwJbxxDao" class="com.his.mnis.dao.VwJbxxDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vwJbxxService" class="com.his.mnis.serviceImpl.VwJbxxServiceImpl">
+		<property name="vwJbxxDao" ref="vwJbxxDao"></property>
+	</bean>
+	<bean id="vwBqbrZyAction" class="com.his.mnis.actions.VwBqbrZyAction"  scope="prototype">
+		<property name="vwBqbrZyService" ref="vwBqbrZyService"></property>
+		<property name="vwJbxxService" ref="vwJbxxService"></property>
+		<property name="vwRybqService" ref="vwRybqService"></property>
+	</bean>
+	<bean id="vwRybqDao" class="com.his.mnis.dao.VwRybqDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="ryBqDefaultDao" class="com.his.mnis.dao.RyBqDefaultDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vwRybqService" class="com.his.mnis.serviceImpl.VwRybqServiceImpl">
+		<property name="vwRybqDao" ref="vwRybqDao"></property>
+		<property name="ryBqDefaultDao" ref="ryBqDefaultDao"></property>
+		<property name="vwBqbrZyDao" ref="vwBqbrZyDao"></property>
+	</bean>
+	<bean id="vwRybqAction" class="com.his.mnis.actions.VwRybqAction"  scope="prototype">
+		<property name="vwRybqService" ref="vwRybqService"></property>
+	</bean>
+	<bean id="twBryzzxDao" class="com.his.mnis.dao.TwBryzzxDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="twBryzzxService" class="com.his.mnis.serviceImpl.TwBryzzxServiceImpl">
+		<property name="twBryzzxDao" ref="twBryzzxDao"></property>
+	</bean>
+	<bean id="twBryzzxAction" class="com.his.mnis.actions.TwBryzzxAction"  scope="prototype">
+		<property name="twBryzzxService" ref="twBryzzxService"></property>
+	</bean>
+	<bean id="vwBryzDao" class="com.his.mnis.dao.VwBryzDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vwBryzService" class="com.his.mnis.serviceImpl.VwBryzServiceImpl">
+		<property name="vwBryzDao" ref="vwBryzDao"></property>
+	</bean>
+	<bean id="vwBryzAction" class="com.his.mnis.actions.VwBryzAction"  scope="prototype">
+		<property name="vwBryzService" ref="vwBryzService"></property>
+	</bean>
+	
+	<bean id="vwTzzdTwLxDao" class="com.his.mnis.dao.VwTzzdTwLxDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vwTzzdTwLxServiceImpl" class="com.his.mnis.serviceImpl.VwTzzdTwLxServiceImpl">
+		<property name="vwTzzdTwLxDao" ref="vwTzzdTwLxDao"></property>
+	</bean>
+	
+	<bean id="vwTzzdTwRcbzDao" class="com.his.mnis.dao.VwTzzdTwRcbzDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vwTzzdTwRcbzServiceImpl" class="com.his.mnis.serviceImpl.VwTzzdTwRcbzServiceImpl">
+		<property name="vwTzzdTwRcbzDao" ref="vwTzzdTwRcbzDao"></property>
+	</bean>
+	
+	<bean id="twTzzdDao" class="com.his.mnis.dao.TwTzzdDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="twTzzdService" class="com.his.mnis.serviceImpl.TwTzzdServiceImpl">
+		<property name="twTzzdDao" ref="twTzzdDao"></property>
+	</bean>
+	
+	<bean id="twTzzdAction" class="com.his.mnis.actions.TwTzzdAction"  scope="prototype">
+		<property name="twTzzdService" ref="twTzzdService"></property>
+		<property name="vwBqbrZyService" ref="vwBqbrZyService"></property>
+		<property name="vwTzzdTwRcbzServiceImpl" ref="vwTzzdTwRcbzServiceImpl"></property>
+		<property name="vwTzzdTwLxServiceImpl" ref="vwTzzdTwLxServiceImpl"></property>
+		
+	</bean>
+	<!-- <bean id="vmBmryDao" class="com.his.mnis.dao.VmBmryDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vmBmryService" class="com.his.mnis.services.VmBmryService">
+		<property name="vmBmryDao" ref="vmBmryDao"></property>
+	</bean>
+	<bean id="vmBmryAction" class="com.his.mnis.actions.VmBmryAction"  scope="prototype">
+		<property name="vmBmryService" ref="vmBmryService"></property>
+	</bean> -->
+	<!-- <bean id="vmBqbrDao" class="com.his.mnis.dao.VmBqbrDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vmBqbrService" class="com.his.mnis.services.VmBqbrService">
+		<property name="vmBqbrDao" ref="vmBqbrDao"></property>
+	</bean>
+	<bean id="vmBqbrAction" class="com.his.mnis.actions.VmBqbrAction"  scope="prototype">
+		<property name="vmBqbrService" ref="vmBqbrService"></property>
+	</bean> -->
+</beans>

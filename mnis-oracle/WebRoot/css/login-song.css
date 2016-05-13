@@ -1,0 +1,9 @@
+#login-content,#login-footer{ width: 90%;}
+#login-content .form-heading { margin: 20% 0; color: #0663a2;font-weight: bold; font-size: 30px;}
+#login-content .login { border-bottom: 1px solid #ccc; margin: 0 0 20px;}
+#login-content .login input { border: none; box-shadow: none; }
+#login-content .login input:focus { border: none; box-shadow: none;}
+#login-footer { font-size: 14px; color: #999; margin-top: 30%;}
+
+
+

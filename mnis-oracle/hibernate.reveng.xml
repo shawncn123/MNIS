@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table name="RYBQ_DEFAULT" schema="CZHIS">
+		<primary-key>
+			<key-column name="RYID" />
+		</primary-key>
+	</table>
+	<table name="TW_TZZD" schema="CZHIS">
+		<primary-key>
+			<key-column name="XMID" />
+		</primary-key>
+	</table>
+	<table name="VW_TZZD_TW_LX" schema="CZHIS">
+		<primary-key>
+			<key-column name="DM" />
+		</primary-key>
+	</table>
+	<table name="VW_TZZD_TW_RCBZ" schema="CZHIS">
+		<primary-key>
+			<key-column name="DM" />
+		</primary-key>
+	</table>
+	<table name="TW_ZD" schema="CZHIS">
+		<primary-key>
+			<key-column name="DM" />
+		</primary-key>
+	</table>
+	<table name="VW_BRYZ" schema="CZHIS">
+		<primary-key>
+
+
+
+			<key-column name="YZXH" />
+		</primary-key>
+		<column name="YEBH"></column>
+		<column name="KEY1"></column>
+		<column name="KEY2"></column>
+	</table>
+	<table name="VW_JBXX" schema="CZHIS">
+		<primary-key>
+			<key-column name="ROWKEY" />
+		</primary-key>
+	</table>
+	<table name="VW_HY101" schema="CZHIS">
+		<primary-key>
+			<key-column name="SQDH" />
+		</primary-key>
+	</table>
+	<table name="VW_JC101" schema="CZHIS">
+		<primary-key>
+			<key-column name="SQDH" />
+		</primary-key>
+	</table>
+	<table name="VW_HY101_1" schema="CZHIS">
+		<primary-key>
+			<key-column name="YZXH" />
+		</primary-key>
+	</table>
+	<table name="TW_TZDATA" schema="CZHIS">
+		<primary-key>
+			<key-column name="JLID" />
+		</primary-key>
+	</table>
+	<table name="TW_TZDATA_TW" schema="CZHIS">
+		<primary-key>
+			<key-column name="JLID" />
+		</primary-key>
+		<column name="YEBH" type="Integer"></column>
+		<column name="RQ" type="Date"></column>
+		<column name="SJ"></column>
+	</table>
+	<table name="TW_TWD_MESS" schema="CZHIS">
+		<primary-key>
+			<key-column name="JLID" />
+		</primary-key>
+		<column name="BEGINRQ"></column>
+		<column name="FILENR" type="java.sql.Blob"></column>
+		<column name="YEBH" type="java.lang.Integer"></column>
+	</table>
+<table name="TW_BRYZZX" schema="CZHIS">
+	<primary-key>
+		<key-column name="ROWKEY" />
+	</primary-key>
+</table>
+</hibernate-reverse-engineering>
