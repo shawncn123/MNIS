@@ -52,4 +52,15 @@ public class VwBqbrZyServiceImpl implements VwBqbrZyService {
 		}
 	}
 
+	@Override
+	public List<VwBqbrZy> listMyBingrByBqIdHsId(String bingqbm, String hsid) {
+		
+		return vwBqbrZyDao.getListWoDeBingRenByBqidHsId(bingqbm, hsid);
+	}
+
+	@Override
+	public List<VwBqbrZy> listZeRenBingrByBqIdHsXm(String bingqbm, String hsxm) {
+		return vwBqbrZyDao.getListZeRenBingRenByBqidHsxm(bingqbm, hsxm);
+	}
+
 }

@@ -30,6 +30,7 @@ public class TwBryzzx implements java.io.Serializable {
 	private String zxhsid;
 	private String zxhsxm;
 	private String zxms;
+	private String zxfldm;
 
 	// Constructors
 
@@ -54,7 +55,7 @@ public class TwBryzzx implements java.io.Serializable {
 			Long groupxh, String sjd, Timestamp sjdtime, String bq, String chw,
 			String yzid, String yzzdmc, String yzmc, String zxlb, String yf2mc,
 			String zxflag, Timestamp zxtime, String zxhsid, String zxhsxm,
-			String zxms) {
+			String zxms, String zxfldm) {
 		this.key1 = key1;
 		this.key2 = key2;
 		this.yebh = yebh;
@@ -74,6 +75,7 @@ public class TwBryzzx implements java.io.Serializable {
 		this.zxhsid = zxhsid;
 		this.zxhsxm = zxhsxm;
 		this.zxms = zxms;
+		this.zxfldm = zxfldm;
 	}
 
 	// Property accessors
@@ -236,6 +238,14 @@ public class TwBryzzx implements java.io.Serializable {
 
 	public void setZxms(String zxms) {
 		this.zxms = zxms;
+	}
+
+	public String getZxfldm() {
+		return this.zxfldm;
+	}
+
+	public void setZxfldm(String zxfldm) {
+		this.zxfldm = zxfldm;
 	}
 
 }

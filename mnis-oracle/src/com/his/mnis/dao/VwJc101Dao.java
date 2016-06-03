@@ -39,9 +39,9 @@ public class VwJc101Dao extends BaseDao {
 	}
 	
 	/*
-	 * 根据时间段,病人Key查询病人的化验单主表信息
+	 * 根据时间段,病人Key查询病人的检查信息
 	 */
-	public List<VwJc101> getListBingRenHuaYanByDate(Date sqrq1,Date sqrq2,Long key1,Integer key2,Short key3){
+	public List<VwJc101> getListBingRenJianChaByDate(Date sqrq1,Date sqrq2,Long key1,Integer key2,Short key3){
 		
 		String hql = "from VwJc101 where sqrq >=:sqrq1 and sqrq <= :sqrq2 and key1=:key1 and key2=:key2 and yebh=:key3 order by sqrq,sqdh";
 		Query query = getSession().createQuery(hql);
@@ -54,5 +54,16 @@ public class VwJc101Dao extends BaseDao {
 		
 	}
 	
-	
+	/*
+	 * 根据危急标志、病人Key查询病人的检查信息
+	 */
+	public List<VwJc101> getListBingRenJianChaByWjflagAndBingrKey(String wjbz,Long key1,Integer key2,Short key3){
+		String hql = "from VwJc101 where wjflag=:wjbz and key1=:key1 and key2=:key2 and yebh=:key3 order by sqrq,sqdh";
+		Query query = getSession().createQuery(hql);
+		query.setString("wjbz", wjbz);
+		query.setLong("key1", key1);
+		query.setInteger("key2", key2);
+		query.setShort("key3", key3);
+		return query.list();
+	}
 }

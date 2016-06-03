@@ -1,6 +1,5 @@
 package com.his.mnis.serviceImpl;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +21,15 @@ public class VwBryzServiceImpl implements VwBryzService {
 		this.vwBryzDao = vwBryzDao;
 	}
 
+	/*
+	 * 根据病人key1、key2 调用存储过程生成病人医嘱
+	 */
+	@Override
+	public String callProcedureBrYz(long key1, int key2) {
+		String proc_result = vwBryzDao.callProcedureBrYz(key1, key2);
+		return proc_result; // 1 表示失败 
+	}
+	
 	@Override
 	public List<VwBryz> getListBrYzByKey(long v_key1, int v_key2, short v_yebh) {
 		String proc_result = vwBryzDao.callProcedureBrYz(v_key1, v_key2);
@@ -159,5 +167,13 @@ public class VwBryzServiceImpl implements VwBryzService {
 		}
 		return vwBryzRemodels;
 	}
+
+	@Override
+	public List<VwBryz> getListWeiZxlzByHsId(String hsid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }

@@ -1,0 +1,35 @@
+package com.his.mnis.serviceImpl;
+
+import java.util.List;
+
+import com.his.mnis.dao.VSysMessDao;
+import com.his.mnis.entities.VSysMessReader;
+import com.his.mnis.services.VSysMessService;
+
+public class VSysMessServiceImpl implements VSysMessService {
+
+	private VSysMessDao vSysMessDao;
+	
+	public VSysMessDao getvSysMessDao() {
+		return vSysMessDao;
+	}
+
+	public void setvSysMessDao(VSysMessDao vSysMessDao) {
+		this.vSysMessDao = vSysMessDao;
+	}
+
+	@Override
+	public List<VSysMessReader> getListSysMessByRenyId(String renyid,
+			int pageno, int pagerows) {
+		
+		return vSysMessDao.getListSysMessByRenyId(renyid, pageno, pagerows);
+		
+	}
+
+	@Override
+	public List<VSysMessReader> getListSysMessByRenyIdZhuangt(String renyid,
+			int pageno, int pagerows, String readflag) {
+		return vSysMessDao.getListSysMessByRenyIdZhuangt(renyid, pageno, pagerows, readflag);
+	}
+
+}

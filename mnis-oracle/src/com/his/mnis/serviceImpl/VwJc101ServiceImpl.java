@@ -33,7 +33,14 @@ public class VwJc101ServiceImpl implements VwJc101Service {
 	@Override
 	public List<VwJc101> getListBingRenJiancByDate(Date sqrq1, Date sqrq2,
 			Long key1, Integer key2,Short key3) {
-		return vwJc101Dao.getListBingRenHuaYanByDate(sqrq1, sqrq2, key1, key2, key3);
+		return vwJc101Dao.getListBingRenJianChaByDate(sqrq1, sqrq2, key1, key2, key3);
+	}
+
+	@Override
+	public List<VwJc101> getListBingRenJiancByWjflagAndBingrKey(String wjbz,
+			Long key1, Integer key2, Short key3) {
+		// TODO Auto-generated method stub
+		return vwJc101Dao.getListBingRenJianChaByWjflagAndBingrKey(wjbz, key1, key2, key3);
 	}
 
 }

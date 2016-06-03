@@ -8,6 +8,21 @@
           <property name="incrementerName" ><value>wseq_id</value></property>
      </bean>
 	
+	<bean id="basedao" class="com.his.mnis.dao.BaseDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="twWdbrDao" class="com.his.mnis.dao.TwWdbrDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+		<property name="basedao" ref="basedao"></property>
+	</bean>
+	<bean id="twWdbrService" class="com.his.mnis.serviceImpl.TwWdbrServiceImpl">
+		<property name="twWdbrDao" ref="twWdbrDao"></property>
+	</bean>
+	<bean id="twWdbrAction" class="com.his.mnis.actions.TwWdbrAction"  scope="prototype">
+		<property name="twWdbrService" ref="twWdbrService"></property>
+		<property name="vwRybqService" ref="vwRybqService"></property>
+	</bean>
+	
 	<bean id="twTwdMessDao" class="com.his.mnis.dao.TwTwdMessDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>

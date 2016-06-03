@@ -6,7 +6,18 @@ import com.his.mnis.entities.VwBryz;
 import com.his.mnis.entities.VwBryzRemodel;
 
 public interface VwBryzService {
+	
+	/*
+	 * 根据病人key1、key2 调用存储过程生成病人医嘱
+	 */
+	public String callProcedureBrYz(long key1,int key2);
+	
+	/*
+	 * 根据护士id查询 护士相关的 病人未执行临嘱
+	 */
 
+	public List<VwBryz> getListWeiZxlzByHsId(String hsid);
+	
 	/*
 	 * 根据病人key1,key2值查询病人医嘱数据
 	 */

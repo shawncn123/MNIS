@@ -28,7 +28,16 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 
 	private String bqid;
 	private String wandaixx;
+	private String brxzlx;
 	
+	public String getBrxzlx() {
+		return brxzlx;
+	}
+
+	public void setBrxzlx(String brxzlx) {
+		this.brxzlx = brxzlx;
+	}
+
 	public String getWandaixx() {
 		return wandaixx;
 	}
@@ -112,6 +121,53 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 	public String getResult() {
 		return result;
 	}
+	
+	/*
+	 * 通过病区id、病人类型选择查询相应的病人列表
+	 */
+	public String listBingRenByBqIdBrlxId() throws IOException{
+		
+		session.put("dangqianbingqu_id", bqid);
+		String bqmc = vwRybqService.getBingQuMingCheng(bqid);
+		session.put("dangqianbingqu_name", bqmc);
+		
+		if(brxzlx.equals("0")){
+			List<VwBqbrZy> vwBqbrZys = vwBqbrZyService.listBingqBingrByBingqId(bqid);
+			JSONArray jsonArray = JSONArray.fromObject(vwBqbrZys);
+			// JSONObject json = JSONObject.fromObject(vwBqbrZys);
+//		System.out.println(jsonArray);
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().write(jsonArray.toString());
+			return null;
+		}else if (brxzlx.equals("1")) {
+			VwRybq hushi = (VwRybq) session.get("caozuoyuan");
+			String vhsxm = hushi.getRyxm();
+			List<VwBqbrZy> vwBqbrZys = vwBqbrZyService.listZeRenBingrByBqIdHsXm(bqid, vhsxm);
+			JSONArray jsonArray = JSONArray.fromObject(vwBqbrZys);
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().write(jsonArray.toString());
+			return null;
+		}else if (brxzlx.equals("2")) {
+			VwRybq hushi = (VwRybq) session.get("caozuoyuan");
+			String vhsid = hushi.getId();
+			List<VwBqbrZy> vwBqbrZys = vwBqbrZyService.listMyBingrByBqIdHsId(bqid, vhsid);
+			JSONArray jsonArray = JSONArray.fromObject(vwBqbrZys);
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().write(jsonArray.toString());
+			return null;
+			
+		}else {
+			List<VwBqbrZy> vwBqbrZys = vwBqbrZyService.listBingqBingrByBingqId(bqid);
+			JSONArray jsonArray = JSONArray.fromObject(vwBqbrZys);
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().write(jsonArray.toString());
+			return null;
+		}
+	}
 
 	/*
 	 * 通过病区id查询相应的病区病人列表
@@ -124,7 +180,7 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 		session.put("dangqianbingqu_name", bqmc);
 		JSONArray jsonArray = JSONArray.fromObject(vwBqbrZys);
 		// JSONObject json = JSONObject.fromObject(vwBqbrZys);
-		System.out.println(jsonArray);
+//		System.out.println(jsonArray);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=UTF-8");
 		response.getWriter().write(jsonArray.toString());
@@ -148,7 +204,6 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 		}else{
 			return ERROR;
 		}
-			
 	}
 	
 	/*
@@ -163,10 +218,6 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 			e.printStackTrace();
 			return ERROR;
 		}
-//		session.put("bingrgetixingxi", vwBqbrZyService.getBingRenXingXiByKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2()));
-////		request.put("bingren_jbxx", vwJbxxService.getBingRenJiBenXxByKey(v_key1, v_key2));
-//		request.put("bingren_jbxx", vwJbxxService.getBingRenJiBenXxByKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2()));
-//		return SUCCESS;
 	}
 	
 	/*
@@ -181,10 +232,6 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 			e.printStackTrace();
 			return ERROR;
 		}
-//		session.put("bingrgetixingxi", vwBqbrZyService.getBingRenXingXiByKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2()));
-////		request.put("bingren_jbxx", vwJbxxService.getBingRenJiBenXxByKey(v_key1, v_key2));
-//		request.put("bingren_jbxx", vwJbxxService.getBingRenJiBenXxByKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2()));
-//		return SUCCESS;
 	}
 	
 	/*
@@ -229,14 +276,4 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 		this.session = arg0;
 
 	}
-	
-//	public Map<String, Object> getSession() {
-//		return session;
-//	}
-
-	// public String listBingqBingr_jianka(){
-	// request.put("bqry", vwBqbrZyService.listBingqBingr(bqid));
-	// return SUCCESS;
-	// }
-
 }

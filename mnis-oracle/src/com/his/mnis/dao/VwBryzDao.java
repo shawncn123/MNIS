@@ -1,18 +1,16 @@
 package com.his.mnis.dao;
 
 import java.util.List;
-
 import javax.persistence.ParameterMode;
-
 import org.hibernate.Query;
 import org.hibernate.procedure.ProcedureCall;
-
 import com.his.mnis.entities.VwBryz;
 
 public class VwBryzDao extends BaseDao {
 	
 	/*
 	 * 根据病人key1,key2值查询病人医嘱数据
+	 * yzzt 1, '新开',2, '疑问'
 	 */
 
 	public List<VwBryz> getListBrYzByKey(long v_key1,int v_key2,short v_yebh){
@@ -27,7 +25,7 @@ public class VwBryzDao extends BaseDao {
 	}
 	
 	/*
-	 * 根据病人key1,key2值和给定的条件值查询病人医嘱数据  String v_tiaojianstr;      //条件字符串
+	 * 根据病人key1,key2值和给定的条件值查询病人医嘱数据  String v_tiaojianstr;      //条件字符串  1, '新开',2, '疑问'
 	 */
 	
 	public List<VwBryz> getListBrYzByKeyAndTiaoJian(long v_key1,int v_key2,short v_yebh,String v_tiaojianstr){
@@ -42,7 +40,7 @@ public class VwBryzDao extends BaseDao {
 	}
 	
 	/*
-	 * 执行产生，修过病人医嘱数据的存储过程
+	 * 执行产生，生成病人医嘱数据的存储过程
 	 * 
 	 */
 	
@@ -60,5 +58,4 @@ public class VwBryzDao extends BaseDao {
 		return ls_return;
 		
 	}
-
 }

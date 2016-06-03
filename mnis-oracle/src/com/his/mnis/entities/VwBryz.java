@@ -34,6 +34,7 @@ public class VwBryz implements java.io.Serializable {
 	private Timestamp tztime;
 	private String resulttext;
 	private String bgflag;
+	private String zxflag;
 
 	// Constructors
 
@@ -44,7 +45,7 @@ public class VwBryz implements java.io.Serializable {
 	/** minimal constructor */
 	public VwBryz(Long key1, Integer key2, Short yebh, Long groupxh, Long xsxh,
 			String lsflag, String yzly, String tzflag, String lb,
-			String pwflag, String bgflag) {
+			String pwflag, String bgflag, String zxflag) {
 		this.key1 = key1;
 		this.key2 = key2;
 		this.yebh = yebh;
@@ -56,6 +57,7 @@ public class VwBryz implements java.io.Serializable {
 		this.lb = lb;
 		this.pwflag = pwflag;
 		this.bgflag = bgflag;
+		this.zxflag = zxflag;
 	}
 
 	/** full constructor */
@@ -64,7 +66,7 @@ public class VwBryz implements java.io.Serializable {
 			String tzflag, String lb, String yzmc, String dcyl, String yf2mc,
 			String zxsjms, String yf1mc, String yszt, String pwflag,
 			Long pwyzxh, String ysxm, Timestamp tztime, String resulttext,
-			String bgflag) {
+			String bgflag, String zxflag) {
 		this.key1 = key1;
 		this.key2 = key2;
 		this.yebh = yebh;
@@ -88,6 +90,7 @@ public class VwBryz implements java.io.Serializable {
 		this.tztime = tztime;
 		this.resulttext = resulttext;
 		this.bgflag = bgflag;
+		this.zxflag = zxflag;
 	}
 
 	// Property accessors
@@ -282,6 +285,14 @@ public class VwBryz implements java.io.Serializable {
 
 	public void setBgflag(String bgflag) {
 		this.bgflag = bgflag;
+	}
+
+	public String getZxflag() {
+		return this.zxflag;
+	}
+
+	public void setZxflag(String zxflag) {
+		this.zxflag = zxflag;
 	}
 
 }

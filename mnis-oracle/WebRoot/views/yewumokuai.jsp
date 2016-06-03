@@ -130,13 +130,13 @@
 					</div>
 					<div class="ChannelName">体温单</div>
 			</a></li>
-			<!-- <li><a href="views/linchuanglujing.jsp">
+			 <li><a href="views/linchuanglujing.jsp">
 					<div class="ChannelIcon">
 						<img src="images/1409023353.jpg" />
 					</div>
 					<div class="ChannelName">临床路径</div>
 			</a></li>
-			<li><a href="views/hulibingli.jsp">
+			<!--<li><a href="views/hulibingli.jsp">
 					<div class="ChannelIcon">
 						<img src="images/1408672415.jpg" />
 					</div>

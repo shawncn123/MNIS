@@ -20,7 +20,6 @@
 	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link href="css/login-song.css" rel="stylesheet" type="text/css" />
-<!-- <link href="css/style.css" rel="stylesheet" type="text/css" /> -->
 <link href="css/bootstrap-clockpicker.min.css" rel="stylesheet"
 	type="text/css" />
 <script type="text/javascript" src="scripts/jquery-1.12.1.min.js"></script>
