@@ -1,9 +1,88 @@
-/*!
-*RongHuiGuoKang MNIS Base CSS
-*
-*/
+*{ padding:0px; margin:0px }
 
-/*==========@@其它样式定义 开始@@==========*/
+body{
+
+	color:#000;
+
+	background-color: #FFF;
+
+	padding:0px; 
+	
+	font-size:16px;
+	
+	margin:0px auto;
+
+	overflow:scroll;
+
+	overflow-x:hidden;
+
+	overflow-y:auto;
+
+	font-family: Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;
+
+	font-size:16px;
+
+	max-width:640px;
+
+}
+
+div{ margin:0; padding:0; border:0;}
+
+a{ text-decoration:none;background: transparent; font-size: 1.5rem;  outline:none}
+
+a:hover, a:active{ outline:none; text-decoration: none;}
+
+
+
+table { border-collapse: collapse; border-spacing: 0;}
+
+li{ list-style: none outside none;}
+
+#content,.container { width: 98%;  margin: 0px auto; border:0px solid green;}
+
+.channellist{ width:99%;border:0px solid red; margin:0px auto;}
+
+.channellist li{float:left;text-align: center; border:0px dashed blue; width:33%; }
+
+.channellist li a{display:block; margin:5px;  padding-top:0px; padding:5px;
+
+background-color:#FFFFFF;
+
+border:1px solid #CCC ;
+
+border-radius:8px;-webkit-border-radius:8px; -moz-border-radius:8px; -o-border-radius:8px; 
+
+-webkit-box-shadow: 0px 1px 3px rgb(190, 190, 190); -moz-box-shadow: 0px 1px 3px rgb(190, 190, 190); -o-box-shadow: 0px 1px 3px rgb(190, 190, 190); box-shadow: 0px 1px 3px rgb(190, 190, 190);
+
+}
+
+.channellist li .ChannelName{ text-align:center; color: #333;  height:22px; line-height:22px; border:0px dashed red; padding:5px; font-size:14px; font-weight: bold;}
+
+.channellist li .ChannelIcon{
+
+    text-align: center;
+
+	font-weight: bold;
+
+	overflow:hidden;
+
+	background: white center center no-repeat; 
+
+	padding: 0px;
+
+	color:#FFFFFF;
+
+	margin:auto;
+
+	border:0px solid red;
+
+	border-radius:8px 8px 0px 0px;-webkit-border-radius:8px 8px 0px 0px; -moz-border-radius:8px 8px 0px 0px; -o-border-radius:8px 8px 0px 0px; 
+
+}
+
+.channellist li .ChannelIcon img{ vertical-align:middle; width:99%; }
+
+/*==========@@鍏跺畠鏍峰紡瀹氫箟 寮€濮婡@==========*/
 
 .form-control[readonly] { background-color: #fff;}
 
@@ -12,13 +91,21 @@
 #jianpan-left button { width: 47.1%;  margin-top: 2.5%;}
 #jianpan-right button { width: 22.9%;  margin-top: 1%;}
 
-/*==========@@其它样式定义 结束@@==========*/
+/*==========@@鍏跺畠鏍峰紡瀹氫箟 缁撴潫@@==========*/
 
-/*公共样式 可在具体频道模型被重载*/
+#login-content,#login-footer{ width: 90%;}
+#login-content .form-heading { margin: 20% 0; color: #0663a2;font-weight: bold; font-size: 30px;}
+#login-content .login { border-bottom: 1px solid #ccc; margin: 0 0 20px;}
+#login-content .login input { border: none; box-shadow: none; }
+#login-content .login input:focus { border: none; box-shadow: none;}
+#login-footer { font-size: 14px; color: #999; margin-top: 30%;}
+
+
+/*鍏叡鏍峰紡 鍙湪鍏蜂綋棰戦亾妯″瀷琚噸杞�*/
 #footer{ width: 98%;  margin: 0px auto; border:0px solid green;}
-/*快捷菜单按钮 开始*/
+/*蹇嵎鑿滃崟鎸夐挳 寮€濮�*/
 
-.plug-div {position:fixed;bottom:0;left:0px;z-index:900;}
+.plug-div {position:fixed;bottom:0;left:0px;z-index:5;}
 
 .phone {width:100%; height:480px; border: #000 solid 1px; position:relative; }
 
@@ -34,7 +121,7 @@
 
 	bottom:16px;
 
-	left: 16px;
+	left: 8px;
 
 	z-index:999;
 
@@ -90,6 +177,9 @@
 
 /**/
 
- .themeStyle{background:#DE270B} /*必须放在最后，覆盖前面定义的样式*/
+ .themeStyle{background:#31B6E7} /*蹇呴』鏀惧湪鏈€鍚庯紝瑕嗙洊鍓嶉潰瀹氫箟鐨勬牱寮�*/
 
-/*快捷菜单按钮 结束*/
+/*蹇嵎鑿滃崟鎸夐挳 缁撴潫*/
+.copyright{ padding:5px; text-align:center; font-size:14px; color:#666; border:0px solid red}
+
+.copyright a{color:#666;}

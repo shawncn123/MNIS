@@ -70,5 +70,8 @@
         <property name="zxfldm" type="java.lang.String">
             <column name="ZXFLDM" length="2" />
         </property>
+        <property name="lsflag" type="java.lang.String">
+            <column name="LSFLAG" length="1" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>

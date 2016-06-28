@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>医嘱本</title>
+<title>医嘱执行</title>
 <base href="<%=basePath%>">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -72,8 +72,9 @@
 </script>
 </head>
 <body>
-	<div id="head_banner_1" style="z-index:1000;" class="bg-info">
-		<%@ include file="header.jsp"%>
+	<%-- <div id="head_banner_1" style="z-index:1000;" class="bg-info">
+		<%@ include file="header.jsp"%> --%>
+	<%@ include file="header-bingren.jsp"%>
 	</div>
 	<div id="content_b" class="container">
 		<div class="row">
@@ -163,7 +164,7 @@
 			</div>
 		</div>
 		<!-- 模态框（Modal）end -->
-	<%@ include file="footer.jsp"%>
+	<%@ include file="footer_old.jsp"%>
 	<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
 </body>
 </html>

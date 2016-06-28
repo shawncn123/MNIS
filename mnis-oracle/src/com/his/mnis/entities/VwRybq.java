@@ -9,7 +9,7 @@ public class VwRybq implements java.io.Serializable {
 	// Fields
 
 	private String rowkey;
-	private String id;
+	private String ryid;
 	private String rydm;
 	private String ryxm;
 	private String bq;
@@ -22,10 +22,15 @@ public class VwRybq implements java.io.Serializable {
 	public VwRybq() {
 	}
 
+	/** minimal constructor */
+	public VwRybq(String rydm) {
+		this.rydm = rydm;
+	}
+
 	/** full constructor */
-	public VwRybq(String id, String rydm, String ryxm, String bq, String bqmc,
-			String defualtflag) {
-		this.id = id;
+	public VwRybq(String ryid, String rydm, String ryxm, String bq,
+			String bqmc, String defualtflag) {
+		this.ryid = ryid;
 		this.rydm = rydm;
 		this.ryxm = ryxm;
 		this.bq = bq;
@@ -43,12 +48,12 @@ public class VwRybq implements java.io.Serializable {
 		this.rowkey = rowkey;
 	}
 
-	public String getId() {
-		return this.id;
+	public String getRyid() {
+		return this.ryid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setRyid(String ryid) {
+		this.ryid = ryid;
 	}
 
 	public String getRydm() {

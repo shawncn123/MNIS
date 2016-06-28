@@ -3,6 +3,7 @@ package com.his.mnis.serviceImpl;
 import java.util.List;
 
 import com.his.mnis.dao.TwWdbrDao;
+import com.his.mnis.entities.DaiXuanZheBingren;
 import com.his.mnis.entities.MyBingRen;
 import com.his.mnis.entities.TwWdbr;
 import com.his.mnis.services.TwWdbrService;
@@ -45,7 +46,7 @@ public class TwWdbrServiceImpl implements TwWdbrService {
 	}
 
 	@Override
-	public List<MyBingRen> getDaiXuanZheBingRenByCzryIdBqId(String czyid,
+	public List<DaiXuanZheBingren> getDaiXuanZheBingRenByCzryIdBqId(String czyid,
 			String bqid) {
 		return twWdbrDao.getDaiXuanZheBingRenByCzryIdBqId(czyid, bqid);
 	}

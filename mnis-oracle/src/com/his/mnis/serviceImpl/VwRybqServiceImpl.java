@@ -103,4 +103,11 @@ public class VwRybqServiceImpl implements VwRybqService {
 		
 	}
 
+
+
+	@Override
+	public String callProcedurePW_Identify(String czydm, String mima) {
+		return vwRybqDao.callProcedurePW_Identify(czydm, mima);
+	}
+
 }

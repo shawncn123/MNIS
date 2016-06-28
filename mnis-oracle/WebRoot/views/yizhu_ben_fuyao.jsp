@@ -20,8 +20,10 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <link href="css/base.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/song.css"/>
 <script type="text/javascript" src="scripts/jquery-1.12.1.min.js"></script>
 <script type="text/javascript" src="scripts/viewjs.js"></script>
+<script src="scripts/song.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(function() {
 		// 绑定
@@ -30,8 +32,7 @@
 </script>
 </head>
 <body>
-	<div id="head_banner_1" style="z-index:1000;" class="bg-info">
-		<%@ include file="header.jsp"%>
+	<%@ include file="header-bingren.jsp"%>
 	</div>
 	<div id="content" class="container">
 		<div class="row">
@@ -156,6 +157,7 @@
 			</div>
 		</s:iterator>
 		<div class="clear"></div>
+		<%@ include file="menu-hushi.jsp" %>
 	</div>
 	<%@ include file="footer.jsp"%>
 	<script type="text/javascript" src="scripts/bootstrap.min.js"></script>

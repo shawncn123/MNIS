@@ -11,6 +11,68 @@
 	<bean id="basedao" class="com.his.mnis.dao.BaseDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<!-- 工作提醒 白板 -->
+	<bean id="baiBanGongZhuoTiXingDao" class="com.his.mnis.dao.BaiBanGongZhuoTiXingDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="baiBanBongZuoTiXingService" class="com.his.mnis.serviceImpl.BaiBanBongZuoTiXingServiceImpl">
+		<property name="baiBanGongZhuoTiXingDao" ref="baiBanGongZhuoTiXingDao"></property>
+		<property name="twWdbrService" ref="twWdbrService"></property>
+	</bean>
+	<bean id="baiBanBongZuoTiXingAction" class="com.his.mnis.actions.BaiBanBongZuoTiXingAction"  scope="prototype">
+		<property name="baiBanBongZuoTiXingService" ref="baiBanBongZuoTiXingService"></property>
+	</bean>
+	
+	<!-- 消息  -->
+	<bean id="vSysMessDao" class="com.his.mnis.dao.VSysMessDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vSysMessService" class="com.his.mnis.serviceImpl.VSysMessServiceImpl">
+		<property name="vSysMessDao" ref="vSysMessDao"></property>
+	</bean>
+	<bean id="vSysMessAction" class="com.his.mnis.actions.VSysMessAction"  scope="prototype">
+		<property name="vSysMessService" ref="vSysMessService"></property>
+	</bean>
+	
+	<!-- 宣教 -->
+	<bean id="xuanJiaoDao" class="com.his.mnis.dao.XuanJiaoDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+		<property name="baseDao" ref="basedao"></property>
+	</bean>
+	<bean id="xuanJiaoService" class="com.his.mnis.serviceImpl.XuanJiaoServiceImpl">
+		<property name="xuanJiaoDao" ref="xuanJiaoDao"></property>
+	</bean>
+	<bean id="xuanJiaoAction" class="com.his.mnis.actions.XuanJiaoAction"  scope="prototype">
+		<property name="xuanJiaoService" ref="xuanJiaoService"></property>
+	</bean>
+	
+	<bean id="shuYeZhiXingDao" class="com.his.mnis.dao.ShuYeZhiXingDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="shuYeZhiXingService" class="com.his.mnis.serviceImpl.ShuYeZhiXingServiceImpl">
+		<property name="shuYeZhiXingDao" ref="shuYeZhiXingDao"></property>
+		<property name="twWdbrService" ref="twWdbrService"></property>
+		<property name="twBryzzxService" ref="twBryzzxService"></property>
+	</bean>
+	<bean id="shuYeZhiXingAction" class="com.his.mnis.actions.ShuYeZhiXingAction"  scope="prototype">
+		<property name="shuYeZhiXingService" ref="shuYeZhiXingService"></property>
+		<property name="twBryzzxService" ref="twBryzzxService"></property>
+	</bean>
+	
+	<bean id="linZhuWeiZhiXingDao" class="com.his.mnis.dao.LinZhuWeiZhiXingDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="linZhuWeiZhiXingService" class="com.his.mnis.serviceImpl.LinZhuWeiZhiXingServiceImpl">
+		<property name="linZhuWeiZhiXingDao" ref="linZhuWeiZhiXingDao"></property>
+		<property name="twWdbrService" ref="twWdbrService"></property>
+		<property name="vwBryzService" ref="vwBryzService"></property>
+		<property name="twWdbrDao" ref="twWdbrDao"></property>
+	</bean>
+	<bean id="linZhuWeiZhiXingAction" class="com.his.mnis.actions.LinZhuWeiZhiXingAction"  scope="prototype">
+		<property name="twBryzzxService" ref="twBryzzxService"></property>
+		<property name="linZhuWeiZhiXingService" ref="linZhuWeiZhiXingService"></property>
+	</bean>
+	
 	<bean id="twWdbrDao" class="com.his.mnis.dao.TwWdbrDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 		<property name="basedao" ref="basedao"></property>
@@ -21,6 +83,7 @@
 	<bean id="twWdbrAction" class="com.his.mnis.actions.TwWdbrAction"  scope="prototype">
 		<property name="twWdbrService" ref="twWdbrService"></property>
 		<property name="vwRybqService" ref="vwRybqService"></property>
+		<property name="vwBqbrZyService" ref="vwBqbrZyService"></property>
 	</bean>
 	
 	<bean id="twTwdMessDao" class="com.his.mnis.dao.TwTwdMessDao">
@@ -29,18 +92,11 @@
 	
 	<bean id="twTwdMessService" class="com.his.mnis.serviceImpl.TwTwdMessServiceImpl">
 		<property name="twTwdMessDao" ref="twTwdMessDao"></property>
+		<property name="baseDao" ref="basedao"></property>
 	</bean>
 	
 	<bean id="twTwdMessAction" class="com.his.mnis.actions.TwTwdMessAction"  scope="prototype">
 		<property name="twTwdMessService" ref="twTwdMessService"></property>
-	</bean>
-	
-	<bean id="tiWenDanService" class="com.his.mnis.serviceImpl.TiWenDanServiceImpl">
-		<property name="twTzdataTwDao" ref="twTzdataTwDao"></property>
-	</bean>
-	
-	<bean id="tiWenDanAction" class="com.his.mnis.actions.TiWenDanAction"  scope="prototype">
-		<property name="tiWenDanService" ref="tiWenDanService"></property>
 	</bean>
 	
 	<bean id="twTzdataTwDao" class="com.his.mnis.dao.TwTzdataTwDao">
@@ -79,8 +135,12 @@
 	<bean id="vwHy101Dao" class="com.his.mnis.dao.VwHy101Dao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="vwHy1011Dao" class="com.his.mnis.dao.VwHy1011Dao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 	<bean id="vwHy101Service" class="com.his.mnis.serviceImpl.VwHy101ServiceImpl">
 		<property name="vwHy101Dao" ref="vwHy101Dao"></property>
+		<property name="vwHy1011Dao" ref="vwHy1011Dao"></property>
 	</bean>
 	<bean id="vwHy101Action" class="com.his.mnis.actions.VwHy101Action"  scope="prototype">
 		<property name="vwHy101Service" ref="vwHy101Service"></property>

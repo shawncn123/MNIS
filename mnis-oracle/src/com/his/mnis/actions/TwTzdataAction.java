@@ -148,7 +148,7 @@ public class TwTzdataAction extends ActionSupport implements RequestAware,Sessio
 			Long v_pcid =  this.seqGenerator.nextLongValue();
 //			Long v_pcid =  this.seqDispGenerator.nextLongValue();
 			VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
-			System.out.println(vwRybq.getId());
+			System.out.println(vwRybq.getRyid());
 			
 			VwBqbrZy vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
 			
@@ -167,7 +167,7 @@ public class TwTzdataAction extends ActionSupport implements RequestAware,Sessio
 				}
 				if(!xiangmu.get(i).equals("TW") && v_zhi1 != null && !v_zhi1.equals("")){
 					TwTzdata twTzdata = new TwTzdata();
-					twTzdata.setCzyid(vwRybq.getId());
+					twTzdata.setCzyid(vwRybq.getRyid());
 					twTzdata.setCzyxm(vwRybq.getRyxm());
 					twTzdata.setKey1(vwBqbrZy.getKey1());
 					twTzdata.setKey2(vwBqbrZy.getKey2());

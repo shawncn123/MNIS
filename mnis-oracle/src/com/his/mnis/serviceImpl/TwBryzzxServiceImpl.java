@@ -78,6 +78,13 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 		this.twBryzzxRemodels = twBryzzxRemodels;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.his.mnis.services.TwBryzzxService#getListBrYzzxRemodel(java.util.List)
+	 * twBryzzxRemodels  存放多个同组医嘱
+	 * twBryzzxRemodelSub 存放医嘱的执行时间点
+	 * twBryzzxRemodelSubs 存放同组医嘱系列执行时间点
+	 */
 	@Override
 	public List<TwBryzzxRemodel> getListBrYzzxRemodel(List<TwBryzzx> twBryzzxs) {
 
@@ -134,6 +141,7 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 				twBryzzxRemodelSubs.add(twBryzzxRemodelSub);
 			}
 		}
+		twBryzzxRemodel.setTwBryzzxRemodelSubs(twBryzzxRemodelSubs);
 		twBryzzxRemodels.add(twBryzzxRemodel);
 		return twBryzzxRemodels;
 	}
@@ -143,6 +151,12 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 			String hsid, String hsxm, Date zxsj, String zxms) {
 
 		return twBryzzxDao.callProcedureBrYzzx_baocun(rq, sjd, groupxh, hsid, hsxm, zxsj, zxms);
+	}
+
+	@Override
+	public String callProcedureBrYzzx(long key1, int key2) {
+		String proc_result = twBryzzxDao.callProcedureBrYzzx(key1, key2);
+		return proc_result; // 1 表示失败 
 	}
 
 

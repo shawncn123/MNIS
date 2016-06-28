@@ -25,4 +25,9 @@ public interface VwRybqService {
 	public String getCaoZuoBingQuIdByCaozyId(String caozyid);
 	
 	public String getBingQuMingCheng(String bqid);
+	
+	/*
+	 * 执行验证登录存储过程
+	 */
+	public String callProcedurePW_Identify(String czydm,String mima);
 }

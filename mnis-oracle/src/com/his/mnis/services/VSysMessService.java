@@ -14,4 +14,13 @@ public interface VSysMessService {
 	
 	public List<VSysMessReader> getListSysMessByRenyIdZhuangt(String renyid,int pageno,int pagerows,String readflag);
 	
+	/*
+	 * 根据消息ID 人员ID 确定消息已读
+	 */
+	public String queDingXiaoXiYiDu(String messid, String ryid);
+	/*
+	 * 查询过期未读
+	 */
+	public  List<VSysMessReader> getListMessageGuoQiWeiDu(String renyid,int pageno,int pagerows);
+	
 }

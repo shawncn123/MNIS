@@ -1,5 +1,8 @@
 package com.his.mnis.actions;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +21,25 @@ public class VSysMessAction extends ActionSupport implements RequestAware,
 	private int pageno;
 	private int pagerows =20;
 	private VSysMessService vSysMessService;
+	private String messid;
+	private InputStream inputStream;
 	
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
+
+	public String getMessid() {
+		return messid;
+	}
+
+	public void setMessid(String messid) {
+		this.messid = messid;
+	}
+
 	public VSysMessService getvSysMessService() {
 		return vSysMessService;
 	}
@@ -46,9 +67,13 @@ public class VSysMessAction extends ActionSupport implements RequestAware,
 	public String getListSysMessByRenyId(){
 		try {
 			VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
-			String ryid = vwRybq.getId();
+			String ryid = vwRybq.getRyid();
 			List<VSysMessReader> vSysMessReaders = vSysMessService.getListSysMessByRenyId(ryid, pageno, pagerows);
+			List<VSysMessReader> vSysMessReaderWeiDus = vSysMessService.getListSysMessByRenyIdZhuangt(ryid, pageno, pagerows,"0");
+			List<VSysMessReader> vSysMessReaderGuoQiWeiDus = vSysMessService.getListMessageGuoQiWeiDu(ryid, pageno, pagerows);
 			request.put("sysmess", vSysMessReaders);
+			request.put("sysmessweidu", vSysMessReaderWeiDus);
+			request.put("sysmessguoqiweidu", vSysMessReaderGuoQiWeiDus);
 			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -58,13 +83,30 @@ public class VSysMessAction extends ActionSupport implements RequestAware,
 	public String getListSysMessByRenyIdZhuangt(){
 		try {
 			VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
-			String ryid = vwRybq.getId();
+			String ryid = vwRybq.getRyid();
 			List<VSysMessReader> vSysMessReaders = vSysMessService.getListSysMessByRenyIdZhuangt(ryid, pageno, pagerows,readflag);
 			request.put("sysmess", vSysMessReaders);
 			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ERROR;
+		}
+	}
+	
+	public String queDingXiaoXiYiDu(){
+		VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
+		String ryid = vwRybq.getRyid();
+		try {
+			String zxzt = vSysMessService.queDingXiaoXiYiDu(messid, ryid);
+			if(zxzt.equals("0")){   //0 表示成功
+				inputStream = new ByteArrayInputStream("1".getBytes("UTF-8"));
+			}else{
+				inputStream = new ByteArrayInputStream("0".getBytes("UTF-8"));
+			}
+			return "ajax-success";
+		} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+				return ERROR;
 		}
 	}
 	

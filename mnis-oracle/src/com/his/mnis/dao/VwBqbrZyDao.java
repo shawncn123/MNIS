@@ -14,7 +14,7 @@ public class VwBqbrZyDao extends BaseDao {
 	public List<VwBqbrZy> getListWoDeBingRenByBqidHsId(String bqid,String hsid){
 		String ssql = "select t1.ROWKEY,t1.KEY1, t1.KEY2, t1.BQ, t1.CHW, t1.BAH, t1.XM, t1.XB, t1.NL, t1.KSID, t1.KSMC, t1.YSXM,"
 				+"t1.HSXM, t1.HLDJ, t1.FYLB, t1.RYRQ, t1.JCFLAG, t1.FYLB_BOXCOLOR, t1.DQBKZT, t1.RYZD, t1.GMLS, t1.SHANSHI, t1.SSMS,"
-				+"t1.YEMS, t1.ZYTSMS  from vw_bqbr_zy t1, tw_wdbr t2 "
+				+"t1.YEMS, t1.ZYTSMS,t1.AQTX  from vw_bqbr_zy t1, tw_wdbr t2 "
 				+ "where t1.BQ = :bq and t1.BQ = t2.bq and t2.hsid =:hsid and t1.CHW = t2.chw order by t1.JCFLAG,t1.CHW";
 		Query query = getSession().createSQLQuery(ssql).addEntity(VwBqbrZy.class);
 //		String ssql = "select t1 from VwBqbrZy t1,TwWdbr t2 where t1.bq = t2.bq and t2.hsid=:hsid and t1.chw = t2.chw and t1.bq=:bq order by t1.jcflag,t1.chw";

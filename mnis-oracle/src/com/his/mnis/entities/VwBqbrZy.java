@@ -1,7 +1,5 @@
 package com.his.mnis.entities;
 
-//import java.sql.Timestamp;
-
 /**
  * VwBqbrZy entity. @author MyEclipse Persistence Tools
  */
@@ -35,6 +33,7 @@ public class VwBqbrZy implements java.io.Serializable {
 	private String ssms;
 	private String yems;
 	private String zytsms;
+	private String aqtx;
 
 	// Constructors
 
@@ -53,7 +52,8 @@ public class VwBqbrZy implements java.io.Serializable {
 			String xm, String xb, String nl, String ksid, String ksmc,
 			String ysxm, String hsxm, String hldj, String fylb, String ryrq,
 			String jcflag, String fylbBoxcolor, String dqbkzt, String ryzd,
-			String gmls, String shanshi, String ssms, String yems, String zytsms) {
+			String gmls, String shanshi, String ssms, String yems,
+			String zytsms, String aqtx) {
 		this.key1 = key1;
 		this.key2 = key2;
 		this.bq = bq;
@@ -78,6 +78,7 @@ public class VwBqbrZy implements java.io.Serializable {
 		this.ssms = ssms;
 		this.yems = yems;
 		this.zytsms = zytsms;
+		this.aqtx = aqtx;
 	}
 
 	// Property accessors
@@ -280,6 +281,14 @@ public class VwBqbrZy implements java.io.Serializable {
 
 	public void setZytsms(String zytsms) {
 		this.zytsms = zytsms;
+	}
+
+	public String getAqtx() {
+		return this.aqtx;
+	}
+
+	public void setAqtx(String aqtx) {
+		this.aqtx = aqtx;
 	}
 
 }

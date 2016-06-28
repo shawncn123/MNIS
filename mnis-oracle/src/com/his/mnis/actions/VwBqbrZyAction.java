@@ -151,7 +151,7 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 			return null;
 		}else if (brxzlx.equals("2")) {
 			VwRybq hushi = (VwRybq) session.get("caozuoyuan");
-			String vhsid = hushi.getId();
+			String vhsid = hushi.getRyid();
 			List<VwBqbrZy> vwBqbrZys = vwBqbrZyService.listMyBingrByBqIdHsId(bqid, vhsid);
 			JSONArray jsonArray = JSONArray.fromObject(vwBqbrZys);
 			HttpServletResponse response = ServletActionContext.getResponse();
@@ -192,11 +192,11 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 	 */
 	public String getListBingqBingrBySessionBingqId() throws IOException {
 		VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
-		System.out.println(vwRybq.getId());
+		System.out.println(vwRybq.getRyid());
 		String dangqianbqid = "";
 		dangqianbqid = session.get("dangqianbingqu_id").toString();
 		if( dangqianbqid != ""){
-			List<VwRybq> vwRybqs = vwRybqService.listBingQuByCaozyId(vwRybq.getId());
+			List<VwRybq> vwRybqs = vwRybqService.listBingQuByCaozyId(vwRybq.getRyid());
 			request.put("caozuoyuan_bingqu", vwRybqs);
 			List<VwBqbrZy> vwBqbrZys = vwBqbrZyService.listBingqBingrByBingqId(dangqianbqid);
 			request.put("bqry", vwBqbrZys);

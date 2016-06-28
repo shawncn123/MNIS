@@ -162,7 +162,7 @@ public class TwTzdataTwAction extends ActionSupport implements SessionAware,
 		
 		TwTzdataTw twTzdataTw = new TwTzdataTw();
 		twTzdataTw.setJlid(v_jlid);
-		twTzdataTw.setCzyid(vwRybq.getId());
+		twTzdataTw.setCzyid(vwRybq.getRyid());
 		twTzdataTw.setCzyxm(vwRybq.getRyxm());
 		twTzdataTw.setKey1(vwBqbrZy.getKey1());
 		twTzdataTw.setKey2(vwBqbrZy.getKey2());

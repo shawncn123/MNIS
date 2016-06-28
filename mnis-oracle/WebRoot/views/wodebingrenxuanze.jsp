@@ -162,47 +162,10 @@
 				style="margin-right: 5px; margin-bottom: 10px;">
 		</div>
 		</form>
-		<div class="sideWrap" id="sideWrap">
-			<div class="sideMenu" id="sideMenu">
-				<div class="navItem_1">
-					<a href=""> <span class="glyphicon glyphicon-bell"></span> <span
-						class="gnavItemName">护士工作提醒</span>
-					</a>
-				</div>
-				<div class="navItem_2">
-					<a href="linzhuweizhixing.html"> <span
-						class="glyphicon glyphicon-exclamation-sign"></span> <span
-						class="gnavItemName">临嘱未执行</span>
-					</a>
-				</div>
-				<div class="navItem_3">
-					<a href="shuyezhixing.html"> <span
-						class="glyphicon glyphicon-check"></span> <span
-						class="gnavItemName">输液执行</span>
-					</a>
-				</div>
-				<div class="navItem_4">
-					<a href="woDeBingRenXuanZe"> <span
-						class="glyphicon glyphicon-list"></span> <span
-						class="gnavItemName">我的病人选择</span>
-					</a>
-				</div>
-				<div class="navItem_5">
-					<a href=""> <span class="glyphicon glyphicon-comment"></span> <span
-						class="gnavItemName">消息模块</span>
-					</a>
-				</div>
-			</div>
-
-		</div>
-		<div class="sideBtn" id="sideBtn">
-			<a href="javascript:void(0)"> <span
-				class="glyphicon glyphicon-align-justify sideBtnIcon"
-				style="font-size: 2.4rem;"></span>
-			</a>
-		</div>
+		<!--导航结束-->
+		<div class="clear"></div>
+		<%@ include file="menu-hushi.jsp"%>
 	</div>
-
 	<%@ include file="footer.jsp"%>
 
 	<!-- 模态框（Modal）start -->

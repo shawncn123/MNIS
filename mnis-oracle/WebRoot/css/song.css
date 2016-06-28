@@ -1,0 +1,147 @@
+﻿/*护士菜单css样式  start*/
+
+.sideWrap {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.sideBtn {
+	position: fixed;
+	left: 2%;
+	top: 90%;
+	z-index: 11;
+	opacity: .8;
+	width: 4rem;
+	height: 4rem;
+	background: #319ABD;
+	border-radius: 3px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+.sideBtn a { right: 5%;}
+
+.sideBtnIcon {
+	color: #fff;
+	margin: .5rem 0 0 .8rem;
+}
+
+.sideMenu {
+	width: 50%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 99998;
+	background: rgba(255, 255, 255, 0.95);
+	transition: all 350ms;
+}
+
+.sideMenu a {
+	font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, "黑体", Arial, Tahoma;
+	font-size: 1.5rem;
+	display: block;
+	color: #333;
+	height: 4.5rem;
+	line-height: 4.5rem;
+	border-left: .5rem solid transparent;
+	padding-left: 1rem;
+}
+
+.sideMenu a:hover {
+	background: #E1EDF7;
+	border-left: .5rem solid #319ABD;
+	text-decoration: none;
+}
+
+.sideMenu .gnavItemName {
+	margin-left: 1rem;
+}
+
+
+/*护士菜单css样式  end*/
+
+
+/*返回顶部css样式  start*/
+
+.backToTop {
+	display: none;
+	width: 4rem;
+	height: 4rem;
+	position: fixed;
+	z-index: 8;
+	right: 1.5%;
+	bottom: 10%;
+	cursor: pointer;
+	opacity: .8;
+	background: url(../images/gotop.jpg) no-repeat;
+	background-size: 100%;
+}
+
+
+/*返回顶部css样式  end*/
+
+
+/*扫腕带  start*/
+
+.saoBtn {
+	display: block;
+	width: 4rem;
+	height: 4rem;
+	position: fixed;
+	top: 80%;
+	left: 2%;
+	background-color: #0095DD;
+	border-radius: 10px;
+	opacity: .8;
+	z-index: 9;
+	padding-left: .5rem;
+}
+
+.saoBtn span {
+	display: block;
+	line-height: 100%;
+	font-size: 2.4rem;
+	font-weight: 700;
+	color: #fff;
+}
+
+.saoBtn:hover,
+.saoBtn:visited {
+	color: #fff;
+}
+
+#tishi {
+	width: 60%;
+	height: 6rem;
+	line-height: 6rem;
+	text-align: center;
+	letter-spacing: 1rem;
+	background-color: #E5E5E5;
+	border: 1px solid #ccc;
+	position: fixed; 
+	top: 45%;
+	left: 20%;
+	z-index: 99;
+
+}
+/*扫腕带  end*/
+
+/*白板  start*/
+#myTabContent .leftBar {
+	font-weight: normal; 
+	padding: 4px 0 3px 0;
+	background: #A6E1EC;
+	text-align: center;
+	box-shadow: 2px 2px 5px #333;
+	letter-spacing: 2px;
+	}
+#myTabContent .rightCon {
+	padding: 4px 5px 3px 5px;
+	min-height: 26px;
+	overflow-y:auto;
+	border-bottom:1px solid #ccc;
+}

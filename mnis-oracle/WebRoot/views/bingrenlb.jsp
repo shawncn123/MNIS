@@ -11,13 +11,15 @@
 <head>
 <base href="<%=basePath%>">
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <title>病人列表</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/caidan.css" />
 <link href="css/base.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/song.css"/>
 <script type="text/javascript" src="scripts/jquery-1.12.1.min.js"></script>
 <script type="text/javascript" src="scripts/viewjs.js"></script>
+<script src="scripts/song.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 	$(function() {
@@ -52,6 +54,7 @@
 	var vbrlb = 'qbbr';
 	$(function() {$(document).ready(function() {
 		$(".bingqu_select").click(function() {
+		$("#leix_check").val("看细卡");
 		var valbq = $(this).val();
 		vbq = valbq;
 		var val_text = $(this).text();
@@ -63,7 +66,7 @@
 			d = eval("("+ data+ ")");
 			for (var i = 0; i < d.length; i++) {
 				a = a + '<a href="bingreng_yewumokuai?v_key1='+ d[i].key1+ '&v_key2='+ d[i].key2
-				+ '"><div class="col-xs-6" style="padding: 0 5px 0 5px;"><div class="panel panel-default" style="margin: 5px 0 5px 0;"><div class="table-responsive"><table class="table table-condensed"><tr><td class="text-center"><span style="color:' 
+				+ '"><div class="col-xs-6" style="padding: 0;"><div class="panel panel-default" style="margin: 1% 0 0 0;"><div class="table-responsive"><table class="table table-condensed"><tr><td class="text-center"><span style="color:' 
 				+ d[i].fylbBoxcolor + ";background-color: "+ d[i].fylbBoxcolor +'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;'
 				+ d[i].yems+ '</td><td class="text-center">'+ d[i].hldj
 				+ '</td></tr><tr><td class="text-center"><h4>'+ d[i].chw
@@ -79,6 +82,7 @@
 	//选择病人类型 全部病人 责任病人 我的病人 查询
 	
 	$(".bingren_select").click(function() {
+		$("#leix_check").val("看细卡");
 		var val = $(this).val();
 		vbrlb = val;
 		var val_text = $(this).text();
@@ -92,7 +96,7 @@
 			d = eval("("+ data+ ")");
 			for (var i = 0; i < d.length; i++) {
 				a = a + '<a href="bingreng_yewumokuai?v_key1='+ d[i].key1+ '&v_key2='+ d[i].key2
-				+ '"><div class="col-xs-6" style="padding: 0 5px 0 5px;"><div class="panel panel-default" style="margin: 5px 0 5px 0;"><div class="table-responsive"><table class="table table-condensed"><tr><td class="text-center"><span style="color:' 
+				+ '"><div class="col-xs-6" style="padding: 0;"><div class="panel panel-default" style="margin: 1% 0 0 0;;"><div class="table-responsive"><table class="table table-condensed"><tr><td class="text-center"><span style="color:' 
 				+ d[i].fylbBoxcolor + ";background-color: "+ d[i].fylbBoxcolor +'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;'
 				+ d[i].yems+ '</td><td class="text-center">'+ d[i].hldj
 				+ '</td></tr><tr><td class="text-center"><h4>'+ d[i].chw
@@ -107,70 +111,95 @@
 	});
 
 	$("#leix_check").click(function() {
-		a = "";
-		if (d == "") {
-			var val = $("#dangq_bingq_id").val();
-			var url = "bingqbr_bybingqid";
-			var args = {"bqid" : val/* ,"time" : new Date() */};
-				$.post(url,args,function(data) {
-					d = eval("(" + data+ ")");
-					for (var i = 0; i < d.length; i++) {
+		var lxtext = $("#leix_check").val();
+		if(lxtext=="看细卡"){
+			$("#leix_check").val("看简卡");
+			a = "";
+			if (d == "") {
+				var val = $("#dangq_bingq_id").val();
+				var url = "bingqbr_bybingqid";
+				var args = {"bqid" : val/* ,"time" : new Date() */};
+					$.post(url,args,function(data) {
+						d = eval("(" + data+ ")");
+						for (var i = 0; i < d.length; i++) {
+						a = a + '<a href="bingreng_yewumokuai?v_key1=' + d[i].key1 + '&v_key2=' + d[i].key2
+						+ '"><div class="col-xs-6" style="padding: 0;"><div class="panel panel-default" style="margin: 1% 0 0 0;;"><div class="table-responsive"><table class="table table-condensed" style="table-layout:fixed;"><tr><td style="padding-right:0px;"><span style="color:' 
+						+ d[i].fylbBoxcolor +';background-color: '+ d[i].fylbBoxcolor 
+						+'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td colspan="2" style="padding-right:0px;">'
+						+ d[i].yems + '&nbsp;&nbsp;' + d[i].hldj
+						+ '</td></tr><tr><td style="padding-right:0px;"><h4>' + d[i].chw
+						+ '床</h4></td><td colspan="2" style="padding-right:0px;"><h4>'
+						+ d[i].xm + '</h4></td></tr><tr><td style="padding-right:0px;">'+ d[i].bah
+						+ '</td><td style="padding-right:0px;padding-left:0px;">'+ d[i].fylb
+						+ '</td><td style="padding-right:0px;">${xb }&nbsp;' + d[i].nl + '</td></tr><tr><td style="padding-right:0px;">'
+						+ d[i].ksmc + '</td><td style="padding-right:0px;padding-left:0px;" class="text-right">病情:</td><td style="padding-right:0px;">'
+						+ d[i].dqbkzt
+						+ '</td></tr><tr><td colspan="3" style="padding-right:0px;overflow:hidden;text-overflow:ellipsis;" nowrap="nowrap">诊断：'
+						+ d[i].ryzd
+						+ '</td></tr><tr><td colspan="3" style="padding-right:0px;overflow:hidden;text-overflow:ellipsis;" nowrap="nowrap">过敏史：'
+						+ d[i].gmls
+						+ '</td></tr><tr><td colspan="3" style="padding-right:0px;overflow:hidden;text-overflow:ellipsis;" nowrap="nowrap">膳食：'
+						+ d[i].shanshi 
+						+ '</td></tr><tr><td colspan="3" style="padding-right:0px;overflow:hidden;text-overflow:ellipsis;" nowrap="nowrap">安全提醒：'
+						+ d[i].aqtx 
+						+ '</td></tr><tr><td style="padding-right:0px;">医生:&nbsp;' + d[i].ysxm
+						+ '</td><td style="padding-right:0px;padding-left:0px;" class="text-right">护士:</td><td style="padding-right:0px;">'
+						+ d[i].hsxm
+						+ '</td></tr><tr><td colspan="3" style="padding-right:0px;overflow:hidden;text-overflow:ellipsis;" nowrap="nowrap">手术：'
+						+ d[i].ssms + '</td></tr><tr><td style="padding-right:0px;" colspan="3">'
+						+ d[i].ryrq.substring(0,10) + '&nbsp;&nbsp;'+ d[i].zytsms + '</td></tr></table></div></div></div></a>';
+					}
+					$("#brlb")[0].innerHTML = a;
+				});
+			}
+			if (d != "") {
+				for (var i = 0; i < d.length; i++) {
 					a = a + '<a href="bingreng_yewumokuai?v_key1=' + d[i].key1 + '&v_key2=' + d[i].key2
-					+ '"><div class="col-xs-6" style="padding: 0 5px 0 5px;"><div class="panel panel-default" style="margin: 5px 0 5px 0;"><div class="table-responsive"><table class="table table-condensed" style="table-layout:fixed;"><tr><td style="padding-right:0px;"><span style="color:' 
+					+ '"><div class="col-xs-6" style="padding: 0;"><div class="panel panel-default" style="margin: 1% 0 0 0;;"><div class="table-responsive"><table class="table table-condensed" style="table-layout:fixed;"><tr><td style="padding-right:0px;"><span style="color:' 
 					+ d[i].fylbBoxcolor +';background-color: '+ d[i].fylbBoxcolor 
 					+'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td colspan="2" style="padding-right:0px;">'
-					+ d[i].yems + '&nbsp;&nbsp;' + d[i].hldj
-					+ '</td></tr><tr><td style="padding-right:0px;"><h4>' + d[i].chw
-					+ '床</h4></td><td colspan="2" style="padding-right:0px;"><h4>'
-					+ d[i].xm + '</h4></td></tr><tr><td style="padding-right:0px;">'+ d[i].bah
-					+ '</td><td style="padding-right:0px;padding-left:0px;">'+ d[i].fylb
-					+ '</td><td style="padding-right:0px;">${xb }&nbsp;' + d[i].nl + '</td></tr><tr><td style="padding-right:0px;">'
-					+ d[i].ksmc + '</td><td style="padding-right:0px;padding-left:0px;" class="text-right">病情:</td><td style="padding-right:0px;">'
+					+ d[i].yems + '&nbsp;&nbsp;' + d[i].hldj + '</td></tr><tr><td style="padding-right:0px;"><h4>'
+					+ d[i].chw + '床</h4></td><td colspan="2" style="padding-right:0px;"><h4>'
+					+ d[i].xm + '</h4></td></tr><tr><td style="padding-right:0px;">' + d[i].bah
+					+ '</td><td style="padding-right:0px;padding-left:0px;">'
+					+ d[i].fylb+ '</td><td style="padding-right:0px;">${xb }&nbsp;'+ d[i].nl
+					+ '</td></tr><tr><td style="padding-right:0px;">'+ d[i].ksmc
+					+ '</td><td style="padding-right:0px;padding-left:0px;" class="text-right">病情:</td><td style="padding-right:0px;">'
 					+ d[i].dqbkzt
 					+ '</td></tr><tr><td colspan="3" style="padding-right:0px;overflow:hidden;text-overflow:ellipsis;" nowrap="nowrap">诊断：'
 					+ d[i].ryzd
 					+ '</td></tr><tr><td colspan="3" style="padding-right:0px;overflow:hidden;text-overflow:ellipsis;" nowrap="nowrap">过敏史：'
 					+ d[i].gmls
 					+ '</td></tr><tr><td colspan="3" style="padding-right:0px;overflow:hidden;text-overflow:ellipsis;" nowrap="nowrap">膳食：'
-					+ d[i].shanshi + '</td></tr><tr><td style="padding-right:0px;">医生:&nbsp;' + d[i].ysxm
+					+ d[i].shanshi 
+					+ '</td></tr><tr><td colspan="3" style="padding-right:0px;overflow:hidden;text-overflow:ellipsis;" nowrap="nowrap">安全提醒：'
+					+ d[i].aqtx 
+					+ '</td></tr><tr><td style="padding-right:0px;">医生:&nbsp;'+ d[i].ysxm
 					+ '</td><td style="padding-right:0px;padding-left:0px;" class="text-right">护士:</td><td style="padding-right:0px;">'
 					+ d[i].hsxm
 					+ '</td></tr><tr><td colspan="3" style="padding-right:0px;overflow:hidden;text-overflow:ellipsis;" nowrap="nowrap">手术：'
-					+ d[i].ssms + '</td></tr><tr><td style="padding-right:0px;" colspan="3">'
-					+ d[i].ryrq.substring(0,10) + '&nbsp;&nbsp;'+ d[i].zytsms + '</td></tr></table></div></div></div></a>';
+					+ d[i].ssms + '</td></tr><tr><td style="padding-right:0px;" colspan="3">'+ d[i].ryrq.substring(0,10) + '&nbsp;&nbsp;'
+					+ d[i].zytsms+ '</td></tr></table></div></div></div></a>';
 				}
 				$("#brlb")[0].innerHTML = a;
-			});
+			} else {
+				$("#brlb")[0].innerHTML = "没有数据";
+			}
 		}
-		if (d != "") {
+		else{
+			$("#leix_check").val("看细卡");
+			a="";
 			for (var i = 0; i < d.length; i++) {
-				a = a + '<a href="bingreng_yewumokuai?v_key1=' + d[i].key1 + '&v_key2=' + d[i].key2
-				+ '"><div class="col-xs-6" style="padding: 0 5px 0 5px;"><div class="panel panel-default" style="margin: 5px 0 5px 0;"><div class="table-responsive"><table class="table table-condensed" style="table-layout:fixed;"><tr><td style="padding-right:0px;"><span style="color:' 
-				+ d[i].fylbBoxcolor +';background-color: '+ d[i].fylbBoxcolor 
-				+'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td colspan="2" style="padding-right:0px;">'
-				+ d[i].yems + '&nbsp;&nbsp;' + d[i].hldj + '</td></tr><tr><td style="padding-right:0px;"><h4>'
-				+ d[i].chw + '床</h4></td><td colspan="2" style="padding-right:0px;"><h4>'
-				+ d[i].xm + '</h4></td></tr><tr><td style="padding-right:0px;">' + d[i].bah
-				+ '</td><td style="padding-right:0px;padding-left:0px;">'
-				+ d[i].fylb+ '</td><td style="padding-right:0px;">${xb }&nbsp;'+ d[i].nl
-				+ '</td></tr><tr><td style="padding-right:0px;">'+ d[i].ksmc
-				+ '</td><td style="padding-right:0px;padding-left:0px;" class="text-right">病情:</td><td style="padding-right:0px;">'
-				+ d[i].dqbkzt
-				+ '</td></tr><tr><td colspan="3" style="padding-right:0px;overflow:hidden;text-overflow:ellipsis;" nowrap="nowrap">诊断：'
-				+ d[i].ryzd
-				+ '</td></tr><tr><td colspan="3" style="padding-right:0px;overflow:hidden;text-overflow:ellipsis;" nowrap="nowrap">过敏史：'
-				+ d[i].gmls
-				+ '</td></tr><tr><td colspan="3" style="padding-right:0px;overflow:hidden;text-overflow:ellipsis;" nowrap="nowrap">膳食：'
-				+ d[i].shanshi + '</td></tr><tr><td style="padding-right:0px;">医生:&nbsp;'+ d[i].ysxm
-				+ '</td><td style="padding-right:0px;padding-left:0px;" class="text-right">护士:</td><td style="padding-right:0px;">'
-				+ d[i].hsxm
-				+ '</td></tr><tr><td colspan="3" style="padding-right:0px;overflow:hidden;text-overflow:ellipsis;" nowrap="nowrap">手术：'
-				+ d[i].ssms + '</td></tr><tr><td style="padding-right:0px;" colspan="3">'+ d[i].ryrq.substring(0,10) + '&nbsp;&nbsp;'
-				+ d[i].zytsms+ '</td></tr></table></div></div></div></a>';
+				a = a + '<a href="bingreng_yewumokuai?v_key1='+ d[i].key1+ '&v_key2='+ d[i].key2
+				+ '"><div class="col-xs-6" style="padding: 0;"><div class="panel panel-default" style="margin: 1% 0 0 0;;"><div class="table-responsive"><table class="table table-condensed"><tr><td class="text-center"><span style="color:' 
+				+ d[i].fylbBoxcolor + ";background-color: "+ d[i].fylbBoxcolor +'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;'
+				+ d[i].yems+ '</td><td class="text-center">'+ d[i].hldj
+				+ '</td></tr><tr><td class="text-center"><h4>'+ d[i].chw
+				+ '床</h4></td><td class="text-left"><h4>'
+				+ d[i].xm + '</h4></td></tr><tr><td class="text-center">' + d[i].bah + '</td><td class="text-center">'
+				+ d[i].fylb + '&nbsp;' + d[i].nl + '</td></tr></table></div></div></div></a>';
 			}
 			$("#brlb")[0].innerHTML = a;
-		} else {
-			$("#brlb")[0].innerHTML = "没有数据";
 		}
 	});
 
@@ -216,45 +245,7 @@
 </script>
 </head>
 <body class="bg-info">
-	<div id="head_banner_1" style="z-index:1000;" class="bg-info">
-		<div class="row"
-			style="border-bottom:1px solid #269abc;padding: 10px 15px 5px 15px;">
-			<div class="col-xs-2" style="padding-right: 2%;">
-				<a href="javascript:void(0);"> <img
-					src="images/icon-m-man-active.png" class="img-responsive"
-					alt="<s:property value='#session.caozuoyuan.ryxm' />">
-				</a>
-			</div>
-			<div class="col-xs-4"
-				style="padding-left: 2%;padding-right: 2%;color: #807D7D;">
-				<span><strong><s:property
-							value="#session.caozuoyuan.ryxm" /></strong></span>
-				<p class="text-left" style="margin-bottom: 5px;" id="bingqu_name">
-					<s:property value="#session.dangqianbingqu_name" />
-				</p>
-				<input id="dangq_bingq_id"
-					value="<s:property value='#session.dangqianbingqu_id' />"
-					style="display:none;" />
-			</div>
-			<div class="col-xs-2" style="padding-left: 2%;padding-right:2%;">
-				<a href="javascript:void(0);"> <img
-					src="images/brxxxx_header_1.png" class="img-responsive" alt="消息数">
-				</a>
-			</div>
-			<div class="col-xs-2" style="padding-left: 2%;padding-right:2%;">
-				<a href="bingqbr_bysessionbingqid"> <img
-					src="images/brxxxx_header_2.png" class="img-responsive" alt="刷新">
-				</a>
-			</div>
-			<div class="col-xs-2" style="padding-left: 2%;padding-right:2%;">
-				<a href="javascript:void(0);"> <img
-					src="images/brxxxx_header_4.png" class="img-responsive" alt="业务模块">
-				</a>
-			</div>
-			<!-- <div class="col-xs-2" style="padding: 0 2%;margin:1% 0 0 0;">
-				<input class="btn btn-default" type="button" value="看细卡" id="leix_check" style="padding: 5%">
-			</div> -->
-		</div>
+	<%@ include file="header-hushi.jsp" %>
 		<div class="row"
 			style="border-bottom:1px solid #269abc;padding: 5px 0 5px 0;">
 			<div class="col-xs-4" style="padding: 0 0 0 5%;">
@@ -313,8 +304,8 @@
 		<div class="row" style="border-bottom:1px solid #269abc;" id="brlb">
 			<s:iterator value="#request.bqry">
 				<a href="bingreng_yewumokuai?v_key1=${key1 }&v_key2=${key2}">
-					<div class="col-xs-6" style="padding: 0 5px 0 5px;">
-						<div class="panel panel-default" style="margin: 5px 0 5px 0;">
+					<div class="col-xs-6" style="padding: 0;">
+						<div class="panel panel-default" style="margin: 1% 0 0 0;">
 							<div class="table-responsive">
 								<table class="table table-condensed">
 									<tr>
@@ -338,48 +329,11 @@
 				</a>
 			</s:iterator>
 		</div>
-
-		<div class="sideWrap" id="sideWrap">
-			<div class="sideMenu" id="sideMenu">
-				<div class="navItem_1">
-					<a href=""> <span class="glyphicon glyphicon-bell"></span> <span
-						class="gnavItemName">护士工作提醒</span>
-					</a>
-				</div>
-				<div class="navItem_2">
-					<a href="linzhuweizhixing.html"> <span
-						class="glyphicon glyphicon-exclamation-sign"></span> <span
-						class="gnavItemName">临嘱未执行</span>
-					</a>
-				</div>
-				<div class="navItem_3">
-					<a href="shuyezhixing.html"> <span
-						class="glyphicon glyphicon-check"></span> <span
-						class="gnavItemName">输液执行</span>
-					</a>
-				</div>
-				<div class="navItem_4">
-					<!-- 							<a href="views/wodebingrenxuanze.jsp"> -->
-					<a href="woDeBingRenXuanZe"> <span
-						class="glyphicon glyphicon-list"></span> <span
-						class="gnavItemName">我的病人选择</span>
-					</a>
-				</div>
-				<div class="navItem_5">
-					<a href=""> <span class="glyphicon glyphicon-comment"></span> <span
-						class="gnavItemName">消息模块</span>
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="sideBtn" id="sideBtn">
-			<a href="javascript:void(0);"> <span
-				class="glyphicon glyphicon-align-justify sideBtnIcon"
-				style="font-size: 2.4rem;"></span>
-			</a>
-		</div>
+		<%@ include file="menu-hushi.jsp" %>
 	</div>
-	<%@ include file="footer.jsp"%>
+	<!--页脚开始-->
+	<%@ include file="footer.jsp" %>
+	<!--页脚结束-->
 
 	<!-- 模态框（Modal）start -->
 	<div class="modal fade" id="informationModal"

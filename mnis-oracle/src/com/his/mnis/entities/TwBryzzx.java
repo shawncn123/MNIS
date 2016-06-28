@@ -31,6 +31,7 @@ public class TwBryzzx implements java.io.Serializable {
 	private String zxhsxm;
 	private String zxms;
 	private String zxfldm;
+	private String lsflag;
 
 	// Constructors
 
@@ -40,7 +41,7 @@ public class TwBryzzx implements java.io.Serializable {
 
 	/** minimal constructor */
 	public TwBryzzx(Long key1, Integer key2, Short yebh, Long groupxh,
-			String sjd, String zxlb, String zxflag) {
+			String sjd, String zxlb, String zxflag, String lsflag) {
 		this.key1 = key1;
 		this.key2 = key2;
 		this.yebh = yebh;
@@ -48,6 +49,7 @@ public class TwBryzzx implements java.io.Serializable {
 		this.sjd = sjd;
 		this.zxlb = zxlb;
 		this.zxflag = zxflag;
+		this.lsflag = lsflag;
 	}
 
 	/** full constructor */
@@ -55,7 +57,7 @@ public class TwBryzzx implements java.io.Serializable {
 			Long groupxh, String sjd, Timestamp sjdtime, String bq, String chw,
 			String yzid, String yzzdmc, String yzmc, String zxlb, String yf2mc,
 			String zxflag, Timestamp zxtime, String zxhsid, String zxhsxm,
-			String zxms, String zxfldm) {
+			String zxms, String zxfldm, String lsflag) {
 		this.key1 = key1;
 		this.key2 = key2;
 		this.yebh = yebh;
@@ -76,6 +78,7 @@ public class TwBryzzx implements java.io.Serializable {
 		this.zxhsxm = zxhsxm;
 		this.zxms = zxms;
 		this.zxfldm = zxfldm;
+		this.lsflag = lsflag;
 	}
 
 	// Property accessors
@@ -246,6 +249,14 @@ public class TwBryzzx implements java.io.Serializable {
 
 	public void setZxfldm(String zxfldm) {
 		this.zxfldm = zxfldm;
+	}
+
+	public String getLsflag() {
+		return this.lsflag;
+	}
+
+	public void setLsflag(String lsflag) {
+		this.lsflag = lsflag;
 	}
 
 }

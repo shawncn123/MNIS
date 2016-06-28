@@ -43,44 +43,54 @@
 	$(function() {$(document).ready(function() {
 		
 		$("#tiwen_shijianduan").change(function() {
-			/* alert($(this).val()); */
-			alert($(this).children('option:selected').val()); 
-	    });
+			var shijian = $(this).val();
+			var url = "tiWenDan_insert";
+			var args = {"datestring":shijian};
+			$.post(url,args,function(data) {
+				if(data=="insertfail"){
+					$("#tupian").html("<p>程序数据处理错误</p>");
+				}
+			});
+		});
 		
 		$("#chaxun_queding").click(function(){
+			$("#tupian").html("<p>请稍候......</p>");
 			var test = $("#tiwen_shijianduan").val();
-			/* alert(test); */
+		/* 	alert(test); */
 			var url = "tiWenDan_file_get";
-			var args = {};
+			var args = {"datestring":test};
 			$.post(url,args,function(data) {
-			//alert(data);
-			console.log(data);
+			/* alert(data); */
+			/* console.log(data); */
+			if(data=="nodate"){
+				$("#tupian").html("<p>请先选择日期</p>");
+			}else if(data!="fail"){
+				var b= data.indexOf('twdimage');
+				var d=data.substr(b);
+				$("#tupian").html("<img src="+ d + " class=\"img-responsive center-block\" id=\"tiwenid\"/>");
+/* 				$("#tiwenid").attr("src",d); */
+			}else{
+				$("#tupian").html("<p>体温单查询失败！</p>");
+			}
 		});
 	})})})
 </script>
 </head>
 <body>
-	<div id="head_banner_1" style="z-index:1000;" class="bg-info">
-		<%@ include file="header.jsp"%>
+	<%@ include file="header-bingren.jsp"%>
 		<div class="row">
 			<div class="col-xs-8" style="padding-top: .5%;">
-				<select class="form-control" id="tiwen_shijianduan_tmp">
+				<select class="form-control" id="tiwen_shijianduan">
 					<option value="" style="display: none">查询日期</option>
-					<!-- <option value="">2016.01.01-2016.01.08</option>
-					<option value="">2016.01.09-2016.01.16</option>
-					<option value="">2016.01.17-2016.01.21</option>
-					<option value="">2016.01.22-2016.01.29</option>
-					<option value="">2016.01.01-2016.01.08</option> -->
 					<s:iterator value="#request.BingrenTiWenJiLu_shijianduan">
 						<option value="<s:date name="date1" format="yyyy.MM.dd"/>"><s:date name="date1" format="yyyy.MM.dd"/>-<s:date name="date2" format="yyyy.MM.dd"/></option>
 					</s:iterator>
 					<!-- <option value="2016.01.01">2016.01.01-2016.01.08</option> -->
-					
-					
 				</select>
 			</div>
 			<div class="col-xs-4 pull-right">
 				<a class="btn btn-default" href="javascript:void(0)" role="button" id="chaxun_queding">确定</a>
+				<!-- <a class="btn btn-default" href="tiWenDan_create" role="button" id="test_chaxun_queding">test</a> -->
 			</div>
 		</div>
 	</div>
@@ -88,8 +98,9 @@
 	<div
 		style="background: url(images/content_bj.png); width: 100%; height: 100%;">
 		<div id="content" class="container" style="width: 90%;">
-			<div style="margin-top: 4%;">
-				<img src="images/tiwendan_Demo.jpg" class="img-responsive center-block" />
+			<div style="margin-top: 4%;" id="tupian">
+				<!-- <img src="images/tiwendan_Demo.jpg" class="img-responsive center-block" /> -->
+				<img src="twdimage/1408672415.jpg" class="img-responsive center-block" id="tiwenid"/>
 				注：这是一张图片
 			</div>
 		</div>

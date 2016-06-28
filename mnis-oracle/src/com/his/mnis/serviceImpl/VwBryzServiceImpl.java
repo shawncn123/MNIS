@@ -161,10 +161,8 @@ public class VwBryzServiceImpl implements VwBryzService {
 				}
 			}
 		}
+		vwBryzRemodel.setVwBryzRemodelSubs(vwBryzRemodelSubs);
 		vwBryzRemodels.add(vwBryzRemodel);
-		for(int sl=0;sl < vwBryzRemodels.size();sl++){
-			System.out.println(sl+":"+vwBryzRemodels.get(sl).getYf1mc());
-		}
 		return vwBryzRemodels;
 	}
 

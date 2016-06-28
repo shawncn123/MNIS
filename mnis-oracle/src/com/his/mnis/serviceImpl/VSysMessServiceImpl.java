@@ -32,4 +32,15 @@ public class VSysMessServiceImpl implements VSysMessService {
 		return vSysMessDao.getListSysMessByRenyIdZhuangt(renyid, pageno, pagerows, readflag);
 	}
 
+	@Override
+	public String queDingXiaoXiYiDu(String messid, String ryid) {
+		return vSysMessDao.queDingXiaoXiYiDu(messid, ryid);
+	}
+
+	@Override
+	public List<VSysMessReader> getListMessageGuoQiWeiDu(String renyid,
+			int pageno, int pagerows) {
+		return vSysMessDao.getListSysMessByRenyIdGcwd(renyid, pageno, pagerows);
+	}
+
 }

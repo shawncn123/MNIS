@@ -31,3 +31,6 @@ $.fn.smartFloat = function() {
 		position($(this));
 	});
 };
+
+
+

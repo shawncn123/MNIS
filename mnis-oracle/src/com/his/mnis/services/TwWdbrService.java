@@ -2,6 +2,7 @@ package com.his.mnis.services;
 
 import java.util.List;
 
+import com.his.mnis.entities.DaiXuanZheBingren;
 import com.his.mnis.entities.MyBingRen;
 import com.his.mnis.entities.TwWdbr;
 
@@ -21,7 +22,7 @@ public interface TwWdbrService {
 	
 	public String addWdbrWithSelect(List<TwWdbr> twWdbrs);
 	
-	public List<MyBingRen> getDaiXuanZheBingRenByCzryIdBqId(String czyid,String bqid);
+	public List<DaiXuanZheBingren> getDaiXuanZheBingRenByCzryIdBqId(String czyid,String bqid);
 	
 	public void deleteMyBingRenByCzryIdBqId(String czyid,String bqid); 
 	

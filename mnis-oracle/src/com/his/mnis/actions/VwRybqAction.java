@@ -23,6 +23,15 @@ public class VwRybqAction extends ActionSupport implements RequestAware,
 	private VwRybqService vwRybqService;
 	
 	private String yonghu_name; //人员代码 (登录的操作员代码)
+	private String mima;
+	public String getMima() {
+		return mima;
+	}
+
+	public void setMima(String mima) {
+		this.mima = mima;
+	}
+
 	private String bqid; //病区id
 
 	public String getYonghu_name() {
@@ -55,18 +64,18 @@ public class VwRybqAction extends ActionSupport implements RequestAware,
 	 */
 	public String getRenYuanIdByRenYuanDaiMa() {
 		try {
-			vwRybq = vwRybqService.getRenYuanIdByRenYuanDaiMa(yonghu_name);
+			String vryid = vwRybqService.callProcedurePW_Identify(yonghu_name, mima);
+			if(vryid=="1"){
+				request.put("login_check", "1");
+				return ERROR;
+			}else{
+			vwRybq = vwRybqService.getRenYuanIdByRenYuanDaiMa(vryid);
 			session.put("caozuoyuan", vwRybq);
-			String bqid = vwRybqService.getCaoZuoBingQuIdByCaozyId(vwRybq.getId());
+			String bqid = vwRybqService.getCaoZuoBingQuIdByCaozyId(vwRybq.getRyid());
 			session.put("dangqianbingqu_id", bqid);
-			System.out.println(vwRybq.getId());
 			request.put("bqry", vwRybqService.listBingrByBingQuId(bqid));
-			List<VwRybq> vwRybqs = vwRybqService.listBingQuByCaozyId(vwRybq.getId());
-			
-			System.out.println("变量病区id：" + bqid);
+			List<VwRybq> vwRybqs = vwRybqService.listBingQuByCaozyId(vwRybq.getRyid());
 			for (int i = 0; i < vwRybqs.size(); i++) {
-				System.out.println("循环病区：" + vwRybqs.get(i).getBqmc());
-				System.out.println("循环病区id：" + vwRybqs.get(i).getBq());
 				if(vwRybqs.get(i).getBq().contains(bqid)){
 					session.put("dangqianbingqu_name", vwRybqs.get(i).getBqmc());
 					System.out.println("当前病区：" + vwRybqs.get(i).getBqmc());
@@ -75,6 +84,7 @@ public class VwRybqAction extends ActionSupport implements RequestAware,
 			request.put("caozuoyuan_bingqu", vwRybqs);
 			request.put("login_check", "0");
 			return SUCCESS;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.put("login_check", "1");

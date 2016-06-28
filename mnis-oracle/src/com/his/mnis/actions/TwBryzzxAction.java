@@ -31,15 +31,6 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 	private String hsxm;
 	private String zxms;
 	private TwBryzzxService twBryzzxService;
-//	private VwBqbrZy vwBqbrZy;
-//	
-//	public VwBqbrZy getVwBqbrZy() {
-//		return vwBqbrZy;
-//	}
-//
-//	public void setVwBqbrZy(VwBqbrZy vwBqbrZy) {
-//		this.vwBqbrZy = vwBqbrZy;
-//	}
 
 	public String getVsjd() {
 		return vsjd;
@@ -131,7 +122,7 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 		}
 		try {
 			VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
-			hsid = vwRybq.getId();
+			hsid = vwRybq.getRyid();
 			hsxm = vwRybq.getRyxm();
 			String proc_result = twBryzzxService.bingRenYzzx_baocun(rq, vsjd, groupxh, hsid, hsxm, zxsj, zxms);
 			if(proc_result.equals("1")){

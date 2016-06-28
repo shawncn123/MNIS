@@ -33,6 +33,7 @@ public class VwHy101 implements java.io.Serializable {
 	private String xmms;
 	private String zxflag;
 	private String bgbz;
+	private String wjflag;
 
 	// Constructors
 
@@ -45,7 +46,7 @@ public class VwHy101 implements java.io.Serializable {
 			Timestamp sqrq, Timestamp sqsj, Long bq, String chw, Long bah,
 			String xm, String xb, String nl, String sqysid, String sqysxm,
 			Long sqksid, String sqksmc, Long czksid, String czksmc,
-			String bbmc, String xmms, String zxflag, String bgbz) {
+			String bbmc, String xmms, String zxflag, String bgbz, String wjflag) {
 		this.key1 = key1;
 		this.key2 = key2;
 		this.yebh = yebh;
@@ -68,6 +69,7 @@ public class VwHy101 implements java.io.Serializable {
 		this.xmms = xmms;
 		this.zxflag = zxflag;
 		this.bgbz = bgbz;
+		this.wjflag = wjflag;
 	}
 
 	// Property accessors
@@ -254,6 +256,14 @@ public class VwHy101 implements java.io.Serializable {
 
 	public void setBgbz(String bgbz) {
 		this.bgbz = bgbz;
+	}
+
+	public String getWjflag() {
+		return this.wjflag;
+	}
+
+	public void setWjflag(String wjflag) {
+		this.wjflag = wjflag;
 	}
 
 }

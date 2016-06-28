@@ -22,7 +22,7 @@ public String callProcedurePwTzdata(long p_pcid){
 		pc.registerParameter("out_return", String.class, ParameterMode.OUT);
 		pc.registerParameter("out_errortext", String.class, ParameterMode.OUT);
 		String ls_return=pc.getOutputs().getOutputParameterValue("out_return").toString();
-		String ls_errortext=pc.getOutputs().getOutputParameterValue("out_return").toString();
+		String ls_errortext=pc.getOutputs().getOutputParameterValue("out_errortext").toString();
 		System.out.println("out_return:" + ls_return);
 		System.out.println("ls_errortext:" + ls_errortext);
 		return ls_return;
