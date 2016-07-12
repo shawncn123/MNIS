@@ -67,7 +67,7 @@ public class VwRybqDao extends BaseDao {
 		pc.registerParameter("out_return", String.class, ParameterMode.OUT);
 		pc.registerParameter("out_errortext", String.class, ParameterMode.OUT);
 		String ls_return=pc.getOutputs().getOutputParameterValue("out_return").toString();
-		if(ls_return=="1"){
+		if(ls_return.equals("1")){
 			//表失败 
 			String ls_errortext=pc.getOutputs().getOutputParameterValue("out_errortext").toString();
 			System.out.println("out_return:" + ls_return);    //0 表成功 1 表失败

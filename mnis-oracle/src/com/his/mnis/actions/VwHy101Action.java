@@ -5,6 +5,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.his.mnis.entities.BingRenSessionXingXi;
 import com.his.mnis.entities.VwBqbrZy;
 import com.his.mnis.services.VwHy101Service;
 import com.opensymphony.xwork2.ActionSupport;
@@ -36,10 +37,20 @@ public class VwHy101Action extends ActionSupport implements RequestAware,Session
 
 	public String getListBingRenHuaYanByKey(){
 		try {
-			VwBqbrZy vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
-//		request.put("bingrgeti_huayan", vwHy101Service.getListBingRenHuaYanByKey(v_key1,v_key2,v_yebh));
-			request.put("bingrgeti_huayan", vwHy101Service.getListBingRenHuaYanByKey(vwBqbrZy.getKey1(),vwBqbrZy.getKey2(),(short)(0)));
-			return SUCCESS;
+			Object obj = session.get("bingrgetixingxi");
+			short yeid = 0;
+			if(obj != null){
+				VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
+				Object obj_ye =  session.get("bingrgetixingxi_yinger");
+				if(obj_ye!=null){
+					BingRenSessionXingXi bingRenSessionXingXi = (BingRenSessionXingXi) obj_ye;
+					yeid = bingRenSessionXingXi.getYebh();
+				}
+				request.put("bingrgeti_huayan", vwHy101Service.getListBingRenHuaYanByKey(vwBqbrZy.getKey1(),vwBqbrZy.getKey2(),yeid));
+				return SUCCESS;
+			}else{
+				return ERROR;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ERROR;
@@ -50,12 +61,22 @@ public class VwHy101Action extends ActionSupport implements RequestAware,Session
 	 * 获取病人主从表的化验信息
 	 */
 	public String getListHuaYanAllByKey(){
-		System.out.println("wjzfl1:"+vwjbz);
 		try {
-			VwBqbrZy vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
-			request.put("bingrgeti_huayan", vwHy101Service.getListHuaYanAllByKey(vwBqbrZy.getKey1(),vwBqbrZy.getKey2(),(short)(0)));
-			request.put("vwjbz", vwjbz);
-			return SUCCESS;
+			Object obj = session.get("bingrgetixingxi");
+			short yeid = 0;
+			if(obj != null){
+				VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
+				Object obj_ye =  session.get("bingrgetixingxi_yinger");
+				if(obj_ye!=null){
+					BingRenSessionXingXi bingRenSessionXingXi = (BingRenSessionXingXi) obj_ye;
+					yeid = bingRenSessionXingXi.getYebh();
+				}
+				request.put("bingrgeti_huayan", vwHy101Service.getListHuaYanAllByKey(vwBqbrZy.getKey1(),vwBqbrZy.getKey2(),yeid));
+				request.put("vwjbz", vwjbz);
+				return SUCCESS;
+			}else{
+				return ERROR;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ERROR;
@@ -65,16 +86,27 @@ public class VwHy101Action extends ActionSupport implements RequestAware,Session
 	 * 获取病人危急值主从表的化验信息
 	 */
 	public String getListHuaYanWeiJiAllByKey(){
-		System.out.println("wjzfl:"+vwjbz);
 		try {
-			VwBqbrZy vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
-			if(vwjbz.equals("1")){
-				request.put("bingrgeti_huayan", vwHy101Service.getListHuaYanWeiJiAllByKey(vwjbz, vwBqbrZy.getKey1(),vwBqbrZy.getKey2(),(short)(0)));
-			}else {
-				request.put("bingrgeti_huayan", vwHy101Service.getListHuaYanAllByKey(vwBqbrZy.getKey1(),vwBqbrZy.getKey2(),(short)(0)));
+			Object obj = session.get("bingrgetixingxi");
+			short yeid = 0;
+			if(obj != null){
+				VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
+				Object obj_ye =  session.get("bingrgetixingxi_yinger");
+				if(obj_ye!=null){
+					BingRenSessionXingXi bingRenSessionXingXi = (BingRenSessionXingXi) obj_ye;
+					yeid = bingRenSessionXingXi.getYebh();
+				}
+				if(vwjbz.equals("1")){
+					request.put("bingrgeti_huayan", vwHy101Service.getListHuaYanWeiJiAllByKey(vwjbz, vwBqbrZy.getKey1(),vwBqbrZy.getKey2(),yeid));
+				}else {
+					request.put("bingrgeti_huayan", vwHy101Service.getListHuaYanAllByKey(vwBqbrZy.getKey1(),vwBqbrZy.getKey2(),yeid));
+				}
+				request.put("vwjbz", vwjbz);
+				return SUCCESS;
+				
+			}else{
+				return ERROR;
 			}
-			request.put("vwjbz", vwjbz);
-			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ERROR;

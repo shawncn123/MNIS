@@ -63,9 +63,6 @@
 							</div>
 						</form>
 						</div>
-						<!-- <div class="col-xs-1 bor-r">
-							<div class="icon_pic mar-l"></div>
-						</div> -->
 					</div>
 				</div>
 				<div class="col-xs-7" style="padding-left: 3px; margin-top: 2px;">
@@ -76,7 +73,6 @@
 									<input value="" placeholder="开始日期" class="form-control padd-r" readonly="readonly" name="appDateTime" id="appDate" type="text">
 								</div>
 							</div>
-
 						</div>
 						<div class="col-xs-1">
 							<p class="p-divider">—</p>
@@ -102,8 +98,6 @@
        			 <div class="panel panel-default">
 		            <div class="panel-heading" role="tab" id="headingOne">
 		                <h4 class="panel-title">
-		                	<%-- <p>${sqdh}</p>
-		                	<p>${wjflag}</p> --%>
 		                	<s:if test='wjflag!="1"'>
 		                    <a role="button" data-toggle="collapse" href='#collapse_<s:property value="#status.index"/>' 
 		                        aria-expanded="false" aria-controls='collapse_<s:property value="#status.index"/>'

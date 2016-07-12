@@ -21,8 +21,10 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <link href="css/base.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/song.css"/>
 <script type="text/javascript" src="scripts/jquery-1.12.1.min.js"></script>
 <script type="text/javascript" src="scripts/viewjs.js"></script>
+<script src="scripts/song.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(function() {
 		// 绑定
@@ -46,6 +48,8 @@
 				var yzmc_gid = $(this).next().val();
 				var html = $("#" + yzmc_gid).html();
 				zx_sjd = $(this).html();
+				/* alert(zx_sjd); */
+				/* $("#myModalLabel").html("<span>"+zx_sjd+"</span>"); */
 				$("#infocontent").html(html);
 			});
 		        
@@ -53,9 +57,6 @@
 				
 				var yz_zxms = $("#textcontent").val();
 				var url = "bingrGeTi_YiZhuZhiXing_baocun";
-				alert(yz_zxms);
-				alert("sjd:"+zx_sjd);
-				alert("groupxh:"+yz_groupxh);
 				var args = {"vsjd" : zx_sjd,"groupxh":yz_groupxh,"zxms":yz_zxms};
 				$.post(url,args,function(data){
 					if(data == "0"){
@@ -99,9 +100,6 @@
 					<div class="col-xs-8">
 						<span><s:property value="mc_yz"/></span>
 					</div>
-					<%-- <div class="col-xs-4">
-						<span>${dcyl}</span>
-					</div> --%>
 				</s:iterator>
 			</div>
 			<div class="row">
@@ -139,14 +137,20 @@
 			</div>
 		</s:iterator>
 		<div class="clear"></div>
+		<%@ include file="menu-hushi.jsp" %>
 	</div>
+	
+	<!--页脚开始-->
+	<%@ include file="footer.jsp" %>
+	<!--页脚结束-->
+	
 	<!-- 20160510 by 小宋 模态框（Modal）start -->
 		<div class="modal fade" id="moduleModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog" id="modal-wrap">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">模态框</h4>
+						<h4 class="modal-title" id="myModalLabel"></h4>
 					</div>
 					<div class="modal-body">
 						<div id="infocontent"></div>
@@ -164,7 +168,6 @@
 			</div>
 		</div>
 		<!-- 模态框（Modal）end -->
-	<%@ include file="footer_old.jsp"%>
 	<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
 </body>
 </html>

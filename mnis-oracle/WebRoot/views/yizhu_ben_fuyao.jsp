@@ -39,11 +39,11 @@
 			<div class="col-xs-12"
 				style="margin: 5px 0 5px 0;padding-bottom: 5px;border-bottom: #666666 1px solid;">
 				<div class="dropdown">
-					<a id="dLabel" data-target="#" href="http://example.com"
+					<a id="dLabel" data-target="#" href="javascript:void(0);"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false"> 全部 <span class="caret"></span>
 					</a>
-					<ul class="dropdown-menu" aria-labelledby="dLabel">
+					<!-- <ul class="dropdown-menu" aria-labelledby="dLabel">
 						<li><a href="javascript:void(0)">输液本</a></li>
 						<li><a href="javascript:void(0)">治疗本</a></li>
 						<li><a href="javascript:void(0)">服药本</a></li>
@@ -52,7 +52,7 @@
 						<li><a href="javascript:void(0)">新开</a></li>
 						<li><a href="javascript:void(0)">新停</a></li>
 						<li><a href="javascript:void(0)">全部</a></li>
-					</ul>
+					</ul> -->
 				</div>
 			</div>
 		</div>

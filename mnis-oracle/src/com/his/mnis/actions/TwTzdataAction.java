@@ -10,6 +10,7 @@ import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer;
 
+import com.his.mnis.entities.BingRenSessionXingXi;
 import com.his.mnis.entities.TwTzdata;
 import com.his.mnis.entities.VwBqbrZy;
 import com.his.mnis.entities.VwRybq;
@@ -118,25 +119,23 @@ public class TwTzdataAction extends ActionSupport implements RequestAware,Sessio
 		this.xiangmu = xiangmu;
 	}
 	
-	private OracleSequenceMaxValueIncrementer seqGenerator;
+	private OracleSequenceMaxValueIncrementer wseq_id;
 	private OracleSequenceMaxValueIncrementer seqDispGenerator;
     
     /**
      * @return the seqGenerator
      */
-    public OracleSequenceMaxValueIncrementer getSeqGenerator() {
-        return seqGenerator;
-    }
-
-    /**
-     * @param seqGenerator the seqGenerator to set
-     */
-    public void setSeqGenerator(OracleSequenceMaxValueIncrementer seqGenerator) {
-        this.seqGenerator = seqGenerator;
-    }
 	
     public OracleSequenceMaxValueIncrementer getSeqDispGenerator() {
 		return seqDispGenerator;
+	}
+
+	public OracleSequenceMaxValueIncrementer getWseq_id() {
+		return wseq_id;
+	}
+
+	public void setWseq_id(OracleSequenceMaxValueIncrementer wseq_id) {
+		this.wseq_id = wseq_id;
 	}
 
 	public void setSeqDispGenerator(OracleSequenceMaxValueIncrementer seqDispGenerator) {
@@ -145,54 +144,65 @@ public class TwTzdataAction extends ActionSupport implements RequestAware,Sessio
 	
 	public String saveTiZhengLuru(){
 		try {
-			Long v_pcid =  this.seqGenerator.nextLongValue();
-//			Long v_pcid =  this.seqDispGenerator.nextLongValue();
+			Long v_pcid =  this.wseq_id.nextLongValue();
 			VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
-			System.out.println(vwRybq.getRyid());
 			
-			VwBqbrZy vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
-			
-			for (int i=0;i<xiangmu.size();i++) {
-				System.out.println("xmid:" + xiangmu.get(i) + " bzflag:" + bzflag.get(i));
-				String v_xmid = xiangmu.get(i);
-				String v_zhi1 = zhi1.get(i);
-				String v_zhi2 = "";
-				String v_biaozhu = "";
-				if(xiangmu.get(i).equals("XY")){
-					v_zhi2 = zhi2.get(i);
+			Object obj = session.get("bingrgetixingxi");
+			short yeid = 0;
+			if(obj != null){
+				VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
+				Object obj_ye =  session.get("bingrgetixingxi_yinger");
+				if(obj_ye!=null){
+					BingRenSessionXingXi bingRenSessionXingXi = (BingRenSessionXingXi) obj_ye;
+					yeid = bingRenSessionXingXi.getYebh();
 				}
-				if(bzflag.get(i).equals("1")){
-					System.out.println("bz:" + biaozhu.get(i));
-					v_biaozhu = biaozhu.get(i);
+			    List<TwTzdata> twTzdatas = new ArrayList<TwTzdata>();
+				for (int i=0;i<xiangmu.size();i++) {
+					Long v_jlid =  this.wseq_id.nextLongValue();
+					String v_xmid = xiangmu.get(i);
+					String v_zhi1 = zhi1.get(i);
+					String v_zhi2 = "";
+					String v_biaozhu = "";
+					if(xiangmu.get(i).equals("XY")){
+						v_zhi2 = zhi2.get(i);
+					}
+					if(bzflag.get(i).equals("1")){
+						System.out.println("bz:" + biaozhu.get(i));
+						v_biaozhu = biaozhu.get(i);
+					}
+					if(!xiangmu.get(i).equals("TW") && v_zhi1 != null && !v_zhi1.equals("")){
+						TwTzdata twTzdata = new TwTzdata();
+						twTzdata.setJlid(v_jlid);
+						twTzdata.setCzyid(vwRybq.getRyid());
+						twTzdata.setCzyxm(vwRybq.getRyxm());
+						twTzdata.setKey1(vwBqbrZy.getKey1());
+						twTzdata.setKey2(vwBqbrZy.getKey2());
+						twTzdata.setYebh(yeid);
+						twTzdata.setRq(new Date());
+						twTzdata.setSj(appTime);
+						twTzdata.setXmid(v_xmid);
+						twTzdata.setValue1(v_zhi1);	
+						twTzdata.setValue2(v_zhi2);
+						twTzdata.setBz(v_biaozhu);
+						twTzdata.setPcid(v_pcid);
+						twTzdata.setStime(new Timestamp(System.currentTimeMillis()));
+						twTzdatas.add(twTzdata);
+					}
 				}
-				if(!xiangmu.get(i).equals("TW") && v_zhi1 != null && !v_zhi1.equals("")){
-					TwTzdata twTzdata = new TwTzdata();
-					twTzdata.setCzyid(vwRybq.getRyid());
-					twTzdata.setCzyxm(vwRybq.getRyxm());
-					twTzdata.setKey1(vwBqbrZy.getKey1());
-					twTzdata.setKey2(vwBqbrZy.getKey2());
-					twTzdata.setYebh(0);
-					twTzdata.setRq(new Date());
-					twTzdata.setSj(appTime);
-					twTzdata.setXmid(v_xmid);
-					twTzdata.setValue1(v_zhi1);	
-					twTzdata.setValue2(v_zhi2);
-					twTzdata.setBz(v_biaozhu);
-					twTzdata.setPcid(v_pcid);
-					twTzdata.setStime(new Timestamp(System.currentTimeMillis()));
-					res_val = twTzdataService.doCreateTwTzdata(twTzdata, v_pcid);
-					request.put("twtzdata_result", res_val);
+				res_val = twTzdataService.doCreateTwTzdata(twTzdatas, v_pcid);
+				request.put("twtzdata_result", res_val);
+				if(res_val.equals("0")){
+					request.put("tizheng_luru_success", "0");
+					return SUCCESS;
 				}
-			}
-			if(res_val.equals("0")){
-				request.put("tizheng_luru_success", "0");
-				return SUCCESS;
-			}
-			else{
+				else{
+					request.put("tizheng_luru_success", "1");
+					return ERROR;
+				}
+			}else{
 				request.put("tizheng_luru_success", "1");
 				return ERROR;
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.put("tizheng_luru_success", "1");

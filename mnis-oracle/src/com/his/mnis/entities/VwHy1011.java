@@ -17,6 +17,7 @@ public class VwHy1011 implements java.io.Serializable {
 	private String yzid;
 	private String yzmc;
 	private String yszt;
+	private String wjflag;
 
 	// Constructors
 
@@ -24,9 +25,14 @@ public class VwHy1011 implements java.io.Serializable {
 	public VwHy1011() {
 	}
 
+	/** minimal constructor */
+	public VwHy1011(String wjflag) {
+		this.wjflag = wjflag;
+	}
+
 	/** full constructor */
 	public VwHy1011(Long key1, Integer key2, Short yebh, String sqdh, Long sxh,
-			String yzid, String yzmc, String yszt) {
+			String yzid, String yzmc, String yszt, String wjflag) {
 		this.key1 = key1;
 		this.key2 = key2;
 		this.yebh = yebh;
@@ -35,6 +41,7 @@ public class VwHy1011 implements java.io.Serializable {
 		this.yzid = yzid;
 		this.yzmc = yzmc;
 		this.yszt = yszt;
+		this.wjflag = wjflag;
 	}
 
 	// Property accessors
@@ -109,6 +116,14 @@ public class VwHy1011 implements java.io.Serializable {
 
 	public void setYszt(String yszt) {
 		this.yszt = yszt;
+	}
+
+	public String getWjflag() {
+		return this.wjflag;
+	}
+
+	public void setWjflag(String wjflag) {
+		this.wjflag = wjflag;
 	}
 
 }

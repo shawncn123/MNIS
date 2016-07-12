@@ -1,4 +1,16 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<script type="text/javascript">	
+	$(function(){
+		var url = "weiduxiaoxishu";
+		var args = {"time" : new Date()};
+		$.post(url,args,function(data) {
+			if(data!=""){
+				/* alert(data); */
+				$("#xxshu").text(data+"");
+			};		
+		});
+	});
+</script>
 <div id="head_banner_1" style="z-index:1000; " class="bg-info">
 		<div class="row" style="border-bottom:1px solid #269abc;padding: 5px 0 5px 0; margin: 0;">
 			<div class="col-xs-2"  style="padding-right: 2%; padding-top: .5%;">
@@ -16,7 +28,7 @@
 					<div style="position:relative; width:100%; height:100%;  left:0; top:0;">      
 						<img src="images/brxxxx_header_1.png" style="left:0; top:0;" height="100%" width="100%"> 
 					</div> 
-					<span style="display: block; text-align: center; color: #fff; font-size: 2.6rem; z-index: 2; position: absolute; top: 3PX; left: 0; width:100%; height:100%;">2</span>
+					<span style="display: block; text-align: center; color: #fff; font-size: 2.6rem; z-index: 2; position: absolute; top: 3PX; left: 0; width:100%; height:100%;" id="xxshu"></span>
 				</a>
 			</div>
 			<div class="col-xs-2" style="padding-left: 2%;padding-right:2%;">

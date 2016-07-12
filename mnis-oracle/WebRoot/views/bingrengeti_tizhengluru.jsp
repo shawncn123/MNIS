@@ -21,11 +21,23 @@
 		<link rel="stylesheet" type="text/css" href="css/song.css"/>
 		<link href="css/base.css" rel="stylesheet" type="text/css" />
 		<link href="css/bootstrap-clockpicker.min.css" rel="stylesheet" type="text/css" />
-		<script src="scripts/song.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="scripts/jquery-1.12.1.min.js"></script>
+		<script src="scripts/song.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="scripts/bootstrap-clockpicker.min.js"></script>
 		<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
 		<script type="text/javascript" src="scripts/viewjs.js"></script>
+		<script type="text/javascript">	
+			$(function(){
+				var url = "weiduxiaoxishu";
+				var args = {"time" : new Date()};
+				$.post(url,args,function(data) {
+					if(data!=""){
+						/* alert(data); */
+						$("#xxshu").text(data+"");
+					};		
+				});
+			});
+		</script>
 		<script type="text/javascript">
 			$(function() {
 				$('.clockpicker').clockpicker();
@@ -41,13 +53,13 @@
 					$("#tw_baocun").click(function() {
 							var val_twlx = $("#twlx_select").val();
 							var val_wendu = $("#tw_wendu").val();
-							if (val_wendu == "") {
+							var val_jwhwendu = $("#tw_jwhwendu").val();
+							var val_maibo = $("#tw_maibo").val();
+							var val_xinlv = $("#tw_xinlv").val();
+							var val_huxi = $("#tw_huxi").val();
+							if (val_wendu == ""||val_jwhwendu==""||val_maibo==""||val_xinlv==""||val_huxi=="") {
 								alert("数据不完整！");
 							} else {
-								var val_jwhwendu = $("#tw_jwhwendu").val();
-								var val_maibo = $("#tw_maibo").val();
-								var val_xinlv = $("#tw_xinlv").val();
-								var val_huxi = $("#tw_huxi").val();
 								var val_rcbz = $("#tw_rcbz").val();
 								var val_time2 = $("#appTime2").val();
 								var val_time1 = $("#appTime1").val();
@@ -64,13 +76,10 @@
 									"v_time1": val_time1
 								};
 								$.post(url, args, function(data) {
-									//若	data 的返回值为1，则提示删除成功，则把当前行删除
 									if (data == "0") {
 										//alert("录入成功！");
 										$("#quxiao").click();
-										/* $("#tiwen").attr('placeholder','录入成功！').css('color','red'); */
 										$("#tiwen").attr('value', '录入成功！').css('color', 'red');
-										//$("#tiwen").css('color','#7478F3');
 									} else {
 										//若data 的返回值不是1，则提示删除失败
 										alert("保存失败！");
@@ -90,19 +99,26 @@
 		<script src="scripts/mobiscroll_003.js" type="text/javascript"></script>
 		<script src="scripts/mobiscroll_005.js" type="text/javascript"></script>
 		<script src="scripts/index-song.js" type="text/javascript"></script>
-		<link rel="stylesheet" type="text/css" href="css/song.css"/>
-		<script src="scripts/song.js" type="text/javascript" charset="utf-8"></script>
 	</head>
-
 	<body>
-
 		<div id="head_banner_1" style="z-index:2000;" class="bg-info navbar-fixed-top">
 			<div class="row" style="border-bottom:1px solid #269abc;padding-top: 3px; margin: 0;">
-				<div class="col-xs-6 " style="margin-left: -2%; margin-right: 2%; color: #807D7D; padding-left:13px; padding-right: 0;">
-					<span><strong style="color: #272626;">${bingrgetixingxi.xm }</strong>&nbsp;${bingrgetixingxi.nl }</span>
-					<p class="text-left " style="margin-bottom: 5px;">${bingrgetixingxi.chw }&nbsp;床</p>
-				</div>
-				<div class="col-xs-6 " style=" padding: 1% 1% 0 0;">
+				<s:if test="#session.bingrgetixingxi_yinger!=null">
+					<div class="col-xs-3 " style="margin-left: -2%; color: #807D7D; padding-left:13px; padding-right: 0;">
+						<strong style="color: #272626;">${bingrgetixingxi.xm }</strong>
+						<p class="text-left " style="margin-bottom: 0; ">${bingrgetixingxi.chw }床&nbsp;${bingrgetixingxi.nl }</p>
+					</div>
+					<div class="col-xs-3" style="margin: 0 1%; padding: 0 0; font-size: 14px; color: #428CF7; line-height: 40px; ">
+					${bingrgetixingxi_yinger.yexm }
+					</div>
+				</s:if>
+				<s:else>
+					<div class="col-xs-6" style="margin-left: -2%; color: #807D7D; padding-left:13px; padding-right: 0;">
+						<strong style="color: #272626;">${bingrgetixingxi.xm }</strong>
+						<p class="text-left " style="margin-bottom: 0; ">${bingrgetixingxi.chw }床&nbsp;${bingrgetixingxi.nl }</p>
+					</div>
+				</s:else>
+				<div class="col-xs-6 " style=" padding: 0 1% 0 0;">
 					<div class="table table-responsive " style="margin-bottom: 0;border: none; ">
 						<table class="table table-condensed " style="background-color: #d9edf7 ">
 							<tbody>
@@ -112,7 +128,7 @@
 										<div style="position:relative; width:100%; height:100%;  left:0; top:0;">
 											<img src="images/brxxxx_header_1.png" style="left:0; top:0;" height="100%" width="100%">
 										</div>
-										<span style="display: block; text-align: center; color: #fff; font-size: 2.2rem; z-index: 2; position: absolute; top: 12%; left: 0; width:100%; height:100%;">2</span>
+										<span style="display: block; text-align: center; color: #fff; font-size: 2.2rem; z-index: 2; position: absolute; top: 12%; left: 0; width:100%; height:100%;" id="xxshu"></span>
 									</a>
 								</td>
 									<td style="border: none; padding: 2px;">
@@ -148,29 +164,33 @@
 
 			<form class="form-horizontal" action="tizheng_luru_update" method="post" id="tzform">
 				<input name="appTime" value="" style="display:none;" id="lurutime" />
-				
+				<s:set name="popcount" value="1"></s:set>
 				<s:iterator value="#request.bingr_tizheng_luruxiang" status='st'>
 				<div class="form-group" style="margin-bottom: 6px;">
 					<s:if test="xmid=='XY'">
-						<label class="col-xs-2 control-label text-center" style="padding:2% 2% 0 2%;">${xmmc }</label>
+						<label class="col-xs-2 control-label text-center" style="padding:2% 0 0 0;">${xmmc }</label>
 						<div class="col-xs-3" style="padding-right: 0;">
-							<input type="text" maxlength="7" readonly="readonly" mainpop="<s:property value='#st.index'/>" class="form-control"
+							<input type="text" maxlength="7" readonly="readonly" mainpop="<s:property value='#popcount'/>" class="form-control"
 								id="xueya" placeholder="收缩压" name="zhi1">
+								<s:set name="popcount" value="#popcount+1"></s:set>
 						</div>
-						<div class="col-xs-1" style="padding:2% 0 0 2%;">/</div>
+						<div class="col-xs-1" style="padding:2% 0 0 3%;">/</div>
 						<div class="col-xs-3" style="padding: 0;">
-							<input type="text" maxlength="7" readonly="readonly" class="form-control" id="xueya" placeholder="舒张压" name="zhi2">
+							<input type="text" maxlength="7" readonly="readonly" class="form-control" mainpop="<s:property value='#popcount'/>" class="form-control" id="xueya2" placeholder="舒张压" name="zhi2">
+							<s:set name="popcount" value="#popcount+1"></s:set>
 						</div>
-						<div class="col-xs-3" style="padding:2% 0 0;">${dw}</div>
+						<div class="col-xs-3" style="padding:2% 0 0 2%;">${dw}</div>
 						<input name="xiangmu" style="display:none;" value="${xmid }">
 						<input name="bzflag" style="display:none;" value="${bzflag}">
 						<input name="biaozhu" style="display:none;" value="">
 					</s:if>
 					<s:elseif test="xmid=='TW'">
-						<label class="col-xs-2 control-label text-center" style="padding:2% 2% 0 2%;">${xmmc}</label>
+						<label class="col-xs-2 control-label text-center" style="padding:2% 0 0 0;">${xmmc}</label>
 						<div class="col-xs-10">
+<%-- 							<input type="text" class="form-control" id="tiwen" data-backdrop="static" data-toggle="modal" readonly="readonly"
+								data-target="#temperature" placeholder="${xmmc }" mainpop="<s:property value='#st.index'/>"> --%>
 							<input type="text" class="form-control" id="tiwen" data-backdrop="static" data-toggle="modal" readonly="readonly"
-								data-target="#temperature" placeholder="${xmmc }" mainpop="<s:property value='#st.index'/>">
+								data-target="#temperature" placeholder="${xmmc }">
 						</div>
 						<input name="xiangmu" style="display:none;" value="${xmid }">
 						<input name="zhi1" style="display:none;" value="">
@@ -179,12 +199,13 @@
 						<input name="bzflag" style="display:none;" value="${bzflag}">
 					</s:elseif>
 					<s:elseif test="bzflag==1">
-						<label class="col-xs-2 control-label text-center" style="padding:2% 2% 0 2%;">${xmmc }</label>
+						<label class="col-xs-2 control-label text-center" style="padding:2% 0 0 0;">${xmmc }</label>
 						<div class="col-xs-3" style="padding-right: 0;">
 							<input type="text" maxlength="8" class="form-control"
-								readonly="readonly" mainpop="<s:property value='#st.index'/>" placeholder="${xmmc }" name="zhi1">
+								readonly="readonly" mainpop="<s:property value='#popcount'/>" placeholder="${xmmc }" name="zhi1">
+								<s:set name="popcount" value="#popcount+1"></s:set>
 						</div>
-						<div class="col-xs-1" style="padding:2% 0 0;">${dw}</div>
+						<div class="col-xs-1" style="padding:2% 0 0 2%;">${dw}</div>
 						<div class="col-xs-6" style="padding-left: 0;">
 							<input type="text" maxlength="10" nopop="true" class="form-control" placeholder="标注" name="biaozhu">
 						</div>
@@ -194,10 +215,11 @@
 					</s:elseif>
 					<s:else>
 						<label class="col-xs-2 control-label text-center"
-							style="padding:2% 2% 0 2%;">${xmmc }</label>
+							style="padding:2% 0 0 0;">${xmmc }</label>
 						<div class="col-xs-10">
 							<input type="text" readonly="readonly"
-								mainpop="<s:property value='#st.index'/>" class="form-control" placeholder="${xmmc }" name="zhi1">
+								mainpop="<s:property value='#popcount'/>" class="form-control" placeholder="${xmmc }" name="zhi1">
+								<s:set name="popcount" value="#popcount+1"></s:set>
 						</div>
 						<input name="xiangmu" style="display:none;" value="${xmid }">
 						<input name="zhi2" style="display:none;" value="">
@@ -287,7 +309,7 @@
 								<label class="col-xs-4 control-label  text-right" style="padding:2% 2% 0 2%;">入出时间</label>
 								<div class="col-xs-8">
 									<div class="demos">
-										<input value="16:43" class="form-control" name="appTime" id="appTime2" type="text">
+										<input value="" class="form-control" name="appTime" id="appTime2" type="text">
 									</div>
 								</div>
 							</div>
@@ -295,8 +317,7 @@
 					</div>
 					<!-- 模态框body end-->
 					<div class="modal-footer">
-						<button type="button" class="btn pull-left btn-primary" id="tw_baocun">
-						保存</button>
+						<button type="button" class="btn pull-left btn-primary" id="tw_baocun">保存</button>
 						<button type="button" id="quxiao" class="btn btn-default" data-dismiss="modal">取消</button>
 					</div>
 				</div>

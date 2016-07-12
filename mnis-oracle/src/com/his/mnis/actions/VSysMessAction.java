@@ -2,6 +2,7 @@ package com.his.mnis.actions;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.io.StringBufferInputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
@@ -109,6 +110,18 @@ public class VSysMessAction extends ActionSupport implements RequestAware,
 				return ERROR;
 		}
 	}
+	
+	public String getCountWeiDuXiaoXi(){
+		VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
+		String ryid = vwRybq.getRyid();
+		int wdcount = vSysMessService.getCountSysMessByRenyIdZhuangt(ryid);
+		String scount = wdcount + "";
+		inputStream = new StringBufferInputStream(scount); 
+		return "ajax_wdxxcount";
+	}
+	
+	
+	
 	
 	private Map<String,Object> request;
 	private Map<String,Object> session;

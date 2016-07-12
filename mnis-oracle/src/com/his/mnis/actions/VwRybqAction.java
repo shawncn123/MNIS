@@ -56,7 +56,6 @@ public class VwRybqAction extends ActionSupport implements RequestAware,
 	 */
 	public String getListBingQuByRenYuanId() {
 		//request.put("listbingqu", value)
-		
 			return SUCCESS;
 	}
 	/*

@@ -156,7 +156,7 @@
 		      </s:if><s:else>
 		      	<p>无相关数据</p>
 		      </s:else>
-				    <div class="form-group">
+				   <!--  <div class="form-group">
 				        <label for="" class="col-xs-2 control-label leftBar">5&nbsp;&nbsp;床</label>
 				        <div class="col-xs-10 " style="padding-left: 5px; padding-right: 5px;" >
 				            <div class="rightCon rightCon_13"></div>
@@ -209,7 +209,7 @@
 				        <div class="col-xs-10 " style="padding-left: 5px; padding-right: 5px;" >
 				            <div class="rightCon rightCon_21"></div>
 				        </div>
-				    </div>
+				    </div> -->
 				</form>
 		   </div>
 

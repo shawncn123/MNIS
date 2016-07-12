@@ -38,9 +38,15 @@
 			</a>
 		</div>
 		<div class="navItem_7">
-			<a href="">
+			<a href="views/xiugaimima.jsp">
 				<span class="glyphicon glyphicon-lock"></span>
 				<span class="gnavItemName">修改密码</span>
+			</a>
+		</div>
+		<div class="navItem_7">
+			<a href="anquantuichu">
+				<span class="glyphicon glyphicon-ok-circle"></span>
+				<span class="gnavItemName">安全退出</span>
 			</a>
 		</div>
 	</div>

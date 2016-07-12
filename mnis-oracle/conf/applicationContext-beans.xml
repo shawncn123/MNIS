@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
-	<bean id="seqDispGenerator" class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">
+	<bean id="wseq_id" class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">
           <property name="dataSource" ref="dataSource"></property>
           <property name="incrementerName" ><value>wseq_id</value></property>
      </bean>
@@ -11,6 +11,45 @@
 	<bean id="basedao" class="com.his.mnis.dao.BaseDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	
+	<!-- 安全退出 -->
+	<bean id="exitAnQuanQuit" class="com.his.mnis.actions.ExitAnQuanQuit"  scope="prototype">
+	</bean>
+	
+	<!-- PC 白板 -->
+	<bean id="convertRGBToHEXUtil" class="com.his.mnis.utils.ConvertRGBToHEXUtil">
+	</bean>
+	<bean id="pcBaiBanDao" class="com.his.mnis.dao.PcBaiBanDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="pcBaiBanService" class="com.his.mnis.serviceImpl.PcBaiBanServiceImpl">
+		<property name="pcBaiBanDao" ref="pcBaiBanDao"></property>
+		<property name="convertRGBToHEXUtil" ref="convertRGBToHEXUtil"></property>
+	</bean>
+	<bean id="pcBaiBanAction" class="com.his.mnis.actions.PcBaiBanAction"  scope="prototype">
+		<property name="pcBaiBanService" ref="pcBaiBanService"></property>
+	</bean>
+	
+	<!-- 修改密码  -->
+	<bean id="miMaXiuGaiDao" class="com.his.mnis.dao.MiMaXiuGaiDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="miMaXiuGaiService" class="com.his.mnis.serviceImpl.MiMaXiuGaiServiceImpl">
+		<property name="miMaXiuGaiDao" ref="miMaXiuGaiDao"></property>
+		<property name="vwRybqDao" ref="vwRybqDao"></property>
+	</bean>
+	<bean id="miMaXiuGaiAction" class="com.his.mnis.actions.MiMaXiuGaiAction"  scope="prototype">
+		<property name="miMaXiuGaiService" ref="miMaXiuGaiService"></property>
+	</bean>
+	
+	<!-- 婴儿数据查询 -->
+	<bean id="vwBqYeZyDao" class="com.his.mnis.dao.VwBqYeZyDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vwBqyeZyService" class="com.his.mnis.serviceImpl.VwBqyeZyServiceImpl">
+		<property name="vwBqYeZyDao" ref="vwBqYeZyDao"></property>
+	</bean>
+	
 	<!-- 工作提醒 白板 -->
 	<bean id="baiBanGongZhuoTiXingDao" class="com.his.mnis.dao.BaiBanGongZhuoTiXingDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -109,7 +148,7 @@
 	
 	<bean id="twTzdataTwAction" class="com.his.mnis.actions.TwTzdataTwAction"  scope="prototype">
 		<property name="twTzdataTwService" ref="twTzdataTwService"></property>
-		<property name="seqGenerator" ref="seqDispGenerator"></property>
+		<property name="wseq_id" ref="wseq_id"></property>
 	</bean>
 	
 	<bean id="twTzdataDao" class="com.his.mnis.dao.TwTzdataDao">
@@ -121,7 +160,7 @@
 	</bean>
 	<bean id="twTzdataAction" class="com.his.mnis.actions.TwTzdataAction"  scope="prototype">
 		<property name="twTzdataService" ref="twTzdataService"></property>
-		<property name="seqGenerator" ref="seqDispGenerator"></property>
+		<property name="wseq_id" ref="wseq_id"></property>
 	</bean>
 	<bean id="vwJc101Dao" class="com.his.mnis.dao.VwJc101Dao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -161,6 +200,7 @@
 		<property name="vwBqbrZyService" ref="vwBqbrZyService"></property>
 		<property name="vwJbxxService" ref="vwJbxxService"></property>
 		<property name="vwRybqService" ref="vwRybqService"></property>
+		<property name="vwBqyeZyService" ref="vwBqyeZyService"></property>
 	</bean>
 	<bean id="vwRybqDao" class="com.his.mnis.dao.VwRybqDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>

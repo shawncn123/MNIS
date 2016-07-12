@@ -76,8 +76,5 @@
         <property name="bgbz" type="java.lang.String">
             <column name="BGBZ" length="1" />
         </property>
-        <property name="wjflag" type="java.lang.String">
-            <column name="WJFLAG" length="1" />
-        </property>
     </class>
 </hibernate-mapping>

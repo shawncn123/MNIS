@@ -24,7 +24,7 @@ $(document).ready(function() {
 		});
 		
 		/*消息页面*/
-		if($("#accordion>.box-sdow:last").index()>20){   //载入页面时，当全部消息条数大于等于9时显示”加载更多“
+		if($("#accordion>.box-sdow:last").index()>=9){   //载入页面时，当全部消息条数大于等于9时显示”加载更多“
 			$(".more-con").css('display','block')
 		}
 		
@@ -35,13 +35,13 @@ $(document).ready(function() {
 				}
   			 });
        $('a[href="#unread"]').on('shown.bs.tab', function (e) {
-	      if($("#accordion1>.box-sdow:last").index()>20){  
+	      if($("#accordion1>.box-sdow:last").index()>=9){  
 					$(".more-con1").css('display','block')
 				}
   		 });
 		
 		$('a[href="#over-unread"]').on('shown.bs.tab', function (e) {
-		    if($("#accordion2>.box-sdow:last").index()>20){  
+		    if($("#accordion2>.box-sdow:last").index()>=9){  
 					$(".more-con2").css('display','block')
 				}
 		   });
@@ -54,7 +54,61 @@ $(document).ready(function() {
 //				//$(data).appendTo("#accordion");	
 //			});
 //		});
-		
+		$(".more-con span").click(function(){     
+			var s ='<div class="panel panel-default box-sdow"><div class="panel-heading">'
+			+ '<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#read10">'
+			+ '&gt;全部消息。第 1 部分</a></h4></div><div id="read10" class="panel-collapse collapse">'
+			+'<div class="panel-body padd-l"> Nihil anim keffiyeh helvetica, craft beer labore wes anderson'
+			+'</div></div></div>'
+			+'<div class="panel panel-default box-sdow"><div class="panel-heading">'
+			+ '<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#read10">'
+			+ '&gt;全部消息。第 1 部分</a></h4></div><div id="read10" class="panel-collapse collapse">'
+			+'<div class="panel-body padd-l"> Nihil anim keffiyeh helvetica, craft beer labore wes anderson'
+			+'</div></div></div>'
+			+'<div class="panel panel-default box-sdow"><div class="panel-heading">'
+			+ '<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#read10">'
+			+ '&gt;全部消息。第 1 部分</a></h4></div><div id="read10" class="panel-collapse collapse">'
+			+'<div class="panel-body padd-l"> Nihil anim keffiyeh helvetica, craft beer labore wes anderson'
+			+'</div></div></div>'
+			+'<div class="panel panel-default box-sdow"><div class="panel-heading">'
+			+ '<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#read10">'
+			+ '&gt;全部消息。第 1 部分</a></h4></div><div id="read10" class="panel-collapse collapse">'
+			+'<div class="panel-body padd-l"> Nihil anim keffiyeh helvetica, craft beer labore wes anderson'
+			+'</div></div></div>'
+			+'<div class="panel panel-default box-sdow"><div class="panel-heading">'
+			+ '<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#read10">'
+			+ '&gt;全部消息。第 1 部分</a></h4></div><div id="read10" class="panel-collapse collapse">'
+			+'<div class="panel-body padd-l"> Nihil anim keffiyeh helvetica, craft beer labore wes anderson'
+			+'</div></div></div>'
+			+'<div class="panel panel-default box-sdow"><div class="panel-heading">'
+			+ '<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#read10">'
+			+ '&gt;全部消息。第 1 部分</a></h4></div><div id="read10" class="panel-collapse collapse">'
+			+'<div class="panel-body padd-l"> Nihil anim keffiyeh helvetica, craft beer labore wes anderson'
+			+'</div></div></div>'
+			+'<div class="panel panel-default box-sdow"><div class="panel-heading">'
+			+ '<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#read10">'
+			+ '&gt;全部消息。第 1 部分</a></h4></div><div id="read10" class="panel-collapse collapse">'
+			+'<div class="panel-body padd-l"> Nihil anim keffiyeh helvetica, craft beer labore wes anderson'
+			+'</div></div></div>'
+			+'<div class="panel panel-default box-sdow"><div class="panel-heading">'
+			+ '<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#read10">'
+			+ '&gt;全部消息。第 1 部分</a></h4></div><div id="read10" class="panel-collapse collapse">'
+			+'<div class="panel-body padd-l"> Nihil anim keffiyeh helvetica, craft beer labore wes anderson'
+			+'</div></div></div>'
+			+'<div class="panel panel-default box-sdow"><div class="panel-heading">'
+			+ '<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#read10">'
+			+ '&gt;全部消息。第 1 部分</a></h4></div><div id="read10" class="panel-collapse collapse">'
+			+'<div class="panel-body padd-l"> Nihil anim keffiyeh helvetica, craft beer labore wes anderson'
+			+'</div></div></div>'
+			+'<div class="panel panel-default box-sdow"><div class="panel-heading">'
+			+ '<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#read10">'
+			+ '&gt;全部消息。第 1 部分</a></h4></div><div id="read10" class="panel-collapse collapse">'
+			+'<div class="panel-body padd-l"> Nihil anim keffiyeh helvetica, craft beer labore wes anderson'
+			+'</div></div></div>';
+
+			var i =$(s);
+			$(i).appendTo('#accordion');
+		});
 //		$(".more-con1 span").click(function(){
 //			$.post("",function(data){
 //				alert("请求成功!");

@@ -21,7 +21,7 @@ public class TwTzdataTw implements java.io.Serializable {
 	private String czyxm;
 	private Long key1;
 	private Integer key2;
-	private Integer yebh;
+	private Short yebh;
 	private Date rq;
 	private String sj;
 	private String twLx;
@@ -41,7 +41,7 @@ public class TwTzdataTw implements java.io.Serializable {
 
 	/** minimal constructor */
 	public TwTzdataTw(Timestamp stime, String czyid, Long key1, Integer key2,
-			Integer yebh, Date rq, String sj) {
+			Short yebh, Date rq, String sj) {
 		this.stime = stime;
 		this.czyid = czyid;
 		this.key1 = key1;
@@ -53,7 +53,7 @@ public class TwTzdataTw implements java.io.Serializable {
 
 	/** full constructor */
 	public TwTzdataTw(Timestamp stime, String czyid, String czyxm, Long key1,
-			Integer key2, Integer yebh, Date rq, String sj, String twLx,
+			Integer key2, Short yebh, Date rq, String sj, String twLx,
 			Double twTw, Double twTwJwh, Short twMb, Short twXl, Short twHx,
 			String twRcbz, String twRcsj) {
 		this.stime = stime;
@@ -124,11 +124,11 @@ public class TwTzdataTw implements java.io.Serializable {
 		this.key2 = key2;
 	}
 
-	public Integer getYebh() {
+	public Short getYebh() {
 		return this.yebh;
 	}
 
-	public void setYebh(Integer yebh) {
+	public void setYebh(Short yebh) {
 		this.yebh = yebh;
 	}
 

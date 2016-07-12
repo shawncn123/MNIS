@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.his.mnis.entities.BingRenSessionXingXi;
 import com.his.mnis.entities.VwBqbrZy;
 import com.his.mnis.entities.VwBryz;
 import com.his.mnis.entities.VwBryzRemodel;
@@ -23,7 +24,6 @@ public class VwBryzAction extends ActionSupport implements RequestAware,SessionA
 	private short v_yebh;
 	private String v_tiaojianstr;
 	private VwBryzService vwBryzService;
-	private VwBqbrZy vwBqbrZy;
 	private List<VwBryz> vwBryzs;
 
 	public List<VwBryz> getVwBryzs() {
@@ -70,24 +70,24 @@ public class VwBryzAction extends ActionSupport implements RequestAware,SessionA
 	 * 根据病人key1,key2值查询病人医嘱数据
 	 */
 	public String getListBrYzByKey(){
-		try {
-			vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
-		} catch (Exception e) {
-			return ERROR;
-		}
-		try {
-//		vwBryzs = vwBryzService.getListBrYzByKey(v_key1, v_key2, v_yebh);
-			vwBryzs = vwBryzService.getListBrYzByKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2() , (short)(0));
+		Object obj = session.get("bingrgetixingxi");
+		short yeid = 0;
+		if(obj != null){
+			VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
+			Object obj_ye =  session.get("bingrgetixingxi_yinger");
+			if(obj_ye!=null){
+				BingRenSessionXingXi bingRenSessionXingXi = (BingRenSessionXingXi) obj_ye;
+				yeid = bingRenSessionXingXi.getYebh();
+			}
+			vwBryzs = vwBryzService.getListBrYzByKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2() , yeid);
 			List<VwBryzRemodel> vwBryzRemodels = vwBryzService.getListBrYzRemodel(vwBryzs);
-			System.out.println("action_yizhu:"+vwBryzRemodels);
 			if(vwBryzs == null){
 				return ERROR;
 			}else{
 				request.put("bingrGeTi_YiZhu", vwBryzRemodels);
 				return SUCCESS;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		}else{
 			return ERROR;
 		}
 	}
@@ -98,22 +98,24 @@ public class VwBryzAction extends ActionSupport implements RequestAware,SessionA
 	
 	public String getListBrYzByKeyAndTiaoJian(){
 		try {
-			vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
-			List<VwBryz> vwBryzs = vwBryzService.getListBrYzByKeyAndTiaoJian(vwBqbrZy.getKey1(), vwBqbrZy.getKey2() , (short)(0),v_tiaojianstr);
-			return SUCCESS;
+			Object obj = session.get("bingrgetixingxi");
+			short yeid = 0;
+			if(obj != null){
+				VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
+				Object obj_ye =  session.get("bingrgetixingxi_yinger");
+				if(obj_ye!=null){
+					BingRenSessionXingXi bingRenSessionXingXi = (BingRenSessionXingXi) obj_ye;
+					yeid = bingRenSessionXingXi.getYebh();
+				}
+				List<VwBryz> vwBryzs = vwBryzService.getListBrYzByKeyAndTiaoJian(vwBqbrZy.getKey1(), vwBqbrZy.getKey2() , yeid,v_tiaojianstr);
+				return SUCCESS;
+			}else{
+				return ERROR;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ERROR;
 		}
-//		List<VwBryz> vwBryzs = vwBryzService.getListBrYzByKeyAndTiaoJian(v_key1, v_key2, v_yebh, v_tiaojianstr);
-//		List<VwBryz> vwBryzs = vwBryzService.getListBrYzByKeyAndTiaoJian(vwBqbrZy.getKey1(), vwBqbrZy.getKey2() , (short)(0),v_tiaojianstr);
-//		if(vwBryzs == null){
-//			return ERROR;
-//		}else{
-//			request.put("bingrGeTi_YiZhu", vwBryzs);
-//			return SUCCESS;
-//		}
-		
 	}
 	
 	private Map<String,Object> request;

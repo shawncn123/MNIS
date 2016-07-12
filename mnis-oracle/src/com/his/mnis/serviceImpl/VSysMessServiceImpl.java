@@ -43,4 +43,10 @@ public class VSysMessServiceImpl implements VSysMessService {
 		return vSysMessDao.getListSysMessByRenyIdGcwd(renyid, pageno, pagerows);
 	}
 
+	@Override
+	public int getCountSysMessByRenyIdZhuangt(String renyid) {
+		
+		return vSysMessDao.getCountSysMessByRenyIdZhuangt(renyid);
+	}
+
 }

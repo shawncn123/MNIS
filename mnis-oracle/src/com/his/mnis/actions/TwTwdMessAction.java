@@ -13,6 +13,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.his.mnis.entities.BingRenSessionXingXi;
 import com.his.mnis.entities.TiWenDanRiQiDuan;
 import com.his.mnis.entities.VwBqbrZy;
 import com.his.mnis.services.TwTwdMessService;
@@ -48,7 +49,7 @@ public class TwTwdMessAction extends ActionSupport implements RequestAware,Sessi
 	public InputStream getInputStream() {
 		return inputStream;
 	}
-	
+	//  此方法好想没用上，需检查
 	public String getTwTwdMessFile(){
 		System.out.println("action e");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
@@ -80,12 +81,24 @@ public class TwTwdMessAction extends ActionSupport implements RequestAware,Sessi
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		VwBqbrZy vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
-		String checkflag = twTwdMessService.createTiWenDanTuPian(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(), (short)0, date);
-		if(checkflag.equals("1")){
-			System.out.println("体温单insert success!");
-			inputStream = new ByteArrayInputStream("insertsuccess".getBytes("UTF-8"));
-			return "ajax_filename";
+		Object obj = session.get("bingrgetixingxi");
+		short yeid = 0;
+		if(obj != null){
+			VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
+			Object obj_ye =  session.get("bingrgetixingxi_yinger");
+			if(obj_ye!=null){
+				BingRenSessionXingXi bingRenSessionXingXi = (BingRenSessionXingXi) obj_ye;
+				yeid = bingRenSessionXingXi.getYebh();
+			}
+			String checkflag = twTwdMessService.createTiWenDanTuPian(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(), yeid, date);
+			if(checkflag.equals("1")){
+				System.out.println("体温单insert success!");
+				inputStream = new ByteArrayInputStream("insertsuccess".getBytes("UTF-8"));
+				return "ajax_filename";
+			}else{
+				inputStream = new ByteArrayInputStream("insertfail".getBytes("UTF-8"));
+				return "ajax_filename";
+			}
 		}else{
 			inputStream = new ByteArrayInputStream("insertfail".getBytes("UTF-8"));
 			return "ajax_filename";
@@ -106,22 +119,34 @@ public class TwTwdMessAction extends ActionSupport implements RequestAware,Sessi
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		VwBqbrZy vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
-		for(int i=0;i<5;i++){
-			String fname = twTwdMessService.getOutStreamOfTiWenDan(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(), (short)0, date);
-			if(fname!=null){
-				inputStream = new ByteArrayInputStream(fname.getBytes("UTF-8"));
-				return "ajax_filename";
-			}else{
-				try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+		Object obj = session.get("bingrgetixingxi");
+		short yeid = 0;
+		if(obj != null){
+			VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
+			Object obj_ye =  session.get("bingrgetixingxi_yinger");
+			if(obj_ye!=null){
+				BingRenSessionXingXi bingRenSessionXingXi = (BingRenSessionXingXi) obj_ye;
+				yeid = bingRenSessionXingXi.getYebh();
+			}
+			for(int i=0;i<5;i++){
+				String fname = twTwdMessService.getOutStreamOfTiWenDan(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(), yeid, date);
+				if(fname!=null){
+					inputStream = new ByteArrayInputStream(fname.getBytes("UTF-8"));
+					return "ajax_filename";
+				}else{
+					try {
+						Thread.sleep(3000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
 			}
+			inputStream = new ByteArrayInputStream("fail".getBytes("UTF-8"));
+			return "ajax_filename";
+		}else{
+			inputStream = new ByteArrayInputStream("fail".getBytes("UTF-8"));
+			return "ajax_filename";
 		}
-		inputStream = new ByteArrayInputStream("fail".getBytes("UTF-8"));
-		return "ajax_filename";
 	}
 	
 	/*

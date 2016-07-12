@@ -13,6 +13,27 @@
     		<result-type name="json" class="org.apache.struts2.json.JSONResult"/>
 		</result-types>
 		
+		<!-- 安全退出 -->
+		<action name="anquantuichu" class="exitAnQuanQuit" method="AnQuanQuit">
+			<result name="success">/views/login.jsp</result>
+		</action>
+		
+		<!-- PC 白板 -->
+		<action name="pcbaibanmoban" class="pcBaiBanAction" method="xianShiPcBaiBanMoBan">
+			<!-- <result name="success">/views/PCbaiban.jsp</result>
+			<result name="error">/views/PCbaiban.jsp</result> -->
+		</action>
+		<action name="pcbaibanneirong" class="pcBaiBanAction" method="xianShiPCBaiBanNeiRong">
+		</action>
+		
+		<!-- 密码修改 -->
+		<action name="mimamodify" class="miMaXiuGaiAction" method="huShiXiuGaiMiMa">
+			<result type="stream" name="ajax_mima">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		
 		<!-- 工作提醒 白板 -->
 		<action name="hushigongzuotixing" class="baiBanBongZuoTiXingAction" method="chaListXiangMuNeiRong">
 			<result name="success">/views/baiban.jsp</result>
@@ -20,6 +41,7 @@
 			<!-- <result name="error" type="redirect">/bingqbr_bysessionbingqid</result> -->
 		</action>
 		
+		<!-- 消息 -->
 		<action name="quedingxiaoxiyidu" class="vSysMessAction" method="queDingXiaoXiYiDu">
 			<result type="stream" name="ajax-success">
 				<param name="contentType">text/html</param>
@@ -29,7 +51,14 @@
 		<action name="mymessage" class="vSysMessAction" method="getListSysMessByRenyId">
 			<result name="success">/views/xiaoximokuai.jsp</result>
 		</action>
+		<action name="weiduxiaoxishu" class="vSysMessAction" method="getCountWeiDuXiaoXi">
+			<result type="stream" name="ajax_wdxxcount">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
 		
+		<!-- 宣教 -->
 		<action name="xuanjiaoqueding" class="xuanJiaoAction" method="addXuanJiaoQueDing">
 			<result type="stream" name="ajax-success">
 				<param name="contentType">text/html</param>
@@ -38,6 +67,7 @@
 		</action>
 		<action name="xuanjiaolist" class="xuanJiaoAction" method="getListXuanJiaoNeiRong">
 			<result name="success">/views/xuanjiao.jsp</result>
+			<result name="error">/views/xuanjiao.jsp</result>
 		</action>
 		<action name="xuanjiaolistbydm" class="xuanJiaoAction" method="getListXjNrByDaiMa">
 		</action>
@@ -88,6 +118,7 @@
 		</action>
 		<action name="tizhengluru" class="twTzzdAction" method="getBingRenTiZhengLuRuByBingQuId">
 			<result name="success">/views/bingrengeti_tizhengluru.jsp</result>
+			<result name="error">/views/login.jsp</result>
 		</action>
 		<action name="tizheng_luru_update" class="twTzdataAction" method="saveTiZhengLuru">
 			<!-- <result name="success">/views/bingrengeti_tizhengluru.jsp</result>
@@ -163,8 +194,15 @@
 			<result name="error">/views/bingrenshouye.jsp</result>
 		</action>
 		
+		<!-- 查危急值的检查信息 -->
+		<action name="chajianchadata" class="vwJc101Action" method="getListJianChaWeiJiByKey">
+			<result name="success">/views/jianchabaogao.jsp?vwjbz=${vwjbz}</result>
+			<result name="error">/views/bingrenshouye.jsp</result>
+		</action>
+		
 		<action name="bingrGeTi_JianCha" class="vwJc101Action" method="getListBingrJiancByKey">
 			<result name="success">/views/jianchabaogao.jsp</result>
+			<result name="error">/views/bingrenshouye.jsp</result>
 		</action>
 		
 		<action name="mnis-*" class="vmCzryAction" method="{1}">

@@ -17,8 +17,29 @@ public class TwTzdataTwDao extends HibernateDaoSupport {
 
 	public void doCreateTwTzdataTw(TwTzdataTw twTzdataTw) {
 
-		this.getHibernateTemplate().save(twTzdataTw);
-
+//		this.getHibernateTemplate().save(twTzdataTw);
+		String sql = "insert into TW_TZDATA_TW(JLID,stime,czyid,czyxm,key1,key2,yebh,rq,sj,TW_LX,TW_TW,TW_TW_JWH,TW_MB,TW_XL,TW_HX,TW_RCBZ,TW_RCSJ)"
+				+ " values(:JLID,:stime,:czyid,:czyxm,:key1,:key2,:yebh,:rq,:sj,:TW_LX,:TW_TW,:TW_TW_JWH,:TW_MB,:TW_XL,:TW_HX,:TW_RCBZ,:TW_RCSJ)";
+		Query query = currentSession().createSQLQuery(sql);
+		
+		query.setLong("JLID",twTzdataTw.getJlid());
+		query.setTimestamp("stime",twTzdataTw.getStime());
+		query.setString("czyid",twTzdataTw.getCzyid());
+		query.setString("czyxm",twTzdataTw.getCzyxm());
+		query.setLong("key1",twTzdataTw.getKey1());
+		query.setInteger("key2",twTzdataTw.getKey2());
+		query.setShort("yebh",twTzdataTw.getYebh());
+		query.setDate("rq",twTzdataTw.getRq());
+		query.setString("sj",twTzdataTw.getSj());
+		query.setString("TW_LX",twTzdataTw.getTwLx());
+		query.setDouble("TW_TW",twTzdataTw.getTwTw());
+		query.setDouble("TW_TW_JWH",twTzdataTw.getTwTwJwh());
+		query.setShort("TW_MB",twTzdataTw.getTwMb());
+		query.setShort("TW_XL",twTzdataTw.getTwXl());
+		query.setShort("TW_HX",twTzdataTw.getTwHx());
+		query.setString("TW_RCBZ",twTzdataTw.getTwRcbz());
+		query.setString("TW_RCSJ",twTzdataTw.getTwRcsj());
+		query.executeUpdate();
 	}
 
 	public String callProcedurePwTzdataTw(long p_jlid) {
@@ -31,10 +52,12 @@ public class TwTzdataTwDao extends HibernateDaoSupport {
 		pc.registerParameter("out_errortext", String.class, ParameterMode.OUT);
 		String ls_return = pc.getOutputs()
 				.getOutputParameterValue("out_return").toString();
-		String ls_errortext = pc.getOutputs()
-				.getOutputParameterValue("out_return").toString();
+		Object errortext = pc.getOutputs().getOutputParameterValue("out_errortext");
 		System.out.println("out_return:" + ls_return);
-		System.out.println("ls_errortext:" + ls_errortext);
+		if(errortext!=null){
+			String ls_errortext = errortext.toString();
+			System.out.println("ls_errortext:" + ls_errortext);
+		}
 		return ls_return;
 
 	}

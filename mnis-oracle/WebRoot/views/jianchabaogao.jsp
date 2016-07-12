@@ -29,13 +29,13 @@
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link href="css/custom1.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="scripts/jquery-1.12.1.min.js"></script>
-<script src="js/common.js" type="text/javascript"></script>
-<script src="js/mobiscroll_002.js"></script>
-<script src="js/mobiscroll_003.js"></script>
-<script src="js/mobiscroll_004.js"></script>
-<script src="js/mobiscroll_005.js"></script>
-<script src="js/mobiscroll.js"></script>
-<script src="js/timerpicker.js" type="text/javascript"></script>
+<script src="scripts/common.js" type="text/javascript"></script>
+<script src="scripts/mobiscroll_002.js"></script>
+<script src="scripts/mobiscroll_003.js"></script>
+<script src="scripts/mobiscroll_004.js"></script>
+<script src="scripts/mobiscroll_005.js"></script>
+<script src="scripts/mobiscroll.js"></script>
+<script src="scripts/timerpicker.js" type="text/javascript"></script>
 <script type="text/javascript" src="scripts/viewjs.js"></script>
 <script type="text/javascript" src="scripts/song.js"></script>
 <script type="text/javascript">
@@ -54,23 +54,20 @@
 				<div class="col-xs-5" style="margin-bottom: -10px; margin-top: 2px;">
 					<div class="row">
 						<div class="col-xs-10" style="padding-left: 5px;">
-						<form action="chahuayandata" method="post" id="wjzsz">
+						<form action="chajianchadata" method="post" id="wjzsz">
 							<div class="form-group">
 								<select name="vwjbz" id="" class="form-control" onchange="wjzflselcet()">
 									<s:if test='vwjbz=="2"||vwjbz==null'>
-									<option value="2" selected>全部检验</option>
+									<option value="2" selected>全部检查</option>
 									<option value="1">危急值</option>
 									</s:if><s:else>
-									<option value="2" >全部检验</option>
+									<option value="2" >全部检查</option>
 									<option value="1" selected>危急值</option>
 									</s:else>
 								</select>
 							</div>
 						</form>
 						</div>
-						<!-- <div class="col-xs-1 bor-r">
-							<div class="icon_pic mar-l"></div>
-						</div> -->
 					</div>
 				</div>
 				<div class="col-xs-7" style="padding-left: 3px; margin-top: 2px;">
@@ -119,7 +116,7 @@
 	<!--导航结束-->
 	<div class="clear"></div>
 	<!--页脚开始-->
-	<%@ include file="footer_old.jsp"%>
+	<%@ include file="footer.jsp"%>
 	<!--页脚结束-->
 	<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
 </body>

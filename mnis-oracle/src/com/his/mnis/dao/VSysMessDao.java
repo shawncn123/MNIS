@@ -1,5 +1,6 @@
 package com.his.mnis.dao;
 
+import java.math.BigInteger;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
@@ -68,5 +69,16 @@ public class VSysMessDao extends BaseDao {
 		System.out.println("out_return:" + ls_return);
 		System.out.println("ls_errortext:" + ls_errortext);
 		return ls_return;
+	}
+	
+	/*
+	 * 根据参数用户id，未读参数状态 查询消息记录数
+	 */
+	public int getCountSysMessByRenyIdZhuangt(String renyid){
+		String hql = "select count(*) from V_SYS_MESS_READER where ryid=:ryid and readflag=0";
+		Query query = getSession().createSQLQuery(hql);
+		query.setString("ryid", renyid);
+	    int count = Integer.valueOf(query.list().get(0).toString());
+	    return count;
 	}
 }

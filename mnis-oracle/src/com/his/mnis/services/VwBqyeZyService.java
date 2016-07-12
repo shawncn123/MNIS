@@ -15,5 +15,5 @@ public interface VwBqyeZyService {
 	 * 
 	 */
 
-	public List<VwBqyeZy> listBingrYingr(Float key1,Float key2);
+	public List<VwBqyeZy> getListBingrYingr(long key1,int key2);
 }

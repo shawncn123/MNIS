@@ -70,11 +70,11 @@
 			<div class="col-xs-12"
 				style="margin: 5px 0 5px 0;padding-bottom: 5px;border-bottom: #666666 1px solid;">
 				<div class="dropdown">
-					<a id="dLabel" data-target="#" href="http://example.com"
+					<a id="dLabel" data-target="#" href="javascript:void(0);"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false"> 输液本 <span class="caret"></span>
+						aria-expanded="false"> 全部 <span class="caret"></span>
 					</a>
-					<ul class="dropdown-menu" aria-labelledby="dLabel">
+				<!-- 	<ul class="dropdown-menu" aria-labelledby="dLabel">
 						<li><a href="#">输液本</a></li>
 						<li><a href="#">治疗本</a></li>
 						<li><a href="views/yizhu_ben_fuyao.jsp">服药本</a></li>
@@ -83,7 +83,7 @@
 						<li><a href="#">新开</a></li>
 						<li><a href="#">新停</a></li>
 						<li><a href="#">全部</a></li>
-					</ul>
+					</ul> -->
 				</div>
 			</div>
 		</div>

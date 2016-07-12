@@ -1,5 +1,7 @@
 package com.his.mnis.serviceImpl;
 
+import java.util.List;
+
 import com.his.mnis.dao.TwTzdataDao;
 import com.his.mnis.entities.TwTzdata;
 import com.his.mnis.services.TwTzdataService;
@@ -17,9 +19,11 @@ public class TwTzdataServiceImpl implements TwTzdataService {
 	}
 
 	@Override
-	public String doCreateTwTzdata(TwTzdata twTzdata, Long vpcid) {
+	public String doCreateTwTzdata(List<TwTzdata> twTzdatas, Long vpcid) {
 		
-		twTzdataDao.doCreateTwTzdata(twTzdata);
+		for(int i=0;i<twTzdatas.size();i++){
+			twTzdataDao.doCreateTwTzdata(twTzdatas.get(i));
+		}
 		String proc_result = twTzdataDao.callProcedurePwTzdata(vpcid);
 		if ("1".equals(proc_result)) { // 1 表示失败
 			return "1";

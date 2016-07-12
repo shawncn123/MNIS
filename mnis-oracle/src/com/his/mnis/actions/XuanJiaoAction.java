@@ -12,6 +12,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.his.mnis.entities.BingRenSessionXingXi;
 import com.his.mnis.entities.TwXjDm;
 import com.his.mnis.entities.TwXjYw;
 import com.his.mnis.entities.VwBqbrZy;
@@ -60,20 +61,26 @@ public class XuanJiaoAction extends ActionSupport implements RequestAware,
 	 * 获取宣教分类和相关宣教内容
 	 */
 	public String getListXuanJiaoNeiRong(){
-		VwBqbrZy vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
-		
-		List<VwXjFl> vwXjFls = xuanJiaoService.getListXuanJiaoFenLei();
-		List<TwXjDm> twXjDms = xuanJiaoService.getListXuanJiaoNeiRong();
-		List<TwXjYw> twXjYws = xuanJiaoService.getListXjYwByBingrKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(), (short)0);
-		if(vwXjFls.size()>0 && twXjDms.size() > 0 ){
-			request.put("xuanjiaofl", vwXjFls);
-//			request.put("xuanjiaonr", twXjDms);
-//			if(twXjYws.size()>0){
-//				request.put("xuanjiaoyw", twXjYws);
-//			}
-			List<XuanJiaoBingRenNeiRong> xuanJiaoBingRenNeiRongs = xuanJiaoService.getListXuanJiaoBingRenNeiRong(vwXjFls, twXjDms, twXjYws);
-			request.put("brxuanjiaonr", xuanJiaoBingRenNeiRongs);
-			return SUCCESS;
+		Object obj = session.get("bingrgetixingxi");
+		short yeid = 0;
+		if(obj != null){
+			VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
+			Object obj_ye =  session.get("bingrgetixingxi_yinger");
+			if(obj_ye!=null){
+				BingRenSessionXingXi bingRenSessionXingXi = (BingRenSessionXingXi) obj_ye;
+				yeid = bingRenSessionXingXi.getYebh();
+			}
+			List<VwXjFl> vwXjFls = xuanJiaoService.getListXuanJiaoFenLei();
+			List<TwXjDm> twXjDms = xuanJiaoService.getListXuanJiaoNeiRong();
+			List<TwXjYw> twXjYws = xuanJiaoService.getListXjYwByBingrKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(), yeid);
+			if(vwXjFls.size()>0 && twXjDms.size() > 0 ){
+				request.put("xuanjiaofl", vwXjFls);
+				List<XuanJiaoBingRenNeiRong> xuanJiaoBingRenNeiRongs = xuanJiaoService.getListXuanJiaoBingRenNeiRong(vwXjFls, twXjDms, twXjYws);
+				request.put("brxuanjiaonr", xuanJiaoBingRenNeiRongs);
+				return SUCCESS;
+			}else{
+				return ERROR;
+			}
 		}else{
 			return ERROR;
 		}

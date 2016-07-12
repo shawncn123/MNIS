@@ -12,6 +12,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.his.mnis.entities.BingRenSessionXingXi;
 import com.his.mnis.entities.TwBryzzx;
 import com.his.mnis.entities.TwBryzzxRemodel;
 import com.his.mnis.entities.VwBqbrZy;
@@ -90,15 +91,26 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 	 */
 	public String getListBryzzxByKey(){
 		try {
-			VwBqbrZy vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
-			List<TwBryzzx> twBryzzxs = twBryzzxService.getListBrYzzxByKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(), (short)(0));
-			List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
-			if(twBryzzxs == null){
-				return ERROR;
+			Object obj = session.get("bingrgetixingxi");
+			short yeid = 0;
+			if(obj != null){
+				VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
+				Object obj_ye =  session.get("bingrgetixingxi_yinger");
+				if(obj_ye!=null){
+					BingRenSessionXingXi bingRenSessionXingXi = (BingRenSessionXingXi) obj_ye;
+					yeid = bingRenSessionXingXi.getYebh();
+				}
+				List<TwBryzzx> twBryzzxs = twBryzzxService.getListBrYzzxByKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(),yeid);
+				List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
+				if(twBryzzxs == null){
+					return ERROR;
+				}else{
+					request.put("bingrGeTi_YiZhu_zhixing", twBryzzxRemodels);
+					request.put("test_request", "test");
+					return SUCCESS;
+				}
 			}else{
-				request.put("bingrGeTi_YiZhu_zhixing", twBryzzxRemodels);
-				request.put("test_request", "test");
-				return SUCCESS;
+				return ERROR;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

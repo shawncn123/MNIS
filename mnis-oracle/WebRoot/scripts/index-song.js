@@ -1,4 +1,4 @@
-$(function () {          //时间插件
+$(function() {          //时间插件
     var opt = {};
     opt.time = {
         preset: 'time'
@@ -25,7 +25,10 @@ $(function () {          //时间插件
 		return str; 
     }
 	setInterval(function(){
-		$(".demos input").attr('placeholder',current)
+		$("#appTime1").attr('value',current)
+	});
+	setInterval(function(){
+		$("#appTime2").attr('value',current)
 	});
     
     var height = $('#head_banner_1').height();   //模态框距离头部距离   
@@ -50,10 +53,16 @@ $(function () {          //时间插件
         var mainpop = $(this).attr("mainpop");
         if (mainpop) {
         	var h = $(".form-horizontal .form-group:eq(0)").height();
-            var num = -((parseInt(mainpop) - 1) * h);
-            $("#content").css("top", num);
-            var count = $('#content input[mainpop]').length;   //6.13修改
-            isMainLast = mainpop == count ? true : false;     //6.13修改 
+            var num = -((parseInt(mainpop)) * (h - 15));
+            if(mainpop<6){          //6.27修改
+            	num = 0;
+            }
+            $("#content").css({
+	            "position": "relative",
+	             "top": num
+            });
+            var count = $('#content input[mainpop]').length;   
+            isMainLast = mainpop == count ? true : false;     
             isMainFirst = mainpop == 1 ? true : false;
         }
     });
@@ -73,8 +82,8 @@ $(function () {          //时间插件
             var h = $(".form-horizontal .form-group:eq(0)").height();
             var num = -(popNum * h);
             $("#modal-wrap").css("top", num);
-            var count = $('#temperature input[pop]').length;     //6.13修改
-            isLast = popNum == count ? true : false;    //6.13修改
+            var count = $('#temperature input[pop]').length;    
+            isLast = popNum == count ? true : false;    
             isFirst = popNum == 1 ? true : false;
         }
     });
@@ -127,6 +136,8 @@ $(function () {          //时间插件
             //模态窗口
             if (temppop) {
                 if (!isFirst) {
+                	$('.prev:eq(1) a').html('上一项');      //6.27修改
+                	$('.next:eq(0) a').html("下一项");       //6.27修改
                     var $prev = currObj.parent().parent().prev().find("input");
                     if ($prev) {
                         var h = $(".form-horizontal .form-group:eq(0)").height();
@@ -140,19 +151,24 @@ $(function () {          //时间插件
                         }
                     }
                 } else {
-                    alert('已经是第一项');
+                    $('.prev:eq(1) a').html('第一项');     //6.27修改
                 }
             }
 
             //主页处理
             if (mainpop) {
                 if (!isMainFirst) {
+                	$('.prev:eq(0) a').html('上一项');
+                	$('.next:eq(0) a').html("下一项");
                     var $prev = $("#content input[mainpop=" + (parseInt(mainpop) - 1) + "]");
                     if ($prev) {
                     	 $($prev).focus();
                         currObj = $($prev);
                     	var h = $(".form-horizontal .form-group:eq(0)").height();
                         var num = -((parseInt(mainpop) - 1) * (h - 20)); 
+                        if(mainpop<5){        //6.27修改
+                        	num = 0;  
+                        }
                         $("#content").css({
 	                        "position": "relative",
 	                        "top": num
@@ -163,7 +179,7 @@ $(function () {          //时间插件
                         "position": "relative",
                         "top": '0px'
                     });
-                    alert('已经是第一项');
+                    $('.prev:eq(0) a').html('第一项');      //6.27修改
                 }
             } 
         }
@@ -175,7 +191,9 @@ $(function () {          //时间插件
 
             //模态窗口
             if (temppop) {
-                if (!isLast) {
+                if (!isLast) { 
+                	$('.next:eq(1) a').html("下一项");       //6.27修改
+                	$('.prev:eq(1) a').html('上一项'); 
                     var $next = currObj.parent().parent().next().find("input");
                     var temppop = $($next).attr("pop");
                     if ($next && temppop) {
@@ -184,30 +202,43 @@ $(function () {          //时间插件
                         $("#modal-wrap").css("top", num);
                         $($next).focus();
                         currObj = $($next);
-                        if (temppop == 5) {
+                        if (temppop == 5) {            //6.27修改
                             isLast = true;
                         }
                     }
                 } else {
-                    alert('已经是最后一项');
+                	$('.next:eq(0) a').html("最后一项");         //6.27修改
                 }
             }
 
             //主页处理
             if (mainpop) {
                 if (!isMainLast) {
+                	$('.prev:eq(0) a').html('上一项');       //6.27修改
+                	$('.next:eq(0) a').html("下一项");
                     var $next = $("#content input[mainpop=" + (parseInt(mainpop) + 1) + "]");
-                    if ($next) {
+                    if ($next && $next.length>0) {
                     	$($next).focus();
                         currObj = $($next);
-                    	var h = $(".form-horizontal .form-group:eq(0)").height();             
-                        $("#content").css({
-	                        "position": "relative",
-	                        "top": num
-                        });
+                    	var h = $(".form-horizontal .form-group:eq(0)").height();
+                    	var num = -(mainpop * (h-15));
+                    	if (mainpop == 1) {
+                        	$("#content").css({
+		                        "position": "relative",
+		                        "top": 0
+                        	});
+                        }else{
+                        	 $("#content").css({
+		                        "position": "relative",
+		                        "top": num
+                       		});
+                        }                                            
+                    }else{
+                    	
+                    	$('.next:eq(0) a').html("最后一项");
                     }
                 } else {
-                    alert('已经是最后一项');
+                	$('.next:eq(0) a').html("最后一项");
                 }
             }
         }
@@ -228,6 +259,8 @@ $(function () {          //时间插件
 		$("#modal-wrap").css("top", "0px");
 	});  
     $('#tiwen').click(function () {   //点击主页体温input隐藏键盘
+        $('.prev:eq(0) a').html('上一项');
+        $('.next:eq(0) a').html('下一项');
         $('.jianpan').hide();
         $("#content").css("top", "0px");
     });

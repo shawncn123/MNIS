@@ -19,6 +19,7 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/song.css"/>
 <link href="css/custom1.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="css/mobiscroll.css" />
 <link rel="stylesheet" href="css/mobiscroll_002.css" />
@@ -26,15 +27,15 @@
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link href="css/login-song.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="scripts/jquery-1.12.1.min.js"></script>
-<%-- <script src="js/tiwen-song.js" type="text/javascript"></script> --%>
-<script src="js/common.js" type="text/javascript"></script>
-<script src="js/mobiscroll_002.js"></script>
-<script src="js/mobiscroll_003.js"></script>
-<script src="js/mobiscroll_004.js"></script>
-<script src="js/mobiscroll_005.js"></script>
-<script src="js/mobiscroll.js"></script>
-<script src="js/timerpicker.js" type="text/javascript" charset="utf-8"></script>
+<script src="scripts/common.js" type="text/javascript"></script>
+<script src="scripts/mobiscroll_002.js"></script>
+<script src="scripts/mobiscroll_003.js"></script>
+<script src="scripts/mobiscroll_004.js"></script>
+<script src="scripts/mobiscroll_005.js"></script>
+<script src="scripts/mobiscroll.js"></script>
+<script src="scripts/timerpicker.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="scripts/viewjs.js"></script>
+<script src="scripts/song.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(function() {
 		// 绑定
@@ -104,6 +105,7 @@
 				注：这是一张图片
 			</div>
 		</div>
+		<%@ include file="menu-hushi.jsp" %>
 	</div>
 	<!-- 5-3小宋添加  新加图片背景  end-->
 

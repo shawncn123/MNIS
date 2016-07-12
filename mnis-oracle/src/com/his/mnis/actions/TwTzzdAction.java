@@ -93,29 +93,29 @@ public class TwTzzdAction extends ActionSupport implements RequestAware,SessionA
 	public String getBingRenTiZhengLuRuByBingQuId(){
 	
 		try {
-			VwBqbrZy vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
-//			VwBqbrZy vwBqbrZy = vwBqbrZyService.getBingRenXingXiByKey(v_key1,v_key2);
-//			request.put("bingrgetixingxi", vwBqbrZy);
-			
-			List<TwTzzd> twTzzds = twTzzdService.getBingRenTiZhengLuRuByBingQuId(vwBqbrZy.getBq());
-			
-			request.put("bingr_tizheng_luruxiang", twTzzds);
-			
-			List<VwTzzdTwLx> vwTzzdTwLxs = vwTzzdTwLxServiceImpl.getListsVwTzzdTwLx();
-			
-			request.put("tiwen_leixing", vwTzzdTwLxs);
-			
-			List<VwTzzdTwRcbz> vwTzzdTwRcbzs = vwTzzdTwRcbzServiceImpl.getListsVwTzzdTwRcbz();
-			
-			request.put("tiwen_rcbz", vwTzzdTwRcbzs);
-			
-			return SUCCESS;
-			
+			Object obj = session.get("bingrgetixingxi");
+			if(obj!=null){
+				VwBqbrZy vwBqbrZy = (VwBqbrZy)obj; 
+				List<TwTzzd> twTzzds = twTzzdService.getBingRenTiZhengLuRuByBingQuId(vwBqbrZy.getBq());
+				
+				request.put("bingr_tizheng_luruxiang", twTzzds);
+				
+				List<VwTzzdTwLx> vwTzzdTwLxs = vwTzzdTwLxServiceImpl.getListsVwTzzdTwLx();
+				
+				request.put("tiwen_leixing", vwTzzdTwLxs);
+				
+				List<VwTzzdTwRcbz> vwTzzdTwRcbzs = vwTzzdTwRcbzServiceImpl.getListsVwTzzdTwRcbz();
+				
+				request.put("tiwen_rcbz", vwTzzdTwRcbzs);
+				
+				return SUCCESS;
+			}else{
+				return ERROR;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ERROR;
 		}
-		
 	}
 
 	@Override

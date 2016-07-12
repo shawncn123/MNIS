@@ -11,6 +11,7 @@ import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer;
 
+import com.his.mnis.entities.BingRenSessionXingXi;
 import com.his.mnis.entities.TwTzdataTw;
 import com.his.mnis.entities.VwBqbrZy;
 import com.his.mnis.entities.VwRybq;
@@ -20,6 +21,10 @@ import com.opensymphony.xwork2.ActionSupport;
 public class TwTzdataTwAction extends ActionSupport implements SessionAware,
 		RequestAware {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String v_twlx;
 	private Double v_wendu;
 	private Double v_jwhwendu;
@@ -30,26 +35,17 @@ public class TwTzdataTwAction extends ActionSupport implements SessionAware,
 	private String v_time2;
 	private String v_time1;
 	
-	private OracleSequenceMaxValueIncrementer seqGenerator;
-	
-	public OracleSequenceMaxValueIncrementer getSeqGenerator() {
-		return seqGenerator;
+	private OracleSequenceMaxValueIncrementer wseq_id;
+
+	public OracleSequenceMaxValueIncrementer getWseq_id() {
+		return wseq_id;
 	}
 
-	public void setSeqGenerator(OracleSequenceMaxValueIncrementer seqGenerator) {
-		this.seqGenerator = seqGenerator;
+	public void setWseq_id(OracleSequenceMaxValueIncrementer wseq_id) {
+		this.wseq_id = wseq_id;
 	}
 
 	private TwTzdataTwService twTzdataTwService;
-//    private TwTzdataTw twTzdataTw; 
-    
-//	public TwTzdataTw getTwTzdataTw() {
-//		return twTzdataTw;
-//	}
-//
-//	public void setTwTzdataTw(TwTzdataTw twTzdataTw) {
-//		this.twTzdataTw = twTzdataTw;
-//	}
 
 	public TwTzdataTwService getTwTzdataTwService() {
 		return twTzdataTwService;
@@ -154,46 +150,62 @@ public class TwTzdataTwAction extends ActionSupport implements SessionAware,
 	
 	public String saveTiZhengLuru_TiWen(){
 		
-		Long v_jlid =  this.seqGenerator.nextLongValue();
+		Long v_jlid =  this.wseq_id.nextLongValue();
 		
 		VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
-//		System.out.println(vwRybq.getId());
-		VwBqbrZy vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
-		
-		TwTzdataTw twTzdataTw = new TwTzdataTw();
-		twTzdataTw.setJlid(v_jlid);
-		twTzdataTw.setCzyid(vwRybq.getRyid());
-		twTzdataTw.setCzyxm(vwRybq.getRyxm());
-		twTzdataTw.setKey1(vwBqbrZy.getKey1());
-		twTzdataTw.setKey2(vwBqbrZy.getKey2());
-		twTzdataTw.setYebh(0);
-		twTzdataTw.setRq(new Date());
-		twTzdataTw.setSj(v_time1);
-		twTzdataTw.setTwTw(v_wendu);
-		twTzdataTw.setTwTwJwh(v_jwhwendu);
-		twTzdataTw.setTwXl(v_xinlv);
-		twTzdataTw.setTwLx(v_twlx);
-		twTzdataTw.setTwHx(v_huxi);
-		twTzdataTw.setTwMb(v_maibo);
-		twTzdataTw.setTwRcbz(v_rcbz);
-		twTzdataTw.setTwRcsj(v_time2);
-		twTzdataTw.setStime(new Timestamp(System.currentTimeMillis()));
-		
-		try {
-			String proc_result = twTzdataTwService.doCreateTwTzdataTw(twTzdataTw, v_jlid);
-			if(proc_result.equals("1")){
-				inputStream = new ByteArrayInputStream("1".getBytes("UTF-8"));    //1 表示失败
-			}else{
-				inputStream = new ByteArrayInputStream("0".getBytes("UTF-8"));
+		Object obj = session.get("bingrgetixingxi");
+		short yeid = 0;
+		if(obj != null){
+			VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
+			Object obj_ye =  session.get("bingrgetixingxi_yinger");
+			if(obj_ye!=null){
+				BingRenSessionXingXi bingRenSessionXingXi = (BingRenSessionXingXi) obj_ye;
+				yeid = bingRenSessionXingXi.getYebh();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		
+			TwTzdataTw twTzdataTw = new TwTzdataTw();
+			twTzdataTw.setJlid(v_jlid);
+			twTzdataTw.setCzyid(vwRybq.getRyid());
+			twTzdataTw.setCzyxm(vwRybq.getRyxm());
+			twTzdataTw.setKey1(vwBqbrZy.getKey1());
+			twTzdataTw.setKey2(vwBqbrZy.getKey2());
+			twTzdataTw.setYebh(yeid);
+			twTzdataTw.setRq(new Date());
+			twTzdataTw.setSj(v_time1);
+			twTzdataTw.setTwTw(v_wendu);
+			twTzdataTw.setTwTwJwh(v_jwhwendu);
+			twTzdataTw.setTwXl(v_xinlv);
+			twTzdataTw.setTwLx(v_twlx);
+			twTzdataTw.setTwHx(v_huxi);
+			twTzdataTw.setTwMb(v_maibo);
+			twTzdataTw.setTwRcbz(v_rcbz);
+			twTzdataTw.setTwRcsj(v_time2);
+			twTzdataTw.setStime(new Timestamp(System.currentTimeMillis()));
+			
+			try {
+				String proc_result = twTzdataTwService.doCreateTwTzdataTw(twTzdataTw, v_jlid);
+				if(proc_result.equals("1")){
+					inputStream = new ByteArrayInputStream("1".getBytes("UTF-8"));    //1 表示失败
+				}else{
+					inputStream = new ByteArrayInputStream("0".getBytes("UTF-8"));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				try {
+					inputStream = new ByteArrayInputStream("1".getBytes("UTF-8"));
+				} catch (UnsupportedEncodingException e1) {
+					e1.printStackTrace();
+				}
+			}
+			return "ajax_return";
+		}else{
 			try {
 				inputStream = new ByteArrayInputStream("1".getBytes("UTF-8"));
-			} catch (UnsupportedEncodingException e1) {
-				e1.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			return "ajax_return";
 		}
-		return "ajax_return";
 	}
 }

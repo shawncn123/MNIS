@@ -23,4 +23,9 @@ public interface VSysMessService {
 	 */
 	public  List<VSysMessReader> getListMessageGuoQiWeiDu(String renyid,int pageno,int pagerows);
 	
+	/*
+	 * 根据参数用户id，未读参数状态 查询消息记录数
+	 */
+	public int getCountSysMessByRenyIdZhuangt(String renyid);
+	
 }

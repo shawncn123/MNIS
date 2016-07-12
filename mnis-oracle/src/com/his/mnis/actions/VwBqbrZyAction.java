@@ -14,9 +14,12 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.his.mnis.entities.BingRenSessionXingXi;
 import com.his.mnis.entities.VwBqbrZy;
+import com.his.mnis.entities.VwBqyeZy;
 import com.his.mnis.entities.VwRybq;
 import com.his.mnis.services.VwBqbrZyService;
+import com.his.mnis.services.VwBqyeZyService;
 import com.his.mnis.services.VwJbxxService;
 import com.his.mnis.services.VwRybqService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -48,7 +51,16 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 
 	private VwBqbrZyService vwBqbrZyService;
 	private VwJbxxService vwJbxxService;
+	private VwBqyeZyService vwBqyeZyService;
 	
+	public VwBqyeZyService getVwBqyeZyService() {
+		return vwBqyeZyService;
+	}
+
+	public void setVwBqyeZyService(VwBqyeZyService vwBqyeZyService) {
+		this.vwBqyeZyService = vwBqyeZyService;
+	}
+
 	public VwJbxxService getVwJbxxService() {
 		return vwJbxxService;
 	}
@@ -135,7 +147,6 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 			List<VwBqbrZy> vwBqbrZys = vwBqbrZyService.listBingqBingrByBingqId(bqid);
 			JSONArray jsonArray = JSONArray.fromObject(vwBqbrZys);
 			// JSONObject json = JSONObject.fromObject(vwBqbrZys);
-//		System.out.println(jsonArray);
 			HttpServletResponse response = ServletActionContext.getResponse();
 			response.setContentType("text/html;charset=UTF-8");
 			response.getWriter().write(jsonArray.toString());
@@ -180,7 +191,6 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 		session.put("dangqianbingqu_name", bqmc);
 		JSONArray jsonArray = JSONArray.fromObject(vwBqbrZys);
 		// JSONObject json = JSONObject.fromObject(vwBqbrZys);
-//		System.out.println(jsonArray);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=UTF-8");
 		response.getWriter().write(jsonArray.toString());
@@ -211,8 +221,28 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 	 */
 	public String getBingRenXingXiByKey(){
 		try {
-			session.put("bingrgetixingxi", vwBqbrZyService.getBingRenXingXiByKey(v_key1, v_key2));
+			VwBqbrZy vwBqbrZy = vwBqbrZyService.getBingRenXingXiByKey(v_key1, v_key2);
+			session.put("bingrgetixingxi",vwBqbrZy );
 			request.put("bingren_jbxx", vwJbxxService.getBingRenJiBenXxByKey(v_key1, v_key2));
+			Object obj = vwBqyeZyService.getListBingrYingr(v_key1, v_key2);
+			if(obj!=null){
+				List<VwBqyeZy> vwBqyeZys = (List<VwBqyeZy>)obj;
+				BingRenSessionXingXi bingRenSessionXingXi = new BingRenSessionXingXi();
+				bingRenSessionXingXi.setBah(vwBqbrZy.getBah());
+				bingRenSessionXingXi.setBq(vwBqbrZy.getBq());
+				bingRenSessionXingXi.setChw(vwBqbrZy.getChw());
+				bingRenSessionXingXi.setKey1(v_key1);
+				bingRenSessionXingXi.setKey2(v_key2);
+				bingRenSessionXingXi.setNl(vwBqbrZy.getNl());
+				bingRenSessionXingXi.setXb(vwBqbrZy.getXb());
+				bingRenSessionXingXi.setXm(vwBqbrZy.getXm());
+				bingRenSessionXingXi.setYebh(vwBqyeZys.get(0).getYebh());
+				bingRenSessionXingXi.setYexm(vwBqyeZys.get(0).getXm());
+				request.put("bingrenyexx",vwBqyeZys );
+				session.put("bingrgetixingxi_yinger",bingRenSessionXingXi );
+			}else{
+				session.put("bingrgetixingxi_yinger",null );
+			}
 			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -225,9 +255,14 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 	 */
 	public String getBingRenXingXiBySessionKey(){
 		try {
-			VwBqbrZy vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
-			request.put("bingren_jbxx", vwJbxxService.getBingRenJiBenXxByKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2()));
-			return SUCCESS;
+			Object obj = session.get("bingrgetixingxi");
+			if(obj!=null){
+				VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
+				request.put("bingren_jbxx", vwJbxxService.getBingRenJiBenXxByKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2()));
+				return SUCCESS;
+			}else{
+				return ERROR;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ERROR;
