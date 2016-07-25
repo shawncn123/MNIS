@@ -14,7 +14,7 @@
 	<title>修改密码</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="author" content="沈旭峰" />
+	<meta name="author" content="融汇国康" />
 	<meta name="keywords" content="移动护理信息系统" />
 	<meta name="description" content="修改密码,高大上的移动护理系统。" />
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
@@ -32,13 +32,6 @@
 			$("#success").hide();
 		});
 	</script>
-	<%-- <script type="text/javascript">
-		$(function() {$(document).ready(function() {
-			$("#queding").click(function() {
-				alert("testaaa");
-				});
-		})})
-	</script> --%>
 	<script type="text/javascript">
 		String.prototype.trim=function() {
     		return this.replace(/(^\s*)|(\s*$)/g,'');
@@ -83,13 +76,13 @@
 								$('#success').hide();
 								$('#prompt2').hide();
 								$('#prompt1').show();
+							}else if(data == "3"){
+								self.location = "views/login.jsp";
 							}else{
 								alert("密码修改失败，请稍候再试。");
 							}
 						});
 					};
-			
-					
 				});
 			}); 
 		});

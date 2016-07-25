@@ -201,16 +201,21 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 	 * 返回病人列表，通过session获取病区id，caozuoyuan， 再查询相应的病区病人列表，病区列表
 	 */
 	public String getListBingqBingrBySessionBingqId() throws IOException {
-		VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
-		System.out.println(vwRybq.getRyid());
-		String dangqianbqid = "";
-		dangqianbqid = session.get("dangqianbingqu_id").toString();
-		if( dangqianbqid != ""){
-			List<VwRybq> vwRybqs = vwRybqService.listBingQuByCaozyId(vwRybq.getRyid());
-			request.put("caozuoyuan_bingqu", vwRybqs);
-			List<VwBqbrZy> vwBqbrZys = vwBqbrZyService.listBingqBingrByBingqId(dangqianbqid);
-			request.put("bqry", vwBqbrZys);
-			return SUCCESS;
+		Object obj = session.get("caozuoyuan");
+		if(obj!=null){
+			VwRybq vwRybq = (VwRybq) obj;
+			System.out.println(vwRybq.getRyid());
+			String dangqianbqid = "";
+			dangqianbqid = session.get("dangqianbingqu_id").toString();
+			if( dangqianbqid != ""){
+				List<VwRybq> vwRybqs = vwRybqService.listBingQuByCaozyId(vwRybq.getRyid());
+				request.put("caozuoyuan_bingqu", vwRybqs);
+				List<VwBqbrZy> vwBqbrZys = vwBqbrZyService.listBingqBingrByBingqId(dangqianbqid);
+				request.put("bqry", vwBqbrZys);
+				return SUCCESS;
+			}else{
+				return ERROR;
+			}
 		}else{
 			return ERROR;
 		}
@@ -259,6 +264,7 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 			if(obj!=null){
 				VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
 				request.put("bingren_jbxx", vwJbxxService.getBingRenJiBenXxByKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2()));
+				request.put("action_name", "bingrengeti_jibenxingxi");
 				return SUCCESS;
 			}else{
 				return ERROR;

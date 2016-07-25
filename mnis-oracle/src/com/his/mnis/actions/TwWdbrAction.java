@@ -1,5 +1,6 @@
 package com.his.mnis.actions;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -152,60 +153,79 @@ public class TwWdbrAction extends ActionSupport implements RequestAware,
 	 * 返回待选择的病人列表，通过caozuoyuan_id  后面增加选择不同病区的情况
 	 */
 	public String getDaiXuanZheBingRenByCzryId() {
-		VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
-		System.out.println(vwRybq.getRyid());
-		String dangqianbqid = "";
-		dangqianbqid = session.get("dangqianbingqu_id").toString();
-		if (dangqianbqid != "") {
-			List<VwRybq> vwRybqs = vwRybqService.listBingQuByCaozyId(vwRybq.getRyid());
-			request.put("caozuoyuan_bingqu", vwRybqs);
-			List<DaiXuanZheBingren> myBingRens = twWdbrService.getDaiXuanZheBingRenByCzryIdBqId(vwRybq.getRyid(),dangqianbqid);
-			request.put("daixzbingrens", myBingRens);
-			return SUCCESS;
-		} else {
+		Object obj = session.get("caozuoyuan");
+		if(obj != null){
+			VwRybq vwRybq = (VwRybq) obj;
+			String dangqianbqid = "";
+			dangqianbqid = session.get("dangqianbingqu_id").toString();
+			if (dangqianbqid != "") {
+				List<VwRybq> vwRybqs = vwRybqService.listBingQuByCaozyId(vwRybq.getRyid());
+				request.put("caozuoyuan_bingqu", vwRybqs);
+				List<DaiXuanZheBingren> myBingRens = twWdbrService.getDaiXuanZheBingRenByCzryIdBqId(vwRybq.getRyid(),dangqianbqid);
+				request.put("daixzbingrens", myBingRens);
+				request.put("action_name", "woDeBingRenXuanZe");
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		}else{
 			return ERROR;
 		}
 	}
 
 	/*
-	 * 返回待选择的病人列表，通过caozuoyuan_id
+	 * 返回待选择的病人列表，通过caozuoyuan_id 传bqid参数
 	 */
-	public String getDaiXuanZheBingRenByCzryIdBqId() {
-		VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
-		List<DaiXuanZheBingren> myBingRens = twWdbrService
-				.getDaiXuanZheBingRenByCzryIdBqId(vwRybq.getRyid(), bqid);
-		request.put("daixzbingrens", myBingRens);
-		return SUCCESS;
+	public String getDaiXuanZheBingRenByCzryIdBqId() throws IOException {
+		Object obj = session.get("caozuoyuan");
+		if(obj!=null){
+			VwRybq vwRybq = (VwRybq) obj;
+			List<DaiXuanZheBingren> myBingRens = twWdbrService
+					.getDaiXuanZheBingRenByCzryIdBqId(vwRybq.getRyid(), bqid);
+			JSONArray jsonArray = JSONArray.fromObject(myBingRens);
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().write(jsonArray.toString());
+		}
+		return null;
 	}
 
 	public String addWdbrWithSelect(){
 		String dangqianbqid = "";
-		dangqianbqid = session.get("dangqianbingqu_id").toString();
-		try {
+		Object obj = session.get("caozuoyuan");
+		if(obj != null){
+			if(bqid!=""){
+				dangqianbqid = bqid;
+			}else{
+				dangqianbqid = session.get("dangqianbingqu_id").toString();
+			}
+			try {
 				List<TwWdbr> twWdbrs = new ArrayList<TwWdbr>();
-				VwRybq vwRybq = (VwRybq)session.get("caozuoyuan");
-				String dqbqid = (String) session.get("dangqianbingqu_id");
-				for(int i=0;i < chw.length;i++){
-					if(quedflag[i].equals("1")){
-						TwWdbrId twWdbrId = new TwWdbrId();
-						TwWdbr twWdbr = new TwWdbr();
-						twWdbrId.setHsid(vwRybq.getRyid());
-						twWdbrId.setBq(dqbqid);
-						twWdbrId.setChw(chw[i]);
-						twWdbr.setId(twWdbrId);
-						twWdbrs.add(twWdbr);
-						System.out.println("chw"+ i + ":" + chw[i]);
-						System.out.println("quedflag" + i + ":" + quedflag[i]);
-					}
-				}
-				twWdbrService.deleteMyBingRenByCzryIdBqId(vwRybq.getRyid(), dqbqid);
+				VwRybq vwRybq = (VwRybq) obj;
+						for(int i=0;i < chw.length;i++){
+							if(quedflag[i].equals("1")){
+								TwWdbrId twWdbrId = new TwWdbrId();
+								TwWdbr twWdbr = new TwWdbr();
+								twWdbrId.setHsid(vwRybq.getRyid());
+								twWdbrId.setBq(dangqianbqid);
+								twWdbrId.setChw(chw[i]);
+								twWdbr.setId(twWdbrId);
+								twWdbrs.add(twWdbr);
+							}
+						}
+				twWdbrService.deleteMyBingRenByCzryIdBqId(vwRybq.getRyid(), dangqianbqid);
 				twWdbrService.addWdbrWithSelect(twWdbrs);
+				List<VwRybq> vwRybqs = vwRybqService.listBingQuByCaozyId(vwRybq.getRyid());
+				request.put("caozuoyuan_bingqu", vwRybqs);
 				List<DaiXuanZheBingren> myBingRens = twWdbrService.getDaiXuanZheBingRenByCzryIdBqId(vwRybq.getRyid(),dangqianbqid);
 				request.put("daixzbingrens", myBingRens);
 				request.put("datasaveflag", 1);
 				return SUCCESS;
-		} catch (Exception e) {
-			request.put("datasaveflag", 0);
+			} catch (Exception e) {
+				request.put("datasaveflag", 0);
+				return ERROR;
+			}
+		}else{
 			return ERROR;
 		}
 	}
@@ -214,16 +234,45 @@ public class TwWdbrAction extends ActionSupport implements RequestAware,
 	 * 返回我的病人－住院病人信息列表，通过病区id，caozuoyuan_id
 	 */
 	public String getMyZhuYuanBingRenByCzryIdBqId() {
-		VwRybq hushi = (VwRybq) session.get("caozuoyuan");
-		String vhsid = hushi.getRyid();
-		String dqbqid = session.get("dangqianbingqu_id").toString();
-		List<VwBqbrZy> vwBqbrZys = vwBqbrZyService.listMyBingrByBqIdHsId(dqbqid, vhsid);
-		if(vwBqbrZys.size()>0){
-			request.put("bqry", vwBqbrZys);
-			return SUCCESS;
-		}else {
+		Object obj = session.get("caozuoyuan");
+		if(obj!=null){
+			VwRybq hushi = (VwRybq) obj;
+			String vhsid = hushi.getRyid();
+			String dqbqid = "";
+			if(bqid!="" && bqid!=null){
+				dqbqid = bqid;
+			}else{
+				dqbqid = session.get("dangqianbingqu_id").toString();
+			}
+			List<VwRybq> vwRybqs = vwRybqService.listBingQuByCaozyId(hushi.getRyid());
+			request.put("caozuoyuan_bingqu", vwRybqs);
+			List<VwBqbrZy> vwBqbrZys = vwBqbrZyService.listMyBingrByBqIdHsId(dqbqid, vhsid);
+			if(vwBqbrZys.size()>0){
+				request.put("bqry", vwBqbrZys);
+				request.put("action_name", "wodebingren");
+				return SUCCESS;
+			}else {
+				return ERROR;
+			}
+		}else{
 			return ERROR;
 		}
+	}
+	
+	/*
+	 * 返回病人列表，通过caozuoyuan_id 选择的bqid参数--选择病区后ajax查询数据
+	 */
+	public String getWoDeBingRenByCzryIdBqId() throws IOException {
+		Object obj = session.get("caozuoyuan");
+		if(obj!=null){
+			VwRybq vwRybq = (VwRybq) obj;
+			List<VwBqbrZy> vwBqbrZys = vwBqbrZyService.listMyBingrByBqIdHsId(bqid,vwRybq.getRyid());
+			JSONArray jsonArray = JSONArray.fromObject(vwBqbrZys);
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().write(jsonArray.toString());
+		}
+		return null;
 	}
 	
 	private Map<String, Object> session;

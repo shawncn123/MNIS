@@ -1,19 +1,44 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 	<div id="footer">
-		<!-- <div class="plug-div">
-			<div class="plug-phone">
-				<div class="plug-menu themeStyle">
-					<a style="top: 0px;left: 0px;background: url(images/back.png) no-repeat center center;
-                    background-size: 24px auto;display: block;position: absolute;width: 50px;
-                    height: 44px;text-indent: -9999px;margin: -5px;padding: 0;" href="javascript:history.go(-1)"></a>
+		<!-- 模态框（Modal）start -->
+	<input type="text" class="form-control" id="smName"
+						placeholder="扫腕带测试" onfocus="javascript:this.value='';"
+						oninput="allsaowandai_Function()" />
+	<div class="modal fade" id="moduleallswd" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" id="modalWrap"  style="width: 94%;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">病人信息</h4>
+				</div>
+				<div class="modal-body" id="modal_prxx">
+					<p>
+						姓名：<strong style="font-size: 20px;"></strong>
+					</p>
+					<p>
+						床位号：<strong style="font-size: 20px;"></strong>
+					</p>
+					<p>
+						性别：<strong style="font-size: 20px;"></strong>
+					</p>
+					<p>
+						年龄：<strong style="font-size: 20px;"></strong>
+					</p>
+				</div>
+				<div class="modal-footer" id="motal_f">
+					<button type="button" class="btn pull-left btn-primary">
+						确定</button>
+					<button type="button" id="quxiao" class="btn btn-default"
+						data-dismiss="modal">取消</button>
 				</div>
 			</div>
-		</div> -->
-		<div class="copyright">
-			这里是底部信息<br>声明：目前是测试版本,图标含义与业务功能模块可能不匹配。
 		</div>
+	</div>
+	<!-- 模态框（Modal）end -->
+	
 	 <!--扫腕带弹出框   start-->
-		<input type="hidden"  value="" id="smName" data-toggle="modal" data-target="#module"> 	
+	 
+	<!-- 	<input type="hidden"  value="" id="smName" data-toggle="modal" data-target="#module"> 	
 		<div class="modal fade" id="module" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog" id="modalWrap" style="width: 94%;">
 				<div class="modal-content">
@@ -29,21 +54,7 @@
 							<div class="col-xs-6">
 								<span>李家禄</span>
 							</div>
-							<!-- <div class="col-xs-3">
-								<span>chuangwei</span>
-							</div>
-							<div class="col-xs-3">
-								<span>男</span>
-							</div> -->
 						</div>
-					<!-- <div class="row">
-						<div class="col-xs-3">
-							<span>年龄:</span>
-						</div>
-						<div class="col-xs-9">
-							<span>84岁</span>
-						</div>
-					</div> -->
 						<div class="row">
 							<div class="col-xs-4">
 								<span>病案号:</span>
@@ -51,47 +62,42 @@
 							<div class="col-xs-8">
 								<span>1535400</span>
 							</div>
-							<!-- <div class="col-xs-4">
-								<span>第一次住院</span>
-							</div> -->
 						</div>
-						<!-- <div class="row">
-							<div class="col-xs-3">
-								<span>婚姻:</span>
-							</div>
-							<div class="col-xs-3">
-								<span>已婚</span>
-							</div>
-							<div class="col-xs-3">
-								<span>国籍</span>
-							</div>
-							<div class="col-xs-3">
-								<span>中国</span>
-							</div>
-						</div> -->
-						<!-- <div class="row">
-							<div class="col-xs-3">
-								<span>民族:</span>
-							</div>
-							<div class="col-xs-9">
-								<span>汉族</span>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-3">
-								<span>身份证号:</span>
-							</div>
-							<div class="col-xs-9">
-								<span>110101192501244510</span>
-							</div>
-						</div> -->
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
 						<button type="button" class="btn btn-primary">确定</button>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<!--扫腕带弹出框  end-->
 		</div>
 	</div>
+	<script type="text/javascript">
+	function allsaowandai_Function() {
+		var val = $("#smName").val();/* var val_text = $(this).text(); */
+		var url = "chabingren_byWanDai";
+		var args = {
+			"wandaixx" : val/* ,"time" : new Date() */};
+			$.post(url,args,function(data) {
+				if (data != "") {
+					d = eval("(" + data + ")");
+					var a = "<p>姓名：<strong style='font-size: 20px;'>" + d.br_name
+					+ "</strong></p>"
+					+ "<p>床位号：<strong style='font-size: 20px;'>"
+					+ d.br_chw + "</strong></p>"
+					+ "<p>性别：<strong style='font-size: 20px;'>" + d.br_xb + "</strong></p>"
+					+ "<p>年龄：<strong style='font-size: 20px;'>" + d.br_age + "</strong></p>"
+					$("#modal_prxx")[0].innerHTML = a;
+					$("#motal_f")[0].innerHTML = "<a href='bingreng_yewumokuai?v_key1=" + d.br_key1 + "&v_key2="
+					+ d.br_key2 + "' class='btn pull-left btn-primary'>确定</a>"
+					+ "<button type='button' id='quxiao' class='btn btn-default' data-dismiss='modal'>取消</button>"
+					$('#moduleallswd').modal('show');
+				} else {
+					$("#modal_prxx")[0].innerHTML = "<p>没有相关病人信息</p>";
+					$("#motal_f")[0].innerHTML = "<button type='button' id='quxiao' class='btn btn-default' data-dismiss='modal'>确定</button>";
+					$('#moduleallswd').modal('show');
+				}
+			});
+	}
+	</script>

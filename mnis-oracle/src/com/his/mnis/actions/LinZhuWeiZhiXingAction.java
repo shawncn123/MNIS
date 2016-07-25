@@ -44,19 +44,23 @@ public class LinZhuWeiZhiXingAction extends ActionSupport implements
 	}
 
 	public String getListMyBingRenWeiZxlz(){
-		VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
-		String vhsid = vwRybq.getRyid();
-		String proc_result = linZhuWeiZhiXingService.createMyBingRenYiZhu(vhsid);
-		if(proc_result.equals("1")){
-			return ERROR;
-		}
-		List<TwBryzzx> twBryzzxs = linZhuWeiZhiXingService.getListMyBingRenWeiZxlz(vhsid);
-//		List<LinZhuWeiZhiXingRemodel> linZhuWeiZhiXingRemodels = linZhuWeiZhiXingService.getListBrYzRemodel(vwBryzs, vhsid);
-//		request.put("linZhu_WeiZhiXing", linZhuWeiZhiXingRemodels);
-		if(twBryzzxs!=null && twBryzzxs.size()>0){
-			List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
-			request.put("linZhu_WeiZhiXing", twBryzzxRemodels);
-			return SUCCESS;
+		Object obj = session.get("caozuoyuan");
+		if(obj != null){
+			VwRybq vwRybq = (VwRybq) obj;
+			String vhsid = vwRybq.getRyid();
+			String proc_result = linZhuWeiZhiXingService.createMyBingRenYiZhu(vhsid);
+			if(proc_result.equals("1")){
+				return ERROR;
+			}
+			List<TwBryzzx> twBryzzxs = linZhuWeiZhiXingService.getListMyBingRenWeiZxlz(vhsid);
+			if(twBryzzxs!=null && twBryzzxs.size()>0){
+				List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
+				request.put("linZhu_WeiZhiXing", twBryzzxRemodels);
+				request.put("action_name", "linzhuweizhixing");
+				return SUCCESS;
+			}else{
+				return ERROR;
+			}
 		}else{
 			return ERROR;
 		}

@@ -57,7 +57,7 @@
 </head>
 
 <body>
-	<%@ include file="header-nobaby.jsp"%>
+	<%@ include file="header-bingren.jsp"%>
 	<div class="row" style="margin: 0;">
 		<div class="col-xs-4" style="padding-left: 0;">
 			<div class="dropdown">

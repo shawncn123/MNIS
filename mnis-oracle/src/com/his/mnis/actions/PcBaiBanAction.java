@@ -34,12 +34,10 @@ public class PcBaiBanAction extends ActionSupport implements RequestAware {
 	
 		String vip =  ServletActionContext.getRequest().getRemoteAddr();
 		System.out.println("ip address:" + vip);
-//		vip = "192.1673185";
 		vip = "192.168.1.99";
 		List<BaiBanMoBan> baiBanMoBans = pcBaiBanService.getPcBaiBanMoBanByIp(vip);
 		
 		JSONArray jsonArray = JSONArray.fromObject(baiBanMoBans);
-		// JSONObject json = JSONObject.fromObject(vwBqbrZys);
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=UTF-8");
 		try {
@@ -48,10 +46,6 @@ public class PcBaiBanAction extends ActionSupport implements RequestAware {
 			e.printStackTrace();
 		}
 		return null;
-		
-//		List<String> xmneirongs = pcBaiBanService.getPcBaiBanNeiRongByBqidXmbm(vwBbMbbms, vip);
-//		request.put("baibaimoban", vwBbMbbms);
-//		return SUCCESS;
 	}
 	
 	public String xianShiPCBaiBanNeiRong(){

@@ -77,6 +77,7 @@ public class XuanJiaoAction extends ActionSupport implements RequestAware,
 				request.put("xuanjiaofl", vwXjFls);
 				List<XuanJiaoBingRenNeiRong> xuanJiaoBingRenNeiRongs = xuanJiaoService.getListXuanJiaoBingRenNeiRong(vwXjFls, twXjDms, twXjYws);
 				request.put("brxuanjiaonr", xuanJiaoBingRenNeiRongs);
+				request.put("action_name", "xuanjiaolist");
 				return SUCCESS;
 			}else{
 				return ERROR;
@@ -102,33 +103,37 @@ public class XuanJiaoAction extends ActionSupport implements RequestAware,
 	 * 保存确定宣教的数据
 	 */
 	public String addXuanJiaoQueDing(){
-		TwXjYw twXjYw = new TwXjYw();
-		Date dttime = new Date();
-//		Date dtdate = new Date();
-		VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
-		VwBqbrZy vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
-		twXjYw.setBq(vwBqbrZy.getBq());
-		twXjYw.setBz("");
-		twXjYw.setChw(vwBqbrZy.getChw());
-		twXjYw.setKey1(vwBqbrZy.getKey1());
-		twXjYw.setKey2(vwBqbrZy.getKey2());
-		twXjYw.setRq(dttime);
-		twXjYw.setStime(dttime);
-		twXjYw.setXjdmid(xjdmid);
-		twXjYw.setXjhsid(vwRybq.getRyid());
-		twXjYw.setXjhsxm(vwRybq.getRyxm());
-		twXjYw.setYebh((short)0);
-		
-		try {
-			int res = xuanJiaoService.addXuanJiaoQueDing(twXjYw);
-			if(res==1){
-				inputStream = new ByteArrayInputStream("1".getBytes("UTF-8"));
-			}else{
-				inputStream = new ByteArrayInputStream("0".getBytes("UTF-8"));
+		Object obj = session.get("caozuoyuan");
+		if(obj != null){
+			TwXjYw twXjYw = new TwXjYw();
+			Date dttime = new Date();
+			VwRybq vwRybq = (VwRybq) obj;
+			VwBqbrZy vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
+			twXjYw.setBq(vwBqbrZy.getBq());
+			twXjYw.setBz("");
+			twXjYw.setChw(vwBqbrZy.getChw());
+			twXjYw.setKey1(vwBqbrZy.getKey1());
+			twXjYw.setKey2(vwBqbrZy.getKey2());
+			twXjYw.setRq(dttime);
+			twXjYw.setStime(dttime);
+			twXjYw.setXjdmid(xjdmid);
+			twXjYw.setXjhsid(vwRybq.getRyid());
+			twXjYw.setXjhsxm(vwRybq.getRyxm());
+			twXjYw.setYebh((short)0);
+			
+			try {
+				int res = xuanJiaoService.addXuanJiaoQueDing(twXjYw);
+				if(res==1){
+					inputStream = new ByteArrayInputStream("1".getBytes("UTF-8"));
+				}else{
+					inputStream = new ByteArrayInputStream("0".getBytes("UTF-8"));
+				}
+				return "ajax-success";
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "ajax-error";
 			}
-			return "ajax-success";
-		} catch (Exception e) {
-			e.printStackTrace();
+		}else{
 			return "ajax-error";
 		}
 	}

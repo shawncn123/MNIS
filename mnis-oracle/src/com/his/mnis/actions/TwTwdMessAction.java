@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringBufferInputStream;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -51,7 +52,6 @@ public class TwTwdMessAction extends ActionSupport implements RequestAware,Sessi
 	}
 	//  此方法好想没用上，需检查
 	public String getTwTwdMessFile(){
-		System.out.println("action e");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 		Date date = null;
 		try {
@@ -61,8 +61,11 @@ public class TwTwdMessAction extends ActionSupport implements RequestAware,Sessi
 		}
 		VwBqbrZy vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
 		String fname = twTwdMessService.getOutStreamOfTiWenDan(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(), (short)0, date);
-		System.out.println(fname);
-		inputStream = new StringBufferInputStream(fname); 
+		try {
+			inputStream = new ByteArrayInputStream(fname.getBytes("UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} 
 		return "ajax_file";
 	}
 /*
@@ -153,14 +156,20 @@ public class TwTwdMessAction extends ActionSupport implements RequestAware,Sessi
 	 * 获取病人体温单时间段
 	 */
 	public String getTiWenDanShiJianDuan() throws ParseException{
-		VwBqbrZy vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
-		String sdate1 = vwBqbrZy.getRyrq();
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");//小写的mm表示的是分钟  
-		Date v_date1 = sdf.parse(sdate1); 
-		List<TiWenDanRiQiDuan> tiWenDanRiQiDuans = twTwdMessService.getListRqBingRenTiWenJiLu(v_date1);
-		if(tiWenDanRiQiDuans.size()>0 && tiWenDanRiQiDuans!=null){
-			request.put("BingrenTiWenJiLu_shijianduan", tiWenDanRiQiDuans);
-			return SUCCESS;
+		Object obj = session.get("bingrgetixingxi");
+		if(obj != null){
+			VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
+			String sdate1 = vwBqbrZy.getRyrq();
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");//小写的mm表示的是分钟  
+			Date v_date1 = sdf.parse(sdate1); 
+			List<TiWenDanRiQiDuan> tiWenDanRiQiDuans = twTwdMessService.getListRqBingRenTiWenJiLu(v_date1);
+			if(tiWenDanRiQiDuans.size()>0 && tiWenDanRiQiDuans!=null){
+				request.put("BingrenTiWenJiLu_shijianduan", tiWenDanRiQiDuans);
+				request.put("action_name", "bingrgeti_TiWenDan");
+				return SUCCESS;
+			}else{
+				return ERROR;
+			}
 		}else{
 			return ERROR;
 		}

@@ -91,12 +91,20 @@
 								<div class="col-xs-12">
 									<s:iterator value="twBryzzxRemodelSubs" >
 										<div class="btn-group" data-toggle="buttons">
-											<s:if test="zxflag=='1'">
+											<%-- <s:if test="zxflag=='1'">
 												<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" disabled="disabled">${sjd}</button> 
 											</s:if>
 											<s:else>
 												<input value="${groupxh }" style="display:none;"/>
 												<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal">${sjd}</button>
+												<input value="yzmc_<s:property value="#status.index"/>" style="display:none;"/>
+											</s:else> --%>
+											<s:if test="zxflag=='1'">
+												<button type="button" class="btn btn-primary moduleTime"  disabled="disabled">${sjd}</button> 
+											</s:if>
+											<s:else>
+												<input value="${groupxh }" style="display:none;"/>
+												<button type="button" class="btn btn-primary moduleTime">${sjd}</button>
 												<input value="yzmc_<s:property value="#status.index"/>" style="display:none;"/>
 											</s:else>
 										</div>

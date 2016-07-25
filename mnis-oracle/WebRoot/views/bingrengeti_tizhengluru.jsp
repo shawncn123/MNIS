@@ -14,7 +14,7 @@
 		<title>体征录入</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="author" content="沈旭峰" />
+		<meta name="author" content="融汇国康" />
 		<meta name="keywords" content="移动护理信息系统" />
 		<meta name="description" content="病人体征录入,高大上的移动护理系统。" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />		
@@ -124,15 +124,15 @@
 							<tbody>
 								<tr>
 									<td style="border: none; width: 25%; padding: 2px;  position: relative;">
-									<a href="javascript:void(0);" style="display: block;">
-										<div style="position:relative; width:100%; height:100%;  left:0; top:0;">
-											<img src="images/brxxxx_header_1.png" style="left:0; top:0;" height="100%" width="100%">
-										</div>
-										<span style="display: block; text-align: center; color: #fff; font-size: 2.2rem; z-index: 2; position: absolute; top: 12%; left: 0; width:100%; height:100%;" id="xxshu"></span>
-									</a>
-								</td>
+										<a href="mymessage?pageno=1" style="display: block;">
+											<div style="position:relative; width:100%; height:100%;  left:0; top:0;">
+												<img src="images/brxxxx_header_1.png" style="left:0; top:0;" height="100%" width="100%">
+											</div>
+											<span style="display: block; text-align: center; color: #fff; font-size: 2.2rem; z-index: 2; position: absolute; top: 12%; left: 0; width:100%; height:100%;" id="xxshu"></span>
+										</a>
+									</td>
 									<td style="border: none; padding: 2px;">
-										<a href="javascript:void(0); " class="text-center "> <img src="images/brxxxx_header_2.png " class="img-responsive " alt="刷新 " /> </a>
+										<a href="${action_name }" class="text-center "> <img src="images/brxxxx_header_2.png " class="img-responsive " alt="刷新 " /> </a>
 									</td>
 									<td style="border: none; padding: 2px;">
 										<a href="bingqbr_bysessionbingqid" class="text-center "> <img src="images/brxxxx_header_3.png " class="img-responsive " alt="病人列表 " /> </a>
@@ -325,7 +325,7 @@
 		</div>
 		<!-- 模态框 end-->
 		<!-- 键盘 start-->
-		<div class="container navbar-fixed-bottom jianpan" id="jianpan">
+		<div class="container navbar-fixed-bottom jianpan" id="jianpan">           
 			<div class="row bg-primary">
 				<div class="col-xs-5 text-left" style="padding: 1% 0 0 2.5%;">
 					<a href="javascript:void(0)" style="color: #000;">数字</a>
@@ -340,7 +340,9 @@
 					<a href="javascript:void(0)" class="caret" style="color: #fff;"></a>
 				</div>
 			</div>
-			<div class="row" style="padding:0 1%; background-color: #C2BEC0;">
+							
+			<!--7.13修改（431行添加id、448和454行添加class和修改文字）-->
+			<div class="row" style="padding:0 1%; background-color: #C2BEC0;" id="number">    
 				<div style="padding:0 .5%;">
 					<button type="button" class="btn btn-default" value="1">1</button>
 					<button type="button" class="btn btn-default" value="2">2</button>
@@ -357,13 +359,41 @@
 					<button type="button" class="btn btn-default" value="7">7</button>
 					<button type="button" class="btn btn-default" value="8">8</button>
 					<button type="button" class="btn btn-default" value="9">9</button>
-					<button type="button" class="btn btn-info" value="/" style="color: #000;">╱</button>
+					<button type="button" class="btn btn-info numberBtn" style="color: #000;">数字</button>
 				</div>
 				<div style="padding:0 .5%; margin-bottom: 1.5%;">
 					<button type="button" class="btn btn-info" style="color: #000;" value=".">.</button>
 					<button type="button" class="btn btn-default" value="0">0</button>
 					<button type="button" class="btn btn-default" value="00">00</button>
-					<button type="button" class="btn btn-info" style="color: #000;" operation="hide">↖</button>
+					<button type="button" class="btn btn-info characterBtn" style="color: #000;">字符</button>
+				</div>
+			</div>
+			
+			<!--7.13增加（特殊字符键盘）-->
+			<div class="row" style="padding:0 1%; background-color: #C2BEC0;" id="character">
+				<div style="padding:0 .5%;">
+					<button type="button" class="btn btn-default" value="※ ">※</button>
+					<button type="button" class="btn btn-default" value="☆">☆</button>
+					<button type="button" class="btn btn-default" value="g">g</button>
+					<button type="button" class="btn btn-info" style="color: #000;" operation="reduce">←</button>
+				</div>
+				<div style="padding:0 .5%;">
+					<button type="button" class="btn btn-default" value="R">R</button>
+					<button type="button" class="btn btn-default" value="C">C</button>
+					<button type="button" class="btn btn-default" value="C＋">C＋</button>
+					<button type="button" id="del" class="btn btn-info" style="color: #000;" operation="del">Del</button>
+				</div>
+				<div style="padding:0 .5%;">
+					<button type="button" class="btn btn-default" value="/E">/E</button>
+					<button type="button" class="btn btn-default" value="0/E">0/E</button>
+					<button type="button" class="btn btn-default" value="1/E">1/E</button>
+					<button type="button" class="btn btn-info numberBtn" style="color: #000;">数字</button>
+				</div>
+				<div style="padding:0 .5%; margin-bottom: 1.5%;">
+					<button type="button" class="btn btn-info" style="color: #000;" value="卧床">卧床</button>
+					<button type="button" class="btn btn-default" value="0">0</button>
+					<button type="button" class="btn btn-default" value="/">/</button>
+					<button type="button" class="btn btn-info characterBtn" style="color: #000;">字符</button>
 				</div>
 			</div>
 		</div>
@@ -388,7 +418,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-xs-4" id="jianpan-left" style="padding:0 1% .5% 1%; background-color: #EEEEEE; ">
+				<div class="col-xs-4" id="jianpan-left" style="padding:0 1% .5% 1%; background-color: #EEE; ">
 					<div style="padding:0 .5%;">
 						<button type="button" class="btn btn-default" value="35.">35.</button>
 						<button type="button" class="btn btn-default" value="36.">36.</button>
@@ -406,7 +436,8 @@
 						<button type="button" class="btn btn-default" value="42.">42.</button>
 					</div>
 				</div>
-				<div class="col-xs-8" id="jianpan-right" style="padding:0 1%; background-color: #C2BEC0; ">
+				<!--7.13修改（543和549行添加class和修改文字）-->
+				<div class="col-xs-8" id="jianpan-right1" style="padding:0 1%; background-color: #C2BEC0; ">
 					<div style="padding:0 .5%;">
 						<button type="button" class="btn btn-default" value="1">1</button>
 						<button type="button" class="btn btn-default" value="2">2</button>
@@ -423,13 +454,40 @@
 						<button type="button" class="btn btn-default" value="7">7</button>
 						<button type="button" class="btn btn-default" value="8">8</button>
 						<button type="button" class="btn btn-default" value="9">9</button>
-						<button type="button" class="btn btn-info" style="color: #000;">╱</button>
+						<button type="button" class="btn btn-info numberBtn1" style="color: #000;">数字</button>
 					</div>
 					<div style="padding:0 .5%; margin-bottom: 1.5%;">
 						<button type="button" class="btn btn-info" style="color: #000;" value=".">.</button>
 						<button type="button" class="btn btn-default" value="0">0</button>
 						<button type="button" class="btn btn-default" value="00">00</button>
-						<button type="button" class="btn btn-info" style="color: #000;" operation="hide">↖</button>
+						<button type="button" class="btn btn-info characterBtn1" style="color: #000;">字符</button>
+					</div>
+				</div>
+				<!--7.13增加（特殊字符键盘）-->
+				<div class="col-xs-8" id="jianpan-right2" style="padding:0 1%; background-color: #C2BEC0; ">
+					<div style="padding:0 .5%;">
+						<button type="button" class="btn btn-default" value="1">※</button>
+						<button type="button" class="btn btn-default" value="☆">☆</button>
+						<button type="button" class="btn btn-default" value="g">g</button>
+						<button type="button" class="btn btn-info" style="color: #000;" operation="reduce">←</button>
+					</div>
+					<div style="padding:0 .5%;">
+						<button type="button" class="btn btn-default" value="R">R</button>
+						<button type="button" class="btn btn-default" value="C">C</button>
+						<button type="button" class="btn btn-default" value="C＋">C＋</button>
+						<button type="button" class="btn btn-info" style="color: #000;" operation="del">Del</button>
+					</div>
+					<div style="padding:0 .5%;">
+						<button type="button" class="btn btn-default" value="/E">/E</button>
+						<button type="button" class="btn btn-default" value="0/E">0/E</button>
+						<button type="button" class="btn btn-default" value="1/E">1/E</button>
+						<button type="button" class="btn btn-info numberBtn1" style="color: #000;">数字</button>
+					</div>
+					<div style="padding:0 .5%; margin-bottom: 1.5%;">
+						<button type="button" class="btn btn-info" style="color: #000;" value="卧床">卧床</button>
+						<button type="button" class="btn btn-default" value="0">0</button>
+						<button type="button" class="btn btn-default" value="/">/</button>
+						<button type="button" class="btn btn-info characterBtn1" style="color: #000;">字符</button>
 					</div>
 				</div>
 			</div>

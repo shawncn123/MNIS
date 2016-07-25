@@ -29,13 +29,13 @@
 					<tbody>
 						<tr>
 							<td style="border: none; width: 25%; height: 40%; padding: 2px;  position: relative;">
-								<a href="javascript:void(0);" style="display: block;">
+								<a href="mymessage?pageno=1" style="display: block;">
 									<img style="width: 100%; height: 100%;"  src="images/brxxxx_header_1.png"/>
 									<span style="display: block; text-align: center; color: #fff; font-size: 2rem; z-index: 2; position: absolute; top: 10PX; left: 0; width:100%; height:100%;" id="xxshu"></span>
 								</a>
 							</td>
 							<td style="border: none; padding: 2px;">
-								<a href="javascript:void(0); " class="text-center "> <img src="images/brxxxx_header_2.png " class="img-responsive " alt="刷新 " /> </a>
+								<a href="${action_name} " class="text-center "> <img src="images/brxxxx_header_2.png " class="img-responsive " alt="刷新 " /> </a>
 							</td>
 							<td style="border: none; padding: 2px;">
 								<a href="bingqbr_bysessionbingqid" class="text-center "> <img src="images/brxxxx_header_3.png " class="img-responsive " alt="病人列表 " /> </a>
@@ -62,7 +62,7 @@
 							<tbody>
 								<tr>
 									<td style="border: none; width: 25%; padding: 2px;  position: relative;">
-									<a href="javascript:void(0);" style="display: block;">
+									<a href="mymessage?pageno=1" style="display: block;">
 										<div style="position:relative; width:100%; height:100%;  left:0; top:0;">
 											<img src="images/brxxxx_header_1.png" style="left:0; top:0;" height="100%" width="100%">
 										</div>
@@ -70,7 +70,7 @@
 									</a>
 								</td>
 									<td style="border: none; padding: 2px;">
-										<a href="javascript:void(0); " class="text-center "> <img src="images/brxxxx_header_2.png " class="img-responsive " alt="刷新 " /> </a>
+										<a href="${action_name}" class="text-center "> <img src="images/brxxxx_header_2.png " class="img-responsive " alt="刷新 " /> </a>
 									</td>
 									<td style="border: none; padding: 2px;">
 										<a href="bingqbr_bysessionbingqid" class="text-center "> <img src="images/brxxxx_header_3.png " class="img-responsive " alt="病人列表 " /> </a>

@@ -10,7 +10,7 @@
         <id name="jlid" type="java.lang.Long">
             <column name="JLID" precision="10" scale="0" />
             <!-- <generator class="native" /> -->
-            <generator class="sequence"> <param name="sequence">wseq_id</param></generator>
+            <generator class="sequence"> <param name="wseq_id">wseq_id</param></generator>
         </id>
         <property name="stime" type="java.sql.Timestamp">
             <column name="STIME" length="7" not-null="true" />
@@ -27,7 +27,7 @@
         <property name="key2" type="java.lang.Integer">
             <column name="KEY2" precision="5" scale="0" not-null="true" />
         </property>
-        <property name="yebh" type="java.lang.Integer">
+        <property name="yebh" type="java.lang.Short">
             <column name="YEBH" precision="1" scale="0" not-null="true" />
         </property>
         <property name="rq" type="date">

@@ -55,22 +55,27 @@ public class ShuYeZhiXingAction extends ActionSupport implements RequestAware,
 		
 		/*先给医嘱执行分类 yzzxfl 赋值 ‘01’*/
 		yzzxfl="01";
-		VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
-		String vhsid = vwRybq.getRyid();
-		System.out.println("hsid="+vhsid);
-		String proc_result = shuYeZhiXingService.createMyBingRenZhiXingYiZhuByHsid(vhsid);
-		if(proc_result.equals("1")){
-			return ERROR;
-		}
-		List<TwBryzzx> twBryzzxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, yzzxfl);
-		if(twBryzzxs!=null && twBryzzxs.size()>0){
-			List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
-			request.put("shuye_yizhu_zhixing", twBryzzxRemodels);
-			return SUCCESS;
+		Object obj = session.get("caozuoyuan");
+		if(obj != null){
+			VwRybq vwRybq = (VwRybq) obj;
+			String vhsid = vwRybq.getRyid();
+			System.out.println("hsid="+vhsid);
+			String proc_result = shuYeZhiXingService.createMyBingRenZhiXingYiZhuByHsid(vhsid);
+			if(proc_result.equals("1")){
+				return ERROR;
+			}
+			List<TwBryzzx> twBryzzxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, yzzxfl);
+			if(twBryzzxs!=null && twBryzzxs.size()>0){
+				List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
+				request.put("shuye_yizhu_zhixing", twBryzzxRemodels);
+				request.put("action_name", "shuyezhixing");
+				return SUCCESS;
+			}else{
+				return ERROR;
+			}
 		}else{
 			return ERROR;
 		}
-		
 	}
 	
 	private Map<String,Object> request;

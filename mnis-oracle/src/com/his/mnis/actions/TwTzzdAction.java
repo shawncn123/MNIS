@@ -107,6 +107,8 @@ public class TwTzzdAction extends ActionSupport implements RequestAware,SessionA
 				List<VwTzzdTwRcbz> vwTzzdTwRcbzs = vwTzzdTwRcbzServiceImpl.getListsVwTzzdTwRcbz();
 				
 				request.put("tiwen_rcbz", vwTzzdTwRcbzs);
+				String action_str = "tizhengluru?v_key1=" + vwBqbrZy.getKey1().toString() + "&v_key2=" + vwBqbrZy.getKey2().toString();
+				request.put("action_name", action_str);
 				
 				return SUCCESS;
 			}else{

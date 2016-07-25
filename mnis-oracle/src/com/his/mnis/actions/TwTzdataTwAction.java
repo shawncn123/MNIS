@@ -152,10 +152,10 @@ public class TwTzdataTwAction extends ActionSupport implements SessionAware,
 		
 		Long v_jlid =  this.wseq_id.nextLongValue();
 		
-		VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
 		Object obj = session.get("bingrgetixingxi");
 		short yeid = 0;
 		if(obj != null){
+			VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
 			VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
 			Object obj_ye =  session.get("bingrgetixingxi_yinger");
 			if(obj_ye!=null){
@@ -202,7 +202,6 @@ public class TwTzdataTwAction extends ActionSupport implements SessionAware,
 			try {
 				inputStream = new ByteArrayInputStream("1".getBytes("UTF-8"));
 			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return "ajax_return";

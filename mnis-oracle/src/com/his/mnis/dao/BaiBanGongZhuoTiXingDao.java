@@ -22,7 +22,7 @@ public class BaiBanGongZhuoTiXingDao extends BaseDao {
 	}
 
 	/*
-	 * 按床位查项目相关显示内容 PW_Get_hlxmnr_chw
+	 * 按床位查项目相关显示内容 PW_Get_hlxmnr_chw 
 	 */
 	public String callProcedurePwGetHlxmnrChw(String bqid, String chw, String xmbm) {
 
@@ -62,4 +62,22 @@ public class BaiBanGongZhuoTiXingDao extends BaseDao {
 		}
 	}
 
+	/*
+	 * 按床位查项目相关显示内容 PW_Get_hlxmnr_chw2 不需要循环项目查询
+	 */
+	public String callProcedurePwGetHlxmnrChw2(String bqid, String chw) {
+
+		ProcedureCall pc = getSession().createStoredProcedureCall("PW_Get_hlxmnr_chw2");
+		pc.registerParameter("in_bq", String.class, ParameterMode.IN).bindValue(bqid);
+		pc.registerParameter("in_chw", String.class, ParameterMode.IN).bindValue(chw);
+		pc.registerParameter("out_nr", String.class, ParameterMode.OUT);
+		Object obj = pc.getOutputs().getOutputParameterValue("out_nr");
+		if(obj!=null){
+			String ls_return = obj.toString();
+			return ls_return;
+		}else{
+			return null;
+		}
+	}
+	
 }

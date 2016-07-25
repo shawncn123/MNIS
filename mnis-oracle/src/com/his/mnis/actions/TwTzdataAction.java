@@ -145,11 +145,11 @@ public class TwTzdataAction extends ActionSupport implements RequestAware,Sessio
 	public String saveTiZhengLuru(){
 		try {
 			Long v_pcid =  this.wseq_id.nextLongValue();
-			VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
 			
 			Object obj = session.get("bingrgetixingxi");
 			short yeid = 0;
 			if(obj != null){
+				VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
 				VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
 				Object obj_ye =  session.get("bingrgetixingxi_yinger");
 				if(obj_ye!=null){
@@ -222,8 +222,5 @@ public class TwTzdataAction extends ActionSupport implements RequestAware,Sessio
 	public void setRequest(Map<String, Object> arg0) {
 		this.request = arg0;
 	}
-
-	
-
 	
 }

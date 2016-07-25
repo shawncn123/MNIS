@@ -107,6 +107,7 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 				}else{
 					request.put("bingrGeTi_YiZhu_zhixing", twBryzzxRemodels);
 					request.put("test_request", "test");
+					request.put("action_name", "bingrGeTi_YiZhuZhiXing");
 					return SUCCESS;
 				}
 			}else{

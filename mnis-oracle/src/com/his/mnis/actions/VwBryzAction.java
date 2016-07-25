@@ -85,6 +85,7 @@ public class VwBryzAction extends ActionSupport implements RequestAware,SessionA
 				return ERROR;
 			}else{
 				request.put("bingrGeTi_YiZhu", vwBryzRemodels);
+				request.put("action_name", "bingrGeTi_YiZhuBen");
 				return SUCCESS;
 			}
 		}else{

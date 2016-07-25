@@ -37,14 +37,46 @@
 				$(this).hide();
 			}
 		});
-		
-		$('.qdclass1').click(function(){
+	/* 	$('.qdclass1').click(function(){ */
+		$('#brlb').on("click",".qdclass1",function(){
+			/* alert("test"); */
 			if($(this).is(':checked')){
 				$(this).next().val("1");
 				var va1 = $(this).next().val(); 
 				}else{
 					$(this).next().val("0");
 				}
+		});
+		
+		$(".bingqu_select").click(function() {
+			var valbq = $(this).val();
+			var val_text = $(this).text();
+			/* 		var url = "bingqbr_bybingqid"; */
+			var url = "woDeBingRenXuanZeWithBqId";
+			var args = {"bqid" : valbq};
+			$.post(url,args,function(data) {
+				a = '';
+				d = eval("("+ data+ ")");
+				for (var i = 0; i < d.length; i++) {
+					a = a + '<a href="javascript:void(0);"><div class="col-xs-4" style="padding: 0 5px 0 5px;">'
+						+ '<div class="panel panel-default" style="margin: 5px 0 5px 0; border: 1px solid #ccc; color: #000; text-align: center;">'
+						+ '<div class="row" style="margin: 0;"><div class="col-xs-7" style="padding: 0;">'
+						+ '<h4 style="font-weight: bold; font-size: 20px; margin-left: -5px;">'
+						+ d[i].chw + '床</h4><input name="chw" value="'
+						+ d[i].chw + '" style="display:none;"/></div><div class="col-xs-5" style="padding: 0;">'
+						+ '<input type="checkbox" class="qdclass1" style="display: block; margin-left: 3px; margin-top: 2px; width: 2rem; height: 2rem;"';
+					if(d[i].quedflag==1){
+						a = a + 'checked="checked"';
+					}
+					a = a + '></input><input name="quedflag" value="' + d[i].quedflag 
+						  + '" style="display:none;" class="qdclass"/></div></div><p style="color: #333; margin-bottom: 5px;">'
+						  + d[i].bqmc + '</p></div></div></a>';
+				}
+				$("#brlb")[0].innerHTML = a;
+				$("#dropdownMenu1")[0].innerHTML = val_text + '<span class="caret"></span>';
+				$("#bingqu_name")[0].innerHTML = val_text;
+				$("#bqidcanshu").val(valbq);
+			});
 		});
 	});
 </script>
@@ -59,7 +91,8 @@
 					<button class="btn btn-default btn-sm dropdown-toggle"
 						type="button" id="dropdownMenu1" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="true">
-						<s:if test="#session.dangqianbingqu_name!=null"><s:property value="#session.dangqianbingqu_name" /></s:if>
+						<s:if test="#request.daixzbingrens!=null"><s:property value="#request.daixzbingrens[0].bqmc"/></s:if>
+						<s:elseif test="#session.dangqianbingqu_name!=null"><s:property value="#session.dangqianbingqu_name" /></s:elseif>
 						<s:else><s:property value="#session.caozuoyuan.bqmc" /></s:else>
 						 <span class="caret"></span>
 					</button>
@@ -78,38 +111,18 @@
 					<span style="margin: 0 0 0 2%;color: red;font-size: 14px;">保存失败！</span>
 				</s:if>
 			</div>
-			<%-- <div class="col-xs-6" style="padding: 0 5%  0 0;">
-				<div class="input-group input-group-xs">
-					<input type="text" class="form-control" id="saowandai"
-						placeholder="扫腕带" onfocus="javascript:this.value='';"
-						oninput="myFunction()" /> <span class="input-group-btn">
-						<button class="btn btn-default" type="button" id="chacw">查</button>
-					</span>
-				</div>
-			</div> --%>
 		</div>
 	</div>
 
 	<div class="container" style=" position: relative;">
 	   <form action="woDeBingRenXuanZeQueDing" method="post">
-		<div class="row">
+		<div class="row" id="brlb">
 			<s:iterator value="#request.daixzbingrens">
 			<a href="javascript:void(0);">
 				<div class="col-xs-4" style="padding: 0 5px 0 5px;">
 					<div class="panel panel-default"
 						style="margin: 5px 0 5px 0; border: 1px solid #ccc; color: #000; text-align: center;">
 						<div class="row" style="margin: 0;">
-							<%-- <div class="col-xs-3" style="padding: 0; ">
-								${xb }
-								<s:if test='xb=="女"'>
-									<img style="width: 80%; height: 80%;" class="img-responsive"
-									src="images/nv.png" />
-								</s:if>
-								<s:elseif test='xb=="男"'>
-									<img style="width: 80%; height: 80%;" class="img-responsive"
-									src="images/nan.png" />
-								</s:elseif>
-							</div> --%>
 							<div class="col-xs-7" style="padding: 0;">
 								<h4 style="font-weight: bold; font-size: 20px; margin-left: -5px;">${chw}床</h4>
 								<input name="chw" value="${chw}" style="display:none;"/>
@@ -121,14 +134,12 @@
 							</div>
 						</div>
 						<p style="color: #333; margin-bottom: 5px;">${bqmc }</p>
-						<%-- <p style="color: #333; margin-bottom: 5px;">${bq }</p> --%>
-						<%-- <p style="color: #333; margin-bottom: 5px;">${nl }</p> --%>
-						
 					</div>
 				</div>
 			</a> 
 			</s:iterator>
 		</div>
+		<input name="bqid" value="<s:property value='#session.dangqianbingqu_id' />" style="display:none;" id="bqidcanshu"/>
 		<div class="row" style="border-bottom:1px solid #269abc;">
 				<input type="submit" value="确定" class="btn btn-primary pull-right"
 				style="margin-right: 5px; margin-bottom: 10px;">

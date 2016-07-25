@@ -2,8 +2,8 @@
 <script type="text/javascript">	
 	$(function(){
 		var url = "weiduxiaoxishu";
-		var args = {"time" : new Date()};
-		$.post(url,args,function(data) {
+	/* 	var args = {"time" : new Date()}; */
+		$.post(url,function(data) {
 			if(data!=""){
 				/* alert(data); */
 				$("#xxshu").text(data+"");
@@ -24,7 +24,7 @@
 				<input id="dangq_bingq_id" value="<s:property value='#session.dangqianbingqu_id' />" style="display:none;"/>
 			</div>
 			<div class="col-xs-2" style="padding-left: 2%;padding-right:2%; position: relative;">
-				<a href="javascript:void(0);" style="display: block;">
+				<a href="mymessage?pageno=1" style="display: block;">
 					<div style="position:relative; width:100%; height:100%;  left:0; top:0;">      
 						<img src="images/brxxxx_header_1.png" style="left:0; top:0;" height="100%" width="100%"> 
 					</div> 
@@ -32,6 +32,6 @@
 				</a>
 			</div>
 			<div class="col-xs-2" style="padding-left: 2%;padding-right:2%;">
-				<a href="javascript:void(0)"><img src="images/brxxxx_header_2.png" class="img-responsive" alt="刷新"></a>
+				<a href="${action_name}"><img src="images/brxxxx_header_2.png" class="img-responsive" alt="刷新"></a>
 			</div>
 		</div>

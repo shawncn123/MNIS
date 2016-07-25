@@ -50,6 +50,7 @@
 		</action>
 		<action name="mymessage" class="vSysMessAction" method="getListSysMessByRenyId">
 			<result name="success">/views/xiaoximokuai.jsp</result>
+			<result name="error">/views/login.jsp</result>
 		</action>
 		<action name="weiduxiaoxishu" class="vSysMessAction" method="getCountWeiDuXiaoXi">
 			<result type="stream" name="ajax_wdxxcount">
@@ -76,6 +77,9 @@
 			<result name="success">/views/wodebingren.jsp</result>
 			<result name="error">/views/wodebingren.jsp</result>
 		</action>
+		<action name="wodebingrenbybingqu" class="twWdbrAction" method="getWoDeBingRenByCzryIdBqId">
+		</action>
+		
 		<action name="linzhuweizhixing" class="linZhuWeiZhiXingAction" method="getListMyBingRenWeiZxlz">
 			<result name="success">/views/linzhuweizhixing.jsp</result>
 			<result name="error">/views/linzhuweizhixing.jsp</result>
@@ -84,6 +88,8 @@
 			<result name="success">/views/shuyezhixing.jsp</result>
 			<result name="error">/views/shuyezhixing.jsp</result>
 		</action>
+		
+		<!-- 我的病人选择 -->
 		<action name="woDeBingRenXuanZeQueDing" class="twWdbrAction" method="addWdbrWithSelect">
 			<result name="error">/views/wodebingrenxuanze_v2.jsp</result>
 			<result name="success">/views/wodebingrenxuanze_v2.jsp?datasaveflag=${datasaveflag}&amp;daixzbingrens=${daixzbingrens}</result>
@@ -92,6 +98,8 @@
 		<action name="woDeBingRenXuanZe" class="twWdbrAction" method="getDaiXuanZheBingRenByCzryId">
 			<result name="error">/views/login.jsp</result>
 			<result name="success">/views/wodebingrenxuanze_v2.jsp</result>
+		</action>
+		<action name="woDeBingRenXuanZeWithBqId" class="twWdbrAction" method="getDaiXuanZheBingRenByCzryIdBqId">
 		</action>
 		
 		<action name="tiWenDan_file_get" class="twTwdMessAction" method="getTiWenDantupian">
@@ -130,7 +138,13 @@
 			<result name="success" type="redirect">/tizhengluru</result>
 			<result name="error" type="redirect">/tizhengluru</result>
 		</action>
+		
+		<!-- 登录 病人列表 -->
 		<action name="login" class="vwRybqAction" method="getRenYuanIdByRenYuanDaiMa">
+			<result name="error">/views/login.jsp</result>
+			<result name="success">/views/bingrenlb.jsp</result>
+		</action>
+		<action name="brlbshuaxin" class="vwRybqAction" method="getListBingqBingrBySession">
 			<result name="error">/views/login.jsp</result>
 			<result name="success">/views/bingrenlb.jsp</result>
 		</action>

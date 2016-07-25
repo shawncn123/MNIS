@@ -38,11 +38,6 @@
 	<%
 		}
 	%>
-	<%-- <s:if test="#request.login_check == '1'">
-		<script>
-			alert("用户名或密码错误！");
-		</script>
-	</s:if> --%>
 	<div id="login-content" class="container">
 		<h1 class="form-heading text-center">移动护理信息系统</h1>
 		<form class="form-horizontal" action="login" method="post">

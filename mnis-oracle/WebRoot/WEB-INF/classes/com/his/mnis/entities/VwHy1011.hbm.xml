@@ -34,5 +34,8 @@
         <property name="yszt" type="java.lang.String">
             <column name="YSZT" length="100" />
         </property>
+        <property name="wjflag" type="java.lang.String">
+            <column name="WJFLAG" length="1" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>

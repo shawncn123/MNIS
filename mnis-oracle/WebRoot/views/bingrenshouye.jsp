@@ -31,7 +31,6 @@
 		var args = {"time" : new Date()};
 		$.post(url,args,function(data) {
 			if(data!=""){
-				/* alert(data); */
 				$("#xxshu").text(data+"");
 			};		
 		});
@@ -66,9 +65,9 @@
 						<tbody>
 							<tr>
 								<td style="border: none; width: 34%; padding: 3px; position: relative;">
-									<a href="javascript:void(0);" style="display: block;">
+									<a href="mymessage?pageno=1" style="display: block;">
 										<img style="width: 100%; height: 100%;"  src="images/brxxxx_header_1.png"/>
-										<span style="display: block; text-align: center; color: #fff; font-size: 2rem; z-index: 2; position: absolute; top: 10PX; left: 0; width:100%; height:100%;">22</span>
+										<span style="display: block; text-align: center; color: #fff; font-size: 2rem; z-index: 2; position: absolute; top: 10PX; left: 0; width:100%; height:100%;"></span>
 									</a>
 								</td>
 								<td style="border: none; padding: 3px;">
@@ -94,7 +93,7 @@
 						<tbody>
 							<tr>
 								<td style="border: none; width: 34%; padding: 3px; position: relative;">
-									<a href="javascript:void(0);" style="display: block;">
+									<a href="mymessage?pageno=1" style="display: block;">
 										<img style="width: 100%; height: 100%;"  src="images/brxxxx_header_1.png"/>
 										<span style="display: block; text-align: center; color: #fff; font-size: 2rem; z-index: 2; position: absolute; top: 10PX; left: 0; width:100%; height:100%;" id="xxshu"></span>
 									</a>

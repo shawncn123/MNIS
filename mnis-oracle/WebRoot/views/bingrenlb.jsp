@@ -221,11 +221,11 @@
 						$("#motal_f")[0].innerHTML = "<a href='bingreng_yewumokuai?v_key1=" + d.br_key1 + "&v_key2="
 						+ d.br_key2 + "' class='btn pull-left btn-primary'>确定</a>"
 						+ "<button type='button' id='quxiao' class='btn btn-default' data-dismiss='modal'>取消</button>"
-						$('#informationModal').modal('show');
+						$('#moduleallswd').modal('show');
 					} else {
 						$("#modal_prxx")[0].innerHTML = "<p>没有相关病人信息</p>";
 						$("#motal_f")[0].innerHTML = "<button type='button' id='quxiao' class='btn btn-default' data-dismiss='modal'>确定</button>";
-						$('#informationModal').modal('show');
+						$('#moduleallswd').modal('show');
 					}
 				});
 			});
@@ -288,9 +288,9 @@
 					<input type="text" class="form-control" id="saowandai"
 						placeholder="扫腕带" onfocus="javascript:this.value='';"
 						oninput="myFunction()" />
-					<%-- <span class="input-group-btn">
+					<span class="input-group-btn" style="display:none;">
 						<button class="btn btn-default" type="button" id="chacw">查</button>
-					</span> --%>
+					</span>
 				</div>
 				<!-- /input-group -->
 			</div>
@@ -334,42 +334,6 @@
 	<!--页脚开始-->
 	<%@ include file="footer.jsp" %>
 	<!--页脚结束-->
-
-	<!-- 模态框（Modal）start -->
-	<div class="modal fade" id="informationModal"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog" id="modal-wrap">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">病人信息</h4>
-				</div>
-				<div class="modal-body" id="modal_prxx">
-					<p>
-						姓名：<strong style="font-size: 20px;"></strong>
-					</p>
-					<p>
-						床位号：<strong style="font-size: 20px;"></strong>
-					</p>
-					<p>
-						性别：<strong style="font-size: 20px;"></strong>
-					</p>
-					<p>
-						年龄：<strong style="font-size: 20px;"></strong>
-					</p>
-				</div>
-				<div class="modal-footer" id="motal_f">
-					<button type="button" class="btn pull-left btn-primary">
-						确定</button>
-					<button type="button" id="quxiao" class="btn btn-default"
-						data-dismiss="modal">取消</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 模态框（Modal）end -->
-
 	<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
 </body>
 </html>

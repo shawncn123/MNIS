@@ -73,6 +73,7 @@ public class VwHy101Action extends ActionSupport implements RequestAware,Session
 				}
 				request.put("bingrgeti_huayan", vwHy101Service.getListHuaYanAllByKey(vwBqbrZy.getKey1(),vwBqbrZy.getKey2(),yeid));
 				request.put("vwjbz", vwjbz);
+				request.put("action_name", "bingrGeTi_JianYan");
 				return SUCCESS;
 			}else{
 				return ERROR;

@@ -46,6 +46,7 @@ public class VwJc101Action extends ActionSupport implements RequestAware,Session
 				yeid = bingRenSessionXingXi.getYebh();
 			}
 			request.put("bingrgeti_jiancha", vwJc101Service.getListBingrJiancByKey(vwBqbrZy.getKey1(),vwBqbrZy.getKey2(),yeid));
+			request.put("action_name", "bingrGeTi_JianCha");
 			return SUCCESS;
 		}else{
 			return ERROR;

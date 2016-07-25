@@ -53,14 +53,19 @@ public class MiMaXiuGaiAction extends ActionSupport implements SessionAware  {
 	}
 
 	public String huShiXiuGaiMiMa() throws UnsupportedEncodingException{
-		VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
-		String vreturn = miMaXiuGaiService.huShiXiuGaiMiMa(vwRybq.getRydm(), voldpass, vnewpass);
-		if(vreturn.equals("0")){
-			inputStream = new ByteArrayInputStream("0".getBytes("UTF-8"));
-		}else if(vreturn.equals("oldpasserror")){
-			inputStream = new ByteArrayInputStream("2".getBytes("UTF-8"));
+		Object obj = session.get("caozuoyuan");
+		if(obj != null){
+			VwRybq vwRybq = (VwRybq) obj;
+					String vreturn = miMaXiuGaiService.huShiXiuGaiMiMa(vwRybq.getRydm(), voldpass, vnewpass);
+			if(vreturn.equals("0")){
+				inputStream = new ByteArrayInputStream("0".getBytes("UTF-8"));
+			}else if(vreturn.equals("oldpasserror")){
+				inputStream = new ByteArrayInputStream("2".getBytes("UTF-8"));
+			}else{
+				inputStream = new ByteArrayInputStream("1".getBytes("UTF-8"));
+			}
 		}else{
-			inputStream = new ByteArrayInputStream("1".getBytes("UTF-8"));
+			inputStream = new ByteArrayInputStream("3".getBytes("UTF-8"));
 		}
 		return "ajax_mima";
 	}

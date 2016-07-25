@@ -25,6 +25,30 @@
 	$(function() {
 		// 绑定
 		$("#head_banner_1").smartFloat();
+		
+		$(".bingqu_select").click(function() {
+			var valbq = $(this).val();
+			var val_text = $(this).text();
+			var url = "wodebingrenbybingqu";
+			var args = {"bqid" : valbq};
+			$.post(url,args,function(data) {
+				a = '';
+				d = eval("("+ data+ ")");
+				for (var i = 0; i < d.length; i++) {
+					a = a + '<a href="bingreng_yewumokuai?v_key1=' + d[i].key1 + "&v_key2=" + d[i].key2 
+						  + '"><div class="col-xs-6" style="padding: 0 5px 0 5px;"><div class="panel panel-default" style="margin: 5px 0 5px 0;">'
+						  + '<div class="table-responsive"><table class="table table-condensed"><tr><td class="text-center"><span style="color: '
+						  + d[i].fylbBoxcolor  + ';background-color: ' + d[i].fylbBoxcolor 
+						  + '">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;${yems}</td><td class="text-center">'
+						  + d[i].hldj + '</td></tr><tr><td class="text-center"><h4>' + d[i].chw + '床</h4></td><td class="text-left"><h4>'
+						  + d[i].xm + '</h4></td></tr><tr><td class="text-center">' + d[i].bah + '</td><td class="text-center">' 
+						  + d[i].fylb + '&nbsp;' + d[i].xb + "&nbsp;" + d[i].nl + "</td></tr></table></div></div></div></a>";
+				}
+				$("#brlb")[0].innerHTML = a;
+				$("#dropdownMenu1")[0].innerHTML = val_text + '<span class="caret"></span>';
+				$("#bingqu_name")[0].innerHTML = val_text;
+			});
+		});
 	});
 	
 	$('#sideWrap').hide();        //菜单
@@ -38,20 +62,29 @@
 			$(this).hide();
 		}
 	});
-	
-	/* function myFunction() {
-	 
-	    document.getElementById("chacw").click();
-	}
-	window.onload = function()
-	{
-		document.getElementById("saowandai").focus();
-	}
- */
 </script>
 </head>
 <body class="bg-info">
 	<%@ include file="header-hushi.jsp" %>
+		<div class="row"
+			style="border-bottom:1px solid #269abc;padding: 5px 0 ;">
+			<div class="col-xs-6" style="padding: 0 0 0 5%;">
+				<div class="dropdown" style="width: 100%">
+					<button class="btn btn-default btn-sm dropdown-toggle"
+						type="button" id="dropdownMenu1" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="true">
+						<s:if test="#session.dangqianbingqu_name!=null"><s:property value="#session.dangqianbingqu_name" /></s:if>
+						<s:else><s:property value="#session.caozuoyuan.bqmc" /></s:else>
+						 <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<s:iterator value="#request.caozuoyuan_bingqu">
+							<li class="bingqu_select" value="${bq }">${bqmc }</li>
+						</s:iterator>
+					</ul>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="container">
 		<div class="row" style="border-bottom:1px solid #269abc;" id="brlb">

@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+
 import org.apache.struts2.ServletActionContext;
 
 import com.his.mnis.dao.BaseDao;
@@ -47,6 +49,7 @@ public class TwTwdMessServiceImpl implements TwTwdMessService {
 	public String getOutStreamOfTiWenDan(Long vkey1, Integer vkey2,
 			Short vkey3, Date vrq) {
 		Long vjlid = twTwdMessDao.getJlidByRiQiAndKey(vkey1, vkey2, vkey3, vrq);
+		System.out.println("jlid:" + vjlid.toString());
 		if(vjlid > 0){
 			try {
 				TwTwdMess twTwdMess = baseDao.getSession().load(TwTwdMess.class, vjlid);
@@ -55,11 +58,15 @@ public class TwTwdMessServiceImpl implements TwTwdMessService {
 				// 在把写到一个图片格式的文件里
 //			String uploadFilePath = ServletActionContext.getServletContext()
 //					.getRealPath("WEB-INF/upload");
-				String uploadFilePath = ServletActionContext.getServletContext()
-						.getRealPath("twdimage");
+//				String uploadFilePath = ServletActionContext.getServletContext()
+//						.getRealPath("twdimage");
+				String url = getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
+				String dir1 = url.substring(url.indexOf("/"),url.toLowerCase().indexOf("web-inf"));
+				System.out.println("root dir1:" +  dir1);
 				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");  
 				String str_d=sdf.format(vrq);  
-				String fname = uploadFilePath + "/"+ vkey1+"_" + vkey2 + "_" + vkey3 + "_" + str_d + ".jpg";
+//				String fname = uploadFilePath + "/"+ vkey1+"_" + vkey2 + "_" + vkey3 + "_" + str_d + ".jpg";
+				String fname = dir1 + "/twdimage/"+ vkey1+"_" + vkey2 + "_" + vkey3 + "_" + str_d + ".jpg";
 				FileOutputStream fos = new FileOutputStream(fname);
 				System.out.println("filepath fname:"+fname);
 				byte[] buffer = new byte[1024];

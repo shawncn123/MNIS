@@ -66,18 +66,24 @@ public class VSysMessAction extends ActionSupport implements RequestAware,
 	}
 
 	public String getListSysMessByRenyId(){
-		try {
-			VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
-			String ryid = vwRybq.getRyid();
-			List<VSysMessReader> vSysMessReaders = vSysMessService.getListSysMessByRenyId(ryid, pageno, pagerows);
-			List<VSysMessReader> vSysMessReaderWeiDus = vSysMessService.getListSysMessByRenyIdZhuangt(ryid, pageno, pagerows,"0");
-			List<VSysMessReader> vSysMessReaderGuoQiWeiDus = vSysMessService.getListMessageGuoQiWeiDu(ryid, pageno, pagerows);
-			request.put("sysmess", vSysMessReaders);
-			request.put("sysmessweidu", vSysMessReaderWeiDus);
-			request.put("sysmessguoqiweidu", vSysMessReaderGuoQiWeiDus);
-			return SUCCESS;
-		} catch (Exception e) {
-			e.printStackTrace();
+		Object obj = session.get("caozuoyuan");
+		if(obj != null){
+			try {
+				VwRybq vwRybq = (VwRybq) obj;
+				String ryid = vwRybq.getRyid();
+				List<VSysMessReader> vSysMessReaders = vSysMessService.getListSysMessByRenyId(ryid, pageno, pagerows);
+				List<VSysMessReader> vSysMessReaderWeiDus = vSysMessService.getListSysMessByRenyIdZhuangt(ryid, pageno, pagerows,"0");
+				List<VSysMessReader> vSysMessReaderGuoQiWeiDus = vSysMessService.getListMessageGuoQiWeiDu(ryid, pageno, pagerows);
+				request.put("sysmess", vSysMessReaders);
+				request.put("sysmessweidu", vSysMessReaderWeiDus);
+				request.put("sysmessguoqiweidu", vSysMessReaderGuoQiWeiDus);
+				request.put("action_name", "mymessage?pageno=1");
+				return SUCCESS;
+			} catch (Exception e) {
+				e.printStackTrace();
+				return ERROR;
+			}
+		}else{
 			return ERROR;
 		}
 	}

@@ -32,21 +32,26 @@ public class BaiBanBongZuoTiXingAction extends ActionSupport implements
 	 */
 	
 	public String chaListXiangMuNeiRong(){
-		
-		VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
-		String vbqid = (String) session.get("dangqianbingqu_id");
-		if(vwRybq!=null && vbqid!=null){
-			String vczyid = vwRybq.getRyid();
-			List<String> czytxs = baiBanBongZuoTiXingService.chaListXiangMuNeiRongByCzyId(vczyid, vbqid);
-			List<String> chwtxs = baiBanBongZuoTiXingService.chaListXiangMuNeiRongByChw(vczyid, vbqid);
-			if((czytxs!=null && czytxs.size()>0) || (chwtxs!=null && chwtxs.size()>0)){
-				if(czytxs.size()>0){
-					request.put("czybbtxs", czytxs);
+		Object obj = session.get("caozuoyuan");
+		if(obj!=null){
+			VwRybq vwRybq = (VwRybq) obj;
+			String vbqid = (String) session.get("dangqianbingqu_id");
+			if(vwRybq!=null && vbqid!=null){
+				String vczyid = vwRybq.getRyid();
+				List<String> czytxs = baiBanBongZuoTiXingService.chaListXiangMuNeiRongByCzyId(vczyid, vbqid);
+				List<String> chwtxs = baiBanBongZuoTiXingService.chaListXiangMuNeiRongByChw2(vczyid, vbqid);
+				if((czytxs!=null && czytxs.size()>0) || (chwtxs!=null && chwtxs.size()>0)){
+					if(czytxs.size()>0){
+						request.put("czybbtxs", czytxs);
+					}
+					if(chwtxs.size()>0){
+						request.put("chwbbtxs", chwtxs);
+					}
+					request.put("action_name", "hushigongzuotixing");
+					return SUCCESS;
+				}else{
+					return ERROR;
 				}
-				if(chwtxs.size()>0){
-					request.put("chwbbtxs", chwtxs);
-				}
-				return SUCCESS;
 			}else{
 				return ERROR;
 			}

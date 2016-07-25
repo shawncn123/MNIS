@@ -45,6 +45,7 @@ public class BaiBanBongZuoTiXingServiceImpl implements
 					VwBbBrxm vwBbBrxm = vwBbBrxms.get(i);
 					String vxmbm = vwBbBrxm.getId().getXmbm();
 					String chwxm = baiBanGongZhuoTiXingDao.callProcedurePwGetHlxmnrChw(bqid, vchw, vxmbm);
+					System.out.println("chwxm:"+chwxm);
 					if(chwxm!=null){
 						chwxms.add(chwxm);
 					}
@@ -75,4 +76,22 @@ public class BaiBanBongZuoTiXingServiceImpl implements
 		}
 	}
 
+	@Override
+	public List<String> chaListXiangMuNeiRongByChw2(String czyid, String bqid) {
+		List<MyBingRen> myBingRens = twWdbrService.getWdbrByCaoZuoRyIdBqId(czyid, bqid);
+		List<String> chwxms = new ArrayList<>();
+		if(myBingRens.size()>0){
+			for(int j=0;j<myBingRens.size();j++){
+				MyBingRen myBingRen = myBingRens.get(j);
+				String vchw = myBingRen.getChw();
+				String chwxm = baiBanGongZhuoTiXingDao.callProcedurePwGetHlxmnrChw2(bqid, vchw);
+				System.out.println("chw2:" + vchw + "输出值：" + chwxm);
+				if(chwxm!=null){
+					chwxm = vchw + "床:" + chwxm;
+					chwxms.add(chwxm);
+				}
+			}
+		}
+		return chwxms;
+	}
 }

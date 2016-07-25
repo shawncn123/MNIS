@@ -77,10 +77,10 @@ public class VwRybqAction extends ActionSupport implements RequestAware,
 			for (int i = 0; i < vwRybqs.size(); i++) {
 				if(vwRybqs.get(i).getBq().contains(bqid)){
 					session.put("dangqianbingqu_name", vwRybqs.get(i).getBqmc());
-					System.out.println("当前病区：" + vwRybqs.get(i).getBqmc());
 				}
 			}
 			request.put("caozuoyuan_bingqu", vwRybqs);
+			request.put("action_name", "brlbshuaxin");
 			request.put("login_check", "0");
 			return SUCCESS;
 			}
@@ -98,6 +98,25 @@ public class VwRybqAction extends ActionSupport implements RequestAware,
 		
 		return SUCCESS;
 }
+	
+	/*
+	 * 查询当前操作员，当前病区的病人信息
+	 */
+	public String getListBingqBingrBySession() {
+		Object obj = session.get("dangqianbingqu_id");
+		if(obj!=null){
+			String bqid = (String)obj;
+			vwRybq = (VwRybq) session.get("caozuoyuan");
+			List<VwRybq> vwRybqs = vwRybqService.listBingQuByCaozyId(vwRybq.getRyid());
+			request.put("caozuoyuan_bingqu", vwRybqs);
+			request.put("bqry", vwRybqService.listBingrByBingQuId(bqid));
+			request.put("action_name", "brlbshuaxin");
+			return SUCCESS;
+		}else{
+			return ERROR;
+		}
+		
+	}
 	
 	private Map<String, Object> request;
 	

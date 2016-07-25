@@ -40,13 +40,18 @@ public class VwBqYeZyAction extends ActionSupport implements RequestAware,
 	 * 根据病人key查询相关婴儿信息
 	 */
 	public String getListBingrYingr(){
-		VwBqbrZy vwBqbrZy = (VwBqbrZy) session.get("bingrgetixingxi");
-		long vkey1 = vwBqbrZy.getKey1();
-		int vkey2 = vwBqbrZy.getKey2();
-		List<VwBqyeZy> vwBqyeZies = vwBqyeZyService.getListBingrYingr(vkey1, vkey2);
-		if(vwBqyeZies.size()>0 && vwBqyeZies!=null){
-			request.put("bingrenyinger", vwBqyeZies);
-			return SUCCESS;
+		Object obj =  session.get("bingrgetixingxi");
+		if(obj != null){
+			VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
+			long vkey1 = vwBqbrZy.getKey1();
+			int vkey2 = vwBqbrZy.getKey2();
+			List<VwBqyeZy> vwBqyeZies = vwBqyeZyService.getListBingrYingr(vkey1, vkey2);
+			if(vwBqyeZies.size()>0 && vwBqyeZies!=null){
+				request.put("bingrenyinger", vwBqyeZies);
+				return SUCCESS;
+			}else{
+				return ERROR;
+			}
 		}else{
 			return ERROR;
 		}

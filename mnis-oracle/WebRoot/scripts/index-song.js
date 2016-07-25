@@ -118,12 +118,12 @@ $(function() {          //时间插件
                     currObj.val("");
                 }
                     break;
-                case "hide": {     //点击右下角箭头隐藏键盘
-                    $('.jianpan').hide();
-                    $("#modal-wrap").css("top", "0px");
-                    $("#content").css("top", "0px");
-                }
-                    break;
+//              case "hide": {     //点击右下角箭头隐藏键盘
+//                  $('.jianpan').hide();
+//                  $("#modal-wrap").css("top", "0px");
+//                  $("#content").css("top", "0px");
+//              }
+//                  break;
             }
         }
     });
@@ -234,7 +234,6 @@ $(function() {          //时间插件
                        		});
                         }                                            
                     }else{
-                    	
                     	$('.next:eq(0) a').html("最后一项");
                     }
                 } else {
@@ -247,6 +246,10 @@ $(function() {          //时间插件
         $('.jianpan').hide();
         $("#modal-wrap").css("top", "0px");
         $("#content").css("top", "0px");
+        $('#character').hide();     //7.13增加
+        $('#number').show();        
+        $('#jianpan-right2').hide(); 
+        $('#jianpan-right1').show(); 
     });
    
     $("input[nopop='true']").focus(function () {   //单独处理标注
@@ -258,10 +261,32 @@ $(function() {          //时间插件
 		$(".jianpan").hide();
 		$("#modal-wrap").css("top", "0px");
 	});  
-    $('#tiwen').click(function () {   //点击主页体温input隐藏键盘
+    $('#tiwen').click(function () {  
         $('.prev:eq(0) a').html('上一项');
         $('.next:eq(0) a').html('下一项');
         $('.jianpan').hide();
         $("#content").css("top", "0px");
+        $('#character').hide();     //7.13增加
+        $('#number').show();       
+    });
+    
+    $('#character').hide();        //7.13增加（主页键盘）
+    $('.numberBtn').click(function(){
+    	$('#character').hide();
+    	$('#number').show();
+    });
+    $('.characterBtn').click(function(){
+    	$('#number').hide();
+    	$('#character').show();   	
+    });
+    
+    $('#jianpan-right2').hide();        //7.13增加（体温键盘）
+    $('.numberBtn1').click(function(){
+    	$('#jianpan-right2').hide();
+    	$('#jianpan-right1').show();
+    });
+    $('.characterBtn1').click(function(){
+    	$('#jianpan-right1').hide();
+    	$('#jianpan-right2').show();   	
     });
 });
