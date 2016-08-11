@@ -1,5 +1,8 @@
 package com.his.mnis.actions;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,7 +43,16 @@ public class TwTzdataAction extends ActionSupport implements RequestAware,Sessio
 	private List<String> biaozhu = new ArrayList<String>();
 	private List<String> bzflag = new ArrayList<String>();
 	private String appTime;
-	
+	private InputStream inputStream;
+
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
+
 	private String res_val;  //返回数据保存结果
 	
 	public String getRes_val() {
@@ -192,22 +204,23 @@ public class TwTzdataAction extends ActionSupport implements RequestAware,Sessio
 				res_val = twTzdataService.doCreateTwTzdata(twTzdatas, v_pcid);
 				request.put("twtzdata_result", res_val);
 				if(res_val.equals("0")){
-					request.put("tizheng_luru_success", "0");
-					return SUCCESS;
+					inputStream = new ByteArrayInputStream("0".getBytes("UTF-8"));
 				}
 				else{
-					request.put("tizheng_luru_success", "1");
-					return ERROR;
+					inputStream = new ByteArrayInputStream("1".getBytes("UTF-8"));
 				}
 			}else{
-				request.put("tizheng_luru_success", "1");
-				return ERROR;
+				inputStream = new ByteArrayInputStream("1".getBytes("UTF-8"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.put("tizheng_luru_success", "1");
-			return ERROR;
+			try {
+				inputStream = new ByteArrayInputStream("1".getBytes("UTF-8"));
+			} catch (UnsupportedEncodingException e1) {
+				e1.printStackTrace();
+			}
 		}
+		return "luru_update";
 	}
 	
 	private Map<String, Object> request;

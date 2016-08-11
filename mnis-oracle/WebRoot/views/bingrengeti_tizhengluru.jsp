@@ -27,12 +27,13 @@
 		<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
 		<script type="text/javascript" src="scripts/viewjs.js"></script>
 		<script type="text/javascript">	
+			String.prototype.trim=function() {
+	    		return this.replace(/(^\s*)|(\s*$)/g,'');
+			};
 			$(function(){
 				var url = "weiduxiaoxishu";
-				var args = {"time" : new Date()};
-				$.post(url,args,function(data) {
+				$.post(url,function(data) {
 					if(data!=""){
-						/* alert(data); */
 						$("#xxshu").text(data+"");
 					};		
 				});
@@ -45,9 +46,27 @@
 			$(document).ready(function() {
 				$("#baocun").click(function() {
 					$("#lurutime").attr('value', $("#appTime1").val());
-					$("#tzform").submit();
+					var luruone = $("input:eq(2)").val();  /* 取第三个input的value值 前两个是时间input 第二个是隐藏的input */
+					var luruone = luruone.trim();
+					if(luruone!=""){
+						var url = "tizheng_luru_update";
+						var args = $('#tzform').serialize();
+						$.post(url,args,function(data) {
+							if(data=="0"){
+								$("#tip").html("保存成功！");
+								$("#baocun").attr("disabled","true")
+							}else{
+								$("#tip").css('color','#FF0000');
+								$("#tip").html("保存失败！");
+							}
+						});
+					}else{
+						$("#tip").css('color','#FF9800');
+						$("#tip").html("没有数据！");
+					}
 				});
 			});
+			
 			$(function() {
 				$(document).ready(function() {
 					$("#tw_baocun").click(function() {
@@ -77,7 +96,6 @@
 								};
 								$.post(url, args, function(data) {
 									if (data == "0") {
-										//alert("录入成功！");
 										$("#quxiao").click();
 										$("#tiwen").attr('value', '录入成功！').css('color', 'red');
 									} else {
@@ -85,7 +103,6 @@
 										alert("保存失败！");
 									}
 								});
-								//	alert(val_time2);
 							}
 						})
 				})
@@ -148,25 +165,25 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-xs-6">
+				<div class="col-xs-5">
 					<div class="demos">
 						<input value="" class="form-control" name="chajiantime" id="appTime1" type="text" placeholder="">
 					</div>
 				</div>
-				<div class="col-xs-3"></div>
-				<div class="col-xs-3">
-					<a class="btn btn-default" role="button" id="baocun" style="margin-left: 20%;">保存</a>
+				<div class="col-xs-4 text-center" id="tip" style="margin-top: 2%; color: #2196F3;font-size: 14px;"></div>
+				<div class="col-xs-3" style="float:right;" id="bcdiv">
+					<button class="btn btn-default" role="button" id="baocun" style="margin-left: 20%;">保存</button>
 				</div>
 			</div>
 		</div>
 
 		<div id="content" class="container">
 
-			<form class="form-horizontal" action="tizheng_luru_update" method="post" id="tzform">
+			<form class="form-horizontal" action="" method="post" id="tzform">
 				<input name="appTime" value="" style="display:none;" id="lurutime" />
 				<s:set name="popcount" value="1"></s:set>
 				<s:iterator value="#request.bingr_tizheng_luruxiang" status='st'>
-				<div class="form-group" style="margin-bottom: 6px;">
+				<div class="form-group" style="margin-bottom: 6px; margin-top: 6px;">
 					<s:if test="xmid=='XY'">
 						<label class="col-xs-2 control-label text-center" style="padding:2% 0 0 0;">${xmmc }</label>
 						<div class="col-xs-3" style="padding-right: 0;">
@@ -187,8 +204,6 @@
 					<s:elseif test="xmid=='TW'">
 						<label class="col-xs-2 control-label text-center" style="padding:2% 0 0 0;">${xmmc}</label>
 						<div class="col-xs-10">
-<%-- 							<input type="text" class="form-control" id="tiwen" data-backdrop="static" data-toggle="modal" readonly="readonly"
-								data-target="#temperature" placeholder="${xmmc }" mainpop="<s:property value='#st.index'/>"> --%>
 							<input type="text" class="form-control" id="tiwen" data-backdrop="static" data-toggle="modal" readonly="readonly"
 								data-target="#temperature" placeholder="${xmmc }">
 						</div>

@@ -17,9 +17,9 @@ public interface VwHy101Service {
 	 */
 	public List<VwHy101> getListHuaYanDanByShenqysAndKey(String sqysid,Long key1,Integer key2,Short key3);
 	/*
-	 * 根据时间段,病人Key查询病人的化验单主表信息
+	 * 根据时间段,病人Key查询病人的化验单主、从表信息
 	 */
-	public List<VwHy101> getListBingRenHuaYanByDate(Date sqrq1,Date sqrq2,Long key1,Integer key2,Short key3);
+	public List<BingRenHuaYanXingXi> getListBingRenHuaYanByDate(Date sqrq,Long key1,Integer key2,Short key3);
 	
 	/*
 	 * 根据病人key值查询病人的化验单主、从表信息
@@ -29,5 +29,10 @@ public interface VwHy101Service {
 	/*
 	 * 根据病人key值查询病人的危急值的化验单主、从表信息
 	 */
-	public List<BingRenHuaYanXingXi> getListHuaYanWeiJiAllByKey(String wjbz,Long key1,Integer key2,Short key3);
+	public List<BingRenHuaYanXingXi> getListHuaYanWeiJiAllByKey(Long key1,Integer key2,Short key3);
+	
+	/*
+	 * 根据病人key值，时间段 查询病人的危机值化验单主、从表信息
+	 */
+	public List<BingRenHuaYanXingXi> getListWjzHuaYanByKeyDate(Date sqrq,Long key1,Integer key2,Short key3);
 }

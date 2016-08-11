@@ -29,6 +29,7 @@
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link href="css/custom1.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="scripts/jquery-1.12.1.min.js"></script>
+<script src="scripts/common.js" type="text/javascript"></script>
 <script src="scripts/mobiscroll_002.js"></script>
 <script src="scripts/mobiscroll_003.js"></script>
 <script src="scripts/mobiscroll_004.js"></script>
@@ -45,17 +46,19 @@
 	function wjzflselcet() {
 		document.getElementById("wjzsz").submit();
 	};
-	function changeDate() {
-		/* alert($("#appDate1").val());
-		var vcxrq = "2016-03-11"; */
-		var vcxrq = $("#appDate1").val();
-		var vwjbz = $("#wjbzselect").val();
-		var url = "getJianChaByRiQi";
-		var args = {"vsqrq" : vcxrq,"vwjbz":vwjbz/* ,"time" : new Date() */};
-		$.post(url,args,function(data) {
-			a = '';
-			d = eval("("+ data+ ")");
-			if(d!=null && d!="" ){
+	
+	$(function() {$(document).ready(function() {
+		/* $("#appDate").click(function() { */
+		$("#testid").click(function() {
+			alert("tex");
+			var vcxrq = "2016-03-11";
+			var vwjbz = $("#wjbzselect").val();
+			alert(vwjbz);
+			var url = "getJianChaByRiQi";
+			var args = {"vsqrq" : vcxrq,"vwjbz":vwjbz/* ,"time" : new Date() */};
+			$.post(url,args,function(data) {
+				a = '';
+				d = eval("("+ data+ ")");
 				for (var i = 0; i < d.length; i++) {
 					a = a + '<div class="row" style="padding-top: 2%;padding-bottom: 2%;border-bottom: 1px dashed;">'
 						+ '<div class="col-xs-7" style="padding: 0 1% 0 1%;"><a href="javascript:void(0)" '
@@ -73,14 +76,12 @@
 						var vsqrq = teo.getFullYear() + "-" + vmonth + "-" + teo.getDate();
 						
 						a = a + vsqrq + '</a></div></div>';
-						<%-- a = a + "<%@ include file='menu-hushi.jsp' %>"; --%>
 				}
-			}else{
-				a = "无数据！";
-			}
-			$("#jianchacontainer")[0].innerHTML = a;
+				$("#jianchacontainer")[0].innerHTML = a;
+			});
+			});
 		});
-	};
+	});
 </script>
 </head>
 <body>
@@ -106,17 +107,33 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-2"></div>
-				<div class="col-xs-5" style="padding: 0; margin: 0;">
-					<div class="demos">
-						<input value="" placeholder="" class="form-control" readonly="readonly" name="appDateTime" id="appDate1" 
-						type="text" onchange="changeDate()">
+				<div class="col-xs-7" style="padding-left: 3px; margin-top: 2px;">
+					<div class="row">
+						<div class="col-xs-4 padd-r">
+							<div class="content">
+								<div class="demos">
+									<input value="" placeholder="开始日期" class="form-control padd-r" readonly="readonly" name="appDateTime" id="appDate" type="text">
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-1">
+							<p class="p-divider">—</p>
+						</div>
+						<div class="col-xs-4 padd-r">
+							<div class="content">
+								<div class="demos">
+									<input value="" placeholder="结束日期" class="form-control padd-r" readonly="readonly" name="appDateTime" id="appDate1" type="text">
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-1 bor-r" style="margin-left: 5px;" id="testid">
+							<div class="icon_pic"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 	</div>
-	<div class="container">
-		<div  id="jianchacontainer">
+	<div class="container" id="jianchacontainer">
 		<s:iterator value="#request.bingrgeti_jiancha">
 			<div class="row" style="padding-top: 2%;padding-bottom: 2%;border-bottom: 1px dashed;">
 				<div class="col-xs-7" style="padding: 0 1% 0 1%;">
@@ -130,7 +147,6 @@
 				</div>
 			</div>
 		</s:iterator>
-		</div>
 		<%@ include file="menu-hushi.jsp" %>
 	</div>
 

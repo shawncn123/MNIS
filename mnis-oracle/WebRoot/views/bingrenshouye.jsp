@@ -28,11 +28,12 @@
 <script type="text/javascript">	
 	$(function(){
 		var url = "weiduxiaoxishu";
-		var args = {"time" : new Date()};
-		$.post(url,args,function(data) {
-			if(data!=""){
+		$.post(url,function(data) {
+			if(data!="" && data!="error"){
 				$("#xxshu").text(data+"");
-			};		
+			}else{
+				self.location = "views/login.jsp";
+			};
 		});
 	});
 </script>
@@ -71,7 +72,7 @@
 									</a>
 								</td>
 								<td style="border: none; padding: 3px;">
-									<a href="javascript:void(0); " class="text-center "> <img src="images/brxxxx_header_2.png " class="img-responsive " alt="刷新 " /> </a>
+									<a href="bingreng_yewumokuai?v_key1=${v_key1}&v_key2=${v_key2}" class="text-center "> <img src="images/brxxxx_header_2.png " class="img-responsive " alt="刷新 " /> </a>
 								</td>
 								<td style="border: none; padding: 3px;">
 									<a href="bingqbr_bysessionbingqid" class="text-center "> <img src="images/brxxxx_header_3.png " class="img-responsive " alt="病人列表 " /> </a>
@@ -99,7 +100,7 @@
 									</a>
 								</td>
 								<td style="border: none; padding: 3px;">
-									<a href="javascript:void(0); " class="text-center "> <img src="images/brxxxx_header_2.png " class="img-responsive " alt="刷新 " /> </a>
+									<a href="bingreng_yewumokuai?v_key1=${v_key1}&v_key2=${v_key2}" class="text-center "> <img src="images/brxxxx_header_2.png " class="img-responsive " alt="刷新 " /> </a>
 								</td>
 								<td style="border: none; padding: 3px;">
 									<a href="bingqbr_bysessionbingqid" class="text-center "> <img src="images/brxxxx_header_3.png " class="img-responsive " alt="病人列表 " /> </a>
@@ -116,57 +117,78 @@
 		<!--导航开始-->
 		<ul class="channellist clearfix">
 			<li>
+				<a href="bingrGeTi_YiZhuBen">
+						<div class="ChannelIcon">
+							<img src="images/Product.jpg" />
+						</div>
+						<div class="ChannelName">医嘱本</div>
+				</a>
+			</li>
+			<li>
+				<a href="tizhengluru?v_key1=${bingrgetixingxi.key1}&v_key2=${bingrgetixingxi.key2}">
+					<div class="ChannelIcon">
+						<img src="images/mokuai_2.jpg" />
+					</div>
+					<div class="ChannelName">体征录入</div>
+				</a>
+			</li>
+			<li>
+				<a href="bingrGeTi_YiZhuZhiXing">
+					<div class="ChannelIcon">
+						<img src="images/1409023367.jpg" />
+					</div>
+					<div class="ChannelName">医嘱执行</div>
+				</a>
+			</li>
+			<li>
+				<a href="xuanjiaolist">
+					<div class="ChannelIcon">
+						<img src="images/mokuai_4.jpg" />
+					</div>
+					<div class="ChannelName">宣教</div>
+				</a>
+			</li>
+			<li>
+				<a href="bingrgeti_TiWenDan">
+					<div class="ChannelIcon">
+						<img src="images/1408672427.jpg" />
+					</div>
+					<div class="ChannelName">体温单</div>
+				</a>
+			</li>
+			<li>
+				<a href="bingrGeTi_JianYan">
+					<div class="ChannelIcon">
+						<img src="images/1408672469.jpg" />
+					</div>
+					<div class="ChannelName">检验报告</div>
+				</a>
+			</li>
+			<li>
+				<a href="bingrGeTi_JianCha">
+					<div class="ChannelIcon">
+						<img src="images/1408672443.jpg" />
+					</div>
+					<div class="ChannelName">检查报告</div>
+				</a>
+			</li>
+			<li>
 				<a href="bingrengeti_jibenxingxi">
 					<div class="ChannelIcon">
 						<img src="images/about.jpg" />
 					</div>
 					<div class="ChannelName">病人信息</div>
-			</a></li>
+				</a>
+			</li>
 			<li>
-			<a href="bingrengeti_bingan_shouye">
+				<a href="bingrengeti_bingan_shouye">
 					<div class="ChannelIcon">
 						<img src="images/news.jpg" />
 					</div>
 					<div class="ChannelName">病案首页</div>
-			</a></li>
-			<li>
-			<a href="bingrGeTi_YiZhuBen">
-					<div class="ChannelIcon">
-						<img src="images/Product.jpg" />
-					</div>
-					<div class="ChannelName">医嘱本</div>
-			</a></li>
-			<li><a href="tizhengluru?v_key1=${bingrgetixingxi.key1}&v_key2=${bingrgetixingxi.key2}">
-					<div class="ChannelIcon">
-						<img src="images/mokuai_2.jpg" />
-					</div>
-					<div class="ChannelName">体征录入</div>
-			</a></li>
-			<li>
-			<a href="bingrGeTi_JianYan">
-					<div class="ChannelIcon">
-						<img src="images/1408672469.jpg" />
-					</div>
-					<div class="ChannelName">检验报告</div>
-			</a></li>
-			<li><a href="bingrGeTi_JianCha">
-					<div class="ChannelIcon">
-						<img src="images/1408672443.jpg" />
-					</div>
-					<div class="ChannelName">检查报告</div>
-			</a></li>
-			<li><a href="bingrGeTi_YiZhuZhiXing">
-					<div class="ChannelIcon">
-						<img src="images/1409023367.jpg" />
-					</div>
-					<div class="ChannelName">医嘱执行</div>
-			</a></li>
-			<li><a href="bingrgeti_TiWenDan">
-					<div class="ChannelIcon">
-						<img src="images/1408672427.jpg" />
-					</div>
-					<div class="ChannelName">体温单</div>
-			</a></li>
+				</a>
+			</li>
+			
 			<!--  <li><a href="views/linchuanglujing.jsp">
 					<div class="ChannelIcon">
 						<img src="images/1409023353.jpg" />
@@ -186,14 +208,7 @@
 					</div>
 					<div class="ChannelName">病历文件</div>
 			</a></li> -->
-			<li>
-				<a href="xuanjiaolist">
-					<div class="ChannelIcon">
-						<img src="images/mokuai_4.jpg" />
-					</div>
-					<div class="ChannelName">宣教</div>
-				</a>
-			</li>
+			
 			<!-- <li><a href="javascript:void(0)">
 					<div class="ChannelIcon">
 						<img src="images/about.jpg" />

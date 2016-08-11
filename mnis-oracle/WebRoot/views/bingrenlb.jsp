@@ -58,7 +58,6 @@
 		var valbq = $(this).val();
 		vbq = valbq;
 		var val_text = $(this).text();
-/* 		var url = "bingqbr_bybingqid"; */
 		var url = "bingqbr_bybqidbrlb";
 		var args = {"bqid" : vbq,"brxzlx":vbrlb/* ,"time" : new Date() */};
 		$.post(url,args,function(data) {

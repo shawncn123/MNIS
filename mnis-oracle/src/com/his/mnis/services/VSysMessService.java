@@ -28,4 +28,16 @@ public interface VSysMessService {
 	 */
 	public int getCountSysMessByRenyIdZhuangt(String renyid);
 	
+	/*
+	 * 根据参数用户id，查询消息总记录数
+	 */
+	public int getCountsSysMessByRenyId(String renyid);
+	
+	/*
+	 * 根据参数用户id，查询过期未读消息总记录数
+	 */
+	public int getCountsGuoQiSysMessByRenyId(String renyid);
+	
+	
+	
 }

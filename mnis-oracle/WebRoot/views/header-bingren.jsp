@@ -3,12 +3,11 @@
 <script type="text/javascript">	
 	$(function(){
 		var url = "weiduxiaoxishu";
-/* 		var args = {"time" : new Date()};
-		$.post(url,args,function(data) { */
 		$.post(url,function(data) {
-			if(data!=""){
-				/* alert(data); */
+			if(data!="" && data!="error"){
 				$("#xxshu").text(data+"");
+			}else{
+				self.location = "views/login.jsp";
 			};		
 		});
 	});

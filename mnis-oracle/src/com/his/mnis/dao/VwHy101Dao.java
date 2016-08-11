@@ -18,6 +18,7 @@ public class VwHy101Dao extends BaseDao {
 		query.setLong("key1", key1);
 		query.setInteger("key2", key2);
 		query.setShort("key3", key3);
+		query.setMaxResults(50);
 		return query.list();
 	}
 	/*
@@ -31,32 +32,21 @@ public class VwHy101Dao extends BaseDao {
 		query.setLong("key1", key1);
 		query.setInteger("key2", key2);
 		query.setShort("key3", key3);
+		query.setMaxResults(50);
 		return query.list();
 	}
 	/*
 	 * 根据时间段,病人Key查询病人的化验单主表信息
 	 */
-	public List<VwHy101> getListBingRenHuaYanByDate(Date sqrq1,Date sqrq2,Long key1,Integer key2,Short key3){
+	public List<VwHy101> getListBingRenHuaYanByDate(Date sqrq,Long key1,Integer key2,Short key3){
 		
-		String hql = "from VwHy101 where sqrq >=:sqrq1 and sqrq <= :sqrq2 and key1=:key1 and key2=:key2 and yebh=:key3 order by sqrq,sqdh";
+		String hql = "from VwHy101 where sqrq >= :sqrq and key1=:key1 and key2=:key2 and yebh=:key3 order by sqrq,sqdh";
 		Query query = getSession().createQuery(hql);
-		query.setDate("sqrq1", sqrq1);
-		query.setDate("sqrq2", sqrq2);
+		query.setDate("sqrq", sqrq);
 		query.setLong("key1", key1);
 		query.setInteger("key2", key2);
 		query.setShort("key3", key3);
-		return query.list();
-	}
-	
-	/*
-	 * 根据危急标志,病人Key查询病人的化验单主表信息
-	 */
-	public List<VwHy101> getListBingRenHuaYanByWjflagAndBingrKey(Long key1,Integer key2,Short key3){
-		String hql = "from VwHy101 where key1=:key1 and key2=:key2 and yebh=:key3 order by sqrq,sqdh";
-		Query query = getSession().createQuery(hql);
-		query.setLong("key1", key1);
-		query.setInteger("key2", key2);
-		query.setShort("key3", key3);
+		query.setMaxResults(50);
 		return query.list();
 	}
 }

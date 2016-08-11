@@ -25,6 +25,15 @@ public class TwTzzdAction extends ActionSupport implements RequestAware,SessionA
 	
 	private Long v_key1;
 	private Integer v_key2;
+	private String tizheng_luru_success;
+
+	public String getTizheng_luru_success() {
+		return tizheng_luru_success;
+	}
+
+	public void setTizheng_luru_success(String tizheng_luru_success) {
+		this.tizheng_luru_success = tizheng_luru_success;
+	}
 
 	private TwTzzdService twTzzdService;
 	private VwBqbrZyService vwBqbrZyService;
@@ -91,7 +100,7 @@ public class TwTzzdAction extends ActionSupport implements RequestAware,SessionA
 	}
 	
 	public String getBingRenTiZhengLuRuByBingQuId(){
-	
+		request.put("tizheng_luru_success", tizheng_luru_success);
 		try {
 			Object obj = session.get("bingrgetixingxi");
 			if(obj!=null){
@@ -109,7 +118,6 @@ public class TwTzzdAction extends ActionSupport implements RequestAware,SessionA
 				request.put("tiwen_rcbz", vwTzzdTwRcbzs);
 				String action_str = "tizhengluru?v_key1=" + vwBqbrZy.getKey1().toString() + "&v_key2=" + vwBqbrZy.getKey2().toString();
 				request.put("action_name", action_str);
-				
 				return SUCCESS;
 			}else{
 				return ERROR;

@@ -79,9 +79,77 @@
 		<column name="FILENR" type="java.sql.Blob"></column>
 		<column name="YEBH" type="java.lang.Integer"></column>
 	</table>
-<table name="TW_BRYZZX" schema="CZHIS">
+	<table name="TW_BRYZZX" schema="CZHIS">
+		<primary-key>
+			<key-column name="ROWKEY" />
+		</primary-key>
+	</table>
+	<table name="VW_BRYZ" schema="ZLHIS">
+		<primary-key>
+			<key-column name="YZXH" />
+		</primary-key>
+	</table>
+	<table name="V_SYS_MESS_READER" schema="ZLHIS">
+		<primary-key>
+			<key-column name="MESSID" />
+		</primary-key>
+	</table>
+	<table name="TW_BRYZZX" schema="ZLHIS">
+		<primary-key>
+			<key-column name="ROWKEY" />
+		</primary-key>
+	</table>
+	<table name="VW_HY101" schema="ZLHIS">
+		<primary-key>
+			<key-column name="SQDH" />
+		</primary-key>
+	</table>
+	<table name="VW_HY101_1" schema="ZLHIS">
+		<primary-key>
+			<key-column name="YZXH" />
+		</primary-key>
+	</table>
+	<table name="VW_JC101" schema="ZLHIS">
+		<primary-key>
+			<key-column name="SQDH" />
+		</primary-key>
+	</table>
+	<table name="VW_RYBQ" schema="ZLHIS">
+		<primary-key>
+			<key-column name="ROWKEY" />
+		</primary-key>
+	</table>
+	<table name="VW_BQBR_ZY" schema="ZLHIS">
+		<primary-key>
+			<key-column name="ROWKEY" />
+		</primary-key>
+		<column name="RYRQ" type="java.lang.String"></column>
+	</table>
+	<table name="VW_XJ_FL" schema="ZLHIS">
+		<primary-key>
+			<key-column name="DM" />
+		</primary-key>
+	</table>
+	<table name="TW_XJ_DM" schema="ZLHIS">
+		<primary-key>
+			<key-column name="ID" />
+		</primary-key>
+	</table>
+	<table name="TW_XJ_YW" schema="ZLHIS">
+		<primary-key>
+			<key-column name="ID" />
+		</primary-key>
+		<column name="STIME" type="java.util.Date"></column>
+		<column name="RQ" type="java.util.Date"></column>
+	</table>
+	<table name="VW_BQYE_ZY" schema="ZLHIS">
+		<primary-key>
+			<key-column name="ROWKEY" />
+		</primary-key>
+	</table>
+<table name="VW_BB_MBBM" schema="ZLHIS">
 	<primary-key>
-		<key-column name="ROWKEY" />
+		<key-column name="XMBM" />
 	</primary-key>
 </table>
 </hibernate-reverse-engineering>

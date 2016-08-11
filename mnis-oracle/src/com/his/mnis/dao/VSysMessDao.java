@@ -81,4 +81,26 @@ public class VSysMessDao extends BaseDao {
 	    int count = Integer.valueOf(query.list().get(0).toString());
 	    return count;
 	}
+	
+	/*
+	 * 根据参数用户id，查询消息总记录数
+	 */
+	public int getCountsSysMessByRenyId(String renyid){
+		String hql = "select count(*) from V_SYS_MESS_READER where ryid=:ryid";
+		Query query = getSession().createSQLQuery(hql);
+		query.setString("ryid", renyid);
+		int count = Integer.valueOf(query.list().get(0).toString());
+		return count;
+	}
+	
+	/*
+	 * 根据参数用户id，查询过期未读消息总记录数
+	 */
+	public int getCountsGuoQiSysMessByRenyId(String renyid){
+		String hql = "select count(*) from V_SYS_MESS_READER where ryid=:ryid and qcwdflag='1'";
+		Query query = getSession().createSQLQuery(hql);
+		query.setString("ryid", renyid);
+		int count = Integer.valueOf(query.list().get(0).toString());
+		return count;
+	}
 }

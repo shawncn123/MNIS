@@ -15,9 +15,13 @@ public interface VwJc101Service {
 	 */
 	public List<VwJc101> getListBingrJiancByYishengIdAndBingrKey(String sqysid,Long key1,Integer key2,Short key3);
 	/*
-	 * 根据时间段,病人Key查询病人的相关检查信息
+	 * 根据时间,病人Key查询病人的相关检查信息
 	 */
-	public List<VwJc101> getListBingRenJiancByDate(Date sqrq1,Date sqrq2,Long key1,Integer key2,Short key3);
+	public List<VwJc101> getListBingRenJiancByDate(Date sqrq,Long key1,Integer key2,Short key3);
+	/*
+	 * 根据时间,病人Key,危急值 查询病人的相关检查信息
+	 */
+	public List<VwJc101> getListBingRenJiancByDateAndWjflag(String wjbz,Date sqrq,Long key1,Integer key2,Short key3);
 	/*
 	 * 根据危急值,病人Key查询病人的相关检查信息
 	 */

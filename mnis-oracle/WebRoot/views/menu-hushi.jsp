@@ -32,7 +32,7 @@
 			</a>
 		</div>
 		<div class="navItem_6">
-			<a href="mymessage?pageno=1">
+			<a href="mymessage?pageno=1&pagerows=20">
 				<span class="glyphicon glyphicon-comment"></span>
 				<span class="gnavItemName">我的消息</span>
 			</a>

@@ -61,4 +61,11 @@ $(function(){
 			$(function() {
 				$backToTopFun();
 			});
+			
+			var d = new Date();        //7.27添加
+	        var str = d.getFullYear()+"-"+((d.getMonth()+1)<10?"0":"")+(d.getMonth()+1)+"-"+(d.getDate()<10?"0":"")+d.getDate();
+			$('#appDate').val(str);	
+			$('#appDate1').val(str);
+			var a_val = $('#appDate').val();
+			var a1_val = $('#appDate1').val();
 });

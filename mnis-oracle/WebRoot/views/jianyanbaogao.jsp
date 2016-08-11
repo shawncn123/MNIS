@@ -13,9 +13,9 @@
 		<title>检验报告</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="author" content="沈旭峰" />
+		<meta name="author" content="融汇国康" />
 		<meta name="keywords" content="移动护理信息系统" />
-		<meta name="description" content="检验报告,高大上的移动护理系统。" />
+		<meta name="description" content="检验报告,移动护理系统。" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 		<link href="css/base.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/song.css" />
@@ -41,6 +41,80 @@
 			function wjzflselcet() {
 				document.getElementById("wjzsz").submit();
 			}
+			
+			function changeDate() {
+				/* alert($("#appDate1").val());
+				var vcxrq = "2016-03-11"; */
+				var vcxrq = $("#appDate").val();
+				var vwjbz = $("#wjbzselect").val();
+				var url = "getHuaYanByRiQi";
+				var args = {"vsqrq" : vcxrq,"vwjbz":vwjbz/* ,"time" : new Date() */};
+				$.post(url,args,function(data) {
+					a = '';
+					d = eval("("+ data+ ")");
+					if(d!=null && d!="" ){
+						
+					for (var i = 0; i < d.length; i++) {
+						a = a + '<div class="panel panel-default"><div class="panel-heading" role="tab" id="headingOne">'
+						      +'<h4 class="panel-title">';
+						if(d[i].wjflag!="1"){
+							a = a + '<a role="button" data-toggle="collapse" href="#collapse_' + i + '" aria-expanded="false" '
+							      + 'aria-controls="collapse_' + i 
+							      + '" style="width: 100%;display: inline-block;color: yellowgreen;text-decoration: none;">>&nbsp;'
+							      + d[i].bbmc + '&nbsp;&nbsp;&nbsp;';
+							      
+							var obj =  d[i].sqsj;
+							var teo = new Date(obj.time);
+							var vmonth = teo.getMonth()+1;
+							if(vmonth<10){
+								vmonth = "0"+vmonth;
+							}
+							var vsqsj = teo.getFullYear() + "-" + vmonth + "-" + teo.getDate();
+						
+							a = a + vsqsj + ' </a>';
+						}else{
+							a = a + '<a role="button" data-toggle="collapse" href="#collapse_' + i 
+							      + '"  aria-expanded="false" aria-controls="collapse_' + i 
+							      + '" style="width: 100%;display: inline-block;color: red;text-decoration: none;">>&nbsp;'
+							      + d[i].bbmc + '&nbsp;&nbsp;&nbsp;';
+							var obj =  d[i].sqsj;
+							var teo = new Date(obj.time);
+							var vmonth = teo.getMonth()+1;
+							if(vmonth<10){
+								vmonth = "0"+vmonth;
+							}
+							var vsqsj = teo.getFullYear() + "-" + vmonth + "-" + teo.getDate();
+						
+							a = a + vsqsj + ' </a>';
+						}
+			            a = a + '</h4></div>';
+			            
+			            if(d[i].vwHy1011s!="" && d[i].vwHy1011s!=null){
+			            	a = a + ' <div id="collapse_' + i 
+			            	      + '" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading_'
+			            	      + i + '"><div class="panel-body" style="padding: 5px;">';
+			            	var zbhys = d[i].vwHy1011s; 
+			            	for (var j = 0; j < zbhys.length; j++) {
+			            		a = a + '<div class="row" style="padding-top: 2%;padding-bottom: 2%;"><div class="col-xs-12">'
+			            		      + '<p class="p-bg"><a href="javascript:void(0);" style="text-decoration: none;color: #080808;">'
+			            		      + zbhys[j].yzmc + '</a></p></div></div>';
+			            		if(zbhys[j].yszt!="" && zbhys[j].yszt!=null){
+			            			a = a + '<div class="row" style="padding-top: 2%;padding-bottom: 2%;"><div class="col-xs-12">'
+			            			      + '<p class="p-bg"><a href="javascript:void(0);" style="text-decoration: none;color: #080808;">'
+			            			      + zbhys[j].yszt + '</a></p></div></div>';
+			            		}
+			            	}
+			            	a = a + "</div></div>";
+			            }
+			            a = a + "</div>"
+					}
+					
+					}else{
+						a = "无数据！"; 
+					}
+					$("#huayancontainer")[0].innerHTML = a;
+				});
+			};
 		</script>
 </head>
 	<body>
@@ -51,7 +125,7 @@
 						<div class="col-xs-10" style="padding-left: 5px;">
 						<form action="chahuayandata" method="post" id="wjzsz">
 							<div class="form-group">
-								<select name="vwjbz" id="" class="form-control" onchange="wjzflselcet()">
+								<select name="vwjbz" id="wjbzselect" class="form-control" onchange="wjzflselcet()">
 									<s:if test='vwjbz=="2"||vwjbz==null'>
 									<option value="2" selected>全部检验</option>
 									<option value="1">危急值</option>
@@ -65,28 +139,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-7" style="padding-left: 3px; margin-top: 2px;">
-					<div class="row">
-						<div class="col-xs-4 padd-r">
-							<div class="content">
-								<div class="demos">
-									<input value="" placeholder="开始日期" class="form-control padd-r" readonly="readonly" name="appDateTime" id="appDate" type="text">
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-1">
-							<p class="p-divider">—</p>
-						</div>
-						<div class="col-xs-4 padd-r">
-							<div class="content">
-								<div class="demos">
-									<input value="" placeholder="结束日期" class="form-control padd-r" readonly="readonly" name="appDateTime" id="appDate1" type="text">
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-1 bor-r" style="margin-left: 5px;">
-							<div class="icon_pic"></div>
-						</div>
+				<div class="col-xs-2">
+				</div>
+				<div class="col-xs-5" style="padding: 0; margin: 0;">
+					<div class="demos">
+						<input value="" placeholder="" class="form-control" readonly="readonly" name="appDateTime" id="appDate" type="text"  onchange="changeDate()">
 					</div>
 				</div>
 			</div>
@@ -94,6 +151,7 @@
 
 		<div class="container" id="content" style="position: relative;">
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="margin-top: 2%;">
+				<div id="huayancontainer">
 				<s:iterator value="#request.bingrgeti_huayan" status="status">
        			 <div class="panel panel-default">
 		            <div class="panel-heading" role="tab" id="headingOne">
@@ -137,6 +195,7 @@
 		            </s:if>
 		        </div>
 		        </s:iterator>
+		        </div>
 				<%@ include file="menu-hushi.jsp" %>
 			</div>
 		</div>
@@ -147,5 +206,4 @@
 		<!--页脚结束-->
 		<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
 	</body>
-
 </html>

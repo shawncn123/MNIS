@@ -44,9 +44,57 @@ public class VwHy101ServiceImpl implements VwHy101Service {
 	}
 
 	@Override
-	public List<VwHy101> getListBingRenHuaYanByDate(Date sqrq1, Date sqrq2,
-			Long key1, Integer key2,Short key3) {
-		return vwHy101Dao.getListBingRenHuaYanByDate(sqrq1, sqrq2, key1, key2,key3);
+	public List<BingRenHuaYanXingXi> getListBingRenHuaYanByDate(Date sqrq,Long key1, Integer key2,Short key3) {
+		
+		List<BingRenHuaYanXingXi> bingRenHuaYanXingXis = new ArrayList<>();
+		List<VwHy101> vwHy101s = vwHy101Dao.getListBingRenHuaYanByDate(sqrq, key1, key2,key3);
+		if(vwHy101s.size()>0){
+			for(int i=0; i<vwHy101s.size();i++){
+				BingRenHuaYanXingXi bingRenHuaYanXingXi = new BingRenHuaYanXingXi();
+				List<VwHy1011> vwHy1011s = null;
+				String vsqdh = vwHy101s.get(i).getSqdh();
+				try {
+					vwHy1011s = vwHy1011Dao.getListBingrHuayChongb(vsqdh);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				String wjpd="0";
+				for(int j=0; j<vwHy1011s.size();j++){
+					wjpd = vwHy1011s.get(j).getWjflag();
+					if(wjpd.equals("1")){
+						bingRenHuaYanXingXi.setWjflag(wjpd);
+						break;
+					}
+				}
+				bingRenHuaYanXingXi.setSqdh(vwHy101s.get(i).getSqdh());
+				bingRenHuaYanXingXi.setKey1(vwHy101s.get(i).getKey1());
+				bingRenHuaYanXingXi.setKey2(vwHy101s.get(i).getKey2());
+				bingRenHuaYanXingXi.setYebh(vwHy101s.get(i).getYebh());
+				bingRenHuaYanXingXi.setJjflag(vwHy101s.get(i).getJjflag());
+				bingRenHuaYanXingXi.setSqrq(vwHy101s.get(i).getSqrq());
+				bingRenHuaYanXingXi.setSqsj(vwHy101s.get(i).getSqsj());
+				bingRenHuaYanXingXi.setBq(vwHy101s.get(i).getBq());
+				bingRenHuaYanXingXi.setChw(vwHy101s.get(i).getChw());
+				bingRenHuaYanXingXi.setBah(vwHy101s.get(i).getBah());
+				bingRenHuaYanXingXi.setXm(vwHy101s.get(i).getXm());
+				bingRenHuaYanXingXi.setXb(vwHy101s.get(i).getXb());
+				bingRenHuaYanXingXi.setNl(vwHy101s.get(i).getNl());
+				bingRenHuaYanXingXi.setSqysid(vwHy101s.get(i).getSqysid());
+				bingRenHuaYanXingXi.setSqysxm(vwHy101s.get(i).getSqysxm());
+				bingRenHuaYanXingXi.setSqksid(vwHy101s.get(i).getSqksid());
+				bingRenHuaYanXingXi.setSqksmc(vwHy101s.get(i).getSqksmc());
+				bingRenHuaYanXingXi.setCzksid(vwHy101s.get(i).getCzksid());
+				bingRenHuaYanXingXi.setCzksmc(vwHy101s.get(i).getCzksmc());
+				bingRenHuaYanXingXi.setBbmc(vwHy101s.get(i).getBbmc());
+				bingRenHuaYanXingXi.setXmms(vwHy101s.get(i).getXmms());
+				bingRenHuaYanXingXi.setZxflag(vwHy101s.get(i).getZxflag());
+				bingRenHuaYanXingXi.setBgbz(vwHy101s.get(i).getBgbz());
+				bingRenHuaYanXingXi.setVwHy1011s(vwHy1011s);
+				bingRenHuaYanXingXis.add(bingRenHuaYanXingXi);
+			}
+			return bingRenHuaYanXingXis;
+		}
+		return null;
 	}
 
 	@Override
@@ -104,10 +152,65 @@ public class VwHy101ServiceImpl implements VwHy101Service {
 	}
 
 	@Override
-	public List<BingRenHuaYanXingXi> getListHuaYanWeiJiAllByKey(String wjbz,Long key1,
+	public List<BingRenHuaYanXingXi> getListHuaYanWeiJiAllByKey(Long key1,
 			Integer key2, Short key3) {
 		List<BingRenHuaYanXingXi> bingRenHuaYanXingXis = new ArrayList<>();
-		List<VwHy101> vwHy101s = vwHy101Dao.getListBingRenHuaYanByWjflagAndBingrKey( key1, key2, key3);
+		List<VwHy101> vwHy101s = vwHy101Dao.getListBingRenHuaYanByKey(key1, key2, key3);
+		System.out.println("vwHy101s.size():" + vwHy101s.size());
+		if(vwHy101s.size()>0){
+			for(int i=0; i<vwHy101s.size();i++){
+				BingRenHuaYanXingXi bingRenHuaYanXingXi = new BingRenHuaYanXingXi();
+				List<VwHy1011> vwHy1011s = null;
+				String vsqdh = vwHy101s.get(i).getSqdh();
+				try {
+					vwHy1011s = vwHy1011Dao.getListBingrHuayChongb(vsqdh);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				//判断从表是否有危急值的记录，如果有，则添加到list中
+				String wjpd = "0";
+				for(int j=0; j<vwHy1011s.size();j++){
+					wjpd = vwHy1011s.get(j).getWjflag();
+					if(wjpd.equals("1")){
+						bingRenHuaYanXingXi.setSqdh(vwHy101s.get(i).getSqdh());
+						bingRenHuaYanXingXi.setKey1(vwHy101s.get(i).getKey1());
+						bingRenHuaYanXingXi.setKey2(vwHy101s.get(i).getKey2());
+						bingRenHuaYanXingXi.setYebh(vwHy101s.get(i).getYebh());
+						bingRenHuaYanXingXi.setJjflag(vwHy101s.get(i).getJjflag());
+						bingRenHuaYanXingXi.setSqrq(vwHy101s.get(i).getSqrq());
+						bingRenHuaYanXingXi.setSqsj(vwHy101s.get(i).getSqsj());
+						bingRenHuaYanXingXi.setBq(vwHy101s.get(i).getBq());
+						bingRenHuaYanXingXi.setChw(vwHy101s.get(i).getChw());
+						bingRenHuaYanXingXi.setBah(vwHy101s.get(i).getBah());
+						bingRenHuaYanXingXi.setXm(vwHy101s.get(i).getXm());
+						bingRenHuaYanXingXi.setXb(vwHy101s.get(i).getXb());
+						bingRenHuaYanXingXi.setNl(vwHy101s.get(i).getNl());
+						bingRenHuaYanXingXi.setSqysid(vwHy101s.get(i).getSqysid());
+						bingRenHuaYanXingXi.setSqysxm(vwHy101s.get(i).getSqysxm());
+						bingRenHuaYanXingXi.setSqksid(vwHy101s.get(i).getSqksid());
+						bingRenHuaYanXingXi.setSqksmc(vwHy101s.get(i).getSqksmc());
+						bingRenHuaYanXingXi.setCzksid(vwHy101s.get(i).getCzksid());
+						bingRenHuaYanXingXi.setCzksmc(vwHy101s.get(i).getCzksmc());
+						bingRenHuaYanXingXi.setBbmc(vwHy101s.get(i).getBbmc());
+						bingRenHuaYanXingXi.setXmms(vwHy101s.get(i).getXmms());
+						bingRenHuaYanXingXi.setZxflag(vwHy101s.get(i).getZxflag());
+						bingRenHuaYanXingXi.setBgbz(vwHy101s.get(i).getBgbz());
+						bingRenHuaYanXingXi.setWjflag(wjpd);
+						bingRenHuaYanXingXi.setVwHy1011s(vwHy1011s);
+						bingRenHuaYanXingXis.add(bingRenHuaYanXingXi);
+						break;
+					}
+				}
+			}
+			return bingRenHuaYanXingXis;
+		}
+		return null;
+	}
+
+	@Override
+	public List<BingRenHuaYanXingXi> getListWjzHuaYanByKeyDate(Date sqrq, Long key1, Integer key2, Short key3) {
+		List<BingRenHuaYanXingXi> bingRenHuaYanXingXis = new ArrayList<>();
+		List<VwHy101> vwHy101s = vwHy101Dao.getListBingRenHuaYanByDate(sqrq, key1, key2, key3);
 		System.out.println("vwHy101s.size():" + vwHy101s.size());
 		if(vwHy101s.size()>0){
 			for(int i=0; i<vwHy101s.size();i++){
