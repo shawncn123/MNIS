@@ -21,6 +21,7 @@ public class TwBryzzxRemodel implements java.io.Serializable {
 	private Short yebh;
 	private Timestamp rq;
 	private Long groupxh;
+	private String lsflag;
 //	private String sjd;
 //	private Timestamp sjdtime;
 	private String bq;
@@ -56,7 +57,7 @@ public class TwBryzzxRemodel implements java.io.Serializable {
 
 	public TwBryzzxRemodel(String rowkey, Long key1, Integer key2, Short yebh,
 			Timestamp rq, Long groupxh, String bq, String chw, String yzid,
-			String yzzdmc, List<String> yzmcs, String zxlb, String yf2mc,
+			String yzzdmc, List<String> yzmcs, String zxlb, String yf2mc,String lsflag,
 			List<TwBryzzxRemodelSub> twBryzzxRemodelSubs) {
 		super();
 		this.rowkey = rowkey;
@@ -72,15 +73,24 @@ public class TwBryzzxRemodel implements java.io.Serializable {
 		this.yzmcs = yzmcs;
 		this.zxlb = zxlb;
 		this.yf2mc = yf2mc;
+		this.lsflag = lsflag;
 		this.twBryzzxRemodelSubs = twBryzzxRemodelSubs;
 	}
 
 	// Property accessors
 
+	public String getLsflag() {
+		return this.lsflag;
+	}
+
+	public void setLsflag(String lsflag) {
+		this.lsflag = lsflag;
+	}
+	
 	public String getRowkey() {
 		return this.rowkey;
 	}
-
+	
 	public void setRowkey(String rowkey) {
 		this.rowkey = rowkey;
 	}

@@ -11,7 +11,14 @@ public class TwBryzzxRemodelSub {
 	private String zxhsid;   //执行护士id
 	private String zxhsxm;   //执行护士姓名
 	private String zxms;     //执行描述信息(备注)
+	private String rowkey;
 	
+	public String getRowkey() {
+		return rowkey;
+	}
+	public void setRowkey(String rowkey) {
+		this.rowkey = rowkey;
+	}
 	public String getSjd() {
 		return sjd;
 	}

@@ -11,6 +11,8 @@
 <meta charset="UTF-8">
 <title>临嘱未执行</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="SHORTCUT ICON" href="images/favicon.ico">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="author" content="沈旭峰" />
 <meta name="keywords" content="移动护理信息系统" />

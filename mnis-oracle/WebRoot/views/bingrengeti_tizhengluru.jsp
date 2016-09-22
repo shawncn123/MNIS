@@ -13,6 +13,8 @@
 		<base href="<%=basePath%>">
 		<title>体征录入</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="SHORTCUT ICON" href="images/favicon.ico">
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="author" content="融汇国康" />
 		<meta name="keywords" content="移动护理信息系统" />
@@ -255,16 +257,16 @@
 		<!--页脚结束-->
 		<!--新加模态框 start-->
 		<div class="modal fade" id="temperature" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog" id="modal-wrap">
+			<div class="modal-dialog" id="modal-wrap" style="width:88%">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header" style="padding:2%;">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 						<h4 class="modal-title" id="myModalLabel">体温录入项</h4>
 					</div>
 					<!-- 模态框body start-->
-					<div class="modal-body">
+					<div class="modal-body" style="padding:2%;">
 						<form role="form" class="form-horizontal">
-							<div class="form-group">
+							<div class="form-group" style="margin-bottom: 2%;">
 								<label class="col-xs-4 control-label text-right" style="padding:2% 2% 0 2%;">体温类型</label>
 								<div class="col-xs-8">
 									<select class="form-control" id="twlx_select">
@@ -274,42 +276,42 @@
 									</select>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group" style="margin-bottom: 2%;">
 								<label class="col-xs-4 control-label text-right" style="padding:2% 2% 0 2%;">温度</label>
 								<div class="col-xs-6">
 									<input type="text" readonly="readonly" pop="1" class="form-control du" placeholder="温度" id="tw_wendu">
 								</div>
 								<div class="col-xs-2" style="padding:2% 0 0;">℃</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group" style="margin-bottom: 2%;">
 								<label class="col-xs-4 control-label text-right" style="padding:2% 2% 0 2%;">降温后温度</label>
 								<div class="col-xs-6">
 									<input type="text" readonly="readonly" pop="2" class="form-control du" placeholder="降温后温度" id="tw_jwhwendu">
 								</div>
 								<div class="col-xs-2" style="padding:2% 0 0;">℃</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group" style="margin-bottom: 2%;">
 								<label class="col-xs-4 control-label text-right" style="padding:2% 2% 0 2%;">脉搏</label>
 								<div class="col-xs-6">
 									<input type="text" readonly="readonly" pop="3" class="form-control ci" placeholder="脉搏" id="tw_maibo">
 								</div>
 								<div class="col-xs-2" style="padding:2% 0 0;">次</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group" style="margin-bottom: 2%;">
 								<label class="col-xs-4 control-label text-right" style="padding:2% 2% 0 2%;">心率</label>
 								<div class="col-xs-6">
 									<input type="text" readonly="readonly" pop="4" class="form-control ci" placeholder="心率" id="tw_xinlv">
 								</div>
 								<div class="col-xs-2" style="padding:2% 0 0;">次</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group" style="margin-bottom: 2%;">
 								<label class="col-xs-4 control-label text-right" style="padding:2% 2% 0 2%;">呼吸</label>
 								<div class="col-xs-6">
 									<input type="text" readonly="readonly" pop="5" class="form-control ci" placeholder="呼吸" id="tw_huxi">
 								</div>
 								<div class="col-xs-2" style="padding:2% 0 0;">次</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group" style="margin-bottom: 2%;">
 								<label class="col-xs-4 control-label text-right" style="padding:2% 2% 0 2%;">入出标注</label>
 								<div class="col-xs-8">
 									<select class="form-control" id="tw_rcbz">
@@ -320,7 +322,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group" style="margin-bottom: 2%;">
 								<label class="col-xs-4 control-label  text-right" style="padding:2% 2% 0 2%;">入出时间</label>
 								<div class="col-xs-8">
 									<div class="demos">

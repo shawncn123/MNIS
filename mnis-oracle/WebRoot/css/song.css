@@ -13,7 +13,7 @@
 .sideBtn {
 	position: fixed;
 	left: 2%;
-	top: 90%;
+	top: 84%;
 	z-index: 11;
 	opacity: .8;
 	width: 4rem;
@@ -92,7 +92,7 @@
 	width: 4rem;
 	height: 4rem;
 	position: fixed;
-	top: 80%;
+	top: 76%;
 	left: 2%;
 	background-color: #0095DD;
 	border-radius: 10px;

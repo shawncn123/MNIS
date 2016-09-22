@@ -14,6 +14,12 @@
 			</a>
 		</div>
 		<div class="navItem_3">
+			<a href="allyizhuweizhixing?vxzzxfl=00">
+				<span class="glyphicon glyphicon-exclamation-sign"></span>
+				<span class="gnavItemName">医嘱未执行</span>
+			</a>
+		</div>
+		<!-- <div class="navItem_3">
 			<a href="linzhuweizhixing">
 				<span class="glyphicon glyphicon-exclamation-sign"></span>
 				<span class="gnavItemName">临嘱未执行</span>
@@ -24,7 +30,7 @@
 				<span class="glyphicon glyphicon-check"></span>
 				<span class="gnavItemName">输液执行</span>
 			</a>
-		</div>
+		</div> -->
 		<div class="navItem_5">
 			<a href="woDeBingRenXuanZe">
 				<span class="glyphicon glyphicon-list"></span>

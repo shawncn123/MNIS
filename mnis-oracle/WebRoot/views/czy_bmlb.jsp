@@ -14,6 +14,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>用户列表</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="SHORTCUT ICON" href="images/favicon.ico">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 <script type="text/javascript" src="scripts/jquery-1.12.1.min.js"></script>
 </head>
 <body class="bg-info">

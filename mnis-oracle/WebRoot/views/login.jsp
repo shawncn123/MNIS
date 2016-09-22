@@ -16,7 +16,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>移动护理信息系统-登录</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
-
+<link rel="SHORTCUT ICON" href="images/favicon.ico">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">

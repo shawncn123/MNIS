@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/song.css"/>
+<link rel="SHORTCUT ICON" href="images/favicon.ico">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 <script type="text/javascript" src="scripts/jquery-1.12.1.min.js"></script>
 <script type="text/javascript" src="scripts/viewjs.js"></script>
 <script src="scripts/song.js" type="text/javascript"></script>

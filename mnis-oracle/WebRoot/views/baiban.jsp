@@ -13,6 +13,7 @@
 	<title>护士工作提醒</title>
 	<base href="<%=basePath%>">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="SHORTCUT ICON" href="images/favicon.ico">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="author" content="沈旭峰" />
 	<meta name="keywords" content="移动护理信息系统" />

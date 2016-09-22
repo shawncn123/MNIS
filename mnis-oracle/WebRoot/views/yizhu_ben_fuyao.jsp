@@ -13,6 +13,8 @@
 <title>医嘱本</title>
 <base href="<%=basePath%>">
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="SHORTCUT ICON" href="images/favicon.ico">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="author" content="沈旭峰" />
 <meta name="keywords" content="移动护理信息系统" />
@@ -43,16 +45,16 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false"> 全部 <span class="caret"></span>
 					</a>
-					<!-- <ul class="dropdown-menu" aria-labelledby="dLabel">
-						<li><a href="javascript:void(0)">输液本</a></li>
-						<li><a href="javascript:void(0)">治疗本</a></li>
-						<li><a href="javascript:void(0)">服药本</a></li>
-						<li><a href="javascript:void(0)">临嘱本</a></li>
-						<li><a href="javascript:void(0)">膳食本</a></li>
-						<li><a href="javascript:void(0)">新开</a></li>
-						<li><a href="javascript:void(0)">新停</a></li>
+					<ul class="dropdown-menu" aria-labelledby="dLabel">
 						<li><a href="javascript:void(0)">全部</a></li>
-					</ul> -->
+						<li><a href="javascript:void(0)">长期</a></li>
+						<li><a href="javascript:void(0)">临时</a></li>
+						<li><a href="javascript:void(0)">药品</a></li>
+						<li><a href="javascript:void(0)">诊疗项目</a></li>
+						<li><a href="javascript:void(0)">材料</a></li>
+						<li><a href="javascript:void(0)">有效</a></li>
+						<li><a href="javascript:void(0)">停止</a></li>
+					</ul>
 				</div>
 			</div>
 		</div>

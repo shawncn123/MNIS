@@ -4,7 +4,7 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-
+	 <!-- 自动动态方法的调用，使用这个设置后可以这样调用：action!method -->
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 	<constant name="struts.devMode" value="true" />
 
@@ -78,6 +78,22 @@
 			<result name="error">/views/xuanjiao.jsp</result>
 		</action>
 		<action name="xuanjiaolistbydm" class="xuanJiaoAction" method="getListXjNrByDaiMa">
+		</action>
+		
+		<!-- 护士医嘱未执行 -->
+		<action name="yizhuzhixingfenlei" class="yiZhuWeiZhiXingAction" method="getListYiZhuZhiXingFenLei">
+			<result name="success">/views/yizhuzhixingfenlei.jsp</result>
+			<result name="error">/views/yizhuzhixingfenlei_error.jsp</result>
+		</action>
+		<action name="yizhuweizhixing" class="yiZhuWeiZhiXingAction" method="getListWeiZhiXingYiZhuByHsidZxfl">
+			<result name="success">/views/yizhuweizhixing.jsp</result>
+			<result name="error">/views/yizhuweizhixing.jsp</result>
+		</action>
+		<action name="allyizhuweizhixing" class="yiZhuWeiZhiXingAction" method="getListAllWeiZhiXingYiZhuByHsid">
+			<result name="success">/views/yizhuweizhixing2.jsp</result>
+			<result name="error">/views/yizhuweizhixing2.jsp</result>
+		</action>
+		<action name="yizhuweizhixingforjquery" class="yiZhuWeiZhiXingAction" method="getListWeiZhiXingYiZhuByHsidZxflforjQuery">
 		</action>
 		
 		<action name="wodebingren" class="twWdbrAction" method="getMyZhuYuanBingRenByCzryIdBqId">
@@ -185,6 +201,10 @@
 			<result name="success">/views/yizhu_ben_fuyao.jsp</result>
 			<result name="error">/views/bingrenshouye.jsp</result>
 		</action>
+		
+		<action name="bingrYiZhuZhiXingforjquery" class="twBryzzxAction" method="getListBryzzxByKeyZxfl">
+		</action>
+		
 		<action name="bingrGeTi_YiZhuZhiXing" class="twBryzzxAction" method="getListBryzzxByKey">
 			<result name="success">/views/yizhu_zhixing.jsp</result>
 			<result name="error">/views/bingrenshouye.jsp</result>

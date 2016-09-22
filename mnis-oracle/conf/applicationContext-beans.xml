@@ -84,7 +84,22 @@
 	<bean id="xuanJiaoAction" class="com.his.mnis.actions.XuanJiaoAction"  scope="prototype">
 		<property name="xuanJiaoService" ref="xuanJiaoService"></property>
 	</bean>
+	<!-- 护士医嘱未执行 -->
+	<bean id="zd001Dao" class="com.his.mnis.dao.Zd001Dao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 	
+	<bean id="yiZhuWeiZhiXingService" class="com.his.mnis.serviceImpl.YiZhuWeiZhiXingServiceImpl">
+		<property name="zd001Dao" ref="zd001Dao"></property>
+	</bean>
+	
+	<bean id="yiZhuWeiZhiXingAction" class="com.his.mnis.actions.YiZhuWeiZhiXingAction"  scope="prototype">
+		<property name="yiZhuWeiZhiXingService" ref="yiZhuWeiZhiXingService"></property>
+		<property name="shuYeZhiXingService" ref="shuYeZhiXingService"></property>
+		<property name="twBryzzxService" ref="twBryzzxService"></property>
+	</bean>
+	
+	<!-- 输液未执行 -->
 	<bean id="shuYeZhiXingDao" class="com.his.mnis.dao.ShuYeZhiXingDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
@@ -224,6 +239,7 @@
 	</bean>
 	<bean id="twBryzzxAction" class="com.his.mnis.actions.TwBryzzxAction"  scope="prototype">
 		<property name="twBryzzxService" ref="twBryzzxService"></property>
+		<property name="yiZhuWeiZhiXingService" ref="yiZhuWeiZhiXingService"></property>
 	</bean>
 	<bean id="vwBryzDao" class="com.his.mnis.dao.VwBryzDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>

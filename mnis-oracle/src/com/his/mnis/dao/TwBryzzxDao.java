@@ -20,7 +20,7 @@ public class TwBryzzxDao extends BaseDao {
 
 	public List<TwBryzzx> getListBrYzzxByKey(long v_key1,int v_key2,short v_yebh){
 		
-		String hql = "from TwBryzzx where key1=:key1 and key2=:key2 and yebh=:yebh order by groupxh,sjd";
+		String hql = "from TwBryzzx where key1=:key1 and key2=:key2 and yebh=:yebh order by groupxh,sjdtime";
 		Query query = getSession().createQuery(hql);
 		query.setLong("key1", v_key1);
 		query.setInteger("key2", v_key2);
@@ -28,19 +28,43 @@ public class TwBryzzxDao extends BaseDao {
 		return query.list();
 		
 	}
-	
+	/*
+	 * 根据病人key1,key2值和执行分类代码查询病人医嘱执行数据
+	 */
+	public List<TwBryzzx> getListBrYzzxByKeyZxfldm(long v_key1,int v_key2,short v_yebh, String zxfl ){
+		String hql="";
+		if(zxfl.equals("00")){
+		 hql = "from TwBryzzx where key1=:key1 and key2=:key2 and yebh=:yebh and zxflag='0' order by groupxh,sjdtime";
+		}else{
+			hql = "from TwBryzzx where key1=:key1 and key2=:key2 and yebh=:yebh and zxflag='0' and zxfldm=:zxfl order by groupxh,sjdtime";
+		}
+		Query query = getSession().createQuery(hql);
+		if(zxfl.equals("00")){
+			query.setLong("key1", v_key1);
+			query.setInteger("key2", v_key2);
+			query.setShort("yebh", v_yebh);
+		}else{
+			query.setLong("key1", v_key1);
+			query.setInteger("key2", v_key2);
+			query.setShort("yebh", v_yebh);
+			query.setString("zxfl", zxfl);
+		}
+		return query.list();
+		
+	}
+
 	/*
 	 * 执行产生，病人医嘱执行数据的存储过程
 	 * 
 	 */
 	
-	public String callProcedureBrYzzx(long v_key1,int v_key2){
+	public String callProcedureBrYzzx(long v_key1,int v_key2,short v_yebh){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date rq = new Date();
 		ProcedureCall pc = getSession().createStoredProcedureCall("pw_bryzzx_sc");
 		pc.registerParameter("key1_In", long.class, ParameterMode.IN).bindValue(v_key1);
 		pc.registerParameter("key2_In", int.class, ParameterMode.IN).bindValue(v_key2);
-		pc.registerParameter("yebh_In", short.class, ParameterMode.IN).bindValue((short) 0);
+		pc.registerParameter("yebh_In", short.class, ParameterMode.IN).bindValue(v_yebh);
 		try {
 			rq = sdf.parse(sdf.format(new Date()));
 		} catch (ParseException e) {

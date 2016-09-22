@@ -15,6 +15,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>我的病人选择</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="SHORTCUT ICON" href="images/favicon.ico">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/song.css" />
 <script type="text/javascript" src="scripts/jquery-1.12.1.min.js"></script>
@@ -86,7 +88,7 @@
 	<%@ include file="header-hushi.jsp"%>
 		<div class="row"
 			style="border-bottom:1px solid #269abc;padding: 5px 0 ;">
-			<div class="col-xs-6" style="padding: 0 0 0 5%;">
+			<div class="col-xs-4" style="padding: 0 0 0 5%;">
 				<div class="dropdown" style="width: 100%">
 					<button class="btn btn-default btn-sm dropdown-toggle"
 						type="button" id="dropdownMenu1" data-toggle="dropdown"
@@ -103,7 +105,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-xs-6" style="padding: 0 5%  0 0;">
+			<div class="col-xs-4" style="padding: 0 5%  0 0;">
 				<s:if test="#request.datasaveflag==1">
 					<span style="margin: 0 0 0 2%;color: #6EF1F1;font-size: 14px;">保存成功！</span>
 				</s:if>
@@ -111,11 +113,14 @@
 					<span style="margin: 0 0 0 2%;color: red;font-size: 14px;">保存失败！</span>
 				</s:if>
 			</div>
+			<div class="col-xs-4" style="padding: 0 0 0 5%;">
+				<button type="button" class="btn pull-left btn-primary" onclick="document.getElementById('formbrid').submit();">确定</button>
+			</div>
 		</div>
 	</div>
 
 	<div class="container" style=" position: relative;">
-	   <form action="woDeBingRenXuanZeQueDing" method="post">
+	   <form action="woDeBingRenXuanZeQueDing" method="post" id="formbrid">
 		<div class="row" id="brlb">
 			<s:iterator value="#request.daixzbingrens">
 			<a href="javascript:void(0);">
@@ -140,7 +145,7 @@
 			</s:iterator>
 		</div>
 		<input name="bqid" value="<s:property value='#session.dangqianbingqu_id' />" style="display:none;" id="bqidcanshu"/>
-		<div class="row" style="border-bottom:1px solid #269abc;">
+		<div class="row" style="border-bottom:1px solid #269abc; display:none;">
 				<input type="submit" value="确定" class="btn btn-primary pull-right"
 				style="margin-right: 5px; margin-bottom: 10px;">
 		</div>

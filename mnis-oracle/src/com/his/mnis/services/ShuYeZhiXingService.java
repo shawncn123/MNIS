@@ -7,7 +7,7 @@ import com.his.mnis.entities.TwBryzzx;
 public interface ShuYeZhiXingService {
 
 	/*
-	 * 根据病人护士id生成相关病人输液执行医嘱
+	 * 根据病人护士id生成相关病人执行医嘱
 	 */
 	public String createMyBingRenZhiXingYiZhuByHsid(String hsid);
 	

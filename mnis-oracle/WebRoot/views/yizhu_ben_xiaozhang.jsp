@@ -19,6 +19,8 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="SHORTCUT ICON" href="images/favicon.ico">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="css/custom.css" />
 <script type="text/javascript" src="scripts/jquery-1.12.1.min.js"></script>

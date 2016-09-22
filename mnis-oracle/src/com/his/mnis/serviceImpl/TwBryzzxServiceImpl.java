@@ -1,5 +1,8 @@
 package com.his.mnis.serviceImpl;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +28,7 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 	@Override
 	public List<TwBryzzx> getListBrYzzxByKey(long v_key1, int v_key2,
 			short v_yebh) {
-		String proc_result = twBryzzxDao.callProcedureBrYzzx(v_key1, v_key2);
+		String proc_result = twBryzzxDao.callProcedureBrYzzx(v_key1, v_key2,v_yebh);
 		System.out.println("proc_result:"+ proc_result);
 		if ("1".equals(proc_result)) { // 1 表示失败
 			return null;
@@ -35,10 +38,9 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 	}
 
 	@Override
-	public List<TwBryzzx> getListBrYzzxByKeyAndTiaoJian(long v_key1,
-			int v_key2, short v_yebh, String v_tiaojianstr) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<TwBryzzx> getListBrYzzxByKeyZxfl(long v_key1,
+			int v_key2, short v_yebh, String vxzzxfl) {
+		return twBryzzxDao.getListBrYzzxByKeyZxfldm(v_key1, v_key2, v_yebh, vxzzxfl);
 	}
 	
 	private TwBryzzxRemodelSub twBryzzxRemodelSub;
@@ -88,22 +90,33 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 	@Override
 	public List<TwBryzzxRemodel> getListBrYzzxRemodel(List<TwBryzzx> twBryzzxs) {
 
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
 		long v_groupxh = 0L;
+		Timestamp vrq = Timestamp.valueOf("1990-01-01 00:00:00");
 		twBryzzxRemodels = new ArrayList<TwBryzzxRemodel>();
 		for(int i=0;i < twBryzzxs.size(); i++){
 			twBryzzxRemodelSub = new TwBryzzxRemodelSub();
-			if(twBryzzxs.get(i).getGroupxh() == v_groupxh){
+//			zrq = twBryzzxs.get(i).getRq();
+//			System.out.println("getzrq:"+zrq);
+//			System.out.println("getvrq:"+vrq);
+			if(twBryzzxs.get(i).getGroupxh() == v_groupxh && twBryzzxs.get(i).getRq().equals(vrq)){
+//			if(twBryzzxs.get(i).getGroupxh() == v_groupxh){
 				String vsjd = twBryzzxs.get(i).getSjd();
 				String vzxflag = twBryzzxs.get(i).getZxflag();
 				Date vsjdtime = twBryzzxs.get(i).getSjdtime();
+				String vrowkey = twBryzzxs.get(i).getRowkey();
+				vrowkey = vrowkey.replace(":", "q");
 				
 				twBryzzxRemodelSub.setSjd(vsjd);
 				twBryzzxRemodelSub.setSjdtime(vsjdtime);
 				twBryzzxRemodelSub.setZxflag(vzxflag);
+				twBryzzxRemodelSub.setRowkey(vrowkey);
 				
 				twBryzzxRemodelSubs.add(twBryzzxRemodelSub);
 			}else{
 				v_groupxh = twBryzzxs.get(i).getGroupxh();
+				vrq = twBryzzxs.get(i).getRq();
 				if(i > 0){
 					twBryzzxRemodel.setTwBryzzxRemodelSubs(twBryzzxRemodelSubs);
 					twBryzzxRemodels.add(twBryzzxRemodel);
@@ -123,6 +136,7 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 				twBryzzxRemodel.setRq(twBryzzxs.get(i).getRq());
 				twBryzzxRemodel.setYebh(twBryzzxs.get(i).getYebh());
 				twBryzzxRemodel.setYf2mc(twBryzzxs.get(i).getYf2mc());
+				twBryzzxRemodel.setLsflag(twBryzzxs.get(i).getLsflag());
 				String yzmc_s = twBryzzxs.get(i).getYzmc();
 				
 				List<String> t_yzmcs = new ArrayList<String>();
@@ -138,6 +152,9 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 				twBryzzxRemodelSub.setSjd(twBryzzxs.get(i).getSjd());
 				twBryzzxRemodelSub.setSjdtime(twBryzzxs.get(i).getSjdtime());
 				twBryzzxRemodelSub.setZxflag(twBryzzxs.get(i).getZxflag());
+				String rowkeytmp = twBryzzxs.get(i).getRowkey();
+				rowkeytmp = rowkeytmp.replace(":", "q");
+				twBryzzxRemodelSub.setRowkey(rowkeytmp);
 				twBryzzxRemodelSubs.add(twBryzzxRemodelSub);
 			}
 		}
@@ -154,8 +171,8 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 	}
 
 	@Override
-	public String callProcedureBrYzzx(long key1, int key2) {
-		String proc_result = twBryzzxDao.callProcedureBrYzzx(key1, key2);
+	public String callProcedureBrYzzx(long key1, int key2, short yebh) {
+		String proc_result = twBryzzxDao.callProcedureBrYzzx(key1, key2, yebh);
 		return proc_result; // 1 表示失败 
 	}
 

@@ -12,6 +12,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--<meta name="viewport" content="width=device-width,initial-scale=1">-->
     <title>护理病历</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="SHORTCUT ICON" href="images/favicon.ico">
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="author" content="沈旭峰"/>
     <meta name="keywords" content="移动护理信息系统"/>

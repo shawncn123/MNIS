@@ -1,77 +1,39 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 	<div id="footer">
 		<!-- 模态框（Modal）start -->
-	<input type="text" class="form-control" id="smName"
-						placeholder="扫腕带测试" onfocus="javascript:this.value='';"
+		<input type="text" class="form-control" id="smName" placeholder="扫腕带测试" onfocus="javascript:this.value='';"
 						oninput="allsaowandai_Function()" />
-	<div class="modal fade" id="moduleallswd" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog" id="modalWrap"  style="width: 94%;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">病人信息</h4>
-				</div>
-				<div class="modal-body" id="modal_prxx">
-					<p>
-						姓名：<strong style="font-size: 20px;"></strong>
-					</p>
-					<p>
-						床位号：<strong style="font-size: 20px;"></strong>
-					</p>
-					<p>
-						性别：<strong style="font-size: 20px;"></strong>
-					</p>
-					<p>
-						年龄：<strong style="font-size: 20px;"></strong>
-					</p>
-				</div>
-				<div class="modal-footer" id="motal_f">
-					<button type="button" class="btn pull-left btn-primary">
-						确定</button>
-					<button type="button" id="quxiao" class="btn btn-default"
-						data-dismiss="modal">取消</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 模态框（Modal）end -->
-	
-	 <!--扫腕带弹出框   start-->
-	 
-	<!-- 	<input type="hidden"  value="" id="smName" data-toggle="modal" data-target="#module"> 	
-		<div class="modal fade" id="module" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog" id="modalWrap" style="width: 94%;">
+		<div class="modal fade" id="moduleallswd" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" id="modalWrap"  style="width: 94%;">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h4 class="modal-title" id="myModalLabel">病人信息</h4>
 					</div>
-					<div class="modal-body">
-						<div class="row">
-							<div class="col-xs-6">
-								<span>2046床</span>
-							</div>
-							<div class="col-xs-6">
-								<span>李家禄</span>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-4">
-								<span>病案号:</span>
-							</div>
-							<div class="col-xs-8">
-								<span>1535400</span>
-							</div>
-						</div>
+					<div class="modal-body" id="modal_prxx">
+						<p>
+							姓名：<strong style="font-size: 20px;"></strong>
+						</p>
+						<p>
+							床位号：<strong style="font-size: 20px;"></strong>
+						</p>
+						<p>
+							性别：<strong style="font-size: 20px;"></strong>
+						</p>
+						<p>
+							年龄：<strong style="font-size: 20px;"></strong>
+						</p>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
-						<button type="button" class="btn btn-primary">确定</button>
+					<div class="modal-footer" id="motal_f">
+						<button type="button" class="btn pull-left btn-primary">
+							确定</button>
+						<button type="button" id="quxiao" class="btn btn-default"
+							data-dismiss="modal">取消</button>
 					</div>
 				</div>
-			</div> -->
-			<!--扫腕带弹出框  end-->
+			</div>
 		</div>
+	<!-- 模态框（Modal）end -->
 	</div>
 	<script type="text/javascript">
 	function allsaowandai_Function() {

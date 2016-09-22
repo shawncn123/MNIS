@@ -33,7 +33,12 @@ $(function() {          //时间插件
     
     var height = $('#head_banner_1').height();   //模态框距离头部距离   
 	$('#content').css('margin-top', height + 'px');
-    $('#modal-wrap').css('margin-top', height + 'px');
+ //   $('#modal-wrap').css('margin-top', height + 'px');
+    $('#modal-wrap').css({   
+		'position':'fixed',
+		'top':height + 'px'		
+	});	
+    
     $('#temperature').on('shown.bs.modal', function () {
         $('.modal-backdrop').css('top', height + 'px')
     });

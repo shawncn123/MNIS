@@ -18,6 +18,8 @@
 		<meta name="description" content="检验报告,移动护理系统。" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 		<link href="css/base.css" rel="stylesheet" type="text/css" />
+		<link rel="SHORTCUT ICON" href="images/favicon.ico">
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="css/song.css" />
 		<link href="css/custom1.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="css/mobiscroll.css" />

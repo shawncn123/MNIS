@@ -54,7 +54,7 @@ public class ShuYeZhiXingServiceImpl implements ShuYeZhiXingService {
 			MyBingRen myBingRen = myBingRens.get(i);
 			long vkey1 = myBingRen.getKey1();
 			int vkey2 = myBingRen.getKey2();
-			String proc_result = twBryzzxService.callProcedureBrYzzx(vkey1, vkey2);
+			String proc_result = twBryzzxService.callProcedureBrYzzx(vkey1, vkey2, (short)0);
 			if(proc_result.equals("1")){
 				return "1";
 			}

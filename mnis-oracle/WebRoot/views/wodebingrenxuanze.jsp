@@ -15,6 +15,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>我的病人选择</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="SHORTCUT ICON" href="images/favicon.ico">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/caidan.css" />
 <script type="text/javascript" src="scripts/jquery-1.12.1.min.js"></script>

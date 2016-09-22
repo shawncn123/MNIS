@@ -1,6 +1,7 @@
 package com.his.mnis.actions;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
@@ -9,6 +10,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -17,7 +23,9 @@ import com.his.mnis.entities.TwBryzzx;
 import com.his.mnis.entities.TwBryzzxRemodel;
 import com.his.mnis.entities.VwBqbrZy;
 import com.his.mnis.entities.VwRybq;
+import com.his.mnis.entities.Zd001;
 import com.his.mnis.services.TwBryzzxService;
+import com.his.mnis.services.YiZhuWeiZhiXingService;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class TwBryzzxAction extends ActionSupport implements RequestAware,SessionAware {
@@ -31,7 +39,36 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 	private String hsid;
 	private String hsxm;
 	private String zxms;
+	private String vrq;
+	private String vxzzxfl;
+	
+	public String getVxzzxfl() {
+		return vxzzxfl;
+	}
+
+	public void setVxzzxfl(String vxzzxfl) {
+		this.vxzzxfl = vxzzxfl;
+	}
+
+	public String getVrq() {
+		return vrq;
+	}
+
+	public void setVrq(String vrq) {
+		this.vrq = vrq;
+	}
+
 	private TwBryzzxService twBryzzxService;
+	private YiZhuWeiZhiXingService yiZhuWeiZhiXingService;
+
+	public YiZhuWeiZhiXingService getYiZhuWeiZhiXingService() {
+		return yiZhuWeiZhiXingService;
+	}
+
+	public void setYiZhuWeiZhiXingService(
+			YiZhuWeiZhiXingService yiZhuWeiZhiXingService) {
+		this.yiZhuWeiZhiXingService = yiZhuWeiZhiXingService;
+	}
 
 	public String getVsjd() {
 		return vsjd;
@@ -86,10 +123,20 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 	public InputStream getInputStream() {
 		return inputStream;
 	}
+	
 	/*
 	 * 根据病人key1,key2值查询病人医嘱执行数据
 	 */
 	public String getListBryzzxByKey(){
+		
+		Object object = yiZhuWeiZhiXingService.getListYiZhuZXFL();
+		if(object!=null){
+			List<Zd001> zd001s = (List<Zd001>) object;
+			request.put("yizhuzxfl", zd001s);
+		}else{
+			return ERROR;
+		}
+		
 		try {
 			Object obj = session.get("bingrgetixingxi");
 			short yeid = 0;
@@ -106,7 +153,6 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 					return ERROR;
 				}else{
 					request.put("bingrGeTi_YiZhu_zhixing", twBryzzxRemodels);
-					request.put("test_request", "test");
 					request.put("action_name", "bingrGeTi_YiZhuZhiXing");
 					return SUCCESS;
 				}
@@ -118,6 +164,41 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 			return ERROR;
 		}
 	}
+	
+	/*
+	 * 根据病人key1,key2值,医嘱执行分类查询病人医嘱执行数据
+	 */
+	public String getListBryzzxByKeyZxfl(){
+		try {
+			Object obj = session.get("bingrgetixingxi");
+			short yeid = 0;
+			if(obj != null){
+				VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
+				Object obj_ye =  session.get("bingrgetixingxi_yinger");
+				if(obj_ye!=null){
+					BingRenSessionXingXi bingRenSessionXingXi = (BingRenSessionXingXi) obj_ye;
+					yeid = bingRenSessionXingXi.getYebh();
+				}
+				List<TwBryzzx> twBryzzxs = twBryzzxService.getListBrYzzxByKeyZxfl(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(),yeid, vxzzxfl);
+				if(twBryzzxs!=null && twBryzzxs.size()>0){
+					List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
+					JSONArray jsonArray = JSONArray.fromObject(twBryzzxRemodels);
+					// JSONObject json = JSONObject.fromObject(vwBqbrZys);
+					HttpServletResponse response = ServletActionContext.getResponse();
+					response.setContentType("text/html;charset=UTF-8");
+					try {
+						response.getWriter().write(jsonArray.toString());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
+		return null;
+	}
 
 	/*
 	 * 传入参数，执行procedure 保存医嘱执行数据
@@ -125,11 +206,11 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 			String hsid, String hsxm, Date zxsj, String zxms
 	 */
 	public String bingRenYzzx_baocun(){
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date zxsj = new Date();
 		Date rq = new Date();
 		try {
-			rq = sdf.parse(sdf.format(new Date()));
+			rq = sdf.parse(vrq);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
