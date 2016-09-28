@@ -106,12 +106,16 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 				String vzxflag = twBryzzxs.get(i).getZxflag();
 				Date vsjdtime = twBryzzxs.get(i).getSjdtime();
 				String vrowkey = twBryzzxs.get(i).getRowkey();
+				String vcrlflag = twBryzzxs.get(i).getCrlflag();
+			    Double vcrl =  twBryzzxs.get(i).getCrl();
 				vrowkey = vrowkey.replace(":", "q");
 				
 				twBryzzxRemodelSub.setSjd(vsjd);
 				twBryzzxRemodelSub.setSjdtime(vsjdtime);
 				twBryzzxRemodelSub.setZxflag(vzxflag);
 				twBryzzxRemodelSub.setRowkey(vrowkey);
+				twBryzzxRemodelSub.setCrlflag(vcrlflag);
+				twBryzzxRemodelSub.setCrl(vcrl);
 				
 				twBryzzxRemodelSubs.add(twBryzzxRemodelSub);
 			}else{
@@ -155,6 +159,8 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 				String rowkeytmp = twBryzzxs.get(i).getRowkey();
 				rowkeytmp = rowkeytmp.replace(":", "q");
 				twBryzzxRemodelSub.setRowkey(rowkeytmp);
+				twBryzzxRemodelSub.setCrlflag(twBryzzxs.get(i).getCrlflag());
+				twBryzzxRemodelSub.setCrl(twBryzzxs.get(i).getCrl());
 				twBryzzxRemodelSubs.add(twBryzzxRemodelSub);
 			}
 		}
@@ -165,9 +171,9 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 
 	@Override
 	public String bingRenYzzx_baocun(Date rq, String sjd, long groupxh,
-			String hsid, String hsxm, Date zxsj, String zxms) {
+			String hsid, String hsxm, Date zxsj, String zxms,String vcrlflag,Double vcrl) {
 
-		return twBryzzxDao.callProcedureBrYzzx_baocun(rq, sjd, groupxh, hsid, hsxm, zxsj, zxms);
+		return twBryzzxDao.callProcedureBrYzzx_baocun(rq, sjd, groupxh, hsid, hsxm, zxsj, zxms,vcrlflag,vcrl);
 	}
 
 	@Override

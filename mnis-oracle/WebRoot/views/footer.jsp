@@ -1,8 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 	<div id="footer">
+		<div style="height:30px"></div>
 		<!-- 模态框（Modal）start -->
-		<input type="text" class="form-control" id="smName" placeholder="扫腕带测试" onfocus="javascript:this.value='';"
-						oninput="allsaowandai_Function()" />
+		<input type="text" id="smName" placeholder="扫腕带测试" onfocus="javascript:this.value='';"
+						oninput="allsaowandai_Function()" style="width: 1px;height: 1px;border: none;"/>
 		<div class="modal fade" id="moduleallswd" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog" id="modalWrap"  style="width: 94%;">
 				<div class="modal-content">

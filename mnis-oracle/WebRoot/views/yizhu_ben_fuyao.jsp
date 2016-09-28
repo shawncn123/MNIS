@@ -30,34 +30,56 @@
 	$(function() {
 		// 绑定
 		$("#head_banner_1").smartFloat();
+		
+		var vfl =  "<s:property value='#request.fl' />";
+		if(vfl==1){
+			$("#dLabel").html('长期<span class="caret"></span>');
+		}
+		if(vfl==2){
+			$("#dLabel").html('临时<span class="caret"></span>');
+		}
+		if(vfl==3){
+			$("#dLabel").html('药品<span class="caret"></span>');
+		}
+		if(vfl==4){
+			$("#dLabel").html('诊疗项目<span class="caret"></span>');
+		}
+		if(vfl==5){
+			$("#dLabel").html('材料<span class="caret"></span>');
+		}
+		if(vfl==6){
+			$("#dLabel").html('有效<span class="caret"></span>');
+		}
+		if(vfl==7){
+			$("#dLabel").html('停止<span class="caret"></span>');
+		}
 	});
 </script>
 </head>
 <body>
 	<%@ include file="header-bingren.jsp"%>
-	</div>
-	<div id="content" class="container">
-		<div class="row">
-			<div class="col-xs-12"
-				style="margin: 5px 0 5px 0;padding-bottom: 5px;border-bottom: #666666 1px solid;">
+		<div class="row" style="border-bottom:1px solid #269abc;padding: 1%;margin:0;">
+			<div class="col-xs-12" style="padding: 1%;background-color: white;width: 50%;text-align:center;">
 				<div class="dropdown">
 					<a id="dLabel" data-target="#" href="javascript:void(0);"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false"> 全部 <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="dLabel">
-						<li><a href="javascript:void(0)">全部</a></li>
-						<li><a href="javascript:void(0)">长期</a></li>
-						<li><a href="javascript:void(0)">临时</a></li>
-						<li><a href="javascript:void(0)">药品</a></li>
-						<li><a href="javascript:void(0)">诊疗项目</a></li>
-						<li><a href="javascript:void(0)">材料</a></li>
-						<li><a href="javascript:void(0)">有效</a></li>
-						<li><a href="javascript:void(0)">停止</a></li>
+						<li><a href="bingrGeTi_YiZhuBen">全部</a></li>
+						<li><a href="bingrGeTi_YiZhuBen_fenlei?fl=1">长期</a></li>
+						<li><a href="bingrGeTi_YiZhuBen_fenlei?fl=2">临时</a></li>
+						<li><a href="bingrGeTi_YiZhuBen_fenlei?fl=3">药品</a></li>
+						<li><a href="bingrGeTi_YiZhuBen_fenlei?fl=4">诊疗项目</a></li>
+						<li><a href="bingrGeTi_YiZhuBen_fenlei?fl=5">材料</a></li>
+						<li><a href="bingrGeTi_YiZhuBen_fenlei?fl=6">有效</a></li>
+						<li><a href="bingrGeTi_YiZhuBen_fenlei?fl=7">停止</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
+	</div>
+	<div id="content" class="container">
 		<s:iterator value="#request.bingrGeTi_YiZhu">
 			<div class="row">
 				<s:iterator value="vwBryzRemodelSubs">

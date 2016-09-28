@@ -22,9 +22,17 @@ public class VwBryzAction extends ActionSupport implements RequestAware,SessionA
 	private long v_key1;
 	private int v_key2;
 	private short v_yebh;
-	private String v_tiaojianstr;
+	private String fl;
 	private VwBryzService vwBryzService;
 	private List<VwBryz> vwBryzs;
+
+	public String getFl() {
+		return fl;
+	}
+
+	public void setFl(String fl) {
+		this.fl = fl;
+	}
 
 	public List<VwBryz> getVwBryzs() {
 		return vwBryzs;
@@ -56,14 +64,6 @@ public class VwBryzAction extends ActionSupport implements RequestAware,SessionA
 
 	public void setV_yebh(short v_yebh) {
 		this.v_yebh = v_yebh;
-	}
-
-	public String getV_tiaojianstr() {
-		return v_tiaojianstr;
-	}
-
-	public void setV_tiaojianstr(String v_tiaojianstr) {
-		this.v_tiaojianstr = v_tiaojianstr;
 	}
 
 	/*
@@ -108,8 +108,15 @@ public class VwBryzAction extends ActionSupport implements RequestAware,SessionA
 					BingRenSessionXingXi bingRenSessionXingXi = (BingRenSessionXingXi) obj_ye;
 					yeid = bingRenSessionXingXi.getYebh();
 				}
-				List<VwBryz> vwBryzs = vwBryzService.getListBrYzByKeyAndTiaoJian(vwBqbrZy.getKey1(), vwBqbrZy.getKey2() , yeid,v_tiaojianstr);
-				return SUCCESS;
+				List<VwBryz> vwBryzs = vwBryzService.getListBrYzByKeyAndTiaoJian(vwBqbrZy.getKey1(), vwBqbrZy.getKey2() , yeid,fl);
+				if(vwBryzs == null){
+					return ERROR;
+				}else{
+					List<VwBryzRemodel> vwBryzRemodels = vwBryzService.getListBrYzRemodel(vwBryzs);
+					request.put("bingrGeTi_YiZhu", vwBryzRemodels);
+					request.put("action_name", "bingrGeTi_YiZhuBen");
+					return SUCCESS;
+				}
 			}else{
 				return ERROR;
 			}

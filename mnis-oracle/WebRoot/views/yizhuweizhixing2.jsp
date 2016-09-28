@@ -48,7 +48,7 @@
 		var url = "yizhuweizhixingforjquery";
 		var args = {"vxzzxfl":vflyz}; 
 		$.post(url,args,function(data) {
-			a = '';
+			var a = '';
 			var chuangwei="";
 			if(data!=null && data!="" ){
 				d = eval("("+ data+ ")");
@@ -77,7 +77,8 @@
 							+ d[i].chw + '床</strong><input value="' + d[i].key1 + '-' 
 							+ d[i].key2 + '-' + d[i].yebh + '" style="display:none;" id="' + d[i].key1 + '-' 
 							+ d[i].key2 + '-' + d[i].yebh
-							+ '" /></a></h4></div><div id="collapse_0" class="panel-collapse collapse in">'
+							+ '" /><span class="label label-success" style="margin: 0 0 0 50%;" id="mes'
+							+ d[i].key1 + '-' + d[i].key2 + '-' + d[i].yebh + '">成功对应病人</span></a></h4></div><div id="collapse_0" class="panel-collapse collapse in">'
 							+ '<div class="panel-body" style="padding:0 10px 10px 10px;">';
 					}else if(chuangwei!=d[i].chw){
 						chuangwei=d[i].chw;
@@ -89,10 +90,11 @@
 							+ d[i].chw + '床</strong><input value="' + d[i].key1 + '-' 
 							+ d[i].key2 + '-' + d[i].yebh + '" style="display:none;" id="' + d[i].key1 + '-' 
 							+ d[i].key2 + '-' + d[i].yebh
-							+ '" /></a></h4></div><div id="collapse_' + i 
+							+ '" /><span class="label label-success" style="margin: 0 0 0 50%;" id="mes'
+							+ d[i].key1 + '-' + d[i].key2 + '-' + d[i].yebh + '">成功对应病人</span></a></h4></div><div id="collapse_' + i 
 							+ '" class="panel-collapse collapse in"><div class="panel-body" style="padding:0 10px 10px 10px;">'
 					}
-					a = a + '<div class="row" style="margin: 2% 0 0 0;padding: 2% 4%;border: 2px solid #C1D7F9;border-radius: 5px;" id="'
+					a = a + '<div class="row ' + d[i].groupxh + '" style="margin: 2% 0 0 0;padding: 2% 4%;border: 2px solid #C1D7F9;border-radius: 5px;" id="'
 						+ vyzrq3 + "-" + d[i].groupxh
 						+ '"><div class="row module" id="yzmc_' + i + '">';
 						
@@ -119,21 +121,22 @@
 					var tmp_twBryzzxRemodelSubs = d[i].twBryzzxRemodelSubs;
 					for(var k = 0; k < tmp_twBryzzxRemodelSubs.length; k ++){
 						a = a + '<div class="btn-group" data-toggle="buttons" style="display:block;">';
+						a = a + '<input value="' + d[i].groupxh + '" style="display:none;"/>';
+						
 						if(d[i].zxflag=='1'){
-							a = a + '<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" disabled="disabled">' 
+							a = a + '<button type="button" class="btn btn-primary moduleTime"  style="margin:0 2% 0 0;" data-toggle="modal" data-target="#moduleModal" disabled="disabled">' 
 								+ tmp_twBryzzxRemodelSubs[k].sjd + '</button>';
 						}else{
-							a = a + '<input value="' + d[i].groupxh
-								+ '" style="display:none;"/><button type="button" class="btn btn-primary moduleTime"'
+							a = a + '<button type="button" class="btn btn-primary moduleTime"'
 								+ ' style="margin:0 2% 0 0;" data-toggle="modal" data-target="#moduleModal" id="'
 								+ tmp_twBryzzxRemodelSubs[k].rowkey + '" style="color:#FFFFFF;">'
-								+ tmp_twBryzzxRemodelSubs[k].sjd + '</button><input value="yzmc_' + i 
-								+ '" style="display:none;"/><input value="';
-								
-								a = a + vyzrq1 + '" style="display:none;"/>';
+								+ tmp_twBryzzxRemodelSubs[k].sjd + '</button>';
 						}
+						a = a + '<input value="yzmc_' + i + '" style="display:none;"/><input value="';
+						a = a + vyzrq1 + '" style="display:none;"/>';
+						a = a + '<input value="' + tmp_twBryzzxRemodelSubs[k].crlflag + '" style="display:none;"/>';
+						a = a + '<input value="' + tmp_twBryzzxRemodelSubs[k].crl + '" style="display:none;"/>';
 						a = a + '</div>';
-						
 					}
 					a = a + '</div></div></div>';
 				}
@@ -145,6 +148,7 @@
 			 $("#dropdownMenu1")[0].innerHTML = val_text + '<span class="caret"></span>';
 			 $("#saowandai").val("");
 			 document.getElementById("saowandai").focus();
+			 $(".label-success").hide();
 		})
 	})})});
 	
@@ -153,7 +157,6 @@
 		$("#head_banner_1").smartFloat();	
 		
 		 var vkey = "";
-		
 		 var height = $('#head_banner_1').height();     //模态框距离头部距离
 		 
 		// 扫描筛选病人信息
@@ -161,10 +164,16 @@
 			
 			var val = $('#saowandai').val(); //获取扫腕带的值
 			var lxflag = val.substr(0,1);
-			if(lxflag=="b"){
+			/* $(".panel-default").css("background-color","#FFF");
+			$(".row").css("border-color","#C1D7F9");
+			$(".moduleTime").css("color","#FFFFFF");
+			$(".label-success").hide(); */
+			
+			if(lxflag=="B" || lxflag=="b"){
 				$(".panel-default").css("background-color","#FFF");
 				$(".row").css("border-color","#C1D7F9");
 				$(".moduleTime").css("color","#FFFFFF");
+				$(".label-success").hide();
 				vkey = val.substr(1);
 				val = val.substr(1);
 				val = val + "_maodian";
@@ -175,34 +184,38 @@
 					document.getElementById("saowandai").focus();
 				}else{
 					$("#"+val).css("background-color","#CAECEB");
+					$("#mes"+vkey).show();
 					var scroll_offset = $("#"+val).offset().top - height - height;
 					$("html,body").animate({scrollTop:scroll_offset},120);
 					$("#saowandai").val("");
 					document.getElementById("saowandai").focus();
 				}
-			}else if(lxflag=="p"){
-				/* $(".row").css("border-color","#C1D7F9");
-				$(".moduleTime").css("color","#FFFFFF"); */
+			}else if(lxflag=="P" || lxflag=="p"){
+				
+				$(".row").css("border-color","#C1D7F9");
+				$(".moduleTime").css("color","#FFFFFF");
+				
+				//example: p20160913-30383236-20:00_37458438-1-0
 				//取时间点的id
-				var vsjd_id = val.substr(1,val.indexOf("_")-1);
-				vsjd_id = vsjd_id.replace(":","q");
-				var pkey_str = val.substr(val.indexOf("_")+1);
-				/*var pkey_key1 = pkey_str.substr(0,pkey_str.indexOf("-"));
-				pkey_str = pkey_str.substr(pkey_str.indexOf("-")+1);
-				var pkey_key2 = pkey_str.substr(0,pkey_str.indexOf("-")); */
+				var vsjd_id = val.substr(1,val.indexOf("_")-1);  //20160913-30383236-20:00
+				vsjd_id = vsjd_id.replace(":","q");				 //20160913-30383236-20q00
+				var pkey_str = val.substr(val.indexOf("_")+1);   //37458438-1-0
 				//取一组药的id
-				var gy = val.substr(1,val.indexOf("-"));
-				var gyo = val.substr(val.indexOf("-")+1);
-				gy = gy + gyo.substr(0,gyo.indexOf("-"));
-				var yo = document.getElementById(gy);
+				var gy = val.substr(1,val.indexOf("-"));		//20160913
+				var gyo = val.substr(val.indexOf("-")+1);		//30383236-20:00_37458438-1-0
+				//注释改成按组序号定位
+				/* gy = gy + gyo.substr(0,gyo.indexOf("-")); */		//20160913-30383236
+				/* var yo = document.getElementById(gy); */   
+				var vgroupxh = gyo.substr(0,gyo.indexOf("-"));
+				var yo = document.getElementsByClassName(vgroupxh);
 				//判断是否是该病人
 				if(pkey_str==vkey){
-					if(!yo){
+					if(!yo || yo.length<1){
 						alert("没有对应的用药医嘱！");
 						$("#saowandai").val("");
 						document.getElementById("saowandai").focus();
 					}else{
-						$("#" + gy).css("border-color","#EF9C04");
+						/* $("#" + gy).css("border-color","#EF9C04");
 						var yosjd = document.getElementById(vsjd_id);
 						if(!yosjd){
 							alert("没有对应时间点的用药医嘱！");
@@ -213,15 +226,26 @@
 							$("html,body").animate({scrollTop:yomove_offset},120);
 							$("#saowandai").val("");
 							document.getElementById("saowandai").focus();
-						}
+						} */
+						$("." + vgroupxh).css("border-color","#EF9C04");
+						var yomove_offset = $("." + vgroupxh).offset().top - height - height;
+						$("html,body").animate({scrollTop:yomove_offset},120);
+						$("#saowandai").val("");
+						document.getElementById("saowandai").focus();
 					}
 					
 				}else{
+					$(".row").css("border-color","#C1D7F9");
+					$(".moduleTime").css("color","#FFFFFF");
 					alert("不是选中病人用药医嘱");
 					$("#saowandai").val("");
 					document.getElementById("saowandai").focus();
 				}
 			}else{
+				$(".panel-default").css("background-color","#FFF");
+				$(".row").css("border-color","#C1D7F9");
+				$(".moduleTime").css("color","#FFFFFF");
+				$(".label-success").hide();
 				alert("不是相关标签");
 				$("#saowandai").val("");
 				document.getElementById("saowandai").focus();
@@ -256,14 +280,26 @@
 		var zx_sjd = "";
 		var yz_groupxh = "";
 		var vrq = "";
+		var vcrlflag = "";
 		
 	 	$('#accordion').on('click','.moduleTime', function(){
 	 		$clickBtn = $(this);
 			yz_groupxh = $(this).prev().val();
 			var yzmc_gid = $(this).next().val();
 			vrq = $(this).next().next().val();
+			vcrlflag = $(this).next().next().next().val();
+			vcrl = $(this).next().next().next().next().val();
 			var html = $("#" + yzmc_gid).html();
 			zx_sjd = $(this).html();
+			if(vcrlflag=="0"){
+				$("#mcrlmess").hide();
+				$("#mcrlbody").hide();
+			}
+			if(vcrlflag=="1"){
+				$("#mcrlvalue").val(vcrl);
+				$("#mcrlmess").show();
+				$("#mcrlbody").show();
+			}
 			$("#infocontent").html(html);	 		
      	});
 	 	
@@ -271,7 +307,20 @@
 			
 			var yz_zxms = $("#textcontent").val();
 			var url = "bingrGeTi_YiZhuZhiXing_baocun";
-			var args = {"vsjd" : zx_sjd,"groupxh":yz_groupxh,"zxms":yz_zxms,"vrq":vrq};
+			var xzcrlflag = "1";
+			var vcrl = 0;
+			
+			if(vcrlflag=="1"){
+				xzcrlflag = $('input[name="quedflag"]:checked').attr("value");
+				if(xzcrlflag=="1"){
+					/* vcrl = $("#mcrlvalue").attr("value"); */
+					vcrl = $("#mcrlvalue").val();
+				}else{
+					xzcrlflag = "0";
+					vcrl = 0;
+				}
+			}
+			var args = {"vsjd" : zx_sjd,"groupxh":yz_groupxh,"zxms":yz_zxms,"vrq":vrq,"vcrlflag":xzcrlflag,"vcrl":vcrl};
 			$.post(url,args,function(data){
 				if(data == "0"){
 					$('#textcontent').val('');     //隐藏模态框时textarea值清空
@@ -292,6 +341,7 @@
 	}
 		
 	window.onload = function() {
+		$(".label-success").hide();
 		document.getElementById("saowandai").focus();
 	}
 </script>
@@ -328,15 +378,6 @@
 					</span>
 				</div>
 			</div>
-			<%-- <div class="col-xs-6" style="padding: 0 2px;">
-				<div class="input-group input-group-xs">
-					<input type="text" class="form-control" id="saopingqian"
-						placeholder="扫瓶签" onfocus="javascript:this.value='';" oninput="myFunction()" /> 
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button" id="chapq">查</button>
-					</span>
-				</div>
-			</div> --%>
 		</div>
 	</div>
 	
@@ -353,6 +394,7 @@
 									href="#collapse_<s:property value="#status.index"/>" style="display: block;width: 100%;">
 				         			<strong class="brName" style="font-size: 1.8rem;">${chw}床</strong>
 				         			<input value="${key1 }-${key2}-${yebh}" style="display:none;" id="${key1 }-${key2}-${yebh}" />
+				         			<span class="label label-success" style="margin: 0 0 0 50%;" id="mes${key1 }-${key2}-${yebh}">成功对应病人</span>
 			        			</a>
 			      			</h4>
 						</div>
@@ -370,13 +412,14 @@
 								<a data-toggle="collapse" data-parent="#accordion" href="#collapse_<s:property value="#status.index"/>"  style="display: block;width: 100%;">
 				         			<strong class="brName" style="font-size: 1.8rem;">${chw}床</strong>
 				         			<input value="${key1 }-${key2}-${yebh}" style="display:none;" id="${key1 }-${key2}-${yebh}" />
+				         			<span class="label label-success" style="margin: 0 0 0 50%;" id="mes${key1 }-${key2}-${yebh}">成功对应病人</span>
 			        			</a>
 			      			</h4>
 						</div>
 						<div id="collapse_<s:property value="#status.index"/>" class="panel-collapse collapse in">
 							<div class="panel-body" style="padding:0 10px 10px 10px;">
 				</s:elseif>
-						<div class="row" style="margin: 2% 0 0 0;padding: 2% 4%;border: 2px solid #C1D7F9;border-radius: 5px;" id="<s:date name="rq" format="yyyyMMdd"/>-${groupxh}">
+						<div class="row ${groupxh}" style="margin: 2% 0 0 0;padding: 2% 4%;border: 2px solid #C1D7F9;border-radius: 5px;" id="<s:date name="rq" format="yyyyMMdd"/>-${groupxh}">
 							<div class="row module" id="yzmc_<s:property value="#status.index"/>">
 								<s:iterator value="yzmcs" id="mc_yz">
 									<div class="col-xs-12">
@@ -410,15 +453,17 @@
 								<div class="col-xs-12">
 									<s:iterator value="twBryzzxRemodelSubs" >
 										<div class="btn-group" data-toggle="buttons">
+												<input value="${groupxh }" style="display:none;"/>
 											<s:if test="zxflag=='1'">
-												<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" disabled="disabled">${sjd}</button> 
+												<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" disabled="disabled">${sjd}</button>
 											</s:if>
 											<s:else>
-												<input value="${groupxh }" style="display:none;"/>
 												<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" id="${rowkey }" style="color:#FFFFFF;">${sjd}</button>
+											</s:else>
 												<input value="yzmc_<s:property value="#status.index"/>" style="display:none;"/>
 												<input value="${rq}" style="display:none;"/>
-											</s:else>
+												<input value="${crlflag}" style="display:none;"/>
+												<input value="${crl}" style="display:none;"/>
 										</div>
 									</s:iterator>
 								</div>
@@ -449,30 +494,32 @@
 						<div id="infocontent"></div>
 						<textarea id="textcontent" class="form-control" maxlength="50" rows="3"></textarea>
 						
-						<div class="row" style="padding:5%;">
+						<div class="row" style="padding:5%;" id="mcrlmess">
+							<form>
 							<div class="col-xs-2" style="padding: 0;">                       
-								<input type="checkbox" class="qdclass1"
+								<input type="radio" class="qdclass1" name="quedflag" value="1"
 									style="display: block; margin-left: 3px; margin-top: 2px; width: 2rem; height: 2rem;" checked="checked"></input>
-								<input name="quedflag" value="1" style="display:none;" class="qdclass"/>
+								<!-- <input name="quedflag" value="1" style="display:none;" class="qdclass"/> -->
 							</div>
 							<div class="col-xs-4" style="padding: 0;">                       
 								<span>记入出量</span>
 							</div>
 							<div class="col-xs-2" style="padding: 0;">                       
-								<input type="checkbox" class="qdclass1"
+								<input type="radio" class="qdclass1" name="quedflag" value="0" 
 									style="display: block; margin-left: 3px; margin-top: 2px; width: 2rem; height: 2rem;" ></input>
-								<input name="quedflag" value="0" style="display:none;" class="qdclass"/>
+								<!-- <input name="quedflag" value="0" style="display:none;" class="qdclass"/> -->
 							</div>
 							<div class="col-xs-4" style="padding: 0;">                       
 								<span>不记入出量</span>
 							</div>
+							</form>
 						</div>
-						<div class="row" style="padding:5%;">
+						<div class="row" style="padding:5%;" id="mcrlbody">
 							<div class="col-xs-3" style="padding: 0;">                       
 								<span>值：</span>
 							</div>
 							<div class="col-xs-9" style="padding: 0;" >                       
-								<input type="text" value="" style="border: 1px solid #ccc;"></input>
+								<input type="text" value="" style="border: 1px solid #ccc;" id="mcrlvalue"></input>
 							</div>
 						</div>
 					</div>

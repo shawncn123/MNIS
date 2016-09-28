@@ -20,7 +20,7 @@ public class TwBryzzxDao extends BaseDao {
 
 	public List<TwBryzzx> getListBrYzzxByKey(long v_key1,int v_key2,short v_yebh){
 		
-		String hql = "from TwBryzzx where key1=:key1 and key2=:key2 and yebh=:yebh order by groupxh,sjdtime";
+		String hql = "from TwBryzzx where key1=:key1 and key2=:key2 and yebh=:yebh and zxflag='0' order by groupxh,sjdtime";
 		Query query = getSession().createQuery(hql);
 		query.setLong("key1", v_key1);
 		query.setInteger("key2", v_key2);
@@ -86,7 +86,7 @@ public class TwBryzzxDao extends BaseDao {
 	 * 执行保存医嘱执行的数据的存储过程
 	 */
 	
-	public String callProcedureBrYzzx_baocun(Date rq,String sjd,long groupxh,String hsid,String hsxm,Date zxsj,String zxms){
+	public String callProcedureBrYzzx_baocun(Date rq,String sjd,long groupxh,String hsid,String hsxm,Date zxsj,String zxms,String crlflag,Double crl){
 		
 		ProcedureCall pc = getSession().createStoredProcedureCall("pw_bryz_zx");
 		pc.registerParameter("rq_In", Date.class, ParameterMode.IN).bindValue(rq);
@@ -96,6 +96,8 @@ public class TwBryzzxDao extends BaseDao {
 		pc.registerParameter("zxhsxm_In", String.class, ParameterMode.IN).bindValue(hsxm);
 		pc.registerParameter("zxtime_In", Date.class, ParameterMode.IN).bindValue(zxsj);
 		pc.registerParameter("zxms_In", String.class, ParameterMode.IN).bindValue(zxms);
+		pc.registerParameter("crlflag_In", String.class, ParameterMode.IN).bindValue(crlflag);
+		pc.registerParameter("crl_In", Double.class, ParameterMode.IN).bindValue(crl);
 		
 		pc.registerParameter("out_return", String.class, ParameterMode.OUT);
 		pc.registerParameter("out_errortext", String.class, ParameterMode.OUT);

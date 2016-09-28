@@ -85,8 +85,8 @@
 			<div class="col-xs-3">
 				<span>国籍</span>
 			</div>
-			<div class="col-xs-3">
-				<span>${bingren_jbxx.gj}</span>
+			<div class="col-xs-3" style="padding:0;">
+				<span >${bingren_jbxx.gj}</span>
 			</div>
 		</div>
 		<div class="row">
@@ -190,7 +190,7 @@
 				<span>主任医师:</span>
 			</div>
 			<div class="col-xs-3">
-				<span style="color: #d19c36">刘涛</span>
+				<span style="color: #d19c36">--</span>
 			</div>
 		</div>
 		<div class="row">
@@ -198,7 +198,7 @@
 				<span>主院医师:</span>
 			</div>
 			<div class="col-xs-3">
-				<span style="color: #d19c36">汤唯</span>
+				<span style="color: #d19c36">--</span>
 			</div>
 			<div class="col-xs-3">
 				<span>责任护士:</span>
@@ -247,7 +247,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right:0;">
 				<span>家庭地址:</span>
 			</div>
 			<div class="col-xs-9">
@@ -255,7 +255,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right:0;">
 				<span>出生地点:</span>
 			</div>
 			<div class="col-xs-9">

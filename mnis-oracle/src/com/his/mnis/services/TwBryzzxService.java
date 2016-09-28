@@ -29,7 +29,7 @@ public interface TwBryzzxService {
 	/*
 	 * 按条件保存医嘱执行数据
 	 */
-	public String bingRenYzzx_baocun(Date rq,String sjd,long groupxh,String hsid,String hsxm,Date zxsj,String zxms);
+	public String bingRenYzzx_baocun(Date rq,String sjd,long groupxh,String hsid,String hsxm,Date zxsj,String zxms,String vcrlflag,Double vcrl);
 	
 	/*
 	 * 根据病人key1、key2 调用存储过程生成病人执行医嘱

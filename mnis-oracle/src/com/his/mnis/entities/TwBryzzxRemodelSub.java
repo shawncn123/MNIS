@@ -12,6 +12,21 @@ public class TwBryzzxRemodelSub {
 	private String zxhsxm;   //执行护士姓名
 	private String zxms;     //执行描述信息(备注)
 	private String rowkey;
+	private String crlflag;
+    private Double crl;
+	
+	public Double getCrl() {
+		return crl;
+	}
+	public void setCrl(Double crl) {
+		this.crl = crl;
+	}
+	public String getCrlflag() {
+		return crlflag;
+	}
+	public void setCrlflag(String crlflag) {
+		this.crlflag = crlflag;
+	}
 	
 	public String getRowkey() {
 		return rowkey;

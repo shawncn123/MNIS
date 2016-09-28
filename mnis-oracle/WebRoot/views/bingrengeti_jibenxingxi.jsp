@@ -63,7 +63,7 @@
 				<span>病人类型:</span>
 			</div>
 			<div class="col-xs-8">
-				<span>无数据</span>
+				<span>--</span>
 			</div>
 		</div>
 		<div class="row">
@@ -133,7 +133,7 @@
 				<span>预交费用:</span>
 			</div>
 			<div class="col-xs-8">
-				<span>5000.00</span>
+				<span>--</span>
 			</div>
 		</div>
 		<div class="row">
@@ -141,7 +141,7 @@
 				<span>未结费用:</span>
 			</div>
 			<div class="col-xs-8">
-				<span>8322.69</span>
+				<span>--</span>
 			</div>
 		</div>
 		<div class="row">
@@ -149,7 +149,7 @@
 				<span>担保金额:</span>
 			</div>
 			<div class="col-xs-8">
-				<span>0.00</span>
+				<span>--</span>
 			</div>
 		</div>
 		<div class="row">
@@ -157,7 +157,7 @@
 				<span>余额:</span>
 			</div>
 			<div class="col-xs-8">
-				<span>-3322.69</span>
+				<span>--</span>
 			</div>
 		</div>
 		

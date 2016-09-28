@@ -73,5 +73,14 @@
         <property name="lsflag" type="java.lang.String">
             <column name="LSFLAG" length="1" not-null="true" />
         </property>
+        <property name="yzfsh" type="java.lang.Long">
+            <column name="YZFSH" precision="18" scale="0" />
+        </property>
+        <property name="crlflag" type="java.lang.String">
+            <column name="CRLFLAG" length="1" not-null="true" />
+        </property>
+        <property name="crl" type="java.lang.Double">
+            <column name="CRL" precision="8" />
+        </property>
     </class>
 </hibernate-mapping>

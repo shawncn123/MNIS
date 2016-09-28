@@ -32,6 +32,9 @@ public class TwBryzzx implements java.io.Serializable {
 	private String zxms;
 	private String zxfldm;
 	private String lsflag;
+	private Long yzfsh;
+	private String crlflag;
+	private Double crl;
 
 	// Constructors
 
@@ -41,7 +44,8 @@ public class TwBryzzx implements java.io.Serializable {
 
 	/** minimal constructor */
 	public TwBryzzx(Long key1, Integer key2, Short yebh, Long groupxh,
-			String sjd, String zxlb, String zxflag, String lsflag) {
+			String sjd, String zxlb, String zxflag, String lsflag,
+			String crlflag) {
 		this.key1 = key1;
 		this.key2 = key2;
 		this.yebh = yebh;
@@ -50,6 +54,7 @@ public class TwBryzzx implements java.io.Serializable {
 		this.zxlb = zxlb;
 		this.zxflag = zxflag;
 		this.lsflag = lsflag;
+		this.crlflag = crlflag;
 	}
 
 	/** full constructor */
@@ -57,7 +62,8 @@ public class TwBryzzx implements java.io.Serializable {
 			Long groupxh, String sjd, Timestamp sjdtime, String bq, String chw,
 			String yzid, String yzzdmc, String yzmc, String zxlb, String yf2mc,
 			String zxflag, Timestamp zxtime, String zxhsid, String zxhsxm,
-			String zxms, String zxfldm, String lsflag) {
+			String zxms, String zxfldm, String lsflag, Long yzfsh,
+			String crlflag, Double crl) {
 		this.key1 = key1;
 		this.key2 = key2;
 		this.yebh = yebh;
@@ -79,6 +85,9 @@ public class TwBryzzx implements java.io.Serializable {
 		this.zxms = zxms;
 		this.zxfldm = zxfldm;
 		this.lsflag = lsflag;
+		this.yzfsh = yzfsh;
+		this.crlflag = crlflag;
+		this.crl = crl;
 	}
 
 	// Property accessors
@@ -257,6 +266,30 @@ public class TwBryzzx implements java.io.Serializable {
 
 	public void setLsflag(String lsflag) {
 		this.lsflag = lsflag;
+	}
+
+	public Long getYzfsh() {
+		return this.yzfsh;
+	}
+
+	public void setYzfsh(Long yzfsh) {
+		this.yzfsh = yzfsh;
+	}
+
+	public String getCrlflag() {
+		return this.crlflag;
+	}
+
+	public void setCrlflag(String crlflag) {
+		this.crlflag = crlflag;
+	}
+
+	public Double getCrl() {
+		return this.crl;
+	}
+
+	public void setCrl(Double crl) {
+		this.crl = crl;
 	}
 
 }

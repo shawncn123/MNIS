@@ -37,15 +37,40 @@ public class VwBqbrZyServiceImpl implements VwBqbrZyService {
 		System.out.println("wandaixx:"+wandaixx);
 		try {
 //			wandaixx = "key1=23620&key2=3";
-			int k2 = wandaixx.indexOf("&KEY2");
-			System.out.println("key1:"+k2);
-			String v_key1=wandaixx.substring(5, k2);
-			System.out.println("v_key1:"+v_key1);
-			Long vkey1 = Long.parseLong(v_key1);
-			String v_key2 = wandaixx.substring(k2+6);
-			System.out.println("v_key2:"+v_key2);
-			Integer vkey2 = Integer.parseInt(v_key2);
-			return vwBqbrZyDao.getBingRenXingXiByKey(vkey1, vkey2);
+//			int k2 = wandaixx.indexOf("&KEY2");
+//			System.out.println("key1:"+k2);
+//			String v_key1=wandaixx.substring(5, k2);
+//			System.out.println("v_key1:"+v_key1);
+//			Long vkey1 = Long.parseLong(v_key1);
+//			String v_key2 = wandaixx.substring(k2+6);
+//			System.out.println("v_key2:"+v_key2);
+//			Integer vkey2 = Integer.parseInt(v_key2);
+			
+			char fc = wandaixx.charAt(0);
+			if(fc=='b' || fc =='B'){
+				System.out.println("取第一个字符："+ fc);
+				int k1 = wandaixx.indexOf("-");
+				String v_key1=wandaixx.substring(1, k1);
+				System.out.println("v_key1:"+v_key1);
+				Long vkey1 = Long.parseLong(v_key1);
+				wandaixx = wandaixx.substring(k1+1);
+				System.out.println("wandaixx:"+wandaixx);
+				int k2 = wandaixx.indexOf("-");
+				String v_key2=wandaixx.substring(0, k2);
+				Integer vkey2 = Integer.parseInt(v_key2);
+				return vwBqbrZyDao.getBingRenXingXiByKey(vkey1, vkey2);
+			}else{
+				System.out.println("不是病人："+ fc);
+				return null;
+			}
+//					indexOf("");
+//			System.out.println("key1:"+k2);
+//			String v_key1=wandaixx.substring(5, k2);
+//			System.out.println("v_key1:"+v_key1);
+//			Long vkey1 = Long.parseLong(v_key1);
+//			String v_key2 = wandaixx.substring(k2+6);
+//			System.out.println("v_key2:"+v_key2);
+//			Integer vkey2 = Integer.parseInt(v_key2);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

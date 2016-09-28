@@ -29,8 +29,9 @@
 						<tr>
 							<td style="border: none; width: 25%; height: 40%; padding: 2px;  position: relative;">
 								<a href="mymessage?pageno=1" style="display: block;">
-									<img style="width: 100%; height: 100%;"  src="images/brxxxx_header_1.png"/>
-									<span style="display: block; text-align: center; color: #fff; font-size: 2rem; z-index: 2; position: absolute; top: 10PX; left: 0; width:100%; height:100%;" id="xxshu"></span>
+								<%-- 	<img style="width: 100%; height: 100%;"  src="images/brxxxx_header_1.png"/>
+									<span style="display: block; text-align: center; color: #fff; font-size: 2rem; z-index: 2; position: absolute; top: 10PX; left: 0; width:100%; height:100%;" id="xxshu"></span> --%>
+									<span style="display: block;text-align: center;color: #fff;font-size: 2rem;position: absolute;left: 0;width: 90%;height: 90%;border-radius: 60%;background-color: green;padding-top: 10%;" id="xxshu"></span>
 								</a>
 							</td>
 							<td style="border: none; padding: 2px;">
@@ -62,10 +63,11 @@
 								<tr>
 									<td style="border: none; width: 25%; padding: 2px;  position: relative;">
 									<a href="mymessage?pageno=1" style="display: block;">
-										<div style="position:relative; width:100%; height:100%;  left:0; top:0;">
+										<%-- <div style="position:relative; width:100%; height:100%;  left:0; top:0;">
 											<img src="images/brxxxx_header_1.png" style="left:0; top:0;" height="100%" width="100%">
 										</div>
-										<span style="display: block; text-align: center; color: #fff; font-size: 2rem; z-index: 2; position: absolute; top: 10px; left: 0; width:100%; height:100%;"  id="xxshu"></span>
+										<span style="display: block; text-align: center; color: #fff; font-size: 2rem; z-index: 2; position: absolute; top: 10px; left: 0; width:100%; height:100%;"  id="xxshu"></span> --%>
+										<span style="display: block;text-align: center;color: #fff;font-size: 2rem;position: absolute;left: 0;width: 90%;height: 90%;border-radius: 60%;background-color: green;padding-top: 10%;" id="xxshu"></span>
 									</a>
 								</td>
 									<td style="border: none; padding: 2px;">

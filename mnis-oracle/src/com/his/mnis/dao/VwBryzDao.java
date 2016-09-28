@@ -30,7 +30,29 @@ public class VwBryzDao extends BaseDao {
 	
 	public List<VwBryz> getListBrYzByKeyAndTiaoJian(long v_key1,int v_key2,short v_yebh,String v_tiaojianstr){
 		
-		String hql = "from VwBryz where yzzt!='1' and yzzt!='2' and key1=:key1 and key2=:key2 and yebh=:yebh" + v_tiaojianstr + " order by groupxh,xsxh,pwflag";
+		String hql="";
+		if(v_tiaojianstr.equals("1")){  //长期
+			hql = "from VwBryz where yzzt!='1' and yzzt!='2' and key1=:key1 and key2=:key2 and yebh=:yebh and lsflag='0' order by groupxh,xsxh,pwflag";
+		}
+		if(v_tiaojianstr.equals("2")){  //临时
+			hql = "from VwBryz where yzzt!='1' and yzzt!='2' and key1=:key1 and key2=:key2 and yebh=:yebh and lsflag='1' order by groupxh,xsxh,pwflag";
+		}
+		if(v_tiaojianstr.equals("3")){  //药品
+			hql = "from VwBryz where yzzt!='1' and yzzt!='2' and key1=:key1 and key2=:key2 and yebh=:yebh and yzly='0' order by groupxh,xsxh,pwflag";
+		}
+		if(v_tiaojianstr.equals("4")){  //诊疗项目
+			hql = "from VwBryz where yzzt!='1' and yzzt!='2' and key1=:key1 and key2=:key2 and yebh=:yebh and yzly='1' order by groupxh,xsxh,pwflag";
+		}
+		if(v_tiaojianstr.equals("5")){  //材料
+			hql = "from VwBryz where yzzt!='1' and yzzt!='2' and key1=:key1 and key2=:key2 and yebh=:yebh and yzly='2' order by groupxh,xsxh,pwflag";
+		}
+		if(v_tiaojianstr.equals("6")){  //有效
+			hql = "from VwBryz where yzzt!='1' and yzzt!='2' and key1=:key1 and key2=:key2 and yebh=:yebh and tzflag='0' order by groupxh,xsxh,pwflag";
+		}
+		if(v_tiaojianstr.equals("7")){  //停止
+			hql = "from VwBryz where yzzt!='1' and yzzt!='2' and key1=:key1 and key2=:key2 and yebh=:yebh and tzflag='1' order by groupxh,xsxh,pwflag";
+		}
+		
 		Query query = getSession().createQuery(hql);
 		query.setLong("key1", v_key1);
 		query.setInteger("key2", v_key2);

@@ -197,7 +197,12 @@
 		<action name="bingqbr_jianka" class="vwBqbrZyAction" method="listBingqBingr_jianka">
 			<result name="success">/views/bingrenlb_jianka.jsp</result>
 		</action>
+		<!-- 医嘱本 -->
 		<action name="bingrGeTi_YiZhuBen" class="vwBryzAction" method="getListBrYzByKey">
+			<result name="success">/views/yizhu_ben_fuyao.jsp</result>
+			<result name="error">/views/bingrenshouye.jsp</result>
+		</action>
+		<action name="bingrGeTi_YiZhuBen_fenlei" class="vwBryzAction" method="getListBrYzByKeyAndTiaoJian">
 			<result name="success">/views/yizhu_ben_fuyao.jsp</result>
 			<result name="error">/views/bingrenshouye.jsp</result>
 		</action>
@@ -218,10 +223,16 @@
 		<action name="bingqbr_xika" class="vwBqbrZyAction" method="listBingqBingr">
 			<result name="success">/views/bingrenlb_xika.jsp</result>
 		</action>
-		<action name="bingrengeti_*" class="vwBqbrZyAction" method="getBingRenXingXiBySessionKey">
-			<result name="success">/views/bingrengeti_{1}.jsp</result>
+		<action name="bingrengeti_jibenxingxi" class="vwBqbrZyAction" method="getBingRenXingXiBySessionKey">
+			<result name="success">/views/bingrengeti_jibenxingxi.jsp</result>
 			<result name="error">/views/bingrenshouye.jsp</result>
 		</action>
+		
+		<action name="bingrengeti_bingan_shouye" class="vwBqbrZyAction" method="getBingRenXingXiBySessionKey_forbingan">
+			<result name="success">/views/bingrengeti_bingan_shouye.jsp</result>
+			<result name="error">/views/bingrenshouye.jsp</result>
+		</action>
+
 		<action name="bingrengeti_jbxx" class="vwJbxxAction" method="getBingRenJiBenXxByKey">
 			<result name="success">/views/bingrengeti_jibenxingxi.jsp</result>
 		</action>

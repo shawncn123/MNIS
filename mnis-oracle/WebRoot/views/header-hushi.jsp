@@ -12,7 +12,7 @@
 	});
 </script>
 <div id="head_banner_1" style="z-index:1000; " class="bg-info">
-		<div class="row" style="border-bottom:1px solid #269abc;padding: 5px 0 5px 0;">
+		<div class="row" style="border-bottom:1px solid #269abc;padding: 1% 0 1% 0;">
 			<div class="col-xs-2"  style="padding-right: 2%; padding-top: .5%;">
 				<a href="bingqbr_bysessionbingqid"> 
 					<img src="images/icon-m-man-active.png" class="img-responsive" alt="<s:property value='#session.caozuoyuan.ryxm' />">
@@ -33,3 +33,5 @@
 				<a href="${action_name}"><img src="images/brxxxx_header_2.png" class="img-responsive" alt="刷新"></a>
 			</div>
 		</div>
+		<!-- <div class="row" style="height:1px;">	<input type="text" id="smName" placeholder="扫腕带测试" onfocus="javascript:this.value='';"
+						oninput="allsaowandai_Function()" style="width: 0px;height: 0px;border: none;"/></div> -->

@@ -212,6 +212,7 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 				request.put("caozuoyuan_bingqu", vwRybqs);
 				List<VwBqbrZy> vwBqbrZys = vwBqbrZyService.listBingqBingrByBingqId(dangqianbqid);
 				request.put("bqry", vwBqbrZys);
+				request.put("action_name", "brlbshuaxin");
 				return SUCCESS;
 			}else{
 				return ERROR;
@@ -265,6 +266,23 @@ public class VwBqbrZyAction extends ActionSupport implements RequestAware,
 				VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
 				request.put("bingren_jbxx", vwJbxxService.getBingRenJiBenXxByKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2()));
 				request.put("action_name", "bingrengeti_jibenxingxi");
+				return SUCCESS;
+			}else{
+				return ERROR;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
+	}
+	
+	public String getBingRenXingXiBySessionKey_forbingan(){
+		try {
+			Object obj = session.get("bingrgetixingxi");
+			if(obj!=null){
+				VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
+				request.put("bingren_jbxx", vwJbxxService.getBingRenJiBenXxByKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2()));
+				request.put("action_name", "bingrengeti_bingan_shouye");
 				return SUCCESS;
 			}else{
 				return ERROR;

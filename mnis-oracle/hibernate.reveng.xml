@@ -147,9 +147,14 @@
 			<key-column name="ROWKEY" />
 		</primary-key>
 	</table>
-<table name="VW_BB_MBBM" schema="ZLHIS">
+	<table name="VW_BB_MBBM" schema="ZLHIS">
+		<primary-key>
+			<key-column name="XMBM" />
+		</primary-key>
+	</table>
+<table name="ZD001" schema="ZLHIS">
 	<primary-key>
-		<key-column name="XMBM" />
+		<key-column name="ID" />
 	</primary-key>
 </table>
 </hibernate-reverse-engineering>

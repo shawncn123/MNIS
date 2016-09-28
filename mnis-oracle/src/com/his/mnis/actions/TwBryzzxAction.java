@@ -41,7 +41,25 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 	private String zxms;
 	private String vrq;
 	private String vxzzxfl;
+	private String vcrlflag;
+	private Double vcrl;
 	
+	public String getVcrlflag() {
+		return vcrlflag;
+	}
+
+	public void setVcrlflag(String vcrlflag) {
+		this.vcrlflag = vcrlflag;
+	}
+
+	public Double getVcrl() {
+		return vcrl;
+	}
+
+	public void setVcrl(Double vcrl) {
+		this.vcrl = vcrl;
+	}
+
 	public String getVxzzxfl() {
 		return vxzzxfl;
 	}
@@ -218,7 +236,7 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 			VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
 			hsid = vwRybq.getRyid();
 			hsxm = vwRybq.getRyxm();
-			String proc_result = twBryzzxService.bingRenYzzx_baocun(rq, vsjd, groupxh, hsid, hsxm, zxsj, zxms);
+			String proc_result = twBryzzxService.bingRenYzzx_baocun(rq, vsjd, groupxh, hsid, hsxm, zxsj, zxms,vcrlflag,vcrl);
 			if(proc_result.equals("1")){
 				inputStream = new ByteArrayInputStream("1".getBytes("UTF-8"));    //1 表示失败
 			}else{
