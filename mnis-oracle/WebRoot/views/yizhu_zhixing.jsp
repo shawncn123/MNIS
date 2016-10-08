@@ -221,7 +221,7 @@
 						$("#saowandai").val("");
 						document.getElementById("saowandai").focus();
 					}
-				}else if(lxflag=="p"){
+				}else if(lxflag=="P" || lxflag=="p"){
 					//取时间点的id
 					var vsjd_id = val.substr(1,val.indexOf("_")-1);
 					vsjd_id = vsjd_id.replace(":","q");

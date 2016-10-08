@@ -56,7 +56,10 @@
 						$.post(url,args,function(data) {
 							if(data=="0"){
 								$("#tip").html("保存成功！");
-								$("#baocun").attr("disabled","true")
+								$("#baocun").attr("disabled","true");
+								$("#content").css("top","0px");
+								$("#jianpan1").hide();
+								$("#jianpan").hide();
 							}else{
 								$("#tip").css('color','#FF0000');
 								$("#tip").html("保存失败！");
