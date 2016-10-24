@@ -27,20 +27,20 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 	
 	@Override
 	public List<TwBryzzx> getListBrYzzxByKey(long v_key1, int v_key2,
-			short v_yebh) {
+			short v_yebh,Date xzrq) {
 		String proc_result = twBryzzxDao.callProcedureBrYzzx(v_key1, v_key2,v_yebh);
 		System.out.println("proc_result:"+ proc_result);
 		if ("1".equals(proc_result)) { // 1 表示失败
 			return null;
 		} else {
-			return twBryzzxDao.getListBrYzzxByKey(v_key1, v_key2, v_yebh);
+			return twBryzzxDao.getListBrYzzxByKey(v_key1, v_key2, v_yebh,xzrq);
 		}
 	}
 
 	@Override
 	public List<TwBryzzx> getListBrYzzxByKeyZxfl(long v_key1,
-			int v_key2, short v_yebh, String vxzzxfl) {
-		return twBryzzxDao.getListBrYzzxByKeyZxfldm(v_key1, v_key2, v_yebh, vxzzxfl);
+			int v_key2, short v_yebh, String vxzzxfl,Date xzrq) {
+		return twBryzzxDao.getListBrYzzxByKeyZxfldm(v_key1, v_key2, v_yebh, vxzzxfl,xzrq);
 	}
 	
 	private TwBryzzxRemodelSub twBryzzxRemodelSub;
@@ -98,8 +98,6 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 		for(int i=0;i < twBryzzxs.size(); i++){
 			twBryzzxRemodelSub = new TwBryzzxRemodelSub();
 //			zrq = twBryzzxs.get(i).getRq();
-//			System.out.println("getzrq:"+zrq);
-//			System.out.println("getvrq:"+vrq);
 			if(twBryzzxs.get(i).getGroupxh() == v_groupxh && twBryzzxs.get(i).getRq().equals(vrq)){
 //			if(twBryzzxs.get(i).getGroupxh() == v_groupxh){
 				String vsjd = twBryzzxs.get(i).getSjd();
@@ -170,10 +168,10 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 	}
 
 	@Override
-	public String bingRenYzzx_baocun(Date rq, String sjd, long groupxh,
+	public String bingRenYzzx_baocun(Date rq, String sjd,char zxflag, long groupxh,
 			String hsid, String hsxm, Date zxsj, String zxms,String vcrlflag,Double vcrl) {
 
-		return twBryzzxDao.callProcedureBrYzzx_baocun(rq, sjd, groupxh, hsid, hsxm, zxsj, zxms,vcrlflag,vcrl);
+		return twBryzzxDao.callProcedureBrYzzx_baocun(rq, sjd,zxflag, groupxh, hsid, hsxm, zxsj, zxms,vcrlflag,vcrl);
 	}
 
 	@Override

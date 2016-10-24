@@ -16,6 +16,18 @@
 	<bean id="exitAnQuanQuit" class="com.his.mnis.actions.ExitAnQuanQuit"  scope="prototype">
 	</bean>
 	
+	<!-- 患者危险评估 -->
+	<bean id="twWxysPgDao" class="com.his.mnis.dao.TwWxysPgDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="twWxysPgService" class="com.his.mnis.serviceImpl.TwWxysPgServiceImpl">
+		<property name="twWxysPgDao" ref="twWxysPgDao"></property>
+	</bean>
+	<bean id="twWxysPgAction" class="com.his.mnis.actions.TwWxysPgAction"  scope="prototype">
+		<property name="twWxysPgService" ref="twWxysPgService"></property>
+		<property name="wseq_id" ref="wseq_id"></property>
+	</bean>
+	
 	<!-- PC 白板 -->
 	<bean id="convertRGBToHEXUtil" class="com.his.mnis.utils.ConvertRGBToHEXUtil">
 	</bean>

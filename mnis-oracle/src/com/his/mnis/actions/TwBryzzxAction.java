@@ -43,7 +43,25 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 	private String vxzzxfl;
 	private String vcrlflag;
 	private Double vcrl;
+	private char vzxflag;
+	private String vxzrq;
 	
+	public String getVxzrq() {
+		return vxzrq;
+	}
+
+	public void setVxzrq(String vxzrq) {
+		this.vxzrq = vxzrq;
+	}
+
+	public char getVzxflag() {
+		return vzxflag;
+	}
+
+	public void setVzxflag(char vzxflag) {
+		this.vzxflag = vzxflag;
+	}
+
 	public String getVcrlflag() {
 		return vcrlflag;
 	}
@@ -165,7 +183,8 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 					BingRenSessionXingXi bingRenSessionXingXi = (BingRenSessionXingXi) obj_ye;
 					yeid = bingRenSessionXingXi.getYebh();
 				}
-				List<TwBryzzx> twBryzzxs = twBryzzxService.getListBrYzzxByKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(),yeid);
+				Date xzrq = new Date();
+				List<TwBryzzx> twBryzzxs = twBryzzxService.getListBrYzzxByKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(),yeid,xzrq);
 				List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
 				if(twBryzzxs == null){
 					return ERROR;
@@ -197,7 +216,9 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 					BingRenSessionXingXi bingRenSessionXingXi = (BingRenSessionXingXi) obj_ye;
 					yeid = bingRenSessionXingXi.getYebh();
 				}
-				List<TwBryzzx> twBryzzxs = twBryzzxService.getListBrYzzxByKeyZxfl(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(),yeid, vxzzxfl);
+				SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd");
+				Date xzrq = sdf.parse(vxzrq);
+				List<TwBryzzx> twBryzzxs = twBryzzxService.getListBrYzzxByKeyZxfl(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(),yeid, vxzzxfl,xzrq);
 				if(twBryzzxs!=null && twBryzzxs.size()>0){
 					List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
 					JSONArray jsonArray = JSONArray.fromObject(twBryzzxRemodels);
@@ -236,7 +257,7 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 			VwRybq vwRybq = (VwRybq) session.get("caozuoyuan");
 			hsid = vwRybq.getRyid();
 			hsxm = vwRybq.getRyxm();
-			String proc_result = twBryzzxService.bingRenYzzx_baocun(rq, vsjd, groupxh, hsid, hsxm, zxsj, zxms,vcrlflag,vcrl);
+			String proc_result = twBryzzxService.bingRenYzzx_baocun(rq, vsjd,vzxflag, groupxh, hsid, hsxm, zxsj, zxms,vcrlflag,vcrl);
 			if(proc_result.equals("1")){
 				inputStream = new ByteArrayInputStream("1".getBytes("UTF-8"));    //1 表示失败
 			}else{

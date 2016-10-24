@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-<title>病人列表</title>
+<title>患者列表</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/song.css"/>

@@ -18,6 +18,28 @@
 			<result name="success">/views/login.jsp</result>
 		</action>
 		
+		<!-- 患者危险评估 -->
+		<action name="hzwxpg" class="twWxysPgAction" method="getListWxysPg">
+			<result name="success">/views/huanzhe_pinggu.jsp</result>
+			<result name="error">/views/huanzhe_pinggu.jsp</result>
+		</action>
+		
+		<action name="updatehzwxpg" class="twWxysPgAction" method="WyxsPingGuBiaoBaoCun">
+			<result type="stream" name="ajax-success">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+			<!-- <result name="success" type="redirect">hzwxpg</result>
+			<result name="error" type="redirect">/views/huanzhe_pinggu.jsp</result> -->
+		</action>
+		
+		<action name="hzwxyspgforjquery" class="twWxysPgAction" method="getListWxysPgforjQuery">
+			<result type="stream" name="ajax_mima">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		
 		<!-- PC 白板 -->
 		<action name="pcbaibanmoban" class="pcBaiBanAction" method="xianShiPcBaiBanMoBan">
 			<!-- <result name="success">/views/PCbaiban.jsp</result>

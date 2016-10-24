@@ -147,10 +147,6 @@
 								<tr>
 									<td style="border: none; width: 25%; padding: 2px;  position: relative;">
 										<a href="mymessage?pageno=1" style="display: block;">
-											<%-- <div style="position:relative; width:100%; height:100%;  left:0; top:0;">
-												<img src="images/brxxxx_header_1.png" style="left:0; top:0;" height="100%" width="100%">
-											</div>
-											<span style="display: block; text-align: center; color: #fff; font-size: 2.2rem; z-index: 2; position: absolute; top: 12%; left: 0; width:100%; height:100%;" id="xxshu"></span> --%>
 											<span style="display: block;text-align: center;color: #fff;font-size: 2rem;position: absolute;left: 0;width: 90%;height: 90%;border-radius: 60%;background-color: green;padding-top: 10%;" id="xxshu"></span>
 										</a>
 									</td>
@@ -189,17 +185,17 @@
 				<input name="appTime" value="" style="display:none;" id="lurutime" />
 				<s:set name="popcount" value="1"></s:set>
 				<s:iterator value="#request.bingr_tizheng_luruxiang" status='st'>
-				<div class="form-group" style="margin-bottom: 6px; margin-top: 6px;">
+				<div class="form-group" style="margin-bottom: 1%; margin-top: 1%;">
 					<s:if test="xmid=='XY'">
-						<label class="col-xs-2 control-label text-center" style="padding:2% 0 0 0;">${xmmc }</label>
+						<small class="col-xs-2 control-label text-center" style="padding:2% 0 0 0;">${xmmc }</small>
 						<div class="col-xs-3" style="padding-right: 0;">
 							<input type="text" maxlength="7" readonly="readonly" mainpop="<s:property value='#popcount'/>" class="form-control"
-								id="xueya" placeholder="收缩压" name="zhi1">
+								id="xueya" placeholder="收缩压" name="zhi1" style="padding: 2%;">
 								<s:set name="popcount" value="#popcount+1"></s:set>
 						</div>
 						<div class="col-xs-1" style="padding:2% 0 0 3%;">/</div>
 						<div class="col-xs-3" style="padding: 0;">
-							<input type="text" maxlength="7" readonly="readonly" class="form-control" mainpop="<s:property value='#popcount'/>" class="form-control" id="xueya2" placeholder="舒张压" name="zhi2">
+							<input type="text" maxlength="7" readonly="readonly" class="form-control" mainpop="<s:property value='#popcount'/>" class="form-control" id="xueya2" placeholder="舒张压" name="zhi2" style="padding: 2%;">
 							<s:set name="popcount" value="#popcount+1"></s:set>
 						</div>
 						<div class="col-xs-3" style="padding:2% 0 0 2%;">${dw}</div>
@@ -208,10 +204,10 @@
 						<input name="biaozhu" style="display:none;" value="">
 					</s:if>
 					<s:elseif test="xmid=='TW'">
-						<label class="col-xs-2 control-label text-center" style="padding:2% 0 0 0;">${xmmc}</label>
+						<small class="col-xs-2 control-label text-center" style="padding:2% 0 0 0;">${xmmc}</small>
 						<div class="col-xs-10">
 							<input type="text" class="form-control" id="tiwen" data-backdrop="static" data-toggle="modal" readonly="readonly"
-								data-target="#temperature" placeholder="${xmmc }">
+								data-target="#temperature" placeholder="${xmmc }" style="padding: 2%;">
 						</div>
 						<input name="xiangmu" style="display:none;" value="${xmid }">
 						<input name="zhi1" style="display:none;" value="">
@@ -220,26 +216,26 @@
 						<input name="bzflag" style="display:none;" value="${bzflag}">
 					</s:elseif>
 					<s:elseif test="bzflag==1">
-						<label class="col-xs-2 control-label text-center" style="padding:2% 0 0 0;">${xmmc }</label>
+						<small class="col-xs-2 control-label text-center" style="padding:2% 0 0 0;">${xmmc }</small>
 						<div class="col-xs-3" style="padding-right: 0;">
 							<input type="text" maxlength="8" class="form-control"
-								readonly="readonly" mainpop="<s:property value='#popcount'/>" placeholder="${xmmc }" name="zhi1">
+								readonly="readonly" mainpop="<s:property value='#popcount'/>" placeholder="${xmmc }" name="zhi1" style="padding: 2%;">
 								<s:set name="popcount" value="#popcount+1"></s:set>
 						</div>
 						<div class="col-xs-1" style="padding:2% 0 0 2%;">${dw}</div>
 						<div class="col-xs-6" style="padding-left: 0;">
-							<input type="text" maxlength="10" nopop="true" class="form-control" placeholder="标注" name="biaozhu">
+							<input type="text" maxlength="10" nopop="true" class="form-control" placeholder="标注" name="biaozhu" style="padding: 2%;">
 						</div>
 						<input name="xiangmu" style="display:none;" value="${xmid }">
 						<input name="zhi2" style="display:none;" value="">
 						<input name="bzflag" style="display:none;" value="${bzflag}">
 					</s:elseif>
 					<s:else>
-						<label class="col-xs-2 control-label text-center"
-							style="padding:2% 0 0 0;">${xmmc }</label>
+						<small class="col-xs-2 control-label text-center"
+							style="padding:2% 0 0 0;">${xmmc }</small>
 						<div class="col-xs-10">
 							<input type="text" readonly="readonly"
-								mainpop="<s:property value='#popcount'/>" class="form-control" placeholder="${xmmc }" name="zhi1">
+								mainpop="<s:property value='#popcount'/>" class="form-control" placeholder="${xmmc }" name="zhi1" style="padding: 2%;">
 								<s:set name="popcount" value="#popcount+1"></s:set>
 						</div>
 						<input name="xiangmu" style="display:none;" value="${xmid }">

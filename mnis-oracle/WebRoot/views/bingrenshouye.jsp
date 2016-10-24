@@ -11,7 +11,7 @@
 <html>
 <head>
 <base href="<%=basePath%>">
-<title>病人相关业务</title>
+<title>患者相关业务</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="SHORTCUT ICON" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.ico" type="image/x-icon">
@@ -211,12 +211,12 @@
 					<div class="ChannelName">病历文件</div>
 			</a></li> -->
 			
-			<!-- <li><a href="javascript:void(0)">
+			<li><a href="hzwxpg">
 					<div class="ChannelIcon">
-						<img src="images/about.jpg" />
+						<img src="images/1408672456.jpg" />
 					</div>
-					<div class="ChannelName">Help帮助</div>
-			</a></li> -->
+					<div class="ChannelName">危险评估</div>
+			</a></li>
 		</ul>
 		<%@ include file="menu-hushi.jsp" %>
 		<div class="clear"></div>

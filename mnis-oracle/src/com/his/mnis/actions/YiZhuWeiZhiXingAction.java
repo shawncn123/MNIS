@@ -1,6 +1,9 @@
 package com.his.mnis.actions;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +33,15 @@ public class YiZhuWeiZhiXingAction extends ActionSupport implements
 	private static final long serialVersionUID = 1L;
 	
 	private String vxzzxfl;
+	private String vxzrq;
+	public String getVxzrq() {
+		return vxzrq;
+	}
+
+	public void setVxzrq(String vxzrq) {
+		this.vxzrq = vxzrq;
+	}
+
 	private ShuYeZhiXingService shuYeZhiXingService;
 	private TwBryzzxService twBryzzxService;
 	
@@ -82,7 +94,7 @@ public class YiZhuWeiZhiXingAction extends ActionSupport implements
 	/*
 	 * 根据护士id和医嘱执行分类，查询我的病人未执行医嘱
 	 */
-		public String getListWeiZhiXingYiZhuByHsidZxfl(){
+		public String getListWeiZhiXingYiZhuByHsidZxfl() throws ParseException{
 			
 			Object obj = session.get("caozuoyuan");
 			if(obj != null){
@@ -92,7 +104,9 @@ public class YiZhuWeiZhiXingAction extends ActionSupport implements
 				if(proc_result.equals("1")){
 					return ERROR;
 				}
-				List<TwBryzzx> twBryzzxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, vxzzxfl);
+				SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd");
+				Date xzrq = sdf.parse(vxzrq);
+				List<TwBryzzx> twBryzzxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, vxzzxfl,xzrq);
 				if(twBryzzxs!=null && twBryzzxs.size()>0){
 					List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
 					request.put("yizhu_weizhixing", twBryzzxRemodels);
@@ -110,7 +124,7 @@ public class YiZhuWeiZhiXingAction extends ActionSupport implements
 		/*
 		 * 根据护士id和医嘱执行分类，查询我的病人未执行医嘱 for jQuery
 		 */
-		public String getListWeiZhiXingYiZhuByHsidZxflforjQuery(){
+		public String getListWeiZhiXingYiZhuByHsidZxflforjQuery() throws ParseException{
 			
 			Object obj = session.get("caozuoyuan");
 			if(obj != null){
@@ -120,7 +134,9 @@ public class YiZhuWeiZhiXingAction extends ActionSupport implements
 				if(proc_result.equals("1")){
 					return ERROR;
 				}
-				List<TwBryzzx> twBryzzxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, vxzzxfl);
+				SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd");
+				Date xzrq = sdf.parse(vxzrq);
+				List<TwBryzzx> twBryzzxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, vxzzxfl,xzrq);
 				if(twBryzzxs!=null && twBryzzxs.size()>0){
 					List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
 					JSONArray jsonArray = JSONArray.fromObject(twBryzzxRemodels);
@@ -159,7 +175,8 @@ public class YiZhuWeiZhiXingAction extends ActionSupport implements
 				if(proc_result.equals("1")){
 					return ERROR;
 				}
-				List<TwBryzzx> twBryzzxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, "00");
+				Date xzrq = new Date();
+				List<TwBryzzx> twBryzzxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, "00",xzrq);
 				if(twBryzzxs!=null && twBryzzxs.size()>0){
 					List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
 					request.put("yizhu_weizhixing", twBryzzxRemodels);

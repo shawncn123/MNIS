@@ -1,5 +1,6 @@
 package com.his.mnis.actions;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -64,7 +65,8 @@ public class ShuYeZhiXingAction extends ActionSupport implements RequestAware,
 			if(proc_result.equals("1")){
 				return ERROR;
 			}
-			List<TwBryzzx> twBryzzxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, yzzxfl);
+			Date xzrq = new Date();
+			List<TwBryzzx> twBryzzxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, yzzxfl,xzrq);
 			if(twBryzzxs!=null && twBryzzxs.size()>0){
 				List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
 				request.put("shuye_yizhu_zhixing", twBryzzxRemodels);

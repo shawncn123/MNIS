@@ -1,5 +1,6 @@
 package com.his.mnis.serviceImpl;
 
+import java.util.Date;
 import java.util.List;
 
 import com.his.mnis.dao.ShuYeZhiXingDao;
@@ -41,9 +42,9 @@ public class ShuYeZhiXingServiceImpl implements ShuYeZhiXingService {
 
 	@Override
 	public List<TwBryzzx> getMyBingRenZhiXingYiZhuByHsidZxfl(String hsid,
-			String zxfldm) {
+			String zxfldm,Date xzrq) {
 		
-		return shuYeZhiXingDao.getMyBingRenShuYeZhiXingYiZhu(hsid, zxfldm);
+		return shuYeZhiXingDao.getMyBingRenShuYeZhiXingYiZhu(hsid, zxfldm,xzrq);
 		
 	}
 
