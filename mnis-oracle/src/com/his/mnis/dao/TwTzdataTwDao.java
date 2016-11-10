@@ -1,11 +1,15 @@
 package com.his.mnis.dao;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.ParameterMode;
 
 import org.hibernate.Query;
 import org.hibernate.procedure.ProcedureCall;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
+import com.his.mnis.entities.TwTzdata;
 import com.his.mnis.entities.TwTzdataTw;
 
 public class TwTzdataTwDao extends HibernateDaoSupport {
@@ -83,4 +87,58 @@ public class TwTzdataTwDao extends HibernateDaoSupport {
 		query.setMaxResults(1);
 		return (TwTzdataTw) query.uniqueResult();
 	}
+	
+	//根据key1 key2 yebh 日期查询出该病人该日期 体温录入数据
+	public List<TwTzdataTw> getListTzDataTw(long key1,Integer key2,short yebh,Date lrrq){
+		String hql = "from TwTzdataTw where key1=:key1 and key2=:key2 and yebh=:yebh and rq=:rq";
+		Query query = currentSession().createQuery(hql);
+		query.setLong("key1", key1);
+		query.setInteger("key2", key2);
+		query.setShort("yebh", yebh);
+		query.setDate("rq", lrrq);
+		return query.list();
+	}
+	//根据key1 key2 yebh 日期查询出该病人该日期的体温多少次数记录
+	public List<TwTzdataTw> getListTzDataTWJl(long key1,Integer key2,short yebh,Date lrrq){
+		String hql = "from TwTzdataTw where KEY1=:key1 and KEY2=:key2 and YEBH=:yebh and RQ=:rq";
+		Query query = currentSession().createQuery(hql);
+		query.setLong("key1", key1);
+		query.setInteger("key2", key2);
+		query.setShort("yebh", yebh);
+		query.setDate("rq", lrrq);
+		return query.list();
+	}
+	//根据key1 key2 yebh 日期,时间点查询出该病人该日期，时间 体温录入数据
+		public TwTzdataTw getTzDataTwByJlid(long jlid){
+			String hql = "from TwTzdataTw where jlid=:jlid";
+			Query query = currentSession().createQuery(hql);
+			query.setLong("jlid", jlid);
+			TwTzdataTw twTdataTw = (TwTzdataTw) query.uniqueResult();
+			return twTdataTw;
+		}
+		
+	/*
+	 * 根据jlid和参数 TwTzdataTw twTzdataTw 修改体温采集数据
+	 */
+		public int updateTzdataTwByJlid(TwTzdataTw twTzdataTw){
+			String sql = "update TW_TZDATA_TW set stime=:stime,czyid=:czyid,czyxm=:czyxm,sj=:sj,"
+					+ "TW_LX=:TW_LX,TW_TW=:TW_TW,TW_TW_JWH=:TW_TW_JWH,TW_MB=:TW_MB,TW_XL=:TW_XL,"
+					+ "TW_HX=:TW_HX,TW_RCBZ=:TW_RCBZ,TW_RCSJ=:TW_RCSJ"
+					+ " where JLID=:JLID";
+			Query query = currentSession().createSQLQuery(sql);
+			query.setLong("JLID",twTzdataTw.getJlid());
+			query.setTimestamp("stime",twTzdataTw.getStime());
+			query.setString("czyid",twTzdataTw.getCzyid());
+			query.setString("czyxm",twTzdataTw.getCzyxm());
+			query.setString("sj",twTzdataTw.getSj());
+			query.setString("TW_LX",twTzdataTw.getTwLx());
+			query.setDouble("TW_TW",twTzdataTw.getTwTw());
+			query.setDouble("TW_TW_JWH",twTzdataTw.getTwTwJwh());
+			query.setShort("TW_MB",twTzdataTw.getTwMb());
+			query.setShort("TW_XL",twTzdataTw.getTwXl());
+			query.setShort("TW_HX",twTzdataTw.getTwHx());
+			query.setString("TW_RCBZ",twTzdataTw.getTwRcbz());
+			query.setString("TW_RCSJ",twTzdataTw.getTwRcsj());
+			return query.executeUpdate();
+		}
 }

@@ -98,14 +98,14 @@ public class YiZhuWeiZhiXingAction extends ActionSupport implements
 			
 			Object obj = session.get("caozuoyuan");
 			if(obj != null){
+				SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd");
+				Date xzrq = sdf.parse(vxzrq);
 				VwRybq vwRybq = (VwRybq) obj;
 				String vhsid = vwRybq.getRyid();
-				String proc_result = shuYeZhiXingService.createMyBingRenZhiXingYiZhuByHsid(vhsid);
+				String proc_result = shuYeZhiXingService.createMyBingRenZhiXingYiZhuByHsid(vhsid,xzrq);
 				if(proc_result.equals("1")){
 					return ERROR;
 				}
-				SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd");
-				Date xzrq = sdf.parse(vxzrq);
 				List<TwBryzzx> twBryzzxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, vxzzxfl,xzrq);
 				if(twBryzzxs!=null && twBryzzxs.size()>0){
 					List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
@@ -128,14 +128,14 @@ public class YiZhuWeiZhiXingAction extends ActionSupport implements
 			
 			Object obj = session.get("caozuoyuan");
 			if(obj != null){
+				SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd");
+				Date xzrq = sdf.parse(vxzrq);
 				VwRybq vwRybq = (VwRybq) obj;
 				String vhsid = vwRybq.getRyid();
-				String proc_result = shuYeZhiXingService.createMyBingRenZhiXingYiZhuByHsid(vhsid);
+				String proc_result = shuYeZhiXingService.createMyBingRenZhiXingYiZhuByHsid(vhsid,xzrq);
 				if(proc_result.equals("1")){
 					return ERROR;
 				}
-				SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd");
-				Date xzrq = sdf.parse(vxzrq);
 				List<TwBryzzx> twBryzzxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, vxzzxfl,xzrq);
 				if(twBryzzxs!=null && twBryzzxs.size()>0){
 					List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
@@ -169,13 +169,13 @@ public class YiZhuWeiZhiXingAction extends ActionSupport implements
 			
 			Object obj = session.get("caozuoyuan");
 			if(obj != null){
+				Date xzrq = new Date();
 				VwRybq vwRybq = (VwRybq) obj;
 				String vhsid = vwRybq.getRyid();
-				String proc_result = shuYeZhiXingService.createMyBingRenZhiXingYiZhuByHsid(vhsid);
+				String proc_result = shuYeZhiXingService.createMyBingRenZhiXingYiZhuByHsid(vhsid,xzrq);
 				if(proc_result.equals("1")){
 					return ERROR;
 				}
-				Date xzrq = new Date();
 				List<TwBryzzx> twBryzzxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, "00",xzrq);
 				if(twBryzzxs!=null && twBryzzxs.size()>0){
 					List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);

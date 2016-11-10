@@ -163,6 +163,8 @@
 			<result name="error">/views/bingrenshouye.jsp</result>
 			<result name="success">/views/binrengeti_tiwendan.jsp</result>
 		</action>
+		
+		<!-- 体征录入 -->
 		<action name="tizheng_luru_tiwen" class="twTzdataTwAction" method="saveTiZhengLuru_TiWen">
 			<result type="stream" name="ajax_return">
 				<param name="contentType">text/html</param>
@@ -173,6 +175,12 @@
 			<result name="success">/views/bingrengeti_tizhengluru.jsp</result>
 			<result name="error">/views/login.jsp</result>
 		</action>
+		
+		<action name="tizhengluru_update" class="twTzdataAction" method="getListTzDataJl">
+			<result name="success">/views/tizhengluru_update_xuanzhe.jsp</result>
+			<result name="error">/views/login.jsp</result>
+		</action>
+		
 		<action name="tizheng_luru_update" class="twTzdataAction" method="saveTiZhengLuru">
 		<!-- 	<result name="success">/views/bingrengeti_tizhengluru.jsp?tizheng_luru_succe=${tizheng_luru_success}</result>
 			<result name="error">/views/bingrengeti_tizhengluru.jsp?tizheng_luru_succe=${tizheng_luru_success}</result> -->
@@ -182,6 +190,38 @@
 			</result>
 			<!-- <result name="success" type="redirect">tizhengluru</result>
 			<result name="error" type="redirect">tizhengluru</result> -->
+		</action>
+		<!-- 体征录入数据修改modi -->
+		<action name="tizheng_data_modi" class="twTzdataAction" method="updateTwTzdata">
+			<result type="stream" name="data_modi">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 体温录入数据修改modi -->
+		<action name="tizhengtw_data_modi" class="twTzdataTwAction" method="updateTzdataTwByJlid">
+			<result type="stream" name="ajax_return">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		
+		<!-- 体征数据修改 按选择的日期查询出记录条数供选择 -->
+		<action name="twtzdata_jl" class="twTzdataAction" method="getListTwTzdataByRiQiforjQuery">
+		</action>
+		<!-- 体征数据修改 按选择的日期查询出记录条数供选择 -->
+		<action name="twtzdatatw_jl" class="twTzdataTwAction" method="getListTwTzdataTwByRiQiforjQuery">
+		</action>
+		
+		<!-- 根据选择的日期、时间点记录，显示用于修改 -->
+		<action name="tizheng_data_update" class="twTzdataAction" method="getListTzDataByShiJianDian">
+			<result name="success">/views/bingrengeti_tizhengluru_update.jsp</result>
+			<result name="error">/views/login.jsp</result>
+		</action>
+		<!-- 根据jlid查询出相关体温录入数据 用于显示修改 -->
+		<action name="tizhengtw_data_update" class="twTzdataTwAction" method="getTzDataTwByJlid">
+			<result name="success">/views/bingrengeti_tizhengtw_data_update.jsp</result>
+			<result name="error">/views/login.jsp</result>
 		</action>
 		
 		<!-- 登录 病人列表 -->

@@ -34,5 +34,5 @@ public interface TwBryzzxService {
 	/*
 	 * 根据病人key1、key2 调用存储过程生成病人执行医嘱
 	 */
-	public String callProcedureBrYzzx(long key1,int key2,short yebh);
+	public String callProcedureBrYzzx(long key1,int key2,short yebh,Date rq);
 }

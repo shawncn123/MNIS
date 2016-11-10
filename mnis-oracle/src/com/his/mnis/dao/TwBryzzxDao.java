@@ -67,18 +67,18 @@ public class TwBryzzxDao extends BaseDao {
 	 * 
 	 */
 	
-	public String callProcedureBrYzzx(long v_key1,int v_key2,short v_yebh){
+	public String callProcedureBrYzzx(long v_key1,int v_key2,short v_yebh,Date rq){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date rq = new Date();
+//		Date rq = new Date();
 		ProcedureCall pc = getSession().createStoredProcedureCall("pw_bryzzx_sc");
 		pc.registerParameter("key1_In", long.class, ParameterMode.IN).bindValue(v_key1);
 		pc.registerParameter("key2_In", int.class, ParameterMode.IN).bindValue(v_key2);
 		pc.registerParameter("yebh_In", short.class, ParameterMode.IN).bindValue(v_yebh);
-		try {
-			rq = sdf.parse(sdf.format(new Date()));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			rq = sdf.parse(sdf.format(new Date()));
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 		
 		pc.registerParameter("rq_In", Date.class, ParameterMode.IN).bindValue(rq);
 		pc.registerParameter("out_return", String.class, ParameterMode.OUT);

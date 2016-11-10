@@ -89,16 +89,6 @@ public class TwTzzdAction extends ActionSupport implements RequestAware,SessionA
 		this.vwBqbrZyService = vwBqbrZyService;
 	}
 
-	private Map<String, Object> request;
-	private Map<String, Object> session;
-	
-	@Override
-	public void setRequest(Map<String, Object> arg0) {
-
-		this.request = arg0;
-		
-	}
-	
 	public String getBingRenTiZhengLuRuByBingQuId(){
 		request.put("tizheng_luru_success", tizheng_luru_success);
 		try {
@@ -128,6 +118,14 @@ public class TwTzzdAction extends ActionSupport implements RequestAware,SessionA
 		}
 	}
 
+	private Map<String, Object> request;
+	private Map<String, Object> session;
+	
+	@Override
+	public void setRequest(Map<String, Object> arg0) {
+		this.request = arg0;
+	}
+	
 	@Override
 	public void setSession(Map<String, Object> arg0) {
 		this.session = arg0;

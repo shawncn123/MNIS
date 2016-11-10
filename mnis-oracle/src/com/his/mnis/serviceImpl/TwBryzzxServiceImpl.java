@@ -28,7 +28,7 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 	@Override
 	public List<TwBryzzx> getListBrYzzxByKey(long v_key1, int v_key2,
 			short v_yebh,Date xzrq) {
-		String proc_result = twBryzzxDao.callProcedureBrYzzx(v_key1, v_key2,v_yebh);
+		String proc_result = twBryzzxDao.callProcedureBrYzzx(v_key1, v_key2,v_yebh,xzrq);
 		System.out.println("proc_result:"+ proc_result);
 		if ("1".equals(proc_result)) { // 1 表示失败
 			return null;
@@ -175,10 +175,12 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 	}
 
 	@Override
-	public String callProcedureBrYzzx(long key1, int key2, short yebh) {
-		String proc_result = twBryzzxDao.callProcedureBrYzzx(key1, key2, yebh);
+	public String callProcedureBrYzzx(long key1, int key2, short yebh, Date rq) {
+		String proc_result = twBryzzxDao.callProcedureBrYzzx(key1, key2, yebh,rq);
 		return proc_result; // 1 表示失败 
 	}
+
+	
 
 
 }

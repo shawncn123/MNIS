@@ -58,14 +58,14 @@ public class ShuYeZhiXingAction extends ActionSupport implements RequestAware,
 		yzzxfl="01";
 		Object obj = session.get("caozuoyuan");
 		if(obj != null){
+			Date xzrq = new Date();
 			VwRybq vwRybq = (VwRybq) obj;
 			String vhsid = vwRybq.getRyid();
 			System.out.println("hsid="+vhsid);
-			String proc_result = shuYeZhiXingService.createMyBingRenZhiXingYiZhuByHsid(vhsid);
+			String proc_result = shuYeZhiXingService.createMyBingRenZhiXingYiZhuByHsid(vhsid,xzrq);
 			if(proc_result.equals("1")){
 				return ERROR;
 			}
-			Date xzrq = new Date();
 			List<TwBryzzx> twBryzzxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, yzzxfl,xzrq);
 			if(twBryzzxs!=null && twBryzzxs.size()>0){
 				List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);

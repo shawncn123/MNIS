@@ -217,6 +217,12 @@
 					</div>
 					<div class="ChannelName">危险评估</div>
 			</a></li>
+			<li><a href="views/tizhengluru_update">
+					<div class="ChannelIcon">
+						<img src="images/1408672415.jpg" />
+					</div>
+					<div class="ChannelName">体征录入修改</div>
+			</a></li>
 		</ul>
 		<%@ include file="menu-hushi.jsp" %>
 		<div class="clear"></div>

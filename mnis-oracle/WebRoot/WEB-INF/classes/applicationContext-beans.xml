@@ -175,6 +175,8 @@
 	
 	<bean id="twTzdataTwAction" class="com.his.mnis.actions.TwTzdataTwAction"  scope="prototype">
 		<property name="twTzdataTwService" ref="twTzdataTwService"></property>
+		<property name="vwTzzdTwRcbzServiceImpl" ref="vwTzzdTwRcbzServiceImpl"></property>
+		<property name="vwTzzdTwLxServiceImpl" ref="vwTzzdTwLxServiceImpl"></property>
 		<property name="wseq_id" ref="wseq_id"></property>
 	</bean>
 	
@@ -187,6 +189,7 @@
 	</bean>
 	<bean id="twTzdataAction" class="com.his.mnis.actions.TwTzdataAction"  scope="prototype">
 		<property name="twTzdataService" ref="twTzdataService"></property>
+		<property name="twTzdataTwService" ref="twTzdataTwService"></property>
 		<property name="wseq_id" ref="wseq_id"></property>
 	</bean>
 	<bean id="vwJc101Dao" class="com.his.mnis.dao.VwJc101Dao">

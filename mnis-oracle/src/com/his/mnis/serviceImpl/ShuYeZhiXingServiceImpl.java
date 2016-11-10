@@ -49,13 +49,13 @@ public class ShuYeZhiXingServiceImpl implements ShuYeZhiXingService {
 	}
 
 	@Override
-	public String createMyBingRenZhiXingYiZhuByHsid(String hsid) {
+	public String createMyBingRenZhiXingYiZhuByHsid(String hsid,Date rq) {
 		List<MyBingRen> myBingRens = twWdbrService.getWdbrByCaoZuoRyId(hsid);
 		for(int i=1; i < myBingRens.size(); i++){
 			MyBingRen myBingRen = myBingRens.get(i);
 			long vkey1 = myBingRen.getKey1();
 			int vkey2 = myBingRen.getKey2();
-			String proc_result = twBryzzxService.callProcedureBrYzzx(vkey1, vkey2, (short)0);
+			String proc_result = twBryzzxService.callProcedureBrYzzx(vkey1, vkey2, (short)0,rq);
 			if(proc_result.equals("1")){
 				return "1";
 			}

@@ -11,7 +11,7 @@
 
 	<head>
 		<base href="<%=basePath%>">
-		<title>体征录入</title>
+		<title>体征录入数据修改</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="SHORTCUT ICON" href="images/favicon.ico">
 		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
@@ -41,78 +41,51 @@
 				});
 			});
 		</script>
+		
 		<script type="text/javascript">
 			$(function() {
 				$('.clockpicker').clockpicker();
-			});
-			$(document).ready(function() {
-				$("#baocun").click(function() {
-					$("#lurutime").attr('value', $("#appTime1").val());
-					var luruone = $("input:eq(2)").val();  /* 取第三个input的value值 前两个是时间input 第二个是隐藏的input */
-					var luruone = luruone.trim();
-					if(luruone!=""){
-						var url = "tizheng_luru_update";
-						var args = $('#tzform').serialize();
-						$.post(url,args,function(data) {
-							if(data=="0"){
-								$("#tip").html("保存成功！");
-								$("#baocun").attr("disabled","true");
-								$("#content").css("top","0px");
-								$("#jianpan1").hide();
-								$("#jianpan").hide();
-							}else{
-								$("#tip").css('color','#FF0000');
-								$("#tip").html("保存失败！");
-							}
-						});
-					}else{
-						$("#tip").css('color','#FF9800');
-						$("#tip").html("没有数据！");
-					}
-				});
+				
+				var opt = {};
+			    opt.time = {
+			        preset: 'time'
+			    };
+			    opt.default = {
+			        theme: 'android-ics light',
+			        display: 'modal',
+			        lang: 'zh',
+			        showNow: true,
+			        nowText: "今天",
+			        onShow: function () {
+			            $('.dw-persp').css('z-index', '99999');
+			        }
+			    };
+			    var optTime = $.extend(opt['time'], opt['default']);
+			    $("#appTime1").mobiscroll(optTime).time(optTime);
+			    $("#appTime2").mobiscroll(optTime).time(optTime);
+
+				$("#appTime1").attr('value',$("#sjvalue").val())
+				
 			});
 			
-			$(function() {
-				$(document).ready(function() {
-					$("#tw_baocun").click(function() {
-							var val_twlx = $("#twlx_select").val();
-							var val_wendu = $("#tw_wendu").val();
-							var val_jwhwendu = $("#tw_jwhwendu").val();
-							var val_maibo = $("#tw_maibo").val();
-							var val_xinlv = $("#tw_xinlv").val();
-							var val_huxi = $("#tw_huxi").val();
-							if (val_wendu == ""||val_jwhwendu==""||val_maibo==""||val_xinlv==""||val_huxi=="") {
-								alert("数据不完整！");
-							} else {
-								var val_rcbz = $("#tw_rcbz").val();
-								var val_time2 = $("#appTime2").val();
-								var val_time1 = $("#appTime1").val();
-								var url = "tizheng_luru_tiwen";
-								var args = {
-									"v_twlx": val_twlx,
-									"v_wendu": val_wendu,
-									"v_jwhwendu": val_jwhwendu,
-									"v_maibo": val_maibo,
-									"v_xinlv": val_xinlv,
-									"v_huxi": val_huxi,
-									"v_rcbz": val_rcbz,
-									"v_time2": val_time2,
-									"v_time1": val_time1
-								};
-								$.post(url, args, function(data) {
-									if (data == "0") {
-										/* $("#quxiao").click(); */
-										/* $("#temperature").hide(); */
-										$('#temperature').modal('hide')
-										$("#tiwen").attr('value', '录入成功！').css('color', 'red');
-									} else {
-										//若data 的返回值不是1，则提示删除失败
-										alert("保存失败！");
-									}
-								});
-							}
-						})
-				})
+			$(document).ready(function() {
+				$("#baocun").click(function() {
+					$("#sjvalue").attr('value', $("#appTime1").val());
+					var url = "tizheng_data_modi";
+					var args = $('#tzform').serialize();
+					$.post(url,args,function(data) {
+						if(data=="0"){
+							$("#tip").html("修改成功！");
+							$("#baocun").attr("disabled","true");
+							$("#content").css("top","0px");
+							$("#jianpan1").hide();
+							$("#jianpan").hide();
+						}else{
+							$("#tip").css('color','#FF0000');
+							$("#tip").html("修改失败！");
+						}
+					});
+				});
 			});
 		</script>
 		<link href="css/mobiscroll_002.css" rel="stylesheet" type="text/css">
@@ -122,7 +95,7 @@
 		<script src="scripts/mobiscroll.js" type="text/javascript"></script>
 		<script src="scripts/mobiscroll_003.js" type="text/javascript"></script>
 		<script src="scripts/mobiscroll_005.js" type="text/javascript"></script>
-		<script src="scripts/index-song.js" type="text/javascript"></script>
+		<script src="scripts/index-song-shen.js" type="text/javascript"></script>
 	</head>
 	<body>
 		<div id="head_banner_1" style="z-index:2000;" class="bg-info navbar-fixed-top">
@@ -169,81 +142,96 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-xs-5">
+				<div class="col-xs-4">
 					<div class="demos">
-						<input value="" class="form-control" name="chajiantime" id="appTime1" type="text" placeholder="">
+						
 					</div>
 				</div>
 				<div class="col-xs-4 text-center" id="tip" style="margin-top: 2%; color: #2196F3;font-size: 14px;"></div>
-				<div class="col-xs-3" style="float:right;" id="bcdiv">
-					<button class="btn btn-default" role="button" id="baocun" style="margin-left: 20%;">保存</button>
+				<div class="col-xs-4" style="float:right;" id="bcdiv">
+					<button class="btn btn-default" role="button" id="baocun" style="margin-left: 10%;">修改保存</button>
 				</div>
 			</div>
 		</div>
 
 		<div id="content" class="container">
-
 			<form class="form-horizontal" action="" method="post" id="tzform">
-				<input name="appTime" value="" style="display:none;" id="lurutime" />
+				<div class="form-group" style="margin-bottom: 1%; margin-top: 1%;">
+					<small class="col-xs-2 control-label text-center" style="padding:2% 0 0 0;">时间</small>
+					<div class="col-xs-10">
+						<input value="" class="form-control" name="chajiantime" id="appTime1" type="text" placeholder=""
+							style="background-color: #aba9a9;color: white;">
+					</div>
+				</div>
 				<s:set name="popcount" value="1"></s:set>
-				<s:iterator value="#request.bingr_tizheng_luruxiang" status='st'>
+				<s:iterator value="#request.tzdata_upate_list" status='st'>
+				<s:if test="#st.index==0">
+					<input value="${sj }" style="display:none;" id="sjvalue" name="appTime">
+					<input name="pcid" style="display:none;" value="${pcid }">
+				</s:if>
 				<div class="form-group" style="margin-bottom: 1%; margin-top: 1%;">
 					<s:if test="xmid=='XY'">
 						<small class="col-xs-2 control-label text-center" style="padding:2% 0 0 0;">${xmmc }</small>
 						<div class="col-xs-3" style="padding-right: 0;">
 							<input type="text" maxlength="7" readonly="readonly" mainpop="<s:property value='#popcount'/>" class="form-control"
-								id="xueya" placeholder="收缩压" name="zhi1" style="padding: 2%;">
+								id="xueya" name="zhi1" style="padding: 2%;" value="${value1 }">
 								<s:set name="popcount" value="#popcount+1"></s:set>
 						</div>
 						<div class="col-xs-1" style="padding:2% 0 0 3%;">/</div>
 						<div class="col-xs-3" style="padding: 0;">
-							<input type="text" maxlength="7" readonly="readonly" class="form-control" mainpop="<s:property value='#popcount'/>" class="form-control" id="xueya2" placeholder="舒张压" name="zhi2" style="padding: 2%;">
+							<input type="text" maxlength="7" readonly="readonly" class="form-control" mainpop="<s:property value='#popcount'/>" 
+								class="form-control" id="xueya2" name="zhi2" style="padding: 2%;"  value="${value2 }">
 							<s:set name="popcount" value="#popcount+1"></s:set>
 						</div>
 						<div class="col-xs-3" style="padding:2% 0 0 2%;">${dw}</div>
 						<input name="xiangmu" style="display:none;" value="${xmid }">
 						<input name="bzflag" style="display:none;" value="${bzflag}">
 						<input name="biaozhu" style="display:none;" value="">
+						<input name="jlid" style="display:none;" value="${jlid }">
 					</s:if>
 					<s:elseif test="xmid=='TW'">
 						<small class="col-xs-2 control-label text-center" style="padding:2% 0 0 0;">${xmmc}</small>
 						<div class="col-xs-10">
 							<input type="text" class="form-control" id="tiwen" data-backdrop="static" data-toggle="modal" readonly="readonly"
-								data-target="#temperature" placeholder="${xmmc }" style="padding: 2%;">
+								data-target="#temperature" style="padding: 2%;"  value="${value1 }">
 						</div>
 						<input name="xiangmu" style="display:none;" value="${xmid }">
 						<input name="zhi1" style="display:none;" value="">
 						<input name="zhi2" style="display:none;" value="">
 						<input name="biaozhu" style="display:none;" value="">
 						<input name="bzflag" style="display:none;" value="${bzflag}">
+						<input name="jlid" style="display:none;" value="${jlid }">
 					</s:elseif>
 					<s:elseif test="bzflag==1">
 						<small class="col-xs-2 control-label text-center" style="padding:2% 0 0 0;">${xmmc }</small>
 						<div class="col-xs-3" style="padding-right: 0;">
 							<input type="text" maxlength="8" class="form-control"
-								readonly="readonly" mainpop="<s:property value='#popcount'/>" placeholder="${xmmc }" name="zhi1" style="padding: 2%;">
+								readonly="readonly" mainpop="<s:property value='#popcount'/>" name="zhi1" style="padding: 2%;"  value="${value1 }">
 								<s:set name="popcount" value="#popcount+1"></s:set>
 						</div>
 						<div class="col-xs-1" style="padding:2% 0 0 2%;">${dw}</div>
 						<div class="col-xs-6" style="padding-left: 0;">
-							<input type="text" maxlength="10" nopop="true" class="form-control" placeholder="标注" name="biaozhu" style="padding: 2%;">
+							<input type="text" maxlength="10" nopop="true" class="form-control" 
+								name="biaozhu" style="padding: 2%;"  value='<s:if test="bz==null"></s:if><s:else>${bz }</s:else>'>
 						</div>
 						<input name="xiangmu" style="display:none;" value="${xmid }">
 						<input name="zhi2" style="display:none;" value="">
 						<input name="bzflag" style="display:none;" value="${bzflag}">
+						<input name="jlid" style="display:none;" value="${jlid }">
 					</s:elseif>
 					<s:else>
 						<small class="col-xs-2 control-label text-center"
 							style="padding:2% 0 0 0;">${xmmc }</small>
 						<div class="col-xs-10">
 							<input type="text" readonly="readonly"
-								mainpop="<s:property value='#popcount'/>" class="form-control" placeholder="${xmmc }" name="zhi1" style="padding: 2%;">
+								mainpop="<s:property value='#popcount'/>" class="form-control" name="zhi1" style="padding: 2%;"  value="${value1 }">
 								<s:set name="popcount" value="#popcount+1"></s:set>
 						</div>
 						<input name="xiangmu" style="display:none;" value="${xmid }">
 						<input name="zhi2" style="display:none;" value="">
 						<input name="biaozhu" style="display:none;" value="">
 						<input name="bzflag" style="display:none;" value="${bzflag}">
+						<input name="jlid" style="display:none;" value="${jlid }">
 					</s:else>
 				</div>
 				</s:iterator>
@@ -328,7 +316,7 @@
 								<label class="col-xs-4 control-label  text-right" style="padding:2% 2% 0 2%;">入出时间</label>
 								<div class="col-xs-8">
 									<div class="demos">
-										<input value="" class="form-control" name="appTime_tw" id="appTime2" type="text">
+										<input value="" class="form-control" name="appTime" id="appTime2" type="text">
 									</div>
 								</div>
 							</div>
