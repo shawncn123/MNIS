@@ -143,19 +143,11 @@
 				</a>
 			</li>
 			<li>
-				<a href="xuanjiaolist">
+				<a href="views/tizhengluru_update">
 					<div class="ChannelIcon">
-						<img src="images/mokuai_4.jpg" />
+						<img src="images/1408672415.jpg" />
 					</div>
-					<div class="ChannelName">宣教</div>
-				</a>
-			</li>
-			<li>
-				<a href="bingrgeti_TiWenDan">
-					<div class="ChannelIcon">
-						<img src="images/1408672427.jpg" />
-					</div>
-					<div class="ChannelName">体温单</div>
+					<div class="ChannelName">体征录入修改</div>
 				</a>
 			</li>
 			<li>
@@ -190,20 +182,30 @@
 					<div class="ChannelName">病案首页</div>
 				</a>
 			</li>
-			
+			<li>
+				<a href="xuanjiaolist">
+					<div class="ChannelIcon">
+						<img src="images/mokuai_4.jpg" />
+					</div>
+					<div class="ChannelName">宣教</div>
+				</a>
+			</li>
+			<li>
+				<a href="bingrgeti_TiWenDan">
+					<div class="ChannelIcon">
+						<img src="images/1408672427.jpg" />
+					</div>
+					<div class="ChannelName">体温单</div>
+				</a>
+			</li>
 			<!--  <li><a href="views/linchuanglujing.jsp">
 					<div class="ChannelIcon">
 						<img src="images/1409023353.jpg" />
 					</div>
 					<div class="ChannelName">临床路径</div>
 			</a></li> -->
-			<!--<li><a href="views/hulibingli.jsp">
-					<div class="ChannelIcon">
-						<img src="images/1408672415.jpg" />
-					</div>
-					<div class="ChannelName">护理病历</div>
-			</a></li>
 			
+			<!--
 			<li><a href="views/bingliwenjian.jsp">
 					<div class="ChannelIcon">
 						<img src="images/1408672456.jpg" />
@@ -211,17 +213,18 @@
 					<div class="ChannelName">病历文件</div>
 			</a></li> -->
 			
-			<li><a href="hzwxpg">
-					<div class="ChannelIcon">
-						<img src="images/1408672456.jpg" />
-					</div>
-					<div class="ChannelName">危险评估</div>
-			</a></li>
-			<li><a href="views/tizhengluru_update">
+		<!-- 	<li><a href="hzwxpg">
 					<div class="ChannelIcon">
 						<img src="images/1408672415.jpg" />
 					</div>
-					<div class="ChannelName">体征录入修改</div>
+					<div class="ChannelName">危险评估</div>
+			</a></li> -->
+			
+			<li><a href="views/hulibingli.jsp">
+					<div class="ChannelIcon">
+						<img src="images/1408672456.jpg" />
+					</div>
+					<div class="ChannelName">护理评估</div>
 			</a></li>
 		</ul>
 		<%@ include file="menu-hushi.jsp" %>

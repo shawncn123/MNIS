@@ -43,13 +43,13 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>姓名:</span>
 			</div>
 			<div class="col-xs-3">
 				<span>${bingrgetixingxi.xm }</span>
 			</div>
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>性别</span>
 			</div>
 			<div class="col-xs-3">
@@ -57,7 +57,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>年龄:</span>
 			</div>
 			<div class="col-xs-9">
@@ -65,24 +65,24 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>住院号:</span>
 			</div>
 			<div class="col-xs-5">
 				<span>${bingrgetixingxi.bah }</span>
 			</div>
-			<div class="col-xs-4">
+			<div class="col-xs-4" style="padding-right: 0;">
 				<span>第一次住院</span>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>婚姻:</span>
 			</div>
 			<div class="col-xs-3">
 				<span>${bingren_jbxx.hyzk}</span>
 			</div>
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>国籍</span>
 			</div>
 			<div class="col-xs-3" style="padding:0;">
@@ -90,7 +90,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>民族:</span>
 			</div>
 			<div class="col-xs-9">
@@ -98,7 +98,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>身份证号:</span>
 			</div>
 			<div class="col-xs-9">
@@ -106,7 +106,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>付款方式:</span>
 			</div>
 			<div class="col-xs-9">
@@ -114,7 +114,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>职业:</span>
 			</div>
 			<div class="col-xs-9">
@@ -128,7 +128,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>中医诊断:</span>
 			</div>
 			<div class="col-xs-9">
@@ -136,7 +136,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>西医诊断:</span>
 			</div>
 			<div class="col-xs-9">
@@ -150,7 +150,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>入院时间</span>
 			</div>
 			<div class="col-xs-9">
@@ -158,7 +158,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>住院天数</span>
 			</div>
 			<div class="col-xs-9">
@@ -166,13 +166,13 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>科室:</span>
 			</div>
 			<div class="col-xs-3">
 				<span>${bingrgetixingxi.ksmc }</span>
 			</div>
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>病情:</span>
 			</div>
 			<div class="col-xs-3">
@@ -180,13 +180,13 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>主治医师:</span>
 			</div>
 			<div class="col-xs-3">
 				<span style="color: #d19c36">${bingrgetixingxi.ysxm }</span>
 			</div>
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>主任医师:</span>
 			</div>
 			<div class="col-xs-3">
@@ -194,13 +194,13 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>主院医师:</span>
 			</div>
 			<div class="col-xs-3">
 				<span style="color: #d19c36">--</span>
 			</div>
-			<div class="col-xs-3">
+			<div class="col-xs-3" style="padding-right: 0;">
 				<span>责任护士:</span>
 			</div>
 			<div class="col-xs-3">
@@ -215,7 +215,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-4">
+			<div class="col-xs-4" style="padding-right: 0;">
 				<span>联系人姓名:</span>
 			</div>
 			<div class="col-xs-8">
@@ -223,7 +223,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-4">
+			<div class="col-xs-4" style="padding-right: 0;">
 				<span>联系人电话:</span>
 			</div>
 			<div class="col-xs-8">
@@ -231,7 +231,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-4">
+			<div class="col-xs-4" style="padding-right: 0;">
 				<span>联系人地址:</span>
 			</div>
 			<div class="col-xs-8">
@@ -239,7 +239,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-4">
+			<div class="col-xs-4" style="padding-right: 0;">
 				<span>家庭电话:</span>
 			</div>
 			<div class="col-xs-8">

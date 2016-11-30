@@ -60,7 +60,7 @@ public class TwTzdataDao extends HibernateDaoSupport {
 
 	//根据key1 key2 yebh 日期查询出该病人该日期的体征录入数据
 	public List<TwTzdata> getListTzData(long key1,Integer key2,short yebh,Date lrrq){
-		String hql = "from TwTzdata where key1=:key1 and key2=:key2 and yebh=:yebh and rq=:rq";
+		String hql = "from TwTzdata where key1=:key1 and key2=:key2 and yebh=:yebh and rq=:rq order by jlid";
 		Query query = currentSession().createQuery(hql);
 		query.setLong("key1", key1);
 		query.setInteger("key2", key2);
@@ -71,7 +71,7 @@ public class TwTzdataDao extends HibernateDaoSupport {
 	
 	//根据key1 key2 yebh 日期查询出该病人该日期的多少次数记录
 	public List<String> getListTzDataJl(long key1,Integer key2,short yebh,Date lrrq){
-		String hql = "select distinct(SJ) from TW_TZDATA where KEY1=:key1 and KEY2=:key2 and YEBH=:yebh and RQ=:rq";
+		String hql = "select distinct(SJ) from TW_TZDATA where KEY1=:key1 and KEY2=:key2 and YEBH=:yebh and RQ=:rq order by JLID";
 		Query query = currentSession().createSQLQuery(hql);
 		query.setLong("key1", key1);
 		query.setInteger("key2", key2);

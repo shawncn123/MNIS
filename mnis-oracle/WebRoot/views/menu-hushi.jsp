@@ -19,6 +19,12 @@
 				<span class="gnavItemName">医嘱未执行</span>
 			</a>
 		</div>
+		<div class="navItem_3">
+			<a href="peiye_saomiao">
+				<span class="glyphicon glyphicon-check"></span>
+				<span class="gnavItemName">配液确认</span>
+			</a>
+		</div>
 		<!-- <div class="navItem_3">
 			<a href="linzhuweizhixing">
 				<span class="glyphicon glyphicon-exclamation-sign"></span>

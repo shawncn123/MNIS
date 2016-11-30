@@ -3,8 +3,12 @@ package com.his.mnis.services;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Query;
+
 import com.his.mnis.entities.TwBryzzx;
+import com.his.mnis.entities.TwBryzzxPeiYeRemodel;
 import com.his.mnis.entities.TwBryzzxRemodel;
+import com.his.mnis.entities.TwPeiyeczJilu;
 import com.his.mnis.entities.VwBryzRemodel;
 
 public interface TwBryzzxService {
@@ -29,10 +33,25 @@ public interface TwBryzzxService {
 	/*
 	 * 按条件保存医嘱执行数据
 	 */
-	public String bingRenYzzx_baocun(Date rq,String sjd,char zxflag,long groupxh,String hsid,String hsxm,Date zxsj,String zxms,String vcrlflag,Double vcrl);
+	public String bingRenYzzx_baocun(Date rq,String sjd,char zxflag,long groupxh,String hsid,String hsxm,Date zxsj,String zxms,String vcrlflag,Double vcrl,String syflag);
 	
 	/*
 	 * 根据病人key1、key2 调用存储过程生成病人执行医嘱
 	 */
 	public String callProcedureBrYzzx(long key1,int key2,short yebh,Date rq);
+	
+	/*
+	 * 根据病区和日期查询输液类医嘱数据列表
+	 */
+	public List<TwBryzzxPeiYeRemodel> getListBrYzzxForShuYeByBqidRiqi(String bq ,Date xzrq );
+	
+	/*
+	 * 按rowkey  查询医嘱对应一条记录
+	 */
+	public TwBryzzx getTwBryzzxByRowkey(String rowkey);
+	
+	/*
+	 * 保存对象TwBryzzx
+	 */
+	public void updateTwPeiyeczJiluByTwPeiyeczJilu(TwPeiyeczJilu twPeiyeczJilu);
 }

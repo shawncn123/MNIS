@@ -48,10 +48,10 @@ public class TwWxysPgServiceImpl implements TwWxysPgService {
 	}
 
 	@Override
-	public List<TwZyhzPgXX> getListTwZyhzPgXX(Date cxrq) {
+	public List<TwZyhzPgXX> getListTwZyhzPgXX(Date cxrq,Long key1,Integer key2,short yebh) {
 		
 		twZyhzPgXXs = new ArrayList<TwZyhzPgXX>();
-		List<TwZyhzPgXX> twZyhzPgXXs = twWxysPgDao.getListTwZyhzpgXX(cxrq);
+		List<TwZyhzPgXX> twZyhzPgXXs = twWxysPgDao.getListTwZyhzpgXX(cxrq,key1,key2,yebh);
 //		for(int i=0;i<listobjects.size();i++){
 //			TwZyhzPgXX twZyhzPgXX = new TwZyhzPgXX();
 //			twZyhzPgXX.setJlrq(listobjects.get(i));

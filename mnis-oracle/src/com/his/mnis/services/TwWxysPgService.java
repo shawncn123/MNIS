@@ -15,5 +15,5 @@ public interface TwWxysPgService {
 	
 	public List<TwZyhzpg> getListTwZyhzpg(Date cxrq);
 	
-	public List<TwZyhzPgXX> getListTwZyhzPgXX(Date cxrq);
+	public List<TwZyhzPgXX> getListTwZyhzPgXX(Date cxrq,Long key1,Integer key2,short yebh);
 }

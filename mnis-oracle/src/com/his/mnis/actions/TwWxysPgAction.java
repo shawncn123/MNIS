@@ -115,28 +115,34 @@ public class TwWxysPgAction extends ActionSupport implements RequestAware,Sessio
 //		SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd");
 		
 		Date rq = new Date();     
-//		try {
-//			rq = sdf.parse(rq.toString());
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
-
-		List<TwZyhzPgXX> twZyhzPgXXs = twWxysPgService.getListTwZyhzPgXX(rq);
-		if(twZyhzPgXXs != null && twZyhzPgXXs.size()!=0 ){
-			request.put("wxyspgb", twZyhzPgXXs);
-			request.put("wxyspgbflag", "1");
-			return SUCCESS;
-		}else{
-			Object obj = twWxysPgService.getListWxysPgDm();
-			if(obj != null){
-				List<TwWxysPgDm> twWxysPgDms = (List<TwWxysPgDm>) obj; 
-				request.put("wxyspgb", twWxysPgDms);
-				request.put("wxyspgbflag", "0");
+		Object obj = session.get("bingrgetixingxi");
+		short yeid = 0;
+		if(obj != null){
+			VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
+			Object obj_ye =  session.get("bingrgetixingxi_yinger");
+			if(obj_ye!=null){
+				BingRenSessionXingXi bingRenSessionXingXi = (BingRenSessionXingXi) obj_ye;
+				yeid = bingRenSessionXingXi.getYebh();
+			}
+		
+			List<TwZyhzPgXX> twZyhzPgXXs = twWxysPgService.getListTwZyhzPgXX(rq,vwBqbrZy.getKey1(),vwBqbrZy.getKey2(),yeid);
+			if(twZyhzPgXXs != null && twZyhzPgXXs.size()!=0 ){
+				request.put("wxyspgb", twZyhzPgXXs);
+				request.put("wxyspgbflag", "1");
 				return SUCCESS;
 			}else{
-				return ERROR;
+				Object objdm = twWxysPgService.getListWxysPgDm();
+				if(objdm != null){
+					List<TwWxysPgDm> twWxysPgDms = (List<TwWxysPgDm>) objdm; 
+					request.put("wxyspgb", twWxysPgDms);
+					request.put("wxyspgbflag", "0");
+					return SUCCESS;
+				}else{
+					return ERROR;
+				}
 			}
 		}
+		return ERROR;
 	}
 	
 	public String WyxsPingGuBiaoBaoCun(){
@@ -206,24 +212,18 @@ public class TwWxysPgAction extends ActionSupport implements RequestAware,Sessio
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
-		List<TwZyhzPgXX> twZyhzPgXXs = twWxysPgService.getListTwZyhzPgXX(rq);
-		if(twZyhzPgXXs != null && twZyhzPgXXs.size()>0 ){
-			JSONArray jsonArray = JSONArray.fromObject(twZyhzPgXXs);
-			// JSONObject json = JSONObject.fromObject(vwBqbrZys);
-			HttpServletResponse response = ServletActionContext.getResponse();
-			response.setContentType("text/html;charset=UTF-8");
-			try {
-				response.getWriter().write(jsonArray.toString());
-			} catch (IOException e) {
-				e.printStackTrace();
+		Object obj = session.get("bingrgetixingxi");
+		short yeid = 0;
+		if(obj != null){
+			VwBqbrZy vwBqbrZy = (VwBqbrZy) obj;
+			Object obj_ye =  session.get("bingrgetixingxi_yinger");
+			if(obj_ye!=null){
+				BingRenSessionXingXi bingRenSessionXingXi = (BingRenSessionXingXi) obj_ye;
+				yeid = bingRenSessionXingXi.getYebh();
 			}
-//			request.put("wxyspgbflag", "1");
-		}else{
-			Object obj = twWxysPgService.getListWxysPgDm();
-			if(obj != null){
-				List<TwWxysPgDm> twWxysPgDms = (List<TwWxysPgDm>) obj; 
-				JSONArray jsonArray = JSONArray.fromObject(twWxysPgDms);
+			List<TwZyhzPgXX> twZyhzPgXXs = twWxysPgService.getListTwZyhzPgXX(rq,vwBqbrZy.getKey1(),vwBqbrZy.getKey2(),yeid);
+			if(twZyhzPgXXs != null && twZyhzPgXXs.size()>0 ){
+				JSONArray jsonArray = JSONArray.fromObject(twZyhzPgXXs);
 				// JSONObject json = JSONObject.fromObject(vwBqbrZys);
 				HttpServletResponse response = ServletActionContext.getResponse();
 				response.setContentType("text/html;charset=UTF-8");
@@ -232,7 +232,22 @@ public class TwWxysPgAction extends ActionSupport implements RequestAware,Sessio
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-//				request.put("wxyspgbflag", "0");
+	//			request.put("wxyspgbflag", "1");
+			}else{
+				Object objdm = twWxysPgService.getListWxysPgDm();
+				if(objdm != null){
+					List<TwWxysPgDm> twWxysPgDms = (List<TwWxysPgDm>) objdm; 
+					JSONArray jsonArray = JSONArray.fromObject(twWxysPgDms);
+					// JSONObject json = JSONObject.fromObject(vwBqbrZys);
+					HttpServletResponse response = ServletActionContext.getResponse();
+					response.setContentType("text/html;charset=UTF-8");
+					try {
+						response.getWriter().write(jsonArray.toString());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+	//				request.put("wxyspgbflag", "0");
+				}
 			}
 		}
 		return null;

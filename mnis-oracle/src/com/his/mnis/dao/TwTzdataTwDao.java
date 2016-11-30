@@ -36,13 +36,55 @@ public class TwTzdataTwDao extends HibernateDaoSupport {
 		query.setDate("rq",twTzdataTw.getRq());
 		query.setString("sj",twTzdataTw.getSj());
 		query.setString("TW_LX",twTzdataTw.getTwLx());
-		query.setDouble("TW_TW",twTzdataTw.getTwTw());
-		query.setDouble("TW_TW_JWH",twTzdataTw.getTwTwJwh());
-		query.setShort("TW_MB",twTzdataTw.getTwMb());
-		query.setShort("TW_XL",twTzdataTw.getTwXl());
-		query.setShort("TW_HX",twTzdataTw.getTwHx());
-		query.setString("TW_RCBZ",twTzdataTw.getTwRcbz());
-		query.setString("TW_RCSJ",twTzdataTw.getTwRcsj());
+		Object obj;
+		obj = twTzdataTw.getTwTw();
+		if (obj==null){
+			query.setParameter("TW_TW",null);
+		}else{
+			query.setDouble("TW_TW",twTzdataTw.getTwTw());
+		}
+		obj = twTzdataTw.getTwTwJwh();
+		if (obj==null){
+			query.setParameter("TW_TW_JWH", null);
+		}else{
+			query.setDouble("TW_TW_JWH",twTzdataTw.getTwTwJwh());
+		}
+//		query.setDouble("TW_TW_JWH",twTzdataTw.getTwTwJwh());
+		obj = twTzdataTw.getTwMb();
+		if (obj==null){
+			query.setParameter("TW_MB",  null);
+		}else{
+			query.setShort("TW_MB",twTzdataTw.getTwMb());
+		}
+//		query.setShort("TW_MB",twTzdataTw.getTwMb());
+		obj = twTzdataTw.getTwXl();
+		if (obj==null){
+			query.setParameter("TW_XL",null);
+		}else{
+			query.setShort("TW_XL",twTzdataTw.getTwXl());
+		}
+//		query.setShort("TW_XL",twTzdataTw.getTwXl());
+		obj = twTzdataTw.getTwHx();
+		if (obj==null){
+			query.setParameter("TW_HX",null);
+		}else{
+			query.setShort("TW_HX",twTzdataTw.getTwHx());
+		}
+//		query.setShort("TW_HX",twTzdataTw.getTwHx());
+		obj = twTzdataTw.getTwRcbz();
+		if (obj==null){
+			query.setParameter("TW_RCBZ", null);
+		}else{
+			query.setString("TW_RCBZ",twTzdataTw.getTwRcbz());
+		}
+//		query.setString("TW_RCBZ",twTzdataTw.getTwRcbz());
+		obj = twTzdataTw.getTwRcsj();
+		if (obj==null){
+			query.setParameter("TW_RCSJ", null);
+		}else{
+			query.setString("TW_RCSJ",twTzdataTw.getTwRcsj());
+		}
+//		query.setString("TW_RCSJ",twTzdataTw.getTwRcsj());
 		query.executeUpdate();
 	}
 

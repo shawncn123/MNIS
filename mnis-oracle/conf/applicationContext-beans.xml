@@ -11,6 +11,31 @@
 	<bean id="basedao" class="com.his.mnis.dao.BaseDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<!-- 配液 -->
+	<bean id="twBryzPeiYeDao" class="com.his.mnis.dao.TwBryzPeiYeDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 入院护理评估 -->
+	<bean id="twHulijlbiaoZdDao" class="com.his.mnis.dao.TwHulijlbiaoZdDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="twHulijlbiaoZdService" class="com.his.mnis.serviceImpl.TwHulijlbiaoZdServiceImpl">
+		<property name="twHulijlbiaoZdDao" ref="twHulijlbiaoZdDao"></property>
+	</bean>
+	<bean id="pingGuLeiAction" class="com.his.mnis.actions.PingGuLeiAction"  scope="prototype">
+		<property name="twHulijlbiaoZdService" ref="twHulijlbiaoZdService"></property>
+		<property name="twHulijlbiaoZd1Service" ref="twHulijlbiaoZd1Service"></property>
+		<property name="wseq_id" ref="wseq_id"></property>
+	</bean>
+	
+	<bean id="twHulijlbiaoZd1Dao" class="com.his.mnis.dao.TwHulijlbiaoZd1Dao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="twHulijlbiaoZd1Service" class="com.his.mnis.serviceImpl.TwHulijlbiaoZd1ServiceImpl">
+		<property name="twHulijlbiaoZd1Dao" ref="twHulijlbiaoZd1Dao"></property>
+	</bean>
+	
 	
 	<!-- 安全退出 -->
 	<bean id="exitAnQuanQuit" class="com.his.mnis.actions.ExitAnQuanQuit"  scope="prototype">
@@ -251,6 +276,7 @@
 	</bean>
 	<bean id="twBryzzxService" class="com.his.mnis.serviceImpl.TwBryzzxServiceImpl">
 		<property name="twBryzzxDao" ref="twBryzzxDao"></property>
+		<property name="twBryzPeiYeDao" ref="twBryzPeiYeDao"></property>
 	</bean>
 	<bean id="twBryzzxAction" class="com.his.mnis.actions.TwBryzzxAction"  scope="prototype">
 		<property name="twBryzzxService" ref="twBryzzxService"></property>

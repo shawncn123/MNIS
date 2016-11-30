@@ -62,12 +62,15 @@ public class TwWxysPgDao extends BaseDao {
 		return query.list();
 	}
 	
-	public List<TwZyhzPgXX> getListTwZyhzpgXX(Date cxrq){
+	public List<TwZyhzPgXX> getListTwZyhzpgXX(Date cxrq,Long key1,Integer key2,short yebh){
 		String sql = "select t1.key1,t1.key2,t1.yebh,t1.pgdm,t2.wxys,t2.pgfeng,t1.qdflag,t1.zxhsid,t1.pgrq,t1.jlrq"
-				+ " from TW_ZYHZPG t1,TW_WXYS_PG_DM t2 where t1.pgrq=:cxrq and t1.PGDM = t2.ID order by t2.sxh";
+				+ " from TW_ZYHZPG t1,TW_WXYS_PG_DM t2 where t1.pgrq=:cxrq and t1.PGDM = t2.ID and t1.key1=:key1 and t1.key2=:key2 and t1.yebh=:yebh order by t2.sxh";
 		Query query = getSession().createSQLQuery(sql).addScalar("key1",LongType.INSTANCE).addScalar("key2",IntegerType.INSTANCE).addScalar("yebh",ShortType.INSTANCE).addScalar("pgdm",StringType.INSTANCE).addScalar("wxys",StringType.INSTANCE)
 				.addScalar("pgfeng",IntegerType.INSTANCE).addScalar("qdflag",StringType.INSTANCE).addScalar("zxhsid",StringType.INSTANCE).addScalar("pgrq",TimestampType.INSTANCE).addScalar("jlrq",TimestampType.INSTANCE).setResultTransformer(Transformers.aliasToBean(TwZyhzPgXX.class));
 		query.setDate("cxrq", cxrq);
+		query.setLong("key1", key1);
+		query.setInteger("key2", key2);
+		query.setShort("yebh", yebh);
 		return query.list();
 	}
 	

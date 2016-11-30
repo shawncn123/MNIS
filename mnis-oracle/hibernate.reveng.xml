@@ -152,9 +152,62 @@
 			<key-column name="XMBM" />
 		</primary-key>
 	</table>
-<table name="ZD001" schema="ZLHIS">
+	<table name="ZD001" schema="ZLHIS">
+		<primary-key>
+			<key-column name="ID" />
+		</primary-key>
+	</table>
+	<table name="TW_WXYS_PG_DM" schema="CZHIS">
+		<primary-key>
+			<key-column name="ID" />
+		</primary-key>
+	</table>
+	<table name="TW_ZYHZPG" schema="ZLHIS">
+		<primary-key>
+			<key-column name="ROWKEY" type="java.lang.long" />
+		</primary-key>
+	</table>
+	<table name="TW_HULIJLBIAO_ZD" schema="ZLHIS">
+		<primary-key>
+			<key-column name="XMID" />
+		</primary-key>
+	</table>
+	<table name="TW_HULIJLBIAO_ZD_1" schema="ZLHIS">
+		<primary-key>
+			<key-column name="ID" />
+		</primary-key>
+	</table>
+	<table name="TW_HULIPINGGU_PINGGU_JILU" schema="ZLHIS">
+		<primary-key>
+			<key-column name="ROWKEY" type="java.lang.Long" />
+		</primary-key>
+	</table>
+	<table name="TW_PEIYECZ_JILU" schema="ZLHIS">
+		<primary-key>
+			<key-column name="ROWKEY" />
+
+		</primary-key>
+		<column name="QDFLAG"></column>
+	</table>
+	<table name="TW_SYYZBZCZ_JILU" schema="ZLHIS">
+		<primary-key>
+			<key-column name="ROWKEY" />
+			<key-column name="CZFL" />
+		</primary-key>
+	</table>
+	<table name="TW_PYHLPG" schema="ZLHIS">
+		<primary-key>
+			<key-column name="ROWKEY" />
+		</primary-key>
+	</table>
+	<table name="VW_RYHLPG" schema="ZLHIS">
+		<primary-key>
+			<key-column name="ROWKEY" />
+		</primary-key>
+	</table>
+<table name="TW_RYHLPG" schema="ZLHIS">
 	<primary-key>
-		<key-column name="ID" />
+		<key-column name="ROWKEY" />
 	</primary-key>
 </table>
 </hibernate-reverse-engineering>

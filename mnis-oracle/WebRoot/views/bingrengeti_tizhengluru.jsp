@@ -50,7 +50,7 @@
 					$("#lurutime").attr('value', $("#appTime1").val());
 					var luruone = $("input:eq(2)").val();  /* 取第三个input的value值 前两个是时间input 第二个是隐藏的input */
 					var luruone = luruone.trim();
-					if(luruone!=""){
+					/* if(luruone!=""){ */
 						var url = "tizheng_luru_update";
 						var args = $('#tzform').serialize();
 						$.post(url,args,function(data) {
@@ -65,10 +65,10 @@
 								$("#tip").html("保存失败！");
 							}
 						});
-					}else{
+					/* }else{
 						$("#tip").css('color','#FF9800');
 						$("#tip").html("没有数据！");
-					}
+					} */
 				});
 			});
 			
@@ -81,8 +81,8 @@
 							var val_maibo = $("#tw_maibo").val();
 							var val_xinlv = $("#tw_xinlv").val();
 							var val_huxi = $("#tw_huxi").val();
-							if (val_wendu == ""||val_jwhwendu==""||val_maibo==""||val_xinlv==""||val_huxi=="") {
-								alert("数据不完整！");
+							if (val_wendu == ""&&val_jwhwendu==""&&val_maibo==""&&val_xinlv==""&&val_huxi=="") {
+								alert("录入不能为空！");
 							} else {
 								var val_rcbz = $("#tw_rcbz").val();
 								var val_time2 = $("#appTime2").val();

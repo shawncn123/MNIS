@@ -7,16 +7,28 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.his.mnis.dao.TwBryzPeiYeDao;
 import com.his.mnis.dao.TwBryzzxDao;
 import com.his.mnis.entities.TwBryzzx;
+import com.his.mnis.entities.TwBryzzxPeiYeRemodel;
 import com.his.mnis.entities.TwBryzzxRemodel;
 import com.his.mnis.entities.TwBryzzxRemodelSub;
+import com.his.mnis.entities.TwPeiyeczJilu;
 import com.his.mnis.services.TwBryzzxService;
 
 public class TwBryzzxServiceImpl implements TwBryzzxService {
 
 	private TwBryzzxDao twBryzzxDao;
+	private TwBryzPeiYeDao twBryzPeiYeDao;
 	
+	public TwBryzPeiYeDao getTwBryzPeiYeDao() {
+		return twBryzPeiYeDao;
+	}
+
+	public void setTwBryzPeiYeDao(TwBryzPeiYeDao twBryzPeiYeDao) {
+		this.twBryzPeiYeDao = twBryzPeiYeDao;
+	}
+
 	public TwBryzzxDao getTwBryzzxDao() {
 		return twBryzzxDao;
 	}
@@ -169,9 +181,9 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 
 	@Override
 	public String bingRenYzzx_baocun(Date rq, String sjd,char zxflag, long groupxh,
-			String hsid, String hsxm, Date zxsj, String zxms,String vcrlflag,Double vcrl) {
+			String hsid, String hsxm, Date zxsj, String zxms,String vcrlflag,Double vcrl,String syflag) {
 
-		return twBryzzxDao.callProcedureBrYzzx_baocun(rq, sjd,zxflag, groupxh, hsid, hsxm, zxsj, zxms,vcrlflag,vcrl);
+		return twBryzzxDao.callProcedureBrYzzx_baocun(rq, sjd,zxflag, groupxh, hsid, hsxm, zxsj, zxms,vcrlflag,vcrl,syflag);
 	}
 
 	@Override
@@ -180,7 +192,58 @@ public class TwBryzzxServiceImpl implements TwBryzzxService {
 		return proc_result; // 1 表示失败 
 	}
 
-	
+	@Override
+	public List<TwBryzzxPeiYeRemodel> getListBrYzzxForShuYeByBqidRiqi(String bq, Date xzrq) {
+		
+		List<TwPeiyeczJilu> twPeiyeczJilus = twBryzzxDao.getListBrYzzxForShuYeByBqidRiqi(bq, xzrq);
+		List<TwBryzzxPeiYeRemodel> twBryzzxPeiYeRemodels = new ArrayList<>();
+		
+		for(int i=0;i<twPeiyeczJilus.size();i++){
+			TwBryzzxPeiYeRemodel twBryzzxPeiYeRemodel = new TwBryzzxPeiYeRemodel();
+			
+			TwPeiyeczJilu twPeiyeczJilu = twPeiyeczJilus.get(i);
+			twBryzzxPeiYeRemodel.setBq(twPeiyeczJilu.getBq());
+			twBryzzxPeiYeRemodel.setChw(twPeiyeczJilu.getChw());
+			twBryzzxPeiYeRemodel.setGroupxh(twPeiyeczJilu.getGroupxh());
+			twBryzzxPeiYeRemodel.setKey1(twPeiyeczJilu.getKey1());
+			twBryzzxPeiYeRemodel.setKey2(twPeiyeczJilu.getKey2());
+			String vrowkey = twPeiyeczJilu.getRowkey();
+			vrowkey = vrowkey.replace(":", "q");
+			twBryzzxPeiYeRemodel.setRowkey(vrowkey);
+			twBryzzxPeiYeRemodel.setRq(twPeiyeczJilu.getRq());
+			twBryzzxPeiYeRemodel.setSjd(twPeiyeczJilu.getSjd());
+			twBryzzxPeiYeRemodel.setSjdtime(twPeiyeczJilu.getSjdtime());
+			twBryzzxPeiYeRemodel.setYebh(twPeiyeczJilu.getYebh());
+			twBryzzxPeiYeRemodel.setYzid(twPeiyeczJilu.getYzid());
+			twBryzzxPeiYeRemodel.setYzmc(twPeiyeczJilu.getYzmc());
+			
+			String yzmc_s = twPeiyeczJilu.getYzmc();
+			
+			List<String> t_yzmcs = new ArrayList<String>();
+			while(yzmc_s.indexOf("||") > 0){
+				String sub_yzmc = yzmc_s.substring(0, yzmc_s.indexOf("||"));
+				t_yzmcs.add(sub_yzmc);
+				yzmc_s = yzmc_s.substring(yzmc_s.indexOf("||") + 2);
+			}
+			t_yzmcs.add(yzmc_s);
+			twBryzzxPeiYeRemodel.setYzmcs(t_yzmcs);
+			
+			twBryzzxPeiYeRemodel.setYzzdmc(twPeiyeczJilu.getYzzdmc());
+			twBryzzxPeiYeRemodel.setBzflag(twPeiyeczJilu.getQdflag());
+			twBryzzxPeiYeRemodels.add(twBryzzxPeiYeRemodel);
+			
+		}
+		return twBryzzxPeiYeRemodels;
+	}
 
+	@Override
+	public TwBryzzx getTwBryzzxByRowkey(String rowkey) {
+		return twBryzzxDao.getTwBryzzxByRowkey(rowkey);
+	}
 
+	@Override
+	public void updateTwPeiyeczJiluByTwPeiyeczJilu(TwPeiyeczJilu twPeiyeczJilu) {
+//		twBryzzxDao.updateTwPeiyeczJiluByTwPeiyeczJilu(twPeiyeczJilu);
+		twBryzPeiYeDao.updateTwPeiyeczJiluByTwPeiyeczJilu(twPeiyeczJilu);
+	}
 }

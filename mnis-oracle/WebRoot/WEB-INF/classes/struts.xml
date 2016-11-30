@@ -13,6 +13,36 @@
     		<result-type name="json" class="org.apache.struts2.json.JSONResult"/>
 		</result-types>
 		
+		<!-- 配液扫描 -->
+		<action name="peiye_saomiao" class="twBryzzxAction" method="getListBrYzzxForPeiYe">
+			<result name="success">/views/peiyecaozuojilu.jsp</result>
+			<result name="error">/views/peiyecaozuojilu.jsp</result>
+		</action>
+		<!-- 配液确认保存 -->
+		<action name="peiye_queren" class="twBryzzxAction" method="peiye_querenorquxiao">
+			<result type="stream" name="ajax_return">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<action name="peiye_saomiao_jquery" class="twBryzzxAction" method="getListBrYzzxForPeiYeforjQuery">
+		</action>
+		
+		<!-- 护理评估 -->
+		<action name="hulipinggupinggu" class="pingGuLeiAction" method="getTwHulijlbiaoZd">
+			<result name="success">/views/ruyuanhuli_pinggu_pinggu.jsp</result>
+			<result name="error">/views/ruyuanhuli_pinggu_pinggu.jsp</result>
+		</action>
+		<!-- 护理评估 -->
+		<action name="yachuangpinggu" class="pingGuLeiAction" method="getTwHulijlbiaoZd">
+			<result name="success">/views/yachuang_pinggu_yufang.jsp</result>
+			<result name="error">/views/yachuang_pinggu_yufang.jsp</result>
+		</action>
+		
+		<!-- 护理评估记录查询forjquery -->
+		<action name="pinggudataforjquery" class="pingGuLeiAction" method="getListHulijlLeiOutputForUpdate">
+		</action>
+		
 		<!-- 安全退出 -->
 		<action name="anquantuichu" class="exitAnQuanQuit" method="AnQuanQuit">
 			<result name="success">/views/login.jsp</result>
@@ -20,8 +50,9 @@
 		
 		<!-- 患者危险评估 -->
 		<action name="hzwxpg" class="twWxysPgAction" method="getListWxysPg">
-			<result name="success">/views/huanzhe_pinggu.jsp</result>
-			<result name="error">/views/huanzhe_pinggu.jsp</result>
+			<result name="success">/views/weixianyinsu_pinggu.jsp</result>
+			<result name="error">/views/weixianyinsu_pinggu.jsp</result>
+<!-- 			<result name="error">/views/huanzhe_pinggu.jsp</result> -->
 		</action>
 		
 		<action name="updatehzwxpg" class="twWxysPgAction" method="WyxsPingGuBiaoBaoCun">
@@ -33,8 +64,24 @@
 			<result name="error" type="redirect">/views/huanzhe_pinggu.jsp</result> -->
 		</action>
 		
+		
 		<action name="hzwxyspgforjquery" class="twWxysPgAction" method="getListWxysPgforjQuery">
 			<result type="stream" name="ajax_mima">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 护理评估护理常规录入保存 -->
+		<action name="savehulipinggujilu" class="pingGuLeiAction" method="saveTHuLiPingGu_JiLu">
+			<result type="stream" name="ajax-success">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		
+		<!-- 护理评估护理常规修改保存 -->
+		<action name="updatehulipinggujilu" class="pingGuLeiAction" method="updateTHuLiPingGu_JiLu">
+			<result type="stream" name="ajax-success">
 				<param name="contentType">text/html</param>
 				<param name="inputName">inputStream</param>
 			</result>

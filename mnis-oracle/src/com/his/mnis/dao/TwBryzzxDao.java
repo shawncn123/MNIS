@@ -1,6 +1,5 @@
 package com.his.mnis.dao;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -9,8 +8,15 @@ import javax.persistence.ParameterMode;
 
 import org.hibernate.Query;
 import org.hibernate.procedure.ProcedureCall;
+import org.hibernate.transform.Transformers;
+import org.hibernate.type.IntegerType;
+import org.hibernate.type.LongType;
+import org.hibernate.type.ShortType;
+import org.hibernate.type.StringType;
+import org.hibernate.type.TimestampType;
 
 import com.his.mnis.entities.TwBryzzx;
+import com.his.mnis.entities.TwPeiyeczJilu;
 
 public class TwBryzzxDao extends BaseDao {
 
@@ -95,7 +101,7 @@ public class TwBryzzxDao extends BaseDao {
 	 * 执行保存医嘱执行的数据的存储过程
 	 */
 	
-	public String callProcedureBrYzzx_baocun(Date rq,String sjd,char zxflag,long groupxh,String hsid,String hsxm,Date zxsj,String zxms,String crlflag,Double crl){
+	public String callProcedureBrYzzx_baocun(Date rq,String sjd,char zxflag,long groupxh,String hsid,String hsxm,Date zxsj,String zxms,String crlflag,Double crl,String syflag){
 		
 		ProcedureCall pc = getSession().createStoredProcedureCall("pw_bryz_zx");
 		pc.registerParameter("rq_In", Date.class, ParameterMode.IN).bindValue(rq);
@@ -108,6 +114,7 @@ public class TwBryzzxDao extends BaseDao {
 		pc.registerParameter("zxms_In", String.class, ParameterMode.IN).bindValue(zxms);
 		pc.registerParameter("crlflag_In", String.class, ParameterMode.IN).bindValue(crlflag);
 		pc.registerParameter("crl_In", Double.class, ParameterMode.IN).bindValue(crl);
+		pc.registerParameter("syflag_In", String.class, ParameterMode.IN).bindValue(syflag);
 		
 		pc.registerParameter("out_return", String.class, ParameterMode.OUT);
 		pc.registerParameter("out_errortext", String.class, ParameterMode.OUT);
@@ -118,4 +125,51 @@ public class TwBryzzxDao extends BaseDao {
 		return ls_return;
 		
 	}
+	
+	/*
+	 * 根据病区和日期查询输液类医嘱数据列表
+	 */
+	public List<TwPeiyeczJilu> getListBrYzzxForShuYeByBqidRiqi(String bq ,Date xzrq ){
+//		dm 01 表示输液类 
+//		String hql = "from TwBryzzx where zxfldm='01' and bq=:bq and rq=:xzrq order by chw, groupxh,sjdtime";
+		String sql = "select t1.ROWKEY,t1.key1,t1.key2,t1.yebh,t1.rq,t1.groupxh,t1.sjd,t1.sjdtime,t1.bq,t1.chw,"
+				+ "t1.yzid,t1.yzzdmc,t1.yzmc,t2.PEIYHSID,t2.PEIYHSXM,t2.PEIYTIME,t2.QDFLAG"
+				+ " from TW_BRYZZX t1 left join TW_PEIYECZ_JILU t2 on t1.ROWKEY = t2.ROWKEY where t1.zxfldm='01' and t1.bq=:bq and t1.rq=:xzrq order by t1.chw, t1.groupxh,t1.sjdtime";
+
+//		Query query = getSession().createSQLQuery(sql).addScalar("rowkey",StringType.INSTANCE).addScalar("key1",LongType.INSTANCE)
+//				.addScalar("key2",IntegerType.INSTANCE).addScalar("yebh",ShortType.INSTANCE)
+//				.addScalar("rq",TimestampType.INSTANCE).addScalar("groupxh",IntegerType.INSTANCE)
+//				.addScalar("sjd",StringType.INSTANCE).addScalar("sjdtime",TimestampType.INSTANCE)
+//				.addScalar("bq",StringType.INSTANCE).addScalar("chw",StringType.INSTANCE)
+//				.addScalar("yzid",StringType.INSTANCE).addScalar("yzzdmc",StringType.INSTANCE)
+//				.addScalar("yzmc",StringType.INSTANCE).addScalar("PEIYHSID",StringType.INSTANCE)
+//				.addScalar("PEIYHSXM",StringType.INSTANCE).addScalar("PEIYTIME",TimestampType.INSTANCE)
+//				.addScalar("QDFLAG",StringType.INSTANCE)
+//				.setResultTransformer(Transformers.aliasToBean(TwPeiyeczJilu.class));
+		
+		Query query = getSession().createSQLQuery(sql).addEntity(TwPeiyeczJilu.class);
+		query.setString("bq", bq);
+		query.setDate("xzrq", xzrq);
+		List<TwPeiyeczJilu> twPeiyeczJilus = query.list();
+		return twPeiyeczJilus;
+		
+	}
+	
+	/*
+	 * 按rowkey  查询医嘱对应一条记录
+	 */
+	public TwBryzzx getTwBryzzxByRowkey(String rowkey){
+		String hql = " from TwBryzzx where rowkey=:rowkey";
+		Query query = getSession().createQuery(hql);
+		query.setString("rowkey", rowkey);
+		TwBryzzx twBryzzx = (TwBryzzx) query.uniqueResult();
+		return twBryzzx;
+	}
+	
+	/*
+	 * 保存对象TwBryzzx
+	 */
+//	public void updateTwPeiyeczJiluByTwPeiyeczJilu(TwPeiyeczJilu twPeiyeczJilu){
+//		getSession().saveOrUpdate(twPeiyeczJilu);
+//	}
 }

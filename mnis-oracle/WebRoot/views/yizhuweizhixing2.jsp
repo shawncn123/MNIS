@@ -336,7 +336,7 @@
 			var xzcrlflag = "0";
 			var xzxflag = "1";
 			var vcrl = 0;
-			
+			var syflag = $("#syflag").val();
 			if(vcrlflag=="1"){
 				xzcrlflag = $('input[name="quedflag"]:checked').attr("value");
 				if(xzcrlflag=="1"){
@@ -347,7 +347,7 @@
 					vcrl = 0;
 				}
 			}
-			var args = {"vsjd" : zx_sjd,"groupxh":yz_groupxh,"zxms":yz_zxms,"vrq":vrq,"vcrlflag":xzcrlflag,"vcrl":vcrl,"vzxflag":xzxflag};
+			var args = {"vsjd" : zx_sjd,"groupxh":yz_groupxh,"zxms":yz_zxms,"vrq":vrq,"vcrlflag":xzcrlflag,"vcrl":vcrl,"vzxflag":xzxflag,"syflag":syflag};
 			$.post(url,args,function(data){
 				if(data == "0"){
 					$('#textcontent').val('');     //隐藏模态框时textarea值清空
@@ -373,7 +373,8 @@
 			var xzcrlflag = "0";
 			var xzxflag = "0";
 			var vcrl = 0;
-			var args = {"vsjd" : zx_sjd,"groupxh":yz_groupxh,"zxms":yz_zxms,"vrq":vrq,"vcrlflag":xzcrlflag,"vcrl":vcrl,"vzxflag":xzxflag};
+			var syflag = $("#syflag").val();
+			var args = {"vsjd" : zx_sjd,"groupxh":yz_groupxh,"zxms":yz_zxms,"vrq":vrq,"vcrlflag":xzcrlflag,"vcrl":vcrl,"vzxflag":xzxflag,"syflag":syflag};
 			$.post(url,args,function(data){
 				if(data == "0"){
 					$('#textcontent').val('');     //隐藏模态框时textarea值清空
@@ -658,15 +659,14 @@
 		<div class="modal fade" id="moduleModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog" id="modal-wrap">
 				<div class="modal-content">
-					<div class="modal-header">
+					<!-- <div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h4 class="modal-title" id="myModalLabel"></h4>
-					</div>
-					<div class="modal-body">
+					</div> -->
+					<div class="modal-body" style="padding-bottom: 2%;padding-top: 2%;">
 						<div id="infocontent"></div>
-						<textarea id="textcontent" class="form-control" maxlength="50" rows="3"></textarea>
 						
-						<div class="row" style="padding:5%;" id="mcrlmess">
+						<div class="row" style="padding: 3%;display: block;" id="mcrlmess">
 							<form>
 							<div class="col-xs-2" style="padding: 0;">                       
 								<input type="radio" class="qdclass1" name="quedflag" value="1"
@@ -686,7 +686,7 @@
 							</div>
 							</form>
 						</div>
-						<div class="row" style="padding:5%;" id="mcrlbody">
+						<div class="row" style="padding: 3% 5% 2% 5%;display: block;" id="mcrlbody">
 							<div class="col-xs-3" style="padding: 0;">                       
 								<span>值：</span>
 							</div>
@@ -694,8 +694,10 @@
 								<input type="text" value="" style="border: 1px solid #ccc;" id="mcrlvalue"></input>
 							</div>
 						</div>
+						<textarea id="textcontent" class="form-control" maxlength="50" rows="3" style="padding: 0;"></textarea>
 					</div>
-					<div class="modal-footer" id="modfooter">
+					<input type="text" value="0" style="display:none;" id="syflag"></input>
+					<div class="modal-footer" id="modfooter"  style="margin-top: 0;padding-top: 2%;">
 						<button type="button" class="btn pull-left btn-primary" id="ensure">
 							确定
 						</button>
