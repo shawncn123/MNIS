@@ -44,6 +44,7 @@
 
 	$(function() {$(document).ready(function() {
 		$(".yzzxfl_select").click(function() {
+			 $("#accordion")[0].innerHTML = "<p>正在加载......</p>"; 
 		var vflyz = $(this).attr("value");
 /* 	使用$(this).val() 回丢失前面的数字0	alert( $(this).val()); */
 		var val_text = $(this).text();
@@ -70,8 +71,7 @@
 					var vyzrq2 = teo.getFullYear() + "-" + vmonth + "-" + vday;
 					var vyzrq3 = teo.getFullYear() + vmonth + vday;
 					
-					/* a = a + '<div class="row module" id="' + vyzrq3 + '-' + d[i].groupxh + '">'; */
-					a = a + '<div class="row module ' + d[i].groupxh + '" id="yzmc_' + i + '">';
+					a = a + '<div class="row module ' + d[i].rowkey + '" id="yzmc_' + i + '">';
 						
 					var tmp_yzmcs = d[i].yzmcs;
 					for(var j = 0;j<tmp_yzmcs.length;j++){
@@ -93,27 +93,54 @@
 						
 					a = a + '<div class="row" style="border-bottom: 2px solid #333333;padding-bottom: 10px;margin-bottom: 10px;"><div class="col-xs-12">';
 					
-					var tmp_twBryzzxRemodelSubs = d[i].twBryzzxRemodelSubs;
-					for(var k = 0; k < tmp_twBryzzxRemodelSubs.length; k ++){
-						a = a + '<div class="btn-group" data-toggle="buttons" style="display:block;">';
-						a = a + '<input value="' + d[i].groupxh + '" style="display:none;"/>';
-						if(tmp_twBryzzxRemodelSubs[k].zxflag==1){
-							a = a + '<button type="button" class="btn btn-success zxTime" data-toggle="modal" data-target="#moduleModal" style="margin:0 0 0 2%;" id="' 
-								+ tmp_twBryzzxRemodelSubs[k].rowkey +'">'
-								+ tmp_twBryzzxRemodelSubs[k].sjd + '</button>';
+					a = a + '<div class="btn-group" data-toggle="buttons" style="width:100%;"><input value="'
+					+ d[i].groupxh + '" style="display:none;" id="' + d[i].rowkey + '_groupxh"/>';;
+				
+					if(d[i].zxflag=='1'){
+						if(d[i].zxfldm=='01'){
+							a = a + '<span style="float:left;" id="' + d[i].rowkey + '_sjd">' + d[i].sjd + '</span>';
+							if(d[i].syflag=='1'){
+								a = a + '<button type="button" class="btn btn-success zxTime" data-toggle="modal" data-target="#moduleModal" id="'
+								 + d[i].rowkey + '_1" style="color:#FFFFFF;margin-left: 6%;margin-right: 3%;background-color:#5cb85c;border-color:#4cae4c;">扎 针</button>'
+								 + '<button type="button" class="btn btn-success zxTime" data-toggle="modal" data-target="#moduleModal" id="'
+								 + d[i].rowkey + '_2" style="color:#FFFFFF;margin-left: 3%;margin-right: 3%;" disabled="disabled">换 液</button>';
+							}
+							if(d[i].syflag=='2'){
+								a = a + '<button type="button" class="btn btn-success zxTime" data-toggle="modal" data-target="#moduleModal" id="'
+								 + d[i].rowkey + '_1" style="color:#FFFFFF;margin-left: 6%;margin-right: 3%;" disabled="disabled">扎 针</button>'
+								 + '<button type="button" class="btn btn-success zxTime" data-toggle="modal" data-target="#moduleModal" id="'
+								 + d[i].rowkey + '_2" style="color:#FFFFFF;margin-left: 3%;margin-right: 3%;background-color:#5cb85c;border-color:#4cae4c;">换 液</button>';
+							}
+							if(d[i].czfl=='0'){
+								a = a + '<button type="button" class="btn btn-success zxTime" data-toggle="modal" data-target="#moduleModal" id="'
+								  + d[i].rowkey + '_3" style="color:#FFFFFF;margin-left: 3%;margin-right: 3%;background-color:#5cb85c;border-color:#4cae4c;">拔 针</button>';
+							}else{
+								a = a + '<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" id="'
+								+ d[i].rowkey + '_3" style="color:#FFFFFF;margin-left: 3%;margin-right: 3%;">拔 针</button>'
+							}
 						}else{
-							a = a + '<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" style="margin:0 0 0 2%;" id="'
-								+ tmp_twBryzzxRemodelSubs[k].rowkey +'">'
-								+ tmp_twBryzzxRemodelSubs[k].sjd + '</button>';
+							a = a + '<button type="button" class="btn btn-success zxTime" data-toggle="modal" data-target="#moduleModal" id="'
+							+ d[i].rowkey + '_0" style="color:#FFFFFF;background-color:#5cb85c;border-color:#4cae4c;">'+ d[i].sjd + '</button>';
 						}
-						a = a + '<input value="yzmc_' + i + '" style="display:none;"/>';
-						
-						a = a + '<input value="' + vyzrq1 + '" style="display:none;"/>';
-						a = a + '<input value="' + tmp_twBryzzxRemodelSubs[k].crlflag + '" style="display:none;"/>';
-						a = a + '<input value="' + tmp_twBryzzxRemodelSubs[k].crl + '" style="display:none;"/>';
-						a = a + '</div>';
+					}else{
+						if(d[i].zxfldm=='01'){
+							a = a + '<span style="float:left;" id="' + d[i].rowkey + '_sjd">' + d[i].sjd + '</span>'
+							+ '<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" id="'
+							+ d[i].rowkey + '_1" style="color:#FFFFFF;margin-left: 6%;margin-right: 3%;">扎 针</button>'
+							+ '<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" id="'
+							+ d[i].rowkey + '_2" style="color:#FFFFFF;margin-left: 3%;margin-right: 3%;">换 液</button>'
+							+ '<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" id="'
+							+ d[i].rowkey + '_3" style="color:#FFFFFF;margin-left: 3%;margin-right: 3%;" disabled="disabled">拔 针</button>';
+						}else{
+							a = a + '<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" id="'
+							+ d[i].rowkey + '_0" style="color:#FFFFFF;">' + d[i].sjd + '</button>';
+						}
 					}
-					a = a + '</div></div>';
+					a = a + '<input value="yzmc_'+ i + '" style="display:none;" id="' + d[i].rowkey + '_html">'
+						+ '<input value="' + vyzrq1 + '" style="display:none;" id="' + d[i].rowkey + '_rq"/><input value="'
+						+ d[i].crlflag + '" style="display:none;" id="' + d[i].rowkey + '_crlflag"/><input value="'
+						+ d[i].crl + '" style="display:none;" id="' + d[i].rowkey + '_crl"/></div>';
+					a = a + '</div></div></div>';
 				}
 			}else{
 				a = "无数据！";
@@ -129,7 +156,6 @@
 		
 		$("#prompt3").hide();
 		$("#prompt4").hide();
-		
 		// 绑定
 		$("#head_banner_1").smartFloat();
 		
@@ -149,21 +175,28 @@
 			var zx_sjd = "";
 			var yz_groupxh = "";
 			var vcrlflag = "";
+			var vrowkey = "";
 			
 			$('#content_b').on('click','.moduleTime', function(){
+				
 				$clickBtn = $(this);
-				yz_groupxh = $(this).prev().val();
-				var yzmc_gid = $(this).next().val();
-				vrq = $(this).next().next().val();
-				vcrlflag = $(this).next().next().next().val();
-				vcrl = $(this).next().next().next().next().val();
+		 		var vrowkey_val = $(this).attr("id");
+		 		vrowkey = vrowkey_val.substr(0,vrowkey_val.indexOf("_"));
+		 		var vsyflag = vrowkey_val.substr(vrowkey_val.indexOf("_")+1,vrowkey_val.indexOf("_")+2);
+		 		$("#syflag").val(vsyflag);/* 给弹出的模态框 input 赋值 */
+				yz_groupxh = $("#" + vrowkey + "_groupxh").val();
+				var yzmc_gid = $("#" + vrowkey + "_html").val();
+				vrq = $("#" + vrowkey + "_rq").val();
+				vcrlflag = $("#" + vrowkey + "_crlflag").val();
+				var vcrl = $("#" + vrowkey + "_crl").val();
 				var html = $("#" + yzmc_gid).html();
-				zx_sjd = $(this).html();
-				if(vcrlflag=="0"){
+				zx_sjd = $("#" + vrowkey + "_sjd").html();
+				
+				if(vcrlflag=="0" || vsyflag=="3"){
 					$("#mcrlmess").hide();
 					$("#mcrlbody").hide();
 				}
-				if(vcrlflag=="1"){
+				if(vcrlflag=="1" && vsyflag!="3"){
 					$("#mcrlvalue").val(vcrl);
 					$("#mcrlmess").show();
 					$("#mcrlbody").show();
@@ -174,16 +207,20 @@
 			});
 			
 			$('#content_b').on('click','.zxTime', function(){
-		 		$clickBtn = $(this);
-				yz_groupxh = $(this).prev().val();
-				var yzmc_gid = $(this).next().val();
-				vrq = $(this).next().next().val();
-				vcrlflag = $(this).next().next().next().val();
-				vcrl = $(this).next().next().next().next().val();
+				$clickBtn = $(this);
+		 		var vrowkey_val = $(this).attr("id");
+		 		vrowkey = vrowkey_val.substr(0,vrowkey_val.indexOf("_"));
+		 		var vsyflag = vrowkey_val.substr(vrowkey_val.indexOf("_")+1,vrowkey_val.indexOf("_")+2);
+		 		$("#syflag").val(vsyflag);/* 给弹出的模态框 input 赋值 */
+				yz_groupxh = $("#" + vrowkey + "_groupxh").val();
+				var yzmc_gid = $("#" + vrowkey + "_html").val();
+				vrq = $("#" + vrowkey + "_rq").val();
+				vcrlflag = $("#" + vrowkey + "_crlflag").val();
+				vcrl = $("#" + vrowkey + "_crl").val();
 				var html = $("#" + yzmc_gid).html();
+				zx_sjd = $("#" + vrowkey + "_sjd").html();
 				html = "取消执行<br/><br/>" + html;
 				html = html + "<br/><br/>" + "取消说明:";
-				zx_sjd = $(this).html();
 				$("#mcrlmess").hide();
 				$("#mcrlbody").hide();
 				$("#infocontent").html(html);	
@@ -209,18 +246,37 @@
 						vcrl = 0;
 					}
 				}
-				var args = {"vsjd" : zx_sjd,"groupxh":yz_groupxh,"zxms":yz_zxms,"vrq":vrq,"vcrlflag":xzcrlflag,"vcrl":vcrl,"vzxflag":xzxflag,"syflag":syflag};
+				var args = {"vsjd" : zx_sjd,"groupxh":yz_groupxh,"zxms":yz_zxms,"vrq":vrq,"vcrlflag":xzcrlflag,"vcrl":vcrl,"vzxflag":xzxflag,"syflag":syflag,"rowkey":vrowkey};
 				$.post(url,args,function(data){
 					if(data == "0"){
-						$('#textcontent').val('');     //隐藏模态框时textarea值清空
-						$('#moduleModal').modal('hide'); //隐藏模态窗口
-						$clickBtn.attr("class","btn btn-primary zxTime");
-						$clickBtn.css('background-color','#5cb85c'); 
-						$clickBtn.css('border-color','#4cae4c'); 
+						if(syflag=="0" || syflag=="3"){
+							$('#textcontent').val('');     //隐藏模态框时textarea值清空
+							$('#moduleModal').modal('hide'); //隐藏模态窗口
+							/* $clickBtn.attr('disabled','disabled'); */
+							$clickBtn.attr("class","btn btn-primary zxTime");
+							$clickBtn.css('background-color','#5cb85c'); 
+							$clickBtn.css('border-color','#4cae4c'); 
+						}else{
+							$('#textcontent').val('');     //隐藏模态框时textarea值清空
+							$('#moduleModal').modal('hide'); //隐藏模态窗口
+							if(syflag=="1"){
+								$clickBtn.attr("class","btn btn-primary zxTime");
+								$clickBtn.css('background-color','#5cb85c'); 
+								$clickBtn.css('border-color','#4cae4c'); 
+								$("#" + vrowkey + "_2").attr('disabled','disabled');
+							}
+							if(syflag=="2"){
+								$clickBtn.attr("class","btn btn-primary zxTime");
+								$clickBtn.css('background-color','#5cb85c'); 
+								$clickBtn.css('border-color','#4cae4c'); 
+								$("#" + vrowkey + "_1").attr('disabled',true);
+							}
+							$("#" + vrowkey + "_3").attr('disabled',false);
+						}
 					}else{
 					//若data 的返回值不是1，则提示删除失败
 						alert("数据保存失败！");							
-					}
+					}					
 				});	
 			});
 			
@@ -231,17 +287,29 @@
 				var xzxflag = "0";
 				var vcrl = 0;
 				var syflag = $("#syflag").val();
-				var args = {"vsjd" : zx_sjd,"groupxh":yz_groupxh,"zxms":yz_zxms,"vrq":vrq,"vcrlflag":xzcrlflag,"vcrl":vcrl,"vzxflag":xzxflag,"syflag":syflag};
+				var args = {"vsjd" : zx_sjd,"groupxh":yz_groupxh,"zxms":yz_zxms,"vrq":vrq,"vcrlflag":xzcrlflag,"vcrl":vcrl,"vzxflag":xzxflag,"syflag":syflag,"rowkey":vrowkey};
 				$.post(url,args,function(data){
 					if(data == "0"){
-						$('#textcontent').val('');     //隐藏模态框时textarea值清空
-						$('#moduleModal').modal('hide'); //隐藏模态窗口
-						/* $clickBtn.attr('disabled','disabled'); */
-						$clickBtn.attr("class","btn btn-primary moduleTime"); 
-						$clickBtn.css('background-color','#428bca'); 
-						$clickBtn.css('border-color','#357ebd'); 
-						/* var sss = '<button type="button" class="btn pull-left btn-primary" id="ensure">确定</button><button type="button" id="quxiao" class="btn btn-default" data-dismiss="modal">退出</button>';
-						$("#modfooter").html(sss); */
+						if(syflag=="0" || syflag=="3"){
+							$('#textcontent').val('');     //隐藏模态框时textarea值清空
+							$('#moduleModal').modal('hide'); //隐藏模态窗口
+							$clickBtn.attr("class","btn btn-primary moduleTime"); 
+							$clickBtn.css('background-color','#428bca'); 
+							$clickBtn.css('border-color','#357ebd'); 
+						}else{
+							$('#textcontent').val('');     //隐藏模态框时textarea值清空
+							$('#moduleModal').modal('hide'); //隐藏模态窗口
+							$clickBtn.attr("class","btn btn-primary moduleTime"); 
+							/* $clickBtn.css('background-color','#428bca'); 
+							$clickBtn.css('border-color','#357ebd');  */
+							$("#" + vrowkey + "_1").css('background-color','#428bca'); 
+							$("#" + vrowkey + "_1").css('border-color','#357ebd'); 
+							$("#" + vrowkey + "_2").css('background-color','#428bca'); 
+							$("#" + vrowkey + "_2").css('border-color','#357ebd'); 
+							$("#" + vrowkey + "_1").attr('disabled',false);
+							$("#" + vrowkey + "_2").attr('disabled',false);
+							$("#" + vrowkey + "_3").attr('disabled',true);
+						}					
 					}else{
 					//若data 的返回值不是1，则提示删除失败
 						alert("数据保存失败！");							
@@ -271,15 +339,17 @@
 					var vyebh_s = val.substr(0);
 					
 					if(vkey1==vkey1_s && vkey2==vkey2_s && vyebh==vyebh_s){
-						$('#prompt1').show();
+						$('#prompt1').show();   /* 成功对应病人 */
 						$('#prompt2').hide();
 						$('#prompt3').hide();
 						$('#prompt4').hide();
 						$("#saowandai").val("");
 						document.getElementById("saowandai").focus();
 					}else{
+						/* $('#chatAudio')[0].Play(); */
+						document.getElementById("chatAudio").play();
 						$('#prompt1').hide();
-						$('#prompt2').show();
+						$('#prompt2').show();	/* 对应病人失败 */
 						$('#prompt3').hide();
 						$('#prompt4').hide();
 						$("#saowandai").val("");
@@ -298,7 +368,7 @@
 					/* var yo = document.getElementById(gy); */   
 					var vgroupxh = gyo.substr(0,gyo.indexOf("-"));
 					
-					var yo = document.getElementsByClassName(vgroupxh);
+					var yo = document.getElementsByClassName(vsjd_id);
 					//判断是否是包含该组groupxh的医嘱
 					if(!yo || yo.length<1){
 						$('#prompt1').hide();
@@ -307,29 +377,10 @@
 						$('#prompt4').hide();
 						$("#saowandai").val("");
 						document.getElementById("saowandai").focus();
+						document.getElementById("chatAudio").play();
 					}else{
-						/* $("#" + gy).css("color","#EF9C04"); 
- 						var yosjd = document.getElementById(vsjd_id);
-						if(!yogroup){
-							$('#prompt1').hide();
-							$('#prompt2').hide();
-							$('#prompt3').hide();
-							$('#prompt4').show();
-							$("#saowandai").val("");
-							document.getElementById("saowandai").focus();
-						}else{
-							$("#" + vsjd_id).css("color","#FFFF00");
-							var yomove_offset = $("#"+gy).offset().top - height - height;
-							$("html,body").animate({scrollTop:yomove_offset},120);
-							$('#prompt1').hide();
-							$('#prompt2').hide();
-							$('#prompt3').hide();
-							$('#prompt4').hide();
-							$("#saowandai").val("");
-							document.getElementById("saowandai").focus();
-						} */
-						$("." + vgroupxh).css("color","#EF9C04")
-						var yomove_offset = $("." + vgroupxh).offset().top - height - height;
+						$("." + vsjd_id).css("color","#EF9C04")
+						var yomove_offset = $("." + vsjd_id).offset().top - height - height;
 						$("html,body").animate({scrollTop:yomove_offset},120);
 						$('#prompt1').hide();
 						$('#prompt2').hide();
@@ -339,6 +390,7 @@
 						document.getElementById("saowandai").focus();
 					}
 				}else{
+					document.getElementById("chatAudio").play();
 					$('#prompt1').hide();
 					$('#prompt2').hide();
 					$('#prompt3').hide();
@@ -360,88 +412,116 @@
 		}
 		
 		function changeDate() {
+			$("#accordion")[0].innerHTML = "<p>正在加载......</p>"; 
 			var vflyz = "00";
 			/* 	使用$(this).val() 回丢失前面的数字0	alert( $(this).val()); */
-					var val_text = "全部";
-					var url = "bingrYiZhuZhiXingforjquery";
-					var vxzrq = $("#yiZhuRq").val();
-					var args = {"vxzzxfl":vflyz,"vxzrq":vxzrq}; 
-					/* var args = {"vxzzxfl":vflyz};  */
-					$.post(url,args,function(data) {
-						var a = '';
-						if(data!=null && data!="" ){
-							d = eval("("+ data+ ")");
-							for (var i = 0; i < d.length; i++) {
-								var obj =  d[i].rq;
-								var teo = new Date(obj.time);
-								var vmonth = teo.getMonth()+1;
-								if(vmonth<10){
-									vmonth = "0"+vmonth;
+			var val_text = "全部";
+			var url = "bingrYiZhuZhiXingforjquery";
+			var vxzrq = $("#yiZhuRq").val();
+			var args = {"vxzzxfl":vflyz,"vxzrq":vxzrq}; 
+			/* var args = {"vxzzxfl":vflyz};  */
+			$.post(url,args,function(data) {
+				var a = '';
+				if(data!=null && data!="" ){
+					d = eval("("+ data+ ")");
+					for (var i = 0; i < d.length; i++) {
+						var obj =  d[i].rq;
+						var teo = new Date(obj.time);
+						var vmonth = teo.getMonth()+1;
+						if(vmonth<10){
+							vmonth = "0"+vmonth;
+						}
+						var vday =  teo.getDate();
+						if(vday < 10){
+							vday = "0" + vday;
+						}
+						var vyzrq1 = teo.getFullYear() + "-" + vmonth + "-" + vday + " 00:00:00.0";
+						var vyzrq2 = teo.getFullYear() + "-" + vmonth + "-" + vday;
+						var vyzrq3 = teo.getFullYear() + vmonth + vday;
+						
+						a = a + '<div class="row module ' + d[i].rowkey + '" id="yzmc_' + i + '">';
+							
+						var tmp_yzmcs = d[i].yzmcs;
+						for(var j = 0;j<tmp_yzmcs.length;j++){
+								a = a + '<div class="col-xs-12" ><span>' + tmp_yzmcs[j] + '</span></div>';
+							}
+						
+						a = a + '</div><div class="row"><div class="col-xs-12 text-right" style="margin: 10px 0 10px 0;padding-bottom: 5px;border-top: #666666 1px dashed;"></div></div><div class="row" style="border-bottom: #666666 1px dashed;padding-bottom: 5px;margin-bottom: 5px;"><div class="col-xs-7"><span>'
+						+ d[i].yf2mc + '</span></div><div class="col-xs-1" style="padding:0;">';
+							
+						if(d[i].lsflag=='0'){
+							a = a + '<span style="font-size: 18px;border-radius: 20px;border: 2px solid #0316F7;padding: 5px;color: #0316F7;">长</span>';
+						}else{
+							a = a + '<span style="font-size: 18px;border-radius: 20px;border: 2px solid #03BFF7;padding: 5px; color: #03BFF7;">临</span>';
+						}
+						
+						a = a + '</div><div class="col-xs-4" style="padding: 0 0 0 1%;"><span>';
+						
+						a = a + vyzrq2 + '</span></div></div>';
+							
+						a = a + '<div class="row" style="border-bottom: 2px solid #333333;padding-bottom: 10px;margin-bottom: 10px;"><div class="col-xs-12">';
+						
+						a = a + '<div class="btn-group" data-toggle="buttons" style="width:100%;"><input value="'
+						+ d[i].groupxh + '" style="display:none;" id="' + d[i].rowkey + '_groupxh"/>';;
+					
+						if(d[i].zxflag=='1'){
+							if(d[i].zxfldm=='01'){
+								a = a + '<span style="float:left;" id="' + d[i].rowkey + '_sjd">' + d[i].sjd + '</span>';
+								if(d[i].syflag=='1'){
+									a = a + '<button type="button" class="btn btn-success zxTime" data-toggle="modal" data-target="#moduleModal" id="'
+									 + d[i].rowkey + '_1" style="color:#FFFFFF;margin-left: 6%;margin-right: 3%;background-color:#5cb85c;border-color:#4cae4c;">扎 针</button>'
+									 + '<button type="button" class="btn btn-success zxTime" data-toggle="modal" data-target="#moduleModal" id="'
+									 + d[i].rowkey + '_2" style="color:#FFFFFF;margin-left: 3%;margin-right: 3%;" disabled="disabled">换 液</button>';
 								}
-								var vday =  teo.getDate();
-								if(vday < 10){
-									vday = "0" + vday;
+								if(d[i].syflag=='2'){
+									a = a + '<button type="button" class="btn btn-success zxTime" data-toggle="modal" data-target="#moduleModal" id="'
+									 + d[i].rowkey + '_1" style="color:#FFFFFF;margin-left: 6%;margin-right: 3%;" disabled="disabled">扎 针</button>'
+									 + '<button type="button" class="btn btn-success zxTime" data-toggle="modal" data-target="#moduleModal" id="'
+									 + d[i].rowkey + '_2" style="color:#FFFFFF;margin-left: 3%;margin-right: 3%;background-color:#5cb85c;border-color:#4cae4c;">换 液</button>';
 								}
-								var vyzrq1 = teo.getFullYear() + "-" + vmonth + "-" + vday + " 00:00:00.0";
-								var vyzrq2 = teo.getFullYear() + "-" + vmonth + "-" + vday;
-								var vyzrq3 = teo.getFullYear() + vmonth + vday;
-								
-								/* a = a + '<div class="row module" id="' + vyzrq3 + '-' + d[i].groupxh + '">'; */
-								a = a + '<div class="row module ' + d[i].groupxh + '" id="yzmc_' + i + '">';
-									
-								var tmp_yzmcs = d[i].yzmcs;
-								for(var j = 0;j<tmp_yzmcs.length;j++){
-										a = a + '<div class="col-xs-12" ><span>' + tmp_yzmcs[j] + '</span></div>';
-									}
-								
-								a = a + '</div><div class="row"><div class="col-xs-12 text-right" style="margin: 10px 0 10px 0;padding-bottom: 5px;border-top: #666666 1px dashed;"></div></div><div class="row" style="border-bottom: #666666 1px dashed;padding-bottom: 5px;margin-bottom: 5px;"><div class="col-xs-7"><span>'
-								+ d[i].yf2mc + '</span></div><div class="col-xs-1" style="padding:0;">';
-									
-								if(d[i].lsflag=='0'){
-									a = a + '<span style="font-size: 18px;border-radius: 20px;border: 2px solid #0316F7;padding: 5px;color: #0316F7;">长</span>';
+								if(d[i].czfl=='0'){
+									a = a + '<button type="button" class="btn btn-success zxTime" data-toggle="modal" data-target="#moduleModal" id="'
+									  + d[i].rowkey + '_3" style="color:#FFFFFF;margin-left: 3%;margin-right: 3%;background-color:#5cb85c;border-color:#4cae4c;">拔 针</button>';
 								}else{
-									a = a + '<span style="font-size: 18px;border-radius: 20px;border: 2px solid #03BFF7;padding: 5px; color: #03BFF7;">临</span>';
+									a = a + '<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" id="'
+									+ d[i].rowkey + '_3" style="color:#FFFFFF;margin-left: 3%;margin-right: 3%;">拔 针</button>'
 								}
-								
-								a = a + '</div><div class="col-xs-4" style="padding: 0 0 0 1%;"><span>';
-								
-								a = a + vyzrq2 + '</span></div></div>';
-									
-								a = a + '<div class="row" style="border-bottom: 2px solid #333333;padding-bottom: 10px;margin-bottom: 10px;"><div class="col-xs-12">';
-								
-								var tmp_twBryzzxRemodelSubs = d[i].twBryzzxRemodelSubs;
-								for(var k = 0; k < tmp_twBryzzxRemodelSubs.length; k ++){
-									a = a + '<div class="btn-group" data-toggle="buttons" style="display:block;">';
-									a = a + '<input value="' + d[i].groupxh + '" style="display:none;"/>';
-									if(tmp_twBryzzxRemodelSubs[k].zxflag==1){
-										a = a + '<button type="button" class="btn btn-success zxTime" data-toggle="modal" data-target="#moduleModal" style="margin:0 0 0 2%;" id="' 
-											+ tmp_twBryzzxRemodelSubs[k].rowkey +'">'
-											+ tmp_twBryzzxRemodelSubs[k].sjd + '</button>';
-									}else{
-										a = a + '<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" style="margin:0 0 0 2%;" id="'
-											+ tmp_twBryzzxRemodelSubs[k].rowkey +'">'
-											+ tmp_twBryzzxRemodelSubs[k].sjd + '</button>';
-									}
-									a = a + '<input value="yzmc_' + i + '" style="display:none;"/>';
-									
-									a = a + '<input value="' + vyzrq1 + '" style="display:none;"/>';
-									a = a + '<input value="' + tmp_twBryzzxRemodelSubs[k].crlflag + '" style="display:none;"/>';
-									a = a + '<input value="' + tmp_twBryzzxRemodelSubs[k].crl + '" style="display:none;"/>';
-									a = a + '</div>';
-								}
-								a = a + '</div></div>';
+							}else{
+								a = a + '<button type="button" class="btn btn-success zxTime" data-toggle="modal" data-target="#moduleModal" id="'
+								+ d[i].rowkey + '_0" style="color:#FFFFFF;background-color:#5cb85c;border-color:#4cae4c;">'+ d[i].sjd + '</button>';
 							}
 						}else{
-							a = "无数据！";
-						} 
-						 $("#accordion")[0].innerHTML = a; 
-						 $("#dropdownMenu1")[0].innerHTML = val_text + '<span class="caret"></span>';
-						 document.getElementById("saowandai").focus();
-					})
+							if(d[i].zxfldm=='01'){
+								a = a + '<span style="float:left;" id="' + d[i].rowkey + '_sjd">' + d[i].sjd + '</span>'
+								+ '<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" id="'
+								+ d[i].rowkey + '_1" style="color:#FFFFFF;margin-left: 6%;margin-right: 3%;">扎 针</button>'
+								+ '<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" id="'
+								+ d[i].rowkey + '_2" style="color:#FFFFFF;margin-left: 3%;margin-right: 3%;">换 液</button>'
+								+ '<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" id="'
+								+ d[i].rowkey + '_3" style="color:#FFFFFF;margin-left: 3%;margin-right: 3%;" disabled="disabled">拔 针</button>';
+							}else{
+								a = a + '<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" id="'
+								+ d[i].rowkey + '_0" style="color:#FFFFFF;">' + d[i].sjd + '</button>';
+							}
+						}
+						a = a + '<input value="yzmc_'+ i + '" style="display:none;" id="' + d[i].rowkey + '_html">'
+							+ '<input value="' + vyzrq1 + '" style="display:none;" id="' + d[i].rowkey + '_rq"/><input value="'
+							+ d[i].crlflag + '" style="display:none;" id="' + d[i].rowkey + '_crlflag"/><input value="'
+							+ d[i].crl + '" style="display:none;" id="' + d[i].rowkey + '_crl"/></div>';
+						a = a + '</div></div></div>';
+					}
+				}else{
+					a = "无数据！";
+				} 
+				 $("#accordion")[0].innerHTML = a; 
+				 $("#dropdownMenu1")[0].innerHTML = val_text + '<span class="caret"></span>';
+				 document.getElementById("saowandai").focus();
+			})
 		}
 </script>
 </head>
 <body>
+	<audio id="chatAudio"><source src="images/ydhl_error_001.wav" type="audio/wav"><source src="images/error_hlpg.mp3" type="audio/mpeg"><source src="images/ticktac.ogg" type="audio/ogg"></audio>
 	<%@ include file="header-bingren.jsp"%>
 		<div class="row" style="border-bottom:1px solid #269abc;padding: 5px 0 ; margin: 0;">
 			<div class="col-xs-4" style="padding: 0 2px;">
@@ -473,19 +553,15 @@
 				</div>
 			</div>
 			<div class="col-xs-4" id="prompt1" style="display:none;">
-		   		<%-- <span style="padding-left: 5px; margin-right: 14px; font-size: 12px; color: #f9590d;">对应扫描病人</span> --%>
 		   		<span class="label label-success">成功对应病人</span>
 		   	</div>
 			<div class="col-xs-4" id="prompt2" style="display:none;">
-		   		<%-- <span style="padding-left: 5px; margin-right: 14px; font-size: 12px; color: #f9590d;">对应扫描病人</span> --%>
 		   		<span class="label label-warning">对应病人失败</span>
 		   	</div>
 			<div class="col-xs-4" id="prompt3" style="display:none;">
-		   		<%-- <span style="padding-left: 5px; margin-right: 14px; font-size: 12px; color: #f9590d;">对应扫描病人</span> --%>
 		   		<span class="label label-danger">无对应医嘱</span>
 		   	</div>
 			<div class="col-xs-4" id="prompt4" style="display:none;">
-		   		<%-- <span style="padding-left: 5px; margin-right: 14px; font-size: 12px; color: #f9590d;">对应扫描病人</span> --%>
 		   		<span class="label label-danger">无对应时间点</span>
 		   	</div>
 		</div>
@@ -493,9 +569,7 @@
 	<div id="content_b" class="container">
 		<div class="panel-group" id="accordion" style="z-index:-100">
 		<s:iterator value="#request.bingrGeTi_YiZhu_zhixing"  status ="status">
-<%-- 			<div class="row module" id="yzmc_<s:property value="#status.index"/>"> 
-			<div class="row module ${groupxh}" id="<s:date name="rq" format="yyyyMMdd"/>-${groupxh}"> --%>
-			<div class="row module ${groupxh}" id="yzmc_<s:property value="#status.index"/>">
+			<div class="row module ${rowkey}" id="yzmc_<s:property value="#status.index"/>">
 				<s:iterator value="yzmcs" id="mc_yz">
 					<div class="col-xs-12" >
 						<span><s:property value="mc_yz"/></span>
@@ -527,21 +601,55 @@
 			<div class="row"
 				style="border-bottom: 2px solid #333333;padding-bottom: 10px;margin-bottom: 10px;">
 				<div class="col-xs-12">
-					<s:iterator value="twBryzzxRemodelSubs" >
-						<div class="btn-group" data-toggle="buttons">
-							<input value="${groupxh }" style="display:none;"/>
-							<s:if test="zxflag==1">
-								<button type="button" class="btn btn-success zxTime" data-toggle="modal" data-target="#moduleModal" id="${rowkey }">${sjd}</button> 
+					<div class="btn-group" data-toggle="buttons" style="width:100%;">
+						<input value="${groupxh }" style="display:none;" id="${rowkey }_groupxh"/>
+						<s:if test="zxflag==1">
+							<s:if test="zxfldm==01">
+								<span style="float:left;" id="${rowkey }_sjd">${sjd }</span> 
+								<s:if test="syflag==1">   <!-- 判断已执行扎针 -->
+									<button type="button" class="btn btn-success zxTime" data-toggle="modal" 
+									data-target="#moduleModal" id="${rowkey }_1" style="color:#FFFFFF;margin-left: 6%;margin-right: 3%;background-color:#5cb85c;border-color:#4cae4c;">扎 针</button>
+									<button type="button" class="btn btn-success zxTime" data-toggle="modal" 
+									data-target="#moduleModal" id="${rowkey }_2" style="color:#FFFFFF;margin-left: 3%;margin-right: 3%;" disabled="disabled">换 液</button>
+								</s:if>
+								<s:if test="syflag==2">   <!-- 判断已执行换液 -->
+									<button type="button" class="btn btn-success zxTime" data-toggle="modal" 
+									data-target="#moduleModal" id="${rowkey }_1" style="color:#FFFFFF;margin-left: 6%;margin-right: 3%;" disabled="disabled">扎 针</button>
+									<button type="button" class="btn btn-success zxTime" data-toggle="modal" 
+									data-target="#moduleModal" id="${rowkey }_2" style="color:#FFFFFF;margin-left: 3%;margin-right: 3%;background-color:#5cb85c;border-color:#4cae4c;">换 液</button>
+								</s:if>
+								<s:if test="czfl==0">   <!-- 已执行拔针 -->
+									<button type="button" class="btn btn-success zxTime" data-toggle="modal" 
+										data-target="#moduleModal" id="${rowkey }_3" style="color:#FFFFFF;margin-left: 3%;margin-right: 3%;background-color:#5cb85c;border-color:#4cae4c;">拔 针</button>
+								</s:if>
+								<s:else>
+									<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" 
+									data-target="#moduleModal" id="${rowkey }_3" style="color:#FFFFFF;margin-left: 3%;margin-right: 3%;">拔 针</button>
+								</s:else>
 							</s:if>
 							<s:else>
-								<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" id="${rowkey }">${sjd}</button>
+								<button type="button" class="btn btn-success zxTime" data-toggle="modal" data-target="#moduleModal" id="${rowkey }_0" style="color:#FFFFFF;background-color:#5cb85c;border-color:#4cae4c;">${sjd}</button>
 							</s:else>
-							<input value="yzmc_<s:property value="#status.index"/>" style="display:none;"/>
-							<input value="${rq}" style="display:none;"/>
-							<input value="${crlflag}" style="display:none;"/>
-							<input value="${crl}" style="display:none;"/>
-						</div>
-					</s:iterator>
+						</s:if>
+						<s:else>
+							<s:if test="zxfldm==01">
+								<span style="float:left;" id="${rowkey }_sjd">${sjd }</span> 
+								<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" 
+									data-target="#moduleModal" id="${rowkey }_1" style="color:#FFFFFF;margin-left: 6%;margin-right: 3%;">扎 针</button>
+								<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" 
+									data-target="#moduleModal" id="${rowkey }_2" style="color:#FFFFFF;margin-left: 3%;margin-right: 3%;">换 液</button>
+								<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" 
+									data-target="#moduleModal" id="${rowkey }_3" style="color:#FFFFFF;margin-left: 3%;margin-right: 3%;" disabled="disabled">拔 针</button>
+							</s:if>
+							<s:else>
+								<button type="button" class="btn btn-primary moduleTime" data-toggle="modal" data-target="#moduleModal" id="${rowkey }_0" style="color:#FFFFFF;">${sjd}</button>
+							</s:else>
+						</s:else>
+						<input value="yzmc_<s:property value="#status.index"/>" style="display:none;" id="${rowkey }_html"/>
+						<input value="${rq}" style="display:none;" id="${rowkey }_rq"/>
+						<input value="${crlflag}" style="display:none;" id="${rowkey }_crlflag"/>
+						<input value="${crl}" style="display:none;" id="${rowkey }_crl"/>
+					</div>
 				</div>
 			</div>
 		</s:iterator>

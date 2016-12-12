@@ -122,7 +122,7 @@
 		<script src="scripts/mobiscroll.js" type="text/javascript"></script>
 		<script src="scripts/mobiscroll_003.js" type="text/javascript"></script>
 		<script src="scripts/mobiscroll_005.js" type="text/javascript"></script>
-		<script src="scripts/index-song.js" type="text/javascript"></script>
+		<script src="scripts/tizhengluru.js" type="text/javascript"></script>
 	</head>
 	<body>
 		<div id="head_banner_1" style="z-index:2000;" class="bg-info navbar-fixed-top">
@@ -261,10 +261,10 @@
 		<div class="modal fade" id="temperature" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog" id="modal-wrap" style="width:88%;margin:1%;">
 				<div class="modal-content">
-					<div class="modal-header" style="padding:2%;">
+					<!-- <div class="modal-header" style="padding:2%;">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 						<h5 class="modal-title" id="myModalLabel">体温录入项</h5>
-					</div>
+					</div> -->
 					<!-- 模态框body start-->
 					<div class="modal-body" style="padding:1%;">
 						<form role="form" class="form-horizontal">
@@ -317,7 +317,7 @@
 								<label class="col-xs-4 control-label text-right" style="padding:2% 2% 0 2%;">入出标注</label>
 								<div class="col-xs-8">
 									<select class="form-control" id="tw_rcbz">
-										<option value="0">无</option>
+										<option value="">无</option>
 										<s:iterator value="#request.tiwen_rcbz" status='st'>
 											<option value="${dm }">${mc }</option>
 										</s:iterator>
@@ -335,7 +335,7 @@
 						</form>
 					</div>
 					<!-- 模态框body end-->
-					<div class="modal-footer" style="margin-top:1%;">
+					<div class="modal-footer" style="margin-top:1%;padding-top: 2%;">
 						<button type="button" class="btn pull-left btn-primary" id="tw_baocun">保存</button>
 						<button type="button" id="quxiao" class="btn btn-default" data-dismiss="modal">取消</button>
 					</div>

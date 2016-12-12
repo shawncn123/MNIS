@@ -71,7 +71,7 @@ public class TwTzdataDao extends HibernateDaoSupport {
 	
 	//根据key1 key2 yebh 日期查询出该病人该日期的多少次数记录
 	public List<String> getListTzDataJl(long key1,Integer key2,short yebh,Date lrrq){
-		String hql = "select distinct(SJ) from TW_TZDATA where KEY1=:key1 and KEY2=:key2 and YEBH=:yebh and RQ=:rq order by JLID";
+		String hql = "select distinct(SJ) from TW_TZDATA where KEY1=:key1 and KEY2=:key2 and YEBH=:yebh and RQ=:rq order by SJ";
 		Query query = currentSession().createSQLQuery(hql);
 		query.setLong("key1", key1);
 		query.setInteger("key2", key2);
@@ -82,8 +82,14 @@ public class TwTzdataDao extends HibernateDaoSupport {
 	
 	//根据key1 key2 yebh 日期 时间点查询出该病人该日期该时间点的的体征录入数据
 	public List<TwTzdata_update> getListTzDataByShiJianDian(long key1,Integer key2,short yebh,Date lrrq,String sjd){
+//		String hql = "select t1.XMID,t1.XMMC,t2.JLID,t2.VALUE1,t2.VALUE2,t2.BZ,t1.DW,t1.BZFLAG,t2.SJ,t2.PCID "
+//		 + "from TW_TZZD t1,TW_TZDATA t2 where t2.KEY1=:key1 and t2.KEY2=:key2 and t2.YEBH=:yebh and t2.RQ=:rq and t2.SJ=:sjd  and t2.XMID(+)=t1.XMID order by t1.XSXH";
+		
 		String hql = "select t1.XMID,t1.XMMC,t2.JLID,t2.VALUE1,t2.VALUE2,t2.BZ,t1.DW,t1.BZFLAG,t2.SJ,t2.PCID "
-		 + "from TW_TZZD t1,TW_TZDATA t2 where t2.KEY1=:key1 and t2.KEY2=:key2 and t2.YEBH=:yebh and t2.RQ=:rq and t2.SJ=:sjd  and t2.XMID=t1.XMID order by t1.XSXH";
+				+ "from TW_TZZD t1,"
+				+ " (select XMID,JLID,VALUE1,VALUE2,BZ,PCID,SJ from TW_TZDATA where KEY1=:key1 and KEY2=:key2 and YEBH=:yebh and RQ=:rq and SJ=:sjd) t2"
+				+ " where t2.xmid(+)=t1.XMID order by t1.XSXH";
+		
 		Query query = currentSession().createSQLQuery(hql)
 				.addScalar("xmid", StringType.INSTANCE).addScalar("xmmc", StringType.INSTANCE)
 				.addScalar("jlid",LongType.INSTANCE).addScalar("value1", StringType.INSTANCE)

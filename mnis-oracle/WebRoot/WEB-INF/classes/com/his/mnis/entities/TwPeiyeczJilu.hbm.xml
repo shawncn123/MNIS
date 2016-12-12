@@ -58,5 +58,17 @@
         <property name="qdflag" type="java.lang.String">
             <column name="QDFLAG" length="1" not-null="true" />
         </property>
+        <property name="xm" type="java.lang.String">
+            <column name="XM" length="64" />
+        </property>
+        <property name="xb" type="java.lang.String">
+            <column name="XB" length="4" />
+        </property>
+        <property name="nl" type="java.lang.String">
+            <column name="NL" length="10" />
+        </property>
+        <property name="bah" type="java.lang.String">
+            <column name="BAH" length="18" />
+        </property>
     </class>
 </hibernate-mapping>

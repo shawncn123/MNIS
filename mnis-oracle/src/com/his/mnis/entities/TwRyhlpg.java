@@ -24,9 +24,11 @@ public class TwRyhlpg implements java.io.Serializable {
 	private String zy;
 	private String mz;
 	private String whcd;
+	private String bsgsr;
 	private String rytj;
 	private Timestamp rksj;
 	private String ryzd;
+	private String ryfs;
 	private String gms;
 	private String jlzhsid;
 	private String jlzhsxm;
@@ -47,8 +49,9 @@ public class TwRyhlpg implements java.io.Serializable {
 	public TwRyhlpg(String rowkey, Long key1, Integer key2, String bah,
 			String bq, String bqksmc, String chw, String fylb, String xm,
 			String xb, String nl, String zy, String mz, String whcd,
-			String rytj, Timestamp rksj, String ryzd, String gms,
-			String jlzhsid, String jlzhsxm, Timestamp jltime) {
+			String bsgsr, String rytj, Timestamp rksj, String ryzd,
+			String ryfs, String gms, String jlzhsid, String jlzhsxm,
+			Timestamp jltime) {
 		this.rowkey = rowkey;
 		this.key1 = key1;
 		this.key2 = key2;
@@ -63,9 +66,11 @@ public class TwRyhlpg implements java.io.Serializable {
 		this.zy = zy;
 		this.mz = mz;
 		this.whcd = whcd;
+		this.bsgsr = bsgsr;
 		this.rytj = rytj;
 		this.rksj = rksj;
 		this.ryzd = ryzd;
+		this.ryfs = ryfs;
 		this.gms = gms;
 		this.jlzhsid = jlzhsid;
 		this.jlzhsxm = jlzhsxm;
@@ -186,6 +191,14 @@ public class TwRyhlpg implements java.io.Serializable {
 		this.whcd = whcd;
 	}
 
+	public String getBsgsr() {
+		return this.bsgsr;
+	}
+
+	public void setBsgsr(String bsgsr) {
+		this.bsgsr = bsgsr;
+	}
+
 	public String getRytj() {
 		return this.rytj;
 	}
@@ -208,6 +221,14 @@ public class TwRyhlpg implements java.io.Serializable {
 
 	public void setRyzd(String ryzd) {
 		this.ryzd = ryzd;
+	}
+
+	public String getRyfs() {
+		return this.ryfs;
+	}
+
+	public void setRyfs(String ryfs) {
+		this.ryfs = ryfs;
 	}
 
 	public String getGms() {

@@ -27,6 +27,10 @@ public class TwPeiyeczJilu implements java.io.Serializable {
 	private String peiyhsxm;
 	private Timestamp peiytime;
 	private String qdflag;
+	private String xm;
+	private String xb;
+	private String nl;
+	private String bah;
 
 	// Constructors
 
@@ -50,7 +54,8 @@ public class TwPeiyeczJilu implements java.io.Serializable {
 	public TwPeiyeczJilu(String rowkey, Long key1, Integer key2, Short yebh,
 			Timestamp rq, Long groupxh, String sjd, Timestamp sjdtime,
 			String bq, String chw, String yzid, String yzzdmc, String yzmc,
-			String peiyhsid, String peiyhsxm, Timestamp peiytime, String qdflag) {
+			String peiyhsid, String peiyhsxm, Timestamp peiytime,
+			String qdflag, String xm, String xb, String nl, String bah) {
 		this.rowkey = rowkey;
 		this.key1 = key1;
 		this.key2 = key2;
@@ -68,6 +73,10 @@ public class TwPeiyeczJilu implements java.io.Serializable {
 		this.peiyhsxm = peiyhsxm;
 		this.peiytime = peiytime;
 		this.qdflag = qdflag;
+		this.xm = xm;
+		this.xb = xb;
+		this.nl = nl;
+		this.bah = bah;
 	}
 
 	// Property accessors
@@ -206,6 +215,38 @@ public class TwPeiyeczJilu implements java.io.Serializable {
 
 	public void setQdflag(String qdflag) {
 		this.qdflag = qdflag;
+	}
+
+	public String getXm() {
+		return this.xm;
+	}
+
+	public void setXm(String xm) {
+		this.xm = xm;
+	}
+
+	public String getXb() {
+		return this.xb;
+	}
+
+	public void setXb(String xb) {
+		this.xb = xb;
+	}
+
+	public String getNl() {
+		return this.nl;
+	}
+
+	public void setNl(String nl) {
+		this.nl = nl;
+	}
+
+	public String getBah() {
+		return this.bah;
+	}
+
+	public void setBah(String bah) {
+		this.bah = bah;
 	}
 
 }

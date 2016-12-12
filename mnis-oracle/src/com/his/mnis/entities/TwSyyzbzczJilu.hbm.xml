@@ -6,14 +6,10 @@
 -->
 <hibernate-mapping>
     <class name="com.his.mnis.entities.TwSyyzbzczJilu" table="TW_SYYZBZCZ_JILU" schema="ZLHIS">
-        <composite-id name="id" class="com.his.mnis.entities.TwSyyzbzczJiluId">
-            <key-property name="rowkey" type="java.lang.String">
-                <column name="ROWKEY" length="50" />
-            </key-property>
-            <key-property name="czfl" type="java.lang.String">
-                <column name="CZFL" length="1" />
-            </key-property>
-        </composite-id>
+        <id name="rowkey" type="java.lang.String">
+            <column name="ROWKEY" length="50" />
+            <generator class="assigned" />
+        </id>
         <property name="key1" type="java.lang.Long">
             <column name="KEY1" precision="18" scale="0" not-null="true" />
         </property>
@@ -58,6 +54,9 @@
         </property>
         <property name="paztime" type="java.sql.Timestamp">
             <column name="PAZTIME" length="7" />
+        </property>
+         <property name="czfl" type="java.lang.String">
+            <column name="CZFL" length="1" />
         </property>
     </class>
 </hibernate-mapping>

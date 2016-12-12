@@ -43,6 +43,9 @@
 		
 		<script type="text/javascript">
 			$(function() {
+				// 绑定
+				$("#head_banner_1").smartFloat();	
+				
 				$('.clockpicker').clockpicker();
 				
 				var opt = {};

@@ -9,6 +9,8 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.his.mnis.entities.TwBryzzx;
 import com.his.mnis.entities.TwBryzzxRemodel;
+import com.his.mnis.entities.TwBryzzx_brxx;
+import com.his.mnis.entities.TwBryzzx_brxx_yzmcs_remodel;
 import com.his.mnis.entities.VwRybq;
 import com.his.mnis.services.ShuYeZhiXingService;
 import com.his.mnis.services.TwBryzzxService;
@@ -66,10 +68,10 @@ public class ShuYeZhiXingAction extends ActionSupport implements RequestAware,
 			if(proc_result.equals("1")){
 				return ERROR;
 			}
-			List<TwBryzzx> twBryzzxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, yzzxfl,xzrq);
-			if(twBryzzxs!=null && twBryzzxs.size()>0){
-				List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
-				request.put("shuye_yizhu_zhixing", twBryzzxRemodels);
+			List<TwBryzzx_brxx> twBryzzx_brxxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, yzzxfl,xzrq);
+			if(twBryzzx_brxxs!=null && twBryzzx_brxxs.size()>0){
+				List<TwBryzzx_brxx_yzmcs_remodel> twBryzzx_brxx_yzmcs_remodels = twBryzzxService.getListBrYzzxBrxxYzmcRemodel(twBryzzx_brxxs);
+				request.put("shuye_yizhu_zhixing", twBryzzx_brxx_yzmcs_remodels);
 				request.put("action_name", "shuyezhixing");
 				return SUCCESS;
 			}else{

@@ -26,7 +26,7 @@
 			<div class="col-xs-2" style="padding-left: 2%;padding-right:2%; position: relative;width: 16.6%; height: 80%;">
 				<a href="mymessage?pageno=1" style="display: block;">
 					<img src="images/brxxxx_header_1.png" style="height:100%; width:100%"> 
-					<span style="display: block; text-align: center; color: #fff; font-size: 2rem; z-index: 2; position: absolute; top: 10PX; left: 0; width:100%; height:100%;" id="xxshu"></span>
+					<span style="display: block; text-align: center; color: #fff; font-size: 2rem; z-index: 2; position: absolute; top: 8PX; left: 0; width:100%; height:80%;" id="xxshu"></span>
 				</a>
 			</div>
 			<div class="col-xs-2" style="padding-left: 2%;padding-right:2%;">

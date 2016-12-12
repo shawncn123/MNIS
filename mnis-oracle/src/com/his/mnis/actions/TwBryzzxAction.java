@@ -23,7 +23,10 @@ import com.his.mnis.entities.BingRenSessionXingXi;
 import com.his.mnis.entities.TwBryzzx;
 import com.his.mnis.entities.TwBryzzxPeiYeRemodel;
 import com.his.mnis.entities.TwBryzzxRemodel;
+import com.his.mnis.entities.TwBryzzx_brxx;
+import com.his.mnis.entities.TwBryzzx_brxx_yzmcs_remodel;
 import com.his.mnis.entities.TwPeiyeczJilu;
+import com.his.mnis.entities.TwSyyzbzczJilu;
 import com.his.mnis.entities.VwBqbrZy;
 import com.his.mnis.entities.VwRybq;
 import com.his.mnis.entities.Zd001;
@@ -214,12 +217,15 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 					yeid = bingRenSessionXingXi.getYebh();
 				}
 				Date xzrq = new Date();
-				List<TwBryzzx> twBryzzxs = twBryzzxService.getListBrYzzxByKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(),yeid,xzrq);
-				List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
-				if(twBryzzxs == null){
+//				List<TwBryzzx> twBryzzxs = twBryzzxService.getListBrYzzxByKey(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(),yeid,xzrq);
+				List<TwBryzzx_brxx> twBryzzx_brxxs = twBryzzxService.getListBrYzzxBrxxByKeyZxfldm(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(),yeid, "00", xzrq);
+//				List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
+				List<TwBryzzx_brxx_yzmcs_remodel> twBryzzx_brxx_yzmcs_remodels 
+				  = twBryzzxService.getListBrYzzxBrxxYzmcRemodel(twBryzzx_brxxs);
+				if(twBryzzx_brxx_yzmcs_remodels == null){
 					return ERROR;
 				}else{
-					request.put("bingrGeTi_YiZhu_zhixing", twBryzzxRemodels);
+					request.put("bingrGeTi_YiZhu_zhixing", twBryzzx_brxx_yzmcs_remodels);
 					request.put("action_name", "bingrGeTi_YiZhuZhiXing");
 					return SUCCESS;
 				}
@@ -248,10 +254,14 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 				}
 				SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd");
 				Date xzrq = sdf.parse(vxzrq);
-				List<TwBryzzx> twBryzzxs = twBryzzxService.getListBrYzzxByKeyZxfl(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(),yeid, vxzzxfl,xzrq);
-				if(twBryzzxs!=null && twBryzzxs.size()>0){
-					List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
-					JSONArray jsonArray = JSONArray.fromObject(twBryzzxRemodels);
+//				List<TwBryzzx> twBryzzxs = twBryzzxService.getListBrYzzxByKeyZxfl(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(),yeid, vxzzxfl,xzrq);
+				twBryzzxService.callProcedureBrYzzx(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(),yeid, xzrq);
+				List<TwBryzzx_brxx> twBryzzx_brxxs = twBryzzxService.getListBrYzzxBrxxByKeyZxfldm(vwBqbrZy.getKey1(), vwBqbrZy.getKey2(),yeid, vxzzxfl, xzrq);
+				if(twBryzzx_brxxs!=null && twBryzzx_brxxs.size()>0){
+//					List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
+					List<TwBryzzx_brxx_yzmcs_remodel> twBryzzx_brxx_yzmcs_remodels 
+					  = twBryzzxService.getListBrYzzxBrxxYzmcRemodel(twBryzzx_brxxs);
+					JSONArray jsonArray = JSONArray.fromObject(twBryzzx_brxx_yzmcs_remodels);
 					// JSONObject json = JSONObject.fromObject(vwBqbrZys);
 					HttpServletResponse response = ServletActionContext.getResponse();
 					response.setContentType("text/html;charset=UTF-8");
@@ -275,6 +285,7 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 			String hsid, String hsxm, Date zxsj, String zxms
 	 */
 	public String bingRenYzzx_baocun(){
+		String proc_result = "";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date zxsj = new Date();
 		Date rq = new Date();
@@ -290,7 +301,38 @@ public class TwBryzzxAction extends ActionSupport implements RequestAware,Sessio
 			if(syflag=="" || syflag==null){
 				syflag="0";
 			}
-			String proc_result = twBryzzxService.bingRenYzzx_baocun(rq, vsjd,vzxflag, groupxh, hsid, hsxm, zxsj, zxms,vcrlflag,vcrl,syflag);
+			if(syflag.equals("3")){
+				rowkey = rowkey.replace("q",":");
+				TwBryzzx twBryzzx = twBryzzxService.getTwBryzzxByRowkey(rowkey);
+				TwSyyzbzczJilu twSyyzbzczJilu = new TwSyyzbzczJilu();
+				twSyyzbzczJilu.setBq(twBryzzx.getBq());
+				twSyyzbzczJilu.setChw(twBryzzx.getChw());
+				twSyyzbzczJilu.setGroupxh(twBryzzx.getGroupxh());
+				twSyyzbzczJilu.setKey1(twBryzzx.getKey1());
+				twSyyzbzczJilu.setKey2(twBryzzx.getKey2());
+				twSyyzbzczJilu.setPazhsid(hsid);
+				twSyyzbzczJilu.setPazhsxm(hsxm);
+				twSyyzbzczJilu.setRowkey(rowkey);
+				twSyyzbzczJilu.setRq(twBryzzx.getRq());
+				twSyyzbzczJilu.setSjd(twBryzzx.getSjd());
+				twSyyzbzczJilu.setSjdtime(twBryzzx.getSjdtime());
+				twSyyzbzczJilu.setYebh(twBryzzx.getYebh());
+				twSyyzbzczJilu.setYzid(twBryzzx.getYzid());
+				twSyyzbzczJilu.setYzmc(twBryzzx.getYzmc());
+				twSyyzbzczJilu.setYzzdmc(twBryzzx.getYzzdmc());
+				twSyyzbzczJilu.setPaztime(new Timestamp(System.currentTimeMillis()));
+				if(vzxflag=='1'){
+					twSyyzbzczJilu.setCzfl("0");   //执行医嘱 拔针
+				}
+				if(vzxflag=='0'){
+					twSyyzbzczJilu.setCzfl("1");   //取消操作 拔针取消
+				}
+				twBryzzxService.updateTwSyyzbzczJiluByTwSyyzbzczJilu(twSyyzbzczJilu);
+				proc_result = "0";
+			}else{
+				proc_result = twBryzzxService.bingRenYzzx_baocun(rq, vsjd,vzxflag, groupxh, hsid, hsxm, zxsj, zxms,vcrlflag,vcrl,syflag);
+			}
+			
 			if(proc_result.equals("1")){
 				inputStream = new ByteArrayInputStream("1".getBytes("UTF-8"));    //1 表示失败
 			}else{

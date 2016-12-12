@@ -66,7 +66,7 @@ public class TwTwdMessServiceImpl implements TwTwdMessService {
 				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");  
 				String str_d=sdf.format(vrq);  
 //				String fname = uploadFilePath + "/"+ vkey1+"_" + vkey2 + "_" + vkey3 + "_" + str_d + ".jpg";
-				String fname = dir1 + "/twdimage/"+ vkey1+"_" + vkey2 + "_" + vkey3 + "_" + str_d + ".jpg";
+				String fname = dir1 + "twdimage/"+ vkey1+"_" + vkey2 + "_" + vkey3 + "_" + str_d + ".jpg";
 				FileOutputStream fos = new FileOutputStream(fname);
 				System.out.println("filepath fname:"+fname);
 				byte[] buffer = new byte[1024];
@@ -98,26 +98,17 @@ public class TwTwdMessServiceImpl implements TwTwdMessService {
 		
 		long vjlid = twTwdMessDao.getJlidByRiQiAndKey(vkey1, vkey2, vkey3, vrq);
 		if(vjlid > 0){
-			return "1";
+//			int updaterow = twTwdMessDao.updateTwTwdMessRow(vkey1, vkey2, vkey3, vrq);
+			twTwdMessDao.deleteTwTwdMessRowByJlid(vjlid);
+			int updaterow = twTwdMessDao.addTwTwdMessRow(vkey1, vkey2, vkey3, vrq);
+			if(updaterow > 0){
+				return "1";   //1 示表成功
+			}else{
+				return "0";   //0 表示失败
+			}
 		}else{
 			int insertrow = twTwdMessDao.addTwTwdMessRow(vkey1, vkey2, vkey3, vrq);
 			if(insertrow > 0){
-//				for(int i=0;i<10;i++){
-//					try {
-//						Thread.sleep(3000);
-//						char checkflag = twTwdMessDao.getHandleflagFromTWTwdMess(vkey1, vkey2, vkey3, vrq);
-//						if(checkflag=='1'){
-//							return "1";   //1 示表成功
-//						}
-//						if(checkflag=='2'){
-//							return "0";   //0 表示失败
-//						}
-//					} catch (InterruptedException e) {
-//						e.printStackTrace();
-//						return "0";   //0 表示失败
-//					}
-//				}
-//				return "0";   //0 表示失败
 				return "1";   //1 示表成功
 			}else{
 				return "0";   //0 表示失败

@@ -10,7 +10,7 @@ public class TwSyyzbzczJilu implements java.io.Serializable {
 
 	// Fields
 
-	private TwSyyzbzczJiluId id;
+	private String rowkey;
 	private Long key1;
 	private Integer key2;
 	private Short yebh;
@@ -26,6 +26,7 @@ public class TwSyyzbzczJilu implements java.io.Serializable {
 	private String pazhsid;
 	private String pazhsxm;
 	private Timestamp paztime;
+	private String czfl;
 
 	// Constructors
 
@@ -34,9 +35,9 @@ public class TwSyyzbzczJilu implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public TwSyyzbzczJilu(TwSyyzbzczJiluId id, Long key1, Integer key2,
+	public TwSyyzbzczJilu(String rowkey, Long key1, Integer key2,
 			Short yebh, Long groupxh, String sjd) {
-		this.id = id;
+		this.rowkey = rowkey;
 		this.key1 = key1;
 		this.key2 = key2;
 		this.yebh = yebh;
@@ -44,13 +45,13 @@ public class TwSyyzbzczJilu implements java.io.Serializable {
 		this.sjd = sjd;
 	}
 
-	/** full constructor */
-	public TwSyyzbzczJilu(TwSyyzbzczJiluId id, Long key1, Integer key2,
-			Short yebh, Timestamp rq, Long groupxh, String sjd,
-			Timestamp sjdtime, String bq, String chw, String yzid,
-			String yzzdmc, String yzmc, String pazhsid, String pazhsxm,
-			Timestamp paztime) {
-		this.id = id;
+	
+	public TwSyyzbzczJilu(String rowkey, Long key1, Integer key2, Short yebh,
+			Timestamp rq, Long groupxh, String sjd, Timestamp sjdtime,
+			String bq, String chw, String yzid, String yzzdmc, String yzmc,
+			String pazhsid, String pazhsxm, Timestamp paztime, String czfl) {
+		super();
+		this.rowkey = rowkey;
 		this.key1 = key1;
 		this.key2 = key2;
 		this.yebh = yebh;
@@ -66,16 +67,17 @@ public class TwSyyzbzczJilu implements java.io.Serializable {
 		this.pazhsid = pazhsid;
 		this.pazhsxm = pazhsxm;
 		this.paztime = paztime;
+		this.czfl = czfl;
 	}
 
 	// Property accessors
 
-	public TwSyyzbzczJiluId getId() {
-		return this.id;
+	public String getRowkey() {
+		return this.rowkey;
 	}
 
-	public void setId(TwSyyzbzczJiluId id) {
-		this.id = id;
+	public void setRowkey(String rowkey) {
+		this.rowkey = rowkey;
 	}
 
 	public Long getKey1() {
@@ -196,6 +198,14 @@ public class TwSyyzbzczJilu implements java.io.Serializable {
 
 	public void setPaztime(Timestamp paztime) {
 		this.paztime = paztime;
+	}
+
+	public String getCzfl() {
+		return czfl;
+	}
+
+	public void setCzfl(String czfl) {
+		this.czfl = czfl;
 	}
 
 }

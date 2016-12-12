@@ -21,12 +21,16 @@ public class TwBryzzxPeiYeRemodel implements java.io.Serializable {
 	private Timestamp sjdtime;
 	private String bq;
 	private String chw;
+	private String xm;
+	private String xb;
+	private String nl;
+	private String bah;
 	private String yzid;
 	private String yzzdmc;
 	private String yzmc;
 	private List<String> yzmcs;
 	private String yf2mc;
-	private String bzflag;
+	private String qdflag;
 	
 	public TwBryzzxPeiYeRemodel() {
 		super();
@@ -34,9 +38,9 @@ public class TwBryzzxPeiYeRemodel implements java.io.Serializable {
 
 	public TwBryzzxPeiYeRemodel(String rowkey, Long key1, Integer key2,
 			Short yebh, Timestamp rq, Long groupxh, String sjd,
-			Timestamp sjdtime, String bq, String chw, String yzid,
-			String yzzdmc, String yzmc, List<String> yzmcs, String yf2mc,
-			String bzflag) {
+			Timestamp sjdtime, String bq, String chw, String xm, String xb,
+			String nl, String bah, String yzid, String yzzdmc, String yzmc,
+			List<String> yzmcs, String yf2mc, String bzflag) {
 		super();
 		this.rowkey = rowkey;
 		this.key1 = key1;
@@ -48,12 +52,16 @@ public class TwBryzzxPeiYeRemodel implements java.io.Serializable {
 		this.sjdtime = sjdtime;
 		this.bq = bq;
 		this.chw = chw;
+		this.xm = xm;
+		this.xb = xb;
+		this.nl = nl;
+		this.bah = bah;
 		this.yzid = yzid;
 		this.yzzdmc = yzzdmc;
 		this.yzmc = yzmc;
 		this.yzmcs = yzmcs;
 		this.yf2mc = yf2mc;
-		this.bzflag = bzflag;
+		this.qdflag = qdflag;
 	}
 
 	public String getRowkey() {
@@ -176,12 +184,44 @@ public class TwBryzzxPeiYeRemodel implements java.io.Serializable {
 		this.yf2mc = yf2mc;
 	}
 
-	public String getBzflag() {
-		return bzflag;
+	public String getQdflag() {
+		return qdflag;
 	}
 
-	public void setBzflag(String bzflag) {
-		this.bzflag = bzflag;
+	public void setQdflag(String qdflag) {
+		this.qdflag = qdflag;
+	}
+
+	public String getXm() {
+		return xm;
+	}
+
+	public void setXm(String xm) {
+		this.xm = xm;
+	}
+
+	public String getXb() {
+		return xb;
+	}
+
+	public void setXb(String xb) {
+		this.xb = xb;
+	}
+
+	public String getNl() {
+		return nl;
+	}
+
+	public void setNl(String nl) {
+		this.nl = nl;
+	}
+
+	public String getBah() {
+		return bah;
+	}
+
+	public void setBah(String bah) {
+		this.bah = bah;
 	}
 
 	

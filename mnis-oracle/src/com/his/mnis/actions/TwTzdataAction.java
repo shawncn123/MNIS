@@ -221,37 +221,41 @@ public class TwTzdataAction extends ActionSupport implements RequestAware,Sessio
 					Long v_jlid =  this.wseq_id.nextLongValue();
 					String v_xmid = xiangmu.get(i);
 					String v_zhi1 = zhi1.get(i);
-					String v_zhi2 = "";
-					String v_biaozhu = "";
-					if(xiangmu.get(i).equals("XY")){
-						v_zhi2 = zhi2.get(i);
-					}
-					if(bzflag.get(i).equals("1")){
-						System.out.println("bz:" + biaozhu.get(i));
-						v_biaozhu = biaozhu.get(i);
-					}
-//					if(!xiangmu.get(i).equals("TW") && v_zhi1 != null && !v_zhi1.equals("")){  下面的修改，按冗余来解决，便于修改，没有输入也有记录
+					v_zhi1 = v_zhi1.trim();
+					if(v_zhi1!=null && v_zhi1!=""){
 					
-					if(!xiangmu.get(i).equals("TW")){
-						if(v_zhi1==null){
-							v_zhi1="";
+						String v_zhi2 = "";
+						String v_biaozhu = "";
+						if(xiangmu.get(i).equals("XY")){
+							v_zhi2 = zhi2.get(i);
 						}
-						TwTzdata twTzdata = new TwTzdata();
-						twTzdata.setJlid(v_jlid);
-						twTzdata.setCzyid(vwRybq.getRyid());
-						twTzdata.setCzyxm(vwRybq.getRyxm());
-						twTzdata.setKey1(vwBqbrZy.getKey1());
-						twTzdata.setKey2(vwBqbrZy.getKey2());
-						twTzdata.setYebh(yeid);
-						twTzdata.setRq(new Date());
-						twTzdata.setSj(appTime);
-						twTzdata.setXmid(v_xmid);
-						twTzdata.setValue1(v_zhi1);	
-						twTzdata.setValue2(v_zhi2);
-						twTzdata.setBz(v_biaozhu);
-						twTzdata.setPcid(v_pcid);
-						twTzdata.setStime(new Timestamp(System.currentTimeMillis()));
-						twTzdatas.add(twTzdata);
+						if(bzflag.get(i).equals("1")){
+							System.out.println("bz:" + biaozhu.get(i));
+							v_biaozhu = biaozhu.get(i);
+						}
+	//					if(!xiangmu.get(i).equals("TW") && v_zhi1 != null && !v_zhi1.equals("")){  下面的修改，按冗余来解决，便于修改，没有输入也有记录
+						
+						if(!xiangmu.get(i).equals("TW")){
+							if(v_zhi1==null){
+								v_zhi1="";
+							}
+							TwTzdata twTzdata = new TwTzdata();
+							twTzdata.setJlid(v_jlid);
+							twTzdata.setCzyid(vwRybq.getRyid());
+							twTzdata.setCzyxm(vwRybq.getRyxm());
+							twTzdata.setKey1(vwBqbrZy.getKey1());
+							twTzdata.setKey2(vwBqbrZy.getKey2());
+							twTzdata.setYebh(yeid);
+							twTzdata.setRq(new Date());
+							twTzdata.setSj(appTime);
+							twTzdata.setXmid(v_xmid);
+							twTzdata.setValue1(v_zhi1);	
+							twTzdata.setValue2(v_zhi2);
+							twTzdata.setBz(v_biaozhu);
+							twTzdata.setPcid(v_pcid);
+							twTzdata.setStime(new Timestamp(System.currentTimeMillis()));
+							twTzdatas.add(twTzdata);
+						}
 					}
 				}
 				res_val = twTzdataService.doCreateTwTzdata(twTzdatas, v_pcid);
@@ -400,22 +404,22 @@ public class TwTzdataAction extends ActionSupport implements RequestAware,Sessio
 					Long v_jlid =  jlid.get(i);
 					String v_xmid = xiangmu.get(i);
 					String v_zhi1 = zhi1.get(i);
+					v_zhi1 = v_zhi1.trim();
 					String v_zhi2 = zhi2.get(i);
 					String v_biaozhu = biaozhu.get(i);
 //					if(!xiangmu.get(i).equals("TW") && v_zhi1 != null && !v_zhi1.equals("")){  下面的修改，按冗余来解决，便于修改，没有输入也有记录
-					if(v_zhi1==null){
-						v_zhi1="";
+					if(v_zhi1!=null && v_zhi1!=""){
+						TwTzdata_update twTzdata_update = new TwTzdata_update();
+						twTzdata_update.setJlid(v_jlid);
+						twTzdata_update.setSj(appTime);
+						twTzdata_update.setXmid(v_xmid);
+						twTzdata_update.setValue1(v_zhi1);	
+						twTzdata_update.setValue2(v_zhi2);
+						twTzdata_update.setBz(v_biaozhu);
+						twTzdata_update.setPcid(pcid);
+						twTzdata_update.setStime(new Timestamp(System.currentTimeMillis()));
+						twTzdata_updates.add(twTzdata_update);
 					}
-					TwTzdata_update twTzdata_update = new TwTzdata_update();
-					twTzdata_update.setJlid(v_jlid);
-					twTzdata_update.setSj(appTime);
-					twTzdata_update.setXmid(v_xmid);
-					twTzdata_update.setValue1(v_zhi1);	
-					twTzdata_update.setValue2(v_zhi2);
-					twTzdata_update.setBz(v_biaozhu);
-					twTzdata_update.setPcid(pcid);
-					twTzdata_update.setStime(new Timestamp(System.currentTimeMillis()));
-					twTzdata_updates.add(twTzdata_update);
 				}
 				String res_modi_val = twTzdataService.updateTwTzdata(twTzdata_updates, vwRybq.getRyid(),vwRybq.getRyxm(),pcid) + "";
 				request.put("twtzdata_result", res_modi_val);

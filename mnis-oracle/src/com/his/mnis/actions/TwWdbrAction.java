@@ -220,6 +220,7 @@ public class TwWdbrAction extends ActionSupport implements RequestAware,
 				List<DaiXuanZheBingren> myBingRens = twWdbrService.getDaiXuanZheBingRenByCzryIdBqId(vwRybq.getRyid(),dangqianbqid);
 				request.put("daixzbingrens", myBingRens);
 				request.put("datasaveflag", 1);
+				request.put("action_name", "addWdbrWithSelect");
 				return SUCCESS;
 			} catch (Exception e) {
 				request.put("datasaveflag", 0);

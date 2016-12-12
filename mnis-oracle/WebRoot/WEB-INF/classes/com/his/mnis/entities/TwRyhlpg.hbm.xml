@@ -49,6 +49,9 @@
         <property name="whcd" type="java.lang.String">
             <column name="WHCD" length="100" />
         </property>
+        <property name="bsgsr" type="java.lang.String">
+            <column name="BSGSR" length="20" />
+        </property>
         <property name="rytj" type="java.lang.String">
             <column name="RYTJ" length="20" />
         </property>
@@ -57,6 +60,9 @@
         </property>
         <property name="ryzd" type="java.lang.String">
             <column name="RYZD" length="200" />
+        </property>
+        <property name="ryfs" type="java.lang.String">
+            <column name="RYFS" length="20" />
         </property>
         <property name="gms" type="java.lang.String">
             <column name="GMS" length="200" />

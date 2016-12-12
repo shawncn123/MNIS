@@ -7,6 +7,7 @@ import javax.persistence.ParameterMode;
 
 import org.hibernate.Query;
 import org.hibernate.procedure.ProcedureCall;
+import org.hibernate.type.StandardBasicTypes;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.his.mnis.entities.TwTzdata;
@@ -39,48 +40,48 @@ public class TwTzdataTwDao extends HibernateDaoSupport {
 		Object obj;
 		obj = twTzdataTw.getTwTw();
 		if (obj==null){
-			query.setParameter("TW_TW",null);
+			query.setParameter("TW_TW",obj,StandardBasicTypes.DOUBLE);
 		}else{
 			query.setDouble("TW_TW",twTzdataTw.getTwTw());
 		}
 		obj = twTzdataTw.getTwTwJwh();
 		if (obj==null){
-			query.setParameter("TW_TW_JWH", null);
+			query.setParameter("TW_TW_JWH",obj,StandardBasicTypes.DOUBLE);
 		}else{
 			query.setDouble("TW_TW_JWH",twTzdataTw.getTwTwJwh());
 		}
 //		query.setDouble("TW_TW_JWH",twTzdataTw.getTwTwJwh());
 		obj = twTzdataTw.getTwMb();
 		if (obj==null){
-			query.setParameter("TW_MB",  null);
+			query.setParameter("TW_MB",obj,StandardBasicTypes.SHORT);
 		}else{
 			query.setShort("TW_MB",twTzdataTw.getTwMb());
 		}
 //		query.setShort("TW_MB",twTzdataTw.getTwMb());
 		obj = twTzdataTw.getTwXl();
 		if (obj==null){
-			query.setParameter("TW_XL",null);
+			query.setParameter("TW_XL",obj,StandardBasicTypes.SHORT);
 		}else{
 			query.setShort("TW_XL",twTzdataTw.getTwXl());
 		}
 //		query.setShort("TW_XL",twTzdataTw.getTwXl());
 		obj = twTzdataTw.getTwHx();
 		if (obj==null){
-			query.setParameter("TW_HX",null);
+			query.setParameter("TW_HX",obj,StandardBasicTypes.SHORT);
 		}else{
 			query.setShort("TW_HX",twTzdataTw.getTwHx());
 		}
 //		query.setShort("TW_HX",twTzdataTw.getTwHx());
 		obj = twTzdataTw.getTwRcbz();
 		if (obj==null){
-			query.setParameter("TW_RCBZ", null);
+			query.setParameter("TW_RCBZ",obj,StandardBasicTypes.STRING);
 		}else{
 			query.setString("TW_RCBZ",twTzdataTw.getTwRcbz());
 		}
 //		query.setString("TW_RCBZ",twTzdataTw.getTwRcbz());
 		obj = twTzdataTw.getTwRcsj();
 		if (obj==null){
-			query.setParameter("TW_RCSJ", null);
+			query.setParameter("TW_RCSJ",obj,StandardBasicTypes.STRING);
 		}else{
 			query.setString("TW_RCSJ",twTzdataTw.getTwRcsj());
 		}
@@ -174,13 +175,49 @@ public class TwTzdataTwDao extends HibernateDaoSupport {
 			query.setString("czyxm",twTzdataTw.getCzyxm());
 			query.setString("sj",twTzdataTw.getSj());
 			query.setString("TW_LX",twTzdataTw.getTwLx());
-			query.setDouble("TW_TW",twTzdataTw.getTwTw());
-			query.setDouble("TW_TW_JWH",twTzdataTw.getTwTwJwh());
-			query.setShort("TW_MB",twTzdataTw.getTwMb());
-			query.setShort("TW_XL",twTzdataTw.getTwXl());
-			query.setShort("TW_HX",twTzdataTw.getTwHx());
-			query.setString("TW_RCBZ",twTzdataTw.getTwRcbz());
-			query.setString("TW_RCSJ",twTzdataTw.getTwRcsj());
+			Object obj;
+			obj = twTzdataTw.getTwTw();
+			if (obj==null){
+				query.setParameter("TW_TW",obj,StandardBasicTypes.DOUBLE);
+			}else{
+				query.setDouble("TW_TW",twTzdataTw.getTwTw());
+			}
+			obj = twTzdataTw.getTwTwJwh();
+			if (obj==null){
+				query.setParameter("TW_TW_JWH",obj,StandardBasicTypes.DOUBLE);
+			}else{
+				query.setDouble("TW_TW_JWH",twTzdataTw.getTwTwJwh());
+			}
+			obj = twTzdataTw.getTwMb();
+			if (obj==null){
+				query.setParameter("TW_MB",obj,StandardBasicTypes.SHORT);
+			}else{
+				query.setShort("TW_MB",twTzdataTw.getTwMb());
+			}
+			obj = twTzdataTw.getTwXl();
+			if (obj==null){
+				query.setParameter("TW_XL",obj,StandardBasicTypes.SHORT);
+			}else{
+				query.setShort("TW_XL",twTzdataTw.getTwXl());
+			}
+			obj = twTzdataTw.getTwHx();
+			if (obj==null){
+				query.setParameter("TW_HX",obj,StandardBasicTypes.SHORT);
+			}else{
+				query.setShort("TW_HX",twTzdataTw.getTwHx());
+			}
+			obj = twTzdataTw.getTwRcbz();
+			if (obj==null){
+				query.setParameter("TW_RCBZ",obj,StandardBasicTypes.STRING);
+			}else{
+				query.setString("TW_RCBZ",twTzdataTw.getTwRcbz());
+			}
+			obj = twTzdataTw.getTwRcsj();
+			if (obj==null){
+				query.setParameter("TW_RCSJ",obj,StandardBasicTypes.STRING);
+			}else{
+				query.setString("TW_RCSJ",twTzdataTw.getTwRcsj());
+			}
 			return query.executeUpdate();
 		}
 }

@@ -33,12 +33,24 @@
 			<result name="success">/views/ruyuanhuli_pinggu_pinggu.jsp</result>
 			<result name="error">/views/ruyuanhuli_pinggu_pinggu.jsp</result>
 		</action>
+		<!-- 护理评估 一般资料-->
+		<action name="hulipingguyibanziliao" class="ryhlpgAction" method="getListVwRyhlpg">
+			<result name="success">/views/ruyuanhuli_pinggu_yibanziliao.jsp</result>
+			<result name="error">/views/hulibingli.jsp</result>
+		</action>
 		<!-- 护理评估 -->
 		<action name="yachuangpinggu" class="pingGuLeiAction" method="getTwHulijlbiaoZd">
 			<result name="success">/views/yachuang_pinggu_yufang.jsp</result>
 			<result name="error">/views/yachuang_pinggu_yufang.jsp</result>
 		</action>
-		
+		<action name="updatehlpgyibanziliao" class="ryhlpgAction" method="saveRyhlpg">
+			<result type="stream" name="ajax-success">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+			<!-- <result name="success" type="redirect">hzwxpg</result>
+			<result name="error" type="redirect">/views/huanzhe_pinggu.jsp</result> -->
+		</action>
 		<!-- 护理评估记录查询forjquery -->
 		<action name="pinggudataforjquery" class="pingGuLeiAction" method="getListHulijlLeiOutputForUpdate">
 		</action>
@@ -158,9 +170,13 @@
 			<result name="success">/views/yizhuweizhixing.jsp</result>
 			<result name="error">/views/yizhuweizhixing.jsp</result>
 		</action>
-		<action name="allyizhuweizhixing" class="yiZhuWeiZhiXingAction" method="getListAllWeiZhiXingYiZhuByHsid">
+<!-- 		<action name="allyizhuweizhixing" class="yiZhuWeiZhiXingAction" method="getListAllWeiZhiXingYiZhuByHsid">
 			<result name="success">/views/yizhuweizhixing2.jsp</result>
 			<result name="error">/views/yizhuweizhixing2.jsp</result>
+		</action> -->
+		<action name="allyizhuweizhixing" class="yiZhuWeiZhiXingAction" method="getListAllWeiZhiXingYiZhuByHsid">
+			<result name="success">/views/yizhuweizhixing3.jsp</result>
+			<result name="error">/views/yizhuweizhixing3.jsp</result>
 		</action>
 		<action name="yizhuweizhixingforjquery" class="yiZhuWeiZhiXingAction" method="getListWeiZhiXingYiZhuByHsidZxflforjQuery">
 		</action>

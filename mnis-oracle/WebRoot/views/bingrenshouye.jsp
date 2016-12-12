@@ -143,7 +143,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="views/tizhengluru_update">
+				<a href="tizhengluru_update">
 					<div class="ChannelIcon">
 						<img src="images/1408672415.jpg" />
 					</div>

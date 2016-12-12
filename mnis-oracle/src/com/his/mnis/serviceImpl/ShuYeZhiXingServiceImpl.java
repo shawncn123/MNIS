@@ -6,6 +6,7 @@ import java.util.List;
 import com.his.mnis.dao.ShuYeZhiXingDao;
 import com.his.mnis.entities.MyBingRen;
 import com.his.mnis.entities.TwBryzzx;
+import com.his.mnis.entities.TwBryzzx_brxx;
 import com.his.mnis.services.ShuYeZhiXingService;
 import com.his.mnis.services.TwBryzzxService;
 import com.his.mnis.services.TwWdbrService;
@@ -41,7 +42,7 @@ public class ShuYeZhiXingServiceImpl implements ShuYeZhiXingService {
 	}
 
 	@Override
-	public List<TwBryzzx> getMyBingRenZhiXingYiZhuByHsidZxfl(String hsid,
+	public List<TwBryzzx_brxx> getMyBingRenZhiXingYiZhuByHsidZxfl(String hsid,
 			String zxfldm,Date xzrq) {
 		
 		return shuYeZhiXingDao.getMyBingRenShuYeZhiXingYiZhu(hsid, zxfldm,xzrq);

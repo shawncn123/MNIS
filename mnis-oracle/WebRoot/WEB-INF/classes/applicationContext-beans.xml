@@ -16,7 +16,22 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
+	<!-- 入院护理评估 一般资料-->
+	<bean id="vwRyhlpgDao" class="com.his.mnis.dao.VwRyhlpgDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="twRyhlpgDao" class="com.his.mnis.dao.TwRyhlpgDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="ryhlpgService" class="com.his.mnis.serviceImpl.RyhlpgServiceImpl">
+		<property name="vwRyhlpgDao" ref="vwRyhlpgDao"></property>
+		<property name="twRyhlpgDao" ref="twRyhlpgDao"></property>
+	</bean>
+	<bean id="ryhlpgAction" class="com.his.mnis.actions.RyhlpgAction"  scope="prototype">
+		<property name="ryhlpgService" ref="ryhlpgService"></property>
+	</bean>
 	<!-- 入院护理评估 -->
+	
 	<bean id="twHulijlbiaoZdDao" class="com.his.mnis.dao.TwHulijlbiaoZdDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
@@ -274,9 +289,13 @@
 	<bean id="twBryzzxDao" class="com.his.mnis.dao.TwBryzzxDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="twSyyzbzczJiluDao" class="com.his.mnis.dao.TwSyyzbzczJiluDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 	<bean id="twBryzzxService" class="com.his.mnis.serviceImpl.TwBryzzxServiceImpl">
 		<property name="twBryzzxDao" ref="twBryzzxDao"></property>
 		<property name="twBryzPeiYeDao" ref="twBryzPeiYeDao"></property>
+		<property name="twSyyzbzczJiluDao" ref="twSyyzbzczJiluDao"></property>
 	</bean>
 	<bean id="twBryzzxAction" class="com.his.mnis.actions.TwBryzzxAction"  scope="prototype">
 		<property name="twBryzzxService" ref="twBryzzxService"></property>

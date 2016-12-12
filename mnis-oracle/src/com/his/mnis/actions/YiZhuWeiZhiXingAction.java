@@ -17,6 +17,8 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.his.mnis.entities.TwBryzzx;
 import com.his.mnis.entities.TwBryzzxRemodel;
+import com.his.mnis.entities.TwBryzzx_brxx;
+import com.his.mnis.entities.TwBryzzx_brxx_yzmcs_remodel;
 import com.his.mnis.entities.VwRybq;
 import com.his.mnis.entities.Zd001;
 import com.his.mnis.services.ShuYeZhiXingService;
@@ -106,10 +108,10 @@ public class YiZhuWeiZhiXingAction extends ActionSupport implements
 				if(proc_result.equals("1")){
 					return ERROR;
 				}
-				List<TwBryzzx> twBryzzxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, vxzzxfl,xzrq);
-				if(twBryzzxs!=null && twBryzzxs.size()>0){
-					List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
-					request.put("yizhu_weizhixing", twBryzzxRemodels);
+				List<TwBryzzx_brxx> twBryzzx_brxxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, vxzzxfl,xzrq);
+				if(twBryzzx_brxxs!=null && twBryzzx_brxxs.size()>0){
+					List<TwBryzzx_brxx_yzmcs_remodel> twBryzzx_brxx_yzmcs_remodels = twBryzzxService.getListBrYzzxBrxxYzmcRemodel(twBryzzx_brxxs);
+					request.put("yizhu_weizhixing", twBryzzx_brxx_yzmcs_remodels);
 					String actname = "yizhuweizhixing?vxzzxfl=" + vxzzxfl;
 					request.put("action_name", actname);
 					return SUCCESS;
@@ -136,10 +138,10 @@ public class YiZhuWeiZhiXingAction extends ActionSupport implements
 				if(proc_result.equals("1")){
 					return ERROR;
 				}
-				List<TwBryzzx> twBryzzxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, vxzzxfl,xzrq);
-				if(twBryzzxs!=null && twBryzzxs.size()>0){
-					List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
-					JSONArray jsonArray = JSONArray.fromObject(twBryzzxRemodels);
+				List<TwBryzzx_brxx> twBryzzx_brxxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, vxzzxfl,xzrq);
+				if(twBryzzx_brxxs!=null && twBryzzx_brxxs.size()>0){
+					List<TwBryzzx_brxx_yzmcs_remodel> twBryzzx_brxx_yzmcs_remodels = twBryzzxService.getListBrYzzxBrxxYzmcRemodel(twBryzzx_brxxs);
+					JSONArray jsonArray = JSONArray.fromObject(twBryzzx_brxx_yzmcs_remodels);
 					// JSONObject json = JSONObject.fromObject(vwBqbrZys);
 					HttpServletResponse response = ServletActionContext.getResponse();
 					response.setContentType("text/html;charset=UTF-8");
@@ -176,10 +178,10 @@ public class YiZhuWeiZhiXingAction extends ActionSupport implements
 				if(proc_result.equals("1")){
 					return ERROR;
 				}
-				List<TwBryzzx> twBryzzxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, "00",xzrq);
-				if(twBryzzxs!=null && twBryzzxs.size()>0){
-					List<TwBryzzxRemodel> twBryzzxRemodels = twBryzzxService.getListBrYzzxRemodel(twBryzzxs);
-					request.put("yizhu_weizhixing", twBryzzxRemodels);
+				List<TwBryzzx_brxx> twBryzzx_brxxs = shuYeZhiXingService.getMyBingRenZhiXingYiZhuByHsidZxfl(vhsid, "00",xzrq);
+				if(twBryzzx_brxxs!=null && twBryzzx_brxxs.size()>0){
+					List<TwBryzzx_brxx_yzmcs_remodel> twBryzzx_brxx_yzmcs_remodels = twBryzzxService.getListBrYzzxBrxxYzmcRemodel(twBryzzx_brxxs);
+					request.put("yizhu_weizhixing", twBryzzx_brxx_yzmcs_remodels);
 					String actname = "allyizhuweizhixing?vxzzxfl=00";
 					request.put("action_name", actname);
 					return SUCCESS;

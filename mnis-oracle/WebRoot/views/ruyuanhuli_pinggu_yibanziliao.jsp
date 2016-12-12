@@ -37,10 +37,45 @@
 <script src="scripts/mobiscroll.js" type="text/javascript"></script>
 <script src="scripts/mobiscroll_003.js" type="text/javascript"></script>
 <script src="scripts/mobiscroll_005.js" type="text/javascript"></script>
-<script src="scripts/time-shen.js" type="text/javascript"></script>
 <script src="scripts/jquery.scrollTo-2.1.2.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+
+$(function(){
+	var currYear = (new Date()).getFullYear();	
+	var opt={};
+	opt.date = {preset : 'date'};
+	opt.datetime = {preset : 'datetime'};
+	opt.time = {preset : 'time'};
+	opt.default = {
+		theme: 'android-ics light', //皮肤样式
+        display: 'modal', //显示方式 
+        mode: 'scroller', //日期选择模式
+		dateFormat: 'yyyy-mm-dd',
+		lang: 'zh',
+		showNow: true,
+		nowText: "今天",
+        startYear: currYear - 10, //开始年份
+        endYear: currYear + 80 //结束年份
+	};
+    var optDateTime = $.extend(opt['datetime'], opt['default']);
+    $("#yiZhuRq").mobiscroll(optDateTime).datetime(optDateTime);//年月日时分型
+
+    function current(){        //时间插件 获取当前日期
+		var dt = new Date()
+		var y = dt.getFullYear(); 
+		var m = dt.getMonth()+1; 
+		var d = dt.getDate();
+		var h = dt.getHours();
+		var mm = dt.getMinutes();
+		str=y+'-'+(m<10 ? "0"+ m : m)+'-'+(d<10 ? "0" + d : d) + " " + h + ":" + mm;
+		
+		return str; 
+    }
+/* 	setInterval(function(){
+		$("#yiZhuRq").attr('value',current)
+	}); */
+ });
 
 /* function changeDate() {
 	var vxzrq = $("#yiZhuRq").val();
@@ -86,9 +121,9 @@
 } */
 
 function pg_submit(){
-	$("#pgrqv").attr('value', $("#yiZhuRq").val());
+	/* $("#pgrqv").attr('value', $("#yiZhuRq").val()); */
 	
-	var url = "updatehzwxpg";
+	var url = "updatehlpgyibanziliao";
 	var args = $('#hulipgyibanform').serialize();
 	$.post(url,args,function(data) {
 		if(data == "1"){
@@ -122,19 +157,22 @@ function pg_submit(){
 		</div>
 	</div>
 	<div id="content_b" class="container">
-	    <form action="updatehzwxpg" id="hulipgyibanform">
+	    <form action="" id="hulipgyibanform">
+	    	<input value="${bingren_hulipinggu.bah }" name="bah" style="width:100%;display:none;"/>
+	    	<input value="${bingren_hulipinggu.bq }" name="bq" style="width:100%;display:none;"/>
+	    	<input value="${bingren_hulipinggu.rowkey }" name="rowkey" style="width:100%;display:none;"/>
 	    	<div class="row" style="padding-bottom: 2%;padding-top: 2%;margin-bottom: 1%;margin-top: 1%;">
 				<div class="col-xs-2" style="padding-right: 0;">
 					<span>姓名:</span>
 				</div>
 				<div class="col-xs-4" style="padding-right: 0;border-bottom: 1px solid;padding-left: 0;">
-					<input value="" name="xm" style="width:100%"/>
+					<input value="${bingren_hulipinggu.xm }" name="xm" style="width:100%"/>
 				</div>
 				<div class="col-xs-2" style="padding-right: 0;">
 					<span>性别:</span>
 				</div>
 				<div class="col-xs-4" style="padding-right: 0;border-bottom: 1px solid;padding-left: 0;">
-					<input value="" name="xb"  style="width:100%"/>
+					<input value="${bingren_hulipinggu.xb }" name="xb"  style="width:100%"/>
 				</div>
 			</div>	    
 	    	<div class="row" style="padding-bottom: 2%;padding-top: 2%;margin-bottom: 1%;margin-top: 1%;">
@@ -142,13 +180,13 @@ function pg_submit(){
 					<span>年龄:</span>
 				</div>
 				<div class="col-xs-4" style="padding-right: 0;border-bottom: 1px solid;padding-left: 0;">
-					<input value="" name="nl"  style="width:100%"/>
+					<input value="${bingren_hulipinggu.nl }" name="nl"  style="width:100%"/>
 				</div>
 				<div class="col-xs-2" style="padding-right: 0;">
 					<span>科别:</span>
 				</div>
 				<div class="col-xs-4" style="padding-right: 0;border-bottom: 1px solid;padding-left: 0;">
-					<input value="" name="kb"  style="width:100%"/>
+					<input value="${bingren_hulipinggu.bqksmc }" name="bqksmc"  style="width:100%"/>
 				</div>
 			</div>	    
 	    	<div class="row" style="padding-bottom: 2%;padding-top: 2%;margin-bottom: 1%;margin-top: 1%;">
@@ -156,13 +194,13 @@ function pg_submit(){
 					<span>床号:</span>
 				</div>
 				<div class="col-xs-4" style="padding-right: 0;border-bottom: 1px solid;padding-left: 0;">
-					<input value="" name="chuanghao"  style="width:100%"/>
+					<input value="${bingren_hulipinggu.chw }" name="chw"  style="width:100%"/>
 				</div>
 				<div class="col-xs-2" style="padding-right: 0;">
 					<span>职业:</span>
 				</div>
 				<div class="col-xs-4" style="padding-right: 0;border-bottom: 1px solid;padding-left: 0;">
-					<input value="" name="zhiye"  style="width:100%"/>
+					<input value="${bingren_hulipinggu.zy }" name="zy"  style="width:100%"/>
 				</div>
 			</div>	    
 	    	<div class="row" style="padding-bottom: 2%;padding-top: 2%;margin-bottom: 1%;margin-top: 1%;">
@@ -170,13 +208,13 @@ function pg_submit(){
 					<span>民族:</span>
 				</div>
 				<div class="col-xs-4" style="padding-right: 0;border-bottom: 1px solid;padding-left: 0;">
-					<input value="" name="minzu"  style="width:100%"/>
+					<input value="${bingren_hulipinggu.mz }" name="mz"  style="width:100%"/>
 				</div>
 				<div class="col-xs-2" style="padding-right: 0;">
 					<span>文化程度:</span>
 				</div>
 				<div class="col-xs-4" style="padding-right: 0;border-bottom: 1px solid;padding-left: 0;">
-					<input value="" name="wenhuachengdu"  style="width:100%"/>
+					<input value="${bingren_hulipinggu.whcd }" name="whcd"  style="width:100%"/>
 				</div>
 			</div>	    
 	    	<div class="row" style="padding-bottom: 2%;padding-top: 2%;margin-bottom: 1%;margin-top: 1%;">
@@ -184,7 +222,7 @@ function pg_submit(){
 					<span>病史供述人:</span>
 				</div>
 				<div class="col-xs-8" style="padding-right: 0;border-bottom: 1px solid;padding-left: 0;">
-					<input value="" name="bsgsr" />
+					<input value="${bingren_hulipinggu.bsgsr }" name="bsgsr" />
 				</div>
 			</div>	    
 	    	<div class="row" style="padding-bottom: 2%;padding-top: 2%;margin-bottom: 1%;margin-top: 1%;">
@@ -193,7 +231,7 @@ function pg_submit(){
 				</div>
 				<div class="col-xs-8" style="padding-right: 0;border-bottom: 1px solid;padding-left: 0;">
 					<!-- <input value="" name="rysj" /> -->
-					<input value="" class="form-control" name="chajiantime" id="yiZhuRq" type="text" placeholder="" onchange="" readonly="readonly">
+					<input value="${bingren_hulipinggu.rksj }" class="form-control" name="rksj" id="yiZhuRq" type="text" placeholder="" onchange="" readonly="readonly">
 				</div>
 			</div>	    
 	    	<div class="row" style="padding-bottom: 2%;padding-top: 2%;margin-bottom: 1%;margin-top: 1%;">
@@ -201,10 +239,25 @@ function pg_submit(){
 					<span>入院途径:</span>
 				</div>
 				<div class="col-xs-8" style="padding-right: 0;border-bottom: 1px solid;padding-left: 0;">
-					<select class="form-control" name="rytj" value="门诊">
-						<option value="门诊" selected="selected">门诊</option>
-						<option value="急诊" >急诊</option>
-						<option value="转入" >转入</option>
+					<select class="form-control" name="rytj">
+						<s:if test="rytj=='急诊'">
+							<option value="急诊" selected="selected">急诊</option>
+						</s:if>
+						<s:else>
+							<option value="急诊">急诊</option>
+						</s:else>
+						<s:if test="rytj=='门诊'">
+							<option value="门诊" selected="selected">门诊</option>
+						</s:if>
+						<s:else>
+							<option value="门诊">门诊</option>
+						</s:else>
+						<s:if test="rytj=='转入'">
+							<option value="转入" selected="selected">转入</option>
+						</s:if>
+						<s:else>
+							<option value="转入">转入</option>
+						</s:else>
 					</select>
 				</div>
 			</div>	    
@@ -213,11 +266,31 @@ function pg_submit(){
 					<span>费用支付:</span>
 				</div>
 				<div class="col-xs-8" style="padding-right: 0;border-bottom: 1px solid;padding-left: 0;">
-					<select class="form-control" name="fyzf" value="医疗保险">
-						<option value="医疗保险" selected="selected">医疗保险</option>
-						<option value="新农合" >新农合</option>
-						<option value="自费" >自费</option>
-						<option value="其它" >其它</option>
+					<select class="form-control" name="fylb" >
+						<s:if test="fylb=='医疗保险'">
+							<option value="医疗保险" selected="selected">医疗保险</option>
+						</s:if>
+						<s:else>
+							<option value="医疗保险">医疗保险</option>
+						</s:else>
+						<s:if test="fylb=='新农合'">
+							<option value="新农合" selected="selected">新农合</option>
+						</s:if>
+						<s:else>
+							<option value="新农合">新农合</option>
+						</s:else>
+						<s:if test="fylb=='自费'">
+							<option value="自费" selected="selected">自费</option>
+						</s:if>
+						<s:else>
+							<option value="自费">自费</option>
+						</s:else>
+						<s:if test="fylb=='其它'">
+							<option value="其它" selected="selected">其它</option>
+						</s:if>
+						<s:else>
+							<option value="其它">其它</option>
+						</s:else>
 					</select>
 				</div>
 			</div>	    
@@ -226,11 +299,31 @@ function pg_submit(){
 					<span>入院方式:</span>
 				</div>
 				<div class="col-xs-8" style="padding-right: 0;border-bottom: 1px solid;padding-left: 0;">
-					<select class="form-control" name="ryfs" value="步行">
-						<option value="步行" selected="selected">步行</option>
-						<option value="轮椅" >轮椅</option>
-						<option value="平车" >平车</option>
-						<option value="其它" >其它</option>
+					<select class="form-control" name="ryfs">
+						<s:if test="ryfs=='步行'">
+							<option value="步行" selected="selected">步行</option>
+						</s:if>
+						<s:else>
+							<option value="步行">步行</option>
+						</s:else>
+						<s:if test="ryfs=='轮椅'">
+							<option value="轮椅" selected="selected">轮椅</option>
+						</s:if>
+						<s:else>
+							<option value="轮椅">轮椅</option>
+						</s:else>
+						<s:if test="ryfs=='平车'">
+							<option value="平车" selected="selected">平车</option>
+						</s:if>
+						<s:else>
+							<option value="平车">平车</option>
+						</s:else>
+						<s:if test="ryfs=='其它'">
+							<option value="其它" selected="selected">其它</option>
+						</s:if>
+						<s:else>
+							<option value="其它">其它</option>
+						</s:else>
 					</select>
 				</div>
 			</div>	    

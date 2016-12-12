@@ -78,6 +78,7 @@
 								$('#prompt3').hide();
 								$('#prompt4').hide();
 							}else{
+								document.getElementById("chatAudio").play();								
 							//若data 的返回值是1，则提示失败
 								$('#prompt1').hide();
 								$('#prompt2').hide();
@@ -87,6 +88,7 @@
 						});	
 					}
 					else{
+						document.getElementById("chatAudio").play();						
 						$('#prompt1').hide();
 						$('#prompt2').hide();
 						$('#prompt3').show();
@@ -98,6 +100,7 @@
 					$("#saowandai").val("");
 					document.getElementById("saowandai").focus();
 				}else{
+					document.getElementById("chatAudio").play();
 					$('#prompt1').show();
 					$('#prompt2').hide();
 					$('#prompt3').hide();
@@ -106,25 +109,13 @@
 					document.getElementById("saowandai").focus();
 				}
 			}else{
+				document.getElementById("chatAudio").play();
 				$('#prompt2').show();
 				$('#prompt1').hide();
 				$('#prompt3').hide();
 				$('#prompt4').hide();
 				$("#saowandai").val("");
 				document.getElementById("saowandai").focus();
-			}
-		});
-		// 扫描筛选输液信息
-		$('#chapq').click(function() {
-			var val = $('#saopingqian').val();
-			
-			var pqName = $('.pqName');
-			for (var i = 0; i < pqName.length; i++) {
-				var $this = $(pqName[i]);
-				var pq_tex = $this.text();
-				if (val != pq_tex) {
-					$this.parents('.row').hide();
-				}
 			}
 		});
 		
@@ -265,7 +256,13 @@
 					
 					a = a + '<div class="row ' + d[i].rowkey 
 					+ '" style="margin: 2% 0 0 0;padding: 2% 4%;border: 2px solid #C1D7F9;border-radius: 5px;" id="' 
-					+ d[i].rowkey + '"><div class="row module">';
+					+ d[i].rowkey + '">';
+					a = a + '<div class="row"><div class="col-xs-12"><span style="color:#37b3e8;">&nbsp;'
+						+ d[i].chw + '&nbsp;' + d[i].xm + '&nbsp;' + d[i].xb + '&nbsp;' + d[i].nl  + '&nbsp;' + d[i].bah
+						+ '</span></div></div><div class="row"><div class="col-xs-12 text-right"'
+						+ ' style="margin: 10px 0 10px 0;padding-bottom: 5px;border-top: #666666 1px dashed;"></div></div>'
+						+ '<div class="row module">';
+						
 					for(var j = 0;j<d[i].yzmcs.length;j++){
 						a = a + '<div class="col-xs-12"><span>' + d[i].yzmcs[j] + '</span></div>';
 					}
@@ -275,7 +272,7 @@
 					+ '<div class="col-xs-8" style="padding: 0 0 0 1%;"><span>'
 					+ vyzrq2 + ' ' + d[i].sjd
 					+ '</span></div><div class="col-xs-4" style="padding-right:0;">';
-					if(d[i].bzflag==1){
+					if(d[i].qdflag==1){
 						a = a + '<input type="checkbox" class="qdclass1" style="width: 100%; height: 2rem;" checked=checked id="'
 						+ d[i].rowkey + '_check"></input>';
 					}
@@ -283,7 +280,7 @@
 						a = a + '<input type="checkbox" class="qdclass1" style="width: 100%; height: 2rem;" id="'
 						+ d[i].rowkey + '_check"></input>';
 					}
-					a = a + '<input name="quedflag" value="' + d[i].bzflag 
+					a = a + '<input name="quedflag" value="' + d[i].qdflag 
 						+ '" style="display:none;" class="qdclass" id="'
 						+ d[i].rowkey + '_quedflag"/></div>'
 						+ '<input value="' + d[i].rowkey + '" style="display:none;" name="rowkey"/></div></div>';
@@ -311,11 +308,78 @@
 				}
 		});
 		
+		$("#weiqueren").click(function() {
+			var url = "peiye_saomiao_jquery";
+			var vxzrq = $("#yiZhuRq").val();
+			var args = {"vxzrq":vxzrq}; 
+			$.post(url,args,function(data) {
+				var a = '';
+				var chuangwei="";
+				if(data!=null && data!="" ){
+					d = eval("("+ data+ ")");
+					for (var i = 0; i < d.length; i++) {
+						if(d[i].qdflag!=1){
+							var obj =  d[i].rq;
+							var teo = new Date(obj.time);
+							var vmonth = teo.getMonth()+1;
+							if(vmonth<10){
+								vmonth = "0"+vmonth;
+							}
+							var vday =  teo.getDate();
+							if(vday < 10){
+								vday = "0" + vday;
+							}
+							var vyzrq1 = teo.getFullYear() + "-" + vmonth + "-" + vday + " 00:00:00.0";
+							var vyzrq2 = teo.getFullYear() + "-" + vmonth + "-" + vday;
+							var vyzrq3 = teo.getFullYear() + vmonth + vday;
+							
+							a = a + '<div class="row ' + d[i].rowkey 
+							+ '" style="margin: 2% 0 0 0;padding: 2% 4%;border: 2px solid #C1D7F9;border-radius: 5px;" id="' 
+							+ d[i].rowkey + '">';
+							a = a + '<div class="row"><div class="col-xs-12"><span style="color:#37b3e8;">&nbsp;'
+								+ d[i].chw + '&nbsp;' + d[i].xm + '&nbsp;' + d[i].xb + '&nbsp;' + d[i].nl  + '&nbsp;' + d[i].bah
+								+ '</span></div></div><div class="row"><div class="col-xs-12 text-right"'
+								+ ' style="margin: 10px 0 10px 0;padding-bottom: 5px;border-top: #666666 1px dashed;"></div></div>'
+								+ '<div class="row module">';
+								
+							for(var j = 0;j<d[i].yzmcs.length;j++){
+								a = a + '<div class="col-xs-12"><span>' + d[i].yzmcs[j] + '</span></div>';
+							}
+							a = a + '</div><div class="row"><div class="col-xs-12 text-right" '
+							+ 'style="margin: 10px 0 10px 0;padding-bottom: 5px;border-top: #666666 1px dashed;"></div></div>'
+							+ '<div class="row" style="border-bottom: #666666 1px dashed;padding-bottom: 5px;margin-bottom: 5px;">'
+							+ '<div class="col-xs-8" style="padding: 0 0 0 1%;"><span>'
+							+ vyzrq2 + ' ' + d[i].sjd
+							+ '</span></div><div class="col-xs-4" style="padding-right:0;">';
+							if(d[i].qdflag==1){
+								a = a + '<input type="checkbox" class="qdclass1" style="width: 100%; height: 2rem;" checked=checked id="'
+								+ d[i].rowkey + '_check"></input>';
+							}
+							else{
+								a = a + '<input type="checkbox" class="qdclass1" style="width: 100%; height: 2rem;" id="'
+								+ d[i].rowkey + '_check"></input>';
+							}
+							a = a + '<input name="quedflag" value="' + d[i].qdflag 
+								+ '" style="display:none;" class="qdclass" id="'
+								+ d[i].rowkey + '_quedflag"/></div>'
+								+ '<input value="' + d[i].rowkey + '" style="display:none;" name="rowkey"/></div></div>';
+						}
+					}
+				}else{
+					a = "无配液数据！";
+				} 
+				 $("#content")[0].innerHTML = a; 
+				 $("#saowandai").val("");
+				 document.getElementById("saowandai").focus();
+			})
+		})
+		
 	});
 </script>
 </head>
 
 <body>
+	<audio id="chatAudio"><source src="images/ydhl_error_001.wav" type="audio/wav"></audio>
 	<%@ include file="header-hushi.jsp"%>
 		<div class="row" style="border-bottom:1px solid #269abc;padding: 5px 0 ; margin: 0;">
 			<div class="col-xs-4" style="padding: 0 2px;">
@@ -323,27 +387,10 @@
 					<input value="" class="form-control" name="chajiantime" id="yiZhuRq" type="text" placeholder="" onchange="changeDate()" readonly="readonly">
 				</div>
 			</div>
-			<%-- <div class="col-xs-4" style="padding: 0 2px;">
-				合计：<span id="hejishu"></span>
-			</div> --%>
-			<%-- <div class="col-xs-4" id="prompt1" style="display:none;">
-		   		<span class="label label-warning">无此医嘱</span>
-		   	</div>
-			<div class="col-xs-4" id="prompt2" style="display:none;">
-		   		<span class="label label-default">无关瓶签</span>
-		   	</div>
-			<div class="col-xs-4" id="prompt3" style="display:none;">
-		   		<span class="label label-info">瓶签已扫过</span>
-		   	</div>
-			<div class="col-xs-4" id="prompt4" style="display:none;">
-		   		<span class="label label-danger">记录失败</span>
-		   	</div> --%>
-			<div class="col-xs-4">
-		   		<span class="label label-warning" id="prompt1" style="display:none;">无此医嘱</span>
-		   		<span class="label label-default" id="prompt2" style="display:none;">无关瓶签</span>
-		   		<span class="label label-info" id="prompt3" style="display:none;">瓶签已扫过</span>
-		   		<span class="label label-danger" id="prompt4" style="display:none;">记录失败</span>
-		   	</div>
+			
+			<div class="col-xs-4" style="padding: 0 2px;">
+				<button type="button" class="btn pull-left btn-primary" id="weiqueren">未确认</button>
+			</div>
 			
 			<div class="col-xs-4" style="padding: 0 2px;">
 				<div class="input-group input-group-xs">
@@ -354,12 +401,34 @@
 					</span>
 				</div>
 			</div>
+			
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-4">
+			</div>
+			<div class="col-xs-8">
+		   		<span class="label label-warning" id="prompt1" style="display:none;">无此医嘱</span>
+		   		<span class="label label-default" id="prompt2" style="display:none;">无关瓶签</span>
+		   		<span class="label label-info" id="prompt3" style="display:none;">瓶签已扫过</span>
+		   		<span class="label label-danger" id="prompt4" style="display:none;">记录失败</span>
+		   	</div>
 		</div>
 	</div>
 	
 	<div id="content" class="container" style="padding: 0;">
 		<s:iterator value="#request.shuye_yizhu_data" status="status">
 			<div class="row ${rowkey}" style="margin: 2% 0 0 0;padding: 2% 4%;border: 2px solid #C1D7F9;border-radius: 5px;" id="${rowkey}">
+				<div class="row">
+					<div class="col-xs-12">
+							<span style="color:#37b3e8;">&nbsp;${chw }&nbsp;${xm }&nbsp;${xb }&nbsp;${nl }&nbsp;${bah}</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 text-right"
+						style="margin: 10px 0 10px 0;padding-bottom: 5px;border-top: #666666 1px dashed;">
+					</div>
+				</div>
 				<div class="row module">
 					<s:iterator value="yzmcs" id="mc_yz">
 						<div class="col-xs-12">
@@ -381,7 +450,7 @@
 						<span><s:date name="rq" format="yyyy-MM-dd"/> ${sjd}</span>
 					</div>
 					<div class="col-xs-4" style="padding-right:0;">
-						<s:if test="bzflag==1">
+						<s:if test="qdflag==1">
 							 <input type="checkbox" class="qdclass1" 
 										style="width: 100%; height: 2rem;" checked=checked id="${rowkey}_check"></input>
 						</s:if>
@@ -389,7 +458,7 @@
 						 	<input type="checkbox" class="qdclass1"
 										style="width: 100%; height: 2rem;" id="${rowkey}_check"></input>
 						</s:else>
-						 <input name="quedflag" value="${bzflag}" style="display:none;" class="qdclass" id="${rowkey}_quedflag"/>
+						 <input name="quedflag" value="${qdflag}" style="display:none;" class="qdclass" id="${rowkey}_quedflag"/>
 					</div>
 					<input value="${rowkey }" style="display:none;" name="rowkey"/>
 				</div>

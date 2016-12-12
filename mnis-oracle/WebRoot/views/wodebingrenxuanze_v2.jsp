@@ -80,6 +80,20 @@
 				$("#bqidcanshu").val(valbq);
 			});
 		});
+		$("#allselect").click(function() {
+			/* $(".qdclass1").attr("checked",true); */
+			$("input[name='quedkuang']").prop("checked",true);
+			$("input[name='quedflag']").prop("value","1");
+/* 			$(".qdclass").val("1"); */
+			
+		});
+		$("#allcancel").click(function() {
+/* 			$(".qdclass1").attr("checked",false); */
+			$("input[name='quedkuang']").prop("checked",false);
+			$("input[name='quedflag']").prop("value","0");
+/* 			$(".qdclass").val("0"); */
+			
+		});
 	});
 </script>
 </head>
@@ -88,7 +102,7 @@
 	<%@ include file="header-hushi.jsp"%>
 		<div class="row"
 			style="border-bottom:1px solid #269abc;padding: 5px 0 ;">
-			<div class="col-xs-4" style="padding: 0 0 0 5%;">
+			<div class="col-xs-3" style="padding: 0 0 0 5%;">
 				<div class="dropdown" style="width: 100%">
 					<button class="btn btn-default btn-sm dropdown-toggle"
 						type="button" id="dropdownMenu1" data-toggle="dropdown"
@@ -105,16 +119,26 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-xs-4" style="padding: 0 5%  0 0;">
+			<div class="col-xs-3" style="padding: 0 0 0 5%;">
+				<button type="button" class="btn pull-left btn-primary" id="allselect">全选</button>
+			</div>
+			<div class="col-xs-3" style="padding: 0 0 0 5%;">
+				<button type="button" class="btn pull-left btn-primary" id="allcancel">全消</button>
+			</div>
+			<div class="col-xs-3" style="padding: 0 0 0 5%;">
+				<button type="button" class="btn pull-left btn-primary" onclick="document.getElementById('formbrid').submit();">确定</button>
+			</div>
+		</div>
+		<div class="row"
+			style="border-bottom:1px solid #269abc;padding: 5px 0 ;">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-8" style="padding: 0 5%  0 0;">
 				<s:if test="#request.datasaveflag==1">
 					<span style="margin: 0 0 0 2%;color: #6EF1F1;font-size: 14px;">保存成功！</span>
 				</s:if>
 				<s:if test="#request.datasaveflag==0">
 					<span style="margin: 0 0 0 2%;color: red;font-size: 14px;">保存失败！</span>
 				</s:if>
-			</div>
-			<div class="col-xs-4" style="padding: 0 0 0 5%;">
-				<button type="button" class="btn pull-left btn-primary" onclick="document.getElementById('formbrid').submit();">确定</button>
 			</div>
 		</div>
 	</div>
@@ -133,7 +157,7 @@
 								<input name="chw" value="${chw}" style="display:none;"/>
 							</div>
 							<div class="col-xs-5" style="padding: 0;">                       
-								 <input type="checkbox" class="qdclass1"
+								 <input type="checkbox" class="qdclass1" name="quedkuang"
 									style="display: block; margin-left: 3px; margin-top: 2px; width: 2rem; height: 2rem;" <s:if test="quedflag==1">checked="checked"</s:if>></input>
 								<input name="quedflag" value="${quedflag}" style="display:none;" class="qdclass"/>
 							</div>

@@ -57,6 +57,20 @@ public class TwTwdMessDao extends BaseDao {
 	}
 	
 	/*
+	 * 给TW_twd_mess 数据update 让后台程序生成体温单图片
+	 */
+	public int updateTwTwdMessRow(Long vkey1,Integer vkey2,Short vkey3,Date vbeginrq){
+		
+		String sqlstring = "update tw_twd_mess set handleflag='0' where beginrq=:vbeginrq and key1=:vkey1 and key2=:vkey2 and yebh=:vkey3";
+		Query query = getSession().createSQLQuery(sqlstring);
+		query.setLong("vkey1", vkey1);
+		query.setInteger("vkey2", vkey2);
+		query.setShort("vkey3", vkey3);
+		query.setDate("vbeginrq", vbeginrq);
+		return query.executeUpdate();
+	}
+	
+	/*
 	 * 取handleflag 数据判断体温单图片生成状态 0 等待处理 1 处理成功 2 处理错误
 	 */
 	public char getHandleflagFromTWTwdMess(Long vkey1,Integer vkey2,Short vkey3,Date vbeginrq){
@@ -90,5 +104,13 @@ public class TwTwdMessDao extends BaseDao {
 		query.setInteger("vkey2", vkey2);
 		query.setShort("vkey3", vkey3);
 		return (Date) query.uniqueResult();
+	}
+	
+	public int deleteTwTwdMessRowByJlid(Long jlid){
+		
+		String sqlstring = "delete tw_twd_mess where jlid=:jlid";
+		Query query = getSession().createSQLQuery(sqlstring);
+		query.setLong("jlid", jlid);
+		return query.executeUpdate();
 	}
 }

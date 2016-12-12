@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <img src="images/friend.png" style="width: 100%;">
                         </div>
                         <div class="col-xs-10" style="margin: 1% 0;">
-                            <a href="views/ruyuanhuli_pinggu_yibanziliao.jsp">
+                            <a href="hulipingguyibanziliao">
                                 入院护理一般资料
                             </a>
                         </div>
